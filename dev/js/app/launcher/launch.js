@@ -1,0 +1,5 @@
+/*
+session
+localStorage
+set the rest
+*/
