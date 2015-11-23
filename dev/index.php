@@ -2,26 +2,22 @@
 <html lang="it-IT">
 <head>
   <title>SuperList</title>
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="SuperList">
-
-  <link href="/img/app-icon/icon.png" rel="apple-touch-icon">
-  <link href="/img/startup-images/ipad-retina-portrait.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
-  <link href="/img/startup-images/ipad-retina-landscape.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
-  <link href="/img/startup-images/iphone-plus-portrait.png" media="(device-width: 414px) and (device-height: 736px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image">
-  <link href="/img/startup-images/iphone-plus-landscape.png" media="(device-width: 414px) and (device-height: 736px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image">
-
-  <style><?php echo file_get_contents('css/main.css'); ?></style>
-
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="author" href="humans.txt">
-  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="shortcut icon" href="favicon.png">
+  <style><?php echo file_get_contents("css/main.css"); ?></style>
 </head><?php flush(); ob_flush(); ?>
 <body>
+  <?php echo file_get_contents('svg/svg-sprite.svg'); ?>
+  <p>Hello world! This is HTML5 Boilerplate. 00b4ff</p>
 
-  <p>Hello world! This is HTML5 Boilerplate.</p>
+  <svg viewBox="0 0 32 32" class="icon shape-codepen">
+    <use xlink:href="#shape-smiley"></use>
+  </svg>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.1.4.min.js"><\/script>')</script>
