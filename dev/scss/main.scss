@@ -3,7 +3,6 @@
 @import 'utils/effects';
 
 @import 'base/normalize';
-@import 'base/typography';
 
 @import 'layout/header';
 @import 'layout/footer';
@@ -17,5 +16,5 @@
 @import 'pages/login';
 @import 'pages/app';
 
-@import 'responsivness/tablet';
-@import 'responsivness/desktop';
+@import 'responsiveness/tablet';
+@import 'responsiveness/desktop';

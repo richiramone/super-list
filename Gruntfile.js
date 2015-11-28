@@ -5,62 +5,37 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
   grunt.initConfig({
-    cssmin: {
+    compass: {
       dev: {
         options: {
-          keepSpecialComments: 0
-        },
-        files: [{
-          expand: true,
-          cwd: 'dev/media/css',
-          src: ['style.*.css'],
-          dest: 'prod/media/css/'
-        }]
-      }
-    },
-    htmlmin: {
-      dev: {
-        options: {
-          removeComments: true,
-          collapseWhitespace: true,
-          removeCommentsFromCDATA: true,
-          removeAttributeQuotes: true,
-          removeRedundantAttributes: true,
-          removeScriptTypeAttributes: true,
-          removeStyleLinkTypeAttributes: true,
-          removeOptionalTags: true
-        },
-        files: {
-          'prod/index.html': 'dev/index.critical.html'
+          outputStyle: 'expanded',
+          cssDir: 'dev/css',
+          sassDir: 'dev/scss'
         }
       }
     },
-    uglify: {
-      options: {
-        mangle: {
-          except: ['jQuery', '$']
-        }
-      },
+    browserSync: {
       dev: {
-        files: {
-          'prod/media/js/scripts.js': ['dev/media/js/scripts.js']
+        bsFiles: {
+          src: ['dev/css/*.css', 'dev/index.php'],
+        },
+        options: {
+          browser: "google chrome",
+          proxy: "superlist.dev",
+          watchTask: true,
+          ghostMode: false
         }
+      }
+    },
+    watch: {
+      compass: {
+        files: 'dev/scss/**/*.scss',
+        tasks: ['compass']
       }
     }
   });
 
-  grunt.registerTask('dev', ['TOO', 'phantomcss' /* csslint, jslint */]);
-
-  grunt.registerTask('rc', [
-    'less',
-    'uncss',
-    'critical',
-    'cssmin',
-    'htmlmin',
-    'uglify',
-    'imagemin',
-    'phantomcss'
-  ]);
+  grunt.registerTask('dev', ['browserSync', 'watch']);
 };
 
 /*

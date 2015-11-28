@@ -9,19 +9,69 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="author" href="humans.txt">
   <link rel="shortcut icon" href="favicon.png">
-  <style><?php echo file_get_contents("css/main.css"); ?></style>
+
+  <link href="css/main.css" rel="stylesheet">
 </head><?php flush(); ob_flush(); ?>
 <body>
   <?php echo file_get_contents('svg/svg-sprite.svg'); ?>
-  <p>Hello world! This is HTML5 Boilerplate. 00b4ff</p>
 
-  <svg viewBox="0 0 32 32" class="icon shape-codepen">
-    <use xlink:href="#shape-smiley"></use>
-  </svg>
+  <section>
+    <article>
+      <header>
+        <h1>SuperList</h1>
+        <button class="notify">
+          <svg viewBox="0 0 32 32">
+            <use xlink:href="#shape-bell"></use>
+          </svg>
+        </button>
+      </header>
+
+      <main>
+        <ol>
+          <li>
+            <input id="item-1" type="checkbox" checked>
+            <label for="item-1">
+              <h2>Pasta</h2>
+              <button>
+                <svg viewBox="0 0 32 32">
+                  <use xlink:href="#shape-trash"></use>
+                </svg>
+              </button>
+            </label>
+          </li>
+          <li>
+            <input id="item-2" type="checkbox" checked>
+            <label for="item-2">
+              <h2>Pasta con testo molto ma molto lungo perche a volte ci vuole scrivere tantissimo!</h2>
+              <button>
+                <svg viewBox="0 0 32 32">
+                  <use xlink:href="#shape-trash"></use>
+                </svg>
+              </button>
+            </label>
+          </li>
+          <li>
+            <input id="item-3" type="checkbox" checked>
+            <label for="item-3">
+              <h2>Pasta</h2>
+              <button>
+                <svg viewBox="0 0 32 32">
+                  <use xlink:href="#shape-trash"></use>
+                </svg>
+              </button>
+            </label>
+          </li>
+        </ol>
+      </main>
+
+      <footer>
+        <h6>Made with &hearts; for Anna &amp; Pancho.</h6>
+      </footer>
+  </section>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.1.4.min.js"><\/script>')</script>
 
-  <script src="js/app.js" async></script>
+  <!-- <script src="js/app.js" async></script> -->
 </body>
 </html>
