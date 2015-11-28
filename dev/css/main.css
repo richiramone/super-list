@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* line 1, ../scss/utils/_effects.scss */
 #dsds {
   display: block;
@@ -225,15 +224,14 @@ li [type=checkbox] + label:before {
 }
 /* line 37, ../scss/layout/_lists.scss */
 li [type=checkbox]:checked + label:before {
-  content: '✔';
-  padding-top: 3px;
-  height: 22px;
+  content: '=';
   background: #009DFF;
   color: #fff;
   font-size: 18px;
+  font-weight: bold;
   text-align: center;
 }
-/* line 48, ../scss/layout/_lists.scss */
+/* line 47, ../scss/layout/_lists.scss */
 li h2, li [type=text] {
   width: 76%;
   margin: -2px 0 0;
@@ -243,28 +241,28 @@ li h2, li [type=text] {
   letter-spacing: 0.02em;
   color: #333;
 }
-/* line 58, ../scss/layout/_lists.scss */
+/* line 57, ../scss/layout/_lists.scss */
 li [type=text] {
   display: none;
   border: 0;
   margin: 0;
   outline: none;
 }
-/* line 65, ../scss/layout/_lists.scss */
+/* line 64, ../scss/layout/_lists.scss */
 li button {
   width: 12%;
   text-align: right;
 }
-/* line 69, ../scss/layout/_lists.scss */
+/* line 68, ../scss/layout/_lists.scss */
 li button svg {
   width: 25px;
   fill: #cacaca;
 }
-/* line 76, ../scss/layout/_lists.scss */
+/* line 75, ../scss/layout/_lists.scss */
 li.editing [type=text] {
   display: block;
 }
-/* line 80, ../scss/layout/_lists.scss */
+/* line 79, ../scss/layout/_lists.scss */
 li.editing h2 {
   display: none;
 }
