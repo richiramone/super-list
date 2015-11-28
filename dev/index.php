@@ -24,48 +24,168 @@
             <use xlink:href="#shape-bell"></use>
           </svg>
         </button>
+        <button class="reload">
+          <svg viewBox="0 0 32 32">
+            <use xlink:href="#shape-smiley"></use>
+          </svg>
+        </button>
       </header>
 
       <main>
         <ol>
           <li>
-            <input id="item-1" type="checkbox" checked>
-            <label for="item-1">
-              <h2>Pasta</h2>
-              <button>
-                <svg viewBox="0 0 32 32">
-                  <use xlink:href="#shape-trash"></use>
-                </svg>
-              </button>
-            </label>
+            <input id="item-1" type="checkbox">
+            <label for="item-1"></label>
+            <h2>Pasta</h2>
+            <input type="text">
+            <button>
+              <svg viewBox="0 0 32 32">
+                <use xlink:href="#shape-trash"></use>
+              </svg>
+            </button>
           </li>
           <li>
             <input id="item-2" type="checkbox" checked>
-            <label for="item-2">
-              <h2>Pasta con testo molto ma molto lungo perche a volte ci vuole scrivere tantissimo!</h2>
-              <button>
-                <svg viewBox="0 0 32 32">
-                  <use xlink:href="#shape-trash"></use>
-                </svg>
-              </button>
-            </label>
+            <label for="item-2"></label>
+            <h2>Pasta con testo molto ma molto lungo perche a volte ci vuole scrivere tantissimo!</h2>
+            <input type="text">
+            <button>
+              <svg viewBox="0 0 32 32">
+                <use xlink:href="#shape-trash"></use>
+              </svg>
+            </button>
+          </li>
+          <li class="editing">
+            <input id="item-3" type="checkbox">
+            <label for="item-3"></label>
+            <h2>Pasta</h2>
+            <input type="text" value="Pasta">
+            <button>
+              <svg viewBox="0 0 32 32">
+                <use xlink:href="#shape-trash"></use>
+              </svg>
+            </button>
           </li>
           <li>
-            <input id="item-3" type="checkbox" checked>
-            <label for="item-3">
-              <h2>Pasta</h2>
-              <button>
-                <svg viewBox="0 0 32 32">
-                  <use xlink:href="#shape-trash"></use>
-                </svg>
-              </button>
-            </label>
+            <input id="item-1" type="checkbox">
+            <label for="item-1"></label>
+            <h2>Pasta</h2>
+            <input type="text">
+            <button>
+              <svg viewBox="0 0 32 32">
+                <use xlink:href="#shape-trash"></use>
+              </svg>
+            </button>
           </li>
+          <li>
+            <input id="item-2" type="checkbox" checked>
+            <label for="item-2"></label>
+            <h2>Pasta con testo molto ma molto lungo perche a volte ci vuole scrivere tantissimo!</h2>
+            <input type="text">
+            <button>
+              <svg viewBox="0 0 32 32">
+                <use xlink:href="#shape-trash"></use>
+              </svg>
+            </button>
+          </li>
+          <li>
+            <input id="item-1" type="checkbox">
+            <label for="item-1"></label>
+            <h2>Pasta</h2>
+            <input type="text">
+            <button>
+              <svg viewBox="0 0 32 32">
+                <use xlink:href="#shape-trash"></use>
+              </svg>
+            </button>
+          </li>
+          <li>
+            <input id="item-2" type="checkbox" checked>
+            <label for="item-2"></label>
+            <h2>Pasta con testo molto ma molto lungo perche a volte ci vuole scrivere tantissimo!</h2>
+            <input type="text">
+            <button>
+              <svg viewBox="0 0 32 32">
+                <use xlink:href="#shape-trash"></use>
+              </svg>
+            </button>
+          </li>
+          <li>
+            <input id="item-1" type="checkbox">
+            <label for="item-1"></label>
+            <h2>Pasta</h2>
+            <input type="text">
+            <button>
+              <svg viewBox="0 0 32 32">
+                <use xlink:href="#shape-trash"></use>
+              </svg>
+            </button>
+          </li>
+          <li>
+            <input id="item-2" type="checkbox" checked>
+            <label for="item-2"></label>
+            <h2>Pasta con testo molto ma molto lungo perche a volte ci vuole scrivere tantissimo!</h2>
+            <input type="text">
+            <button>
+              <svg viewBox="0 0 32 32">
+                <use xlink:href="#shape-trash"></use>
+              </svg>
+            </button>
+          </li>
+          <li>
+            <input id="item-1" type="checkbox">
+            <label for="item-1"></label>
+            <h2>Pasta</h2>
+            <input type="text">
+            <button>
+              <svg viewBox="0 0 32 32">
+                <use xlink:href="#shape-trash"></use>
+              </svg>
+            </button>
+          </li>
+          <li>
+            <input id="item-2" type="checkbox" checked>
+            <label for="item-2"></label>
+            <h2>Pasta con testo molto ma molto lungo perche a volte ci vuole scrivere tantissimo!</h2>
+            <input type="text">
+            <button>
+              <svg viewBox="0 0 32 32">
+                <use xlink:href="#shape-trash"></use>
+              </svg>
+            </button>
+          </li>
+          <li>
+            <input id="item-1" type="checkbox">
+            <label for="item-1"></label>
+            <h2>Pasta</h2>
+            <input type="text">
+            <button>
+              <svg viewBox="0 0 32 32">
+                <use xlink:href="#shape-trash"></use>
+              </svg>
+            </button>
+          </li>
+          <li>
+            <input id="item-2" type="checkbox" checked>
+            <label for="item-2"></label>
+            <h2>Pasta con testo molto ma molto lungo perche a volte ci vuole scrivere tantissimo!</h2>
+            <input type="text">
+            <button>
+              <svg viewBox="0 0 32 32">
+                <use xlink:href="#shape-trash"></use>
+              </svg>
+            </button>
+          </li>
+
         </ol>
       </main>
 
       <footer>
-        <h6>Made with &hearts; for Anna &amp; Pancho.</h6>
+        <p>Made with
+          <svg viewBox="0 0 32 32">
+            <use xlink:href="#shape-heart"></use>
+          </svg>
+          for Anna &amp; Pancho.</p>
       </footer>
   </section>
 
