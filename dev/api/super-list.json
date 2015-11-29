@@ -1,0 +1,12 @@
+{
+  "items": [
+    {
+      "checked": true,
+      "content": "pasta"
+    },
+    {
+      "checked": false,
+      "content": "pasta"
+    }
+  ]
+}

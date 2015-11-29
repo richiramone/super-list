@@ -574,3 +574,18 @@ FileETag None
 #     RewriteCond %{REQUEST_FILENAME} !-f
 #     RewriteRule ^(.+)\.(\d+)\.(bmp|css|cur|gif|ico|jpe?g|js|png|svgz?|webp)$ $1.$3 [L]
 # </IfModule>
+
+# ##############################################################################
+# # REWRITE RULES                                                              #
+# ##############################################################################
+
+# ------------------------------------------------------------------------------
+# | APIS
+# ------------------------------------------------------------------------------
+Options +FollowSymlinks
+RewriteBase /
+RewriteEngine On
+
+RewriteRule ^api/get$          api/index.php?trust=me&action=get [L]
+RewriteRule ^api/update$       api/index.php?trust=me&action=update [QSA,L]
+RewriteRule ^api/notify$       api/index.php?trust=me&action=notify [QSA,L]
