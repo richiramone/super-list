@@ -1,8 +1,19 @@
-/* line 1, ../scss/utils/_effects.scss */
-#dsds {
-  display: block;
+@-webkit-keyframes rotating {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
 }
-
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 /**
  * 1. Set default font family to sans-serif.
  * 2. Prevent iOS text size adjust after orientation change, without disabling
@@ -198,20 +209,21 @@ li {
   height: auto;
   padding: 20px;
   border-bottom: 1px solid #9FDAFC;
+  transition: background .2s ease-in-out;
 }
-/* line 15, ../scss/layout/_lists.scss */
+/* line 17, ../scss/layout/_lists.scss */
 li [type=checkbox] {
   position: absolute;
   left: -9999px;
 }
-/* line 19, ../scss/layout/_lists.scss */
+/* line 21, ../scss/layout/_lists.scss */
 li [type=checkbox] + label {
   position: relative;
   align-self: flex-start;
   width: 12%;
   cursor: pointer;
 }
-/* line 25, ../scss/layout/_lists.scss */
+/* line 27, ../scss/layout/_lists.scss */
 li [type=checkbox] + label:before {
   position: absolute;
   top: 0;
@@ -222,7 +234,7 @@ li [type=checkbox] + label:before {
   border: 1px solid #009DFF;
   border-radius: 50%;
 }
-/* line 37, ../scss/layout/_lists.scss */
+/* line 39, ../scss/layout/_lists.scss */
 li [type=checkbox]:checked + label:before {
   content: '=';
   background: #009DFF;
@@ -231,7 +243,7 @@ li [type=checkbox]:checked + label:before {
   font-weight: bold;
   text-align: center;
 }
-/* line 47, ../scss/layout/_lists.scss */
+/* line 49, ../scss/layout/_lists.scss */
 li h2, li [type=text] {
   width: 76%;
   margin: -2px 0 0;
@@ -241,30 +253,42 @@ li h2, li [type=text] {
   letter-spacing: 0.02em;
   color: #333;
 }
-/* line 57, ../scss/layout/_lists.scss */
+/* line 59, ../scss/layout/_lists.scss */
 li [type=text] {
   display: none;
   border: 0;
   margin: 0;
   outline: none;
 }
-/* line 64, ../scss/layout/_lists.scss */
+/* line 66, ../scss/layout/_lists.scss */
 li button {
   width: 12%;
   text-align: right;
 }
-/* line 68, ../scss/layout/_lists.scss */
+/* line 70, ../scss/layout/_lists.scss */
 li button svg {
   width: 25px;
   fill: #cacaca;
 }
-/* line 75, ../scss/layout/_lists.scss */
-li.editing [type=text] {
+/* line 77, ../scss/layout/_lists.scss */
+li.editing [type=text], li.new [type=text] {
   display: block;
 }
-/* line 79, ../scss/layout/_lists.scss */
-li.editing h2 {
+/* line 81, ../scss/layout/_lists.scss */
+li.editing h2, li.new h2 {
   display: none;
+}
+/* line 87, ../scss/layout/_lists.scss */
+li.new button {
+  display: none;
+}
+/* line 92, ../scss/layout/_lists.scss */
+li.deleted {
+  background: #f55;
+}
+/* line 96, ../scss/layout/_lists.scss */
+li.edited {
+  background: #9f9;
 }
 
 /* line 1, ../scss/components/_buttons.scss */
@@ -275,4 +299,41 @@ button {
   background: none;
   border: none;
   outline: none;
+}
+
+/* line 1, ../scss/components/_preloader.scss */
+#loading-bg {
+  position: fixed;
+  display: none;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.5);
+}
+/* line 2, ../scss/components/_preloader.scss */
+.loading #loading-bg {
+  display: flex;
+}
+
+/* line 17, ../scss/components/_preloader.scss */
+#loading-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
+  padding: 15px 0;
+  text-align: center;
+  background: #fff;
+  box-shadow: 0 0 5px #333;
+}
+/* line 28, ../scss/components/_preloader.scss */
+#loading-box svg {
+  width: 30px;
+  fill: #009DFF;
+  -webkit-animation: rotating .8s linear infinite;
+  animation: rotating .8s linear infinite;
 }

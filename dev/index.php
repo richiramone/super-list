@@ -12,8 +12,16 @@
 
   <link href="css/main.css" rel="stylesheet">
 </head><?php flush(); ob_flush(); ?>
-<body>
+<body class="loading">
   <?php echo file_get_contents('svg/svg-sprite.svg'); ?>
+
+  <div id="loading-bg">
+    <div id="loading-box">
+      <svg viewBox="0 0 32 32">
+        <use xlink:href="#shape-smiley"></use>
+      </svg>
+    </div>
+  </div>
 
   <section>
     <article>
@@ -26,158 +34,13 @@
         </button>
         <button class="reload">
           <svg viewBox="0 0 32 32">
-            <use xlink:href="#shape-smiley"></use>
+            <use xlink:href="#shape-reload"></use>
           </svg>
         </button>
       </header>
 
       <main>
-        <ol>
-          <li>
-            <input id="item-1" type="checkbox">
-            <label for="item-1"></label>
-            <h2>Pasta</h2>
-            <input type="text">
-            <button>
-              <svg viewBox="0 0 32 32">
-                <use xlink:href="#shape-trash"></use>
-              </svg>
-            </button>
-          </li>
-          <li>
-            <input id="item-2" type="checkbox" checked>
-            <label for="item-2"></label>
-            <h2>Pasta con testo molto ma molto lungo perche a volte ci vuole scrivere tantissimo!</h2>
-            <input type="text">
-            <button>
-              <svg viewBox="0 0 32 32">
-                <use xlink:href="#shape-trash"></use>
-              </svg>
-            </button>
-          </li>
-          <li class="editing">
-            <input id="item-3" type="checkbox">
-            <label for="item-3"></label>
-            <h2>Pasta</h2>
-            <input type="text" value="Pasta">
-            <button>
-              <svg viewBox="0 0 32 32">
-                <use xlink:href="#shape-trash"></use>
-              </svg>
-            </button>
-          </li>
-          <li>
-            <input id="item-1" type="checkbox">
-            <label for="item-1"></label>
-            <h2>Pasta</h2>
-            <input type="text">
-            <button>
-              <svg viewBox="0 0 32 32">
-                <use xlink:href="#shape-trash"></use>
-              </svg>
-            </button>
-          </li>
-          <li>
-            <input id="item-2" type="checkbox" checked>
-            <label for="item-2"></label>
-            <h2>Pasta con testo molto ma molto lungo perche a volte ci vuole scrivere tantissimo!</h2>
-            <input type="text">
-            <button>
-              <svg viewBox="0 0 32 32">
-                <use xlink:href="#shape-trash"></use>
-              </svg>
-            </button>
-          </li>
-          <li>
-            <input id="item-1" type="checkbox">
-            <label for="item-1"></label>
-            <h2>Pasta</h2>
-            <input type="text">
-            <button>
-              <svg viewBox="0 0 32 32">
-                <use xlink:href="#shape-trash"></use>
-              </svg>
-            </button>
-          </li>
-          <li>
-            <input id="item-2" type="checkbox" checked>
-            <label for="item-2"></label>
-            <h2>Pasta con testo molto ma molto lungo perche a volte ci vuole scrivere tantissimo!</h2>
-            <input type="text">
-            <button>
-              <svg viewBox="0 0 32 32">
-                <use xlink:href="#shape-trash"></use>
-              </svg>
-            </button>
-          </li>
-          <li>
-            <input id="item-1" type="checkbox">
-            <label for="item-1"></label>
-            <h2>Pasta</h2>
-            <input type="text">
-            <button>
-              <svg viewBox="0 0 32 32">
-                <use xlink:href="#shape-trash"></use>
-              </svg>
-            </button>
-          </li>
-          <li>
-            <input id="item-2" type="checkbox" checked>
-            <label for="item-2"></label>
-            <h2>Pasta con testo molto ma molto lungo perche a volte ci vuole scrivere tantissimo!</h2>
-            <input type="text">
-            <button>
-              <svg viewBox="0 0 32 32">
-                <use xlink:href="#shape-trash"></use>
-              </svg>
-            </button>
-          </li>
-          <li>
-            <input id="item-1" type="checkbox">
-            <label for="item-1"></label>
-            <h2>Pasta</h2>
-            <input type="text">
-            <button>
-              <svg viewBox="0 0 32 32">
-                <use xlink:href="#shape-trash"></use>
-              </svg>
-            </button>
-          </li>
-          <li>
-            <input id="item-2" type="checkbox" checked>
-            <label for="item-2"></label>
-            <h2>Pasta con testo molto ma molto lungo perche a volte ci vuole scrivere tantissimo!</h2>
-            <input type="text">
-            <button>
-              <svg viewBox="0 0 32 32">
-                <use xlink:href="#shape-trash"></use>
-              </svg>
-            </button>
-          </li>
-          <li>
-            <input id="item-1" type="checkbox">
-            <label for="item-1"></label>
-            <h2>Pasta</h2>
-            <input type="text">
-            <button>
-              <svg viewBox="0 0 32 32">
-                <use xlink:href="#shape-trash"></use>
-              </svg>
-            </button>
-          </li>
-          <li>
-            <input id="item-2" type="checkbox" checked>
-            <label for="item-2"></label>
-            <h2>Pasta con testo molto ma molto lungo perche a volte ci vuole scrivere tantissimo!</h2>
-            <input type="text">
-            <button>
-              <svg viewBox="0 0 32 32">
-                <use xlink:href="#shape-trash"></use>
-              </svg>
-            </button>
-          </li>
-
-        </ol>
+        <ol id="items"></ol>
       </main>
 
       <footer>
@@ -192,6 +55,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.1.4.min.js"><\/script>')</script>
 
-  <!-- <script src="js/app.js" async></script> -->
+  <script src="js/app.js" async></script>
 </body>
 </html>

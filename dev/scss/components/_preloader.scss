@@ -1,0 +1,34 @@
+#loading-bg {
+  .loading & {
+    display: flex;
+  }
+
+  position: fixed;
+  display: none;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+  background: rgba(0,0,0,.5);
+}
+
+#loading-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
+  padding: 15px 0;
+  text-align: center;
+  background: $white;
+  box-shadow: 0 0 5px #333;
+
+  svg {
+    width: 30px;
+    fill: $blue;
+    -webkit-animation: rotating .8s linear infinite;
+    animation: rotating .8s linear infinite;
+  }
+}

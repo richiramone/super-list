@@ -11,7 +11,7 @@
   function appendContent($item, $i) {
     $checked = $item["checked"] == 'true' ? " checked" : "";
     $content = $item["content"] ? $item["content"] : "";
-    $newItemClass = $item == null ? ' class="newItem"' : "";
+    $newItemClass = $item == null ? ' class="new"' : "";
 
     $html = "";
     $template = '

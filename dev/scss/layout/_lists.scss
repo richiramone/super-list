@@ -12,6 +12,8 @@ li {
   padding: 20px;
   border-bottom: 1px solid $lines;
 
+  transition: background .2s ease-in-out;
+
   [type=checkbox] {
     position: absolute;
     left: -9999px;
@@ -71,7 +73,7 @@ li {
     }
   }
 
-  &.editing {
+  &.editing, &.new {
     [type=text] {
       display: block;
     }
@@ -79,5 +81,19 @@ li {
     h2 {
       display: none;
     }
+  }
+
+  &.new {
+    button {
+      display: none;
+    }
+  }
+
+  &.deleted {
+    background: $deleted;
+  }
+
+  &.edited {
+    background: $edited;
   }
 }
