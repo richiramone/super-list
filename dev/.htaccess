@@ -586,6 +586,8 @@ Options +FollowSymlinks
 RewriteBase /
 RewriteEngine On
 
-RewriteRule ^api/get$          api/index.php?trust=me&action=get [L]
-RewriteRule ^api/update$       api/index.php?trust=me&action=update [QSA,L]
-RewriteRule ^api/notify$       api/index.php?trust=me&action=notify [QSA,L]
+RewriteRule ^api/get$          api/index.php?trust=me&action=get      [L]
+RewriteRule ^api/update$       api/index.php?trust=me&action=update   [QSA,L]
+RewriteRule ^api/put$          api/index.php?trust=me&action=put      [QSA,L]
+RewriteRule ^api/delete$       api/index.php?trust=me&action=delete   [QSA,L]
+RewriteRule ^api/notify$       api/index.php?trust=me&action=notify   [QSA,L]

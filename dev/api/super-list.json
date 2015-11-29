@@ -1,12 +1,1 @@
-{
-  "items": [
-    {
-      "checked": true,
-      "content": "pasta"
-    },
-    {
-      "checked": false,
-      "content": "pasta"
-    }
-  ]
-}
+{"items":[{"checked":true,"content":"pasta1"},{"checked":false,"content":"ciao!"},{"checked":false,"content":"ciao!"},{"checked":"true","content":"c22iao!"}]}
