@@ -1,7 +1,0 @@
-/*
-add
-edit
-delete
-check
-notify
-*/

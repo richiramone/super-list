@@ -17,7 +17,7 @@ module.exports = function(grunt) {
     browserSync: {
       dev: {
         bsFiles: {
-          src: ['dev/css/*.css', 'dev/index.php'],
+          src: ['dev/js/app.css', 'dev/css/*.css', 'dev/index.php'],
         },
         options: {
           browser: "google chrome",
@@ -30,7 +30,7 @@ module.exports = function(grunt) {
     watch: {
       compass: {
         files: 'dev/scss/**/*.scss',
-        tasks: ['compass']
+        tasks: 'compass'
       }
     }
   });
@@ -39,9 +39,6 @@ module.exports = function(grunt) {
 };
 
 /*
-https://github.com/gruntjs/grunt-contrib-compass
-https://github.com/gruntjs/grunt-contrib-watch
 https://github.com/gruntjs/grunt-contrib-copy
-http://www.browsersync.io/docs/grunt/
 https://github.com/gruntjs/grunt-contrib-concat
 */

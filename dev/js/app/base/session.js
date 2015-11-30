@@ -1,5 +1,0 @@
-/*
-session
-  checkSession
-  setSession
-*/
