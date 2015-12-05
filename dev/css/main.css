@@ -143,8 +143,21 @@ svg {
   fill: #fff;
 }
 
+/* line 9, ../scss/base/_base.scss */
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 14, ../scss/base/_base.scss */
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 /* line 1, ../scss/layout/_header.scss */
-header {
+.main-header {
   position: fixed;
   top: 0;
   z-index: 100;
@@ -153,16 +166,20 @@ header {
   background: #009DFF;
 }
 /* line 9, ../scss/layout/_header.scss */
-header button {
+.main-header menu {
+  display: inline;
+}
+/* line 13, ../scss/layout/_header.scss */
+.main-header button {
   float: right;
   margin: 0 18px;
 }
-/* line 14, ../scss/layout/_header.scss */
-header svg {
+/* line 18, ../scss/layout/_header.scss */
+.main-header svg {
   width: 26px;
 }
 
-/* line 19, ../scss/layout/_header.scss */
+/* line 23, ../scss/layout/_header.scss */
 h1 {
   display: inline;
   margin: 0 0 0 18px;
@@ -195,36 +212,35 @@ footer svg {
 }
 
 /* line 1, ../scss/layout/_lists.scss */
-ol {
+#items {
   list-style: none;
   margin: 64px 0 35px;
   padding: 0;
 }
-
-/* line 7, ../scss/layout/_lists.scss */
-li {
+/* line 6, ../scss/layout/_lists.scss */
+#items li {
   position: relative;
   display: flex;
   align-items: center;
-  height: auto;
+  height: 28px;
   padding: 20px;
   border-bottom: 1px solid #9FDAFC;
   transition: background .2s ease-in-out;
 }
-/* line 17, ../scss/layout/_lists.scss */
-li [type=checkbox] {
+/* line 16, ../scss/layout/_lists.scss */
+#items li [type=checkbox] {
   position: absolute;
   left: -9999px;
 }
-/* line 21, ../scss/layout/_lists.scss */
-li [type=checkbox] + label {
+/* line 20, ../scss/layout/_lists.scss */
+#items li [type=checkbox] + label {
   position: relative;
   align-self: flex-start;
   width: 12%;
   cursor: pointer;
 }
-/* line 27, ../scss/layout/_lists.scss */
-li [type=checkbox] + label:before {
+/* line 26, ../scss/layout/_lists.scss */
+#items li [type=checkbox] + label:before {
   position: absolute;
   top: 0;
   left: 0;
@@ -234,8 +250,8 @@ li [type=checkbox] + label:before {
   border: 1px solid #009DFF;
   border-radius: 50%;
 }
-/* line 39, ../scss/layout/_lists.scss */
-li [type=checkbox]:checked + label:before {
+/* line 38, ../scss/layout/_lists.scss */
+#items li [type=checkbox]:checked + label:before {
   content: '=';
   background: #009DFF;
   color: #fff;
@@ -243,9 +259,10 @@ li [type=checkbox]:checked + label:before {
   font-weight: bold;
   text-align: center;
 }
-/* line 49, ../scss/layout/_lists.scss */
-li h2, li [type=text] {
+/* line 48, ../scss/layout/_lists.scss */
+#items li h2, #items li [type=text] {
   width: 76%;
+  padding: 10px 0;
   margin: -2px 0 0;
   font-size: 18px;
   font-weight: normal;
@@ -254,40 +271,40 @@ li h2, li [type=text] {
   color: #333;
 }
 /* line 59, ../scss/layout/_lists.scss */
-li [type=text] {
+#items li [type=text] {
   display: none;
   border: 0;
   margin: 0;
   outline: none;
 }
 /* line 66, ../scss/layout/_lists.scss */
-li button {
+#items li button {
   width: 12%;
   text-align: right;
 }
 /* line 70, ../scss/layout/_lists.scss */
-li button svg {
+#items li button svg {
   width: 25px;
   fill: #cacaca;
 }
 /* line 77, ../scss/layout/_lists.scss */
-li.editing [type=text], li.new [type=text] {
+#items li.editing [type=text], #items li.new [type=text] {
   display: block;
 }
 /* line 81, ../scss/layout/_lists.scss */
-li.editing h2, li.new h2 {
+#items li.editing h2, #items li.new h2 {
   display: none;
 }
 /* line 87, ../scss/layout/_lists.scss */
-li.new button {
+#items li.new button {
   display: none;
 }
 /* line 92, ../scss/layout/_lists.scss */
-li.deleted {
+#items li.deleted {
   background: #f55;
 }
 /* line 96, ../scss/layout/_lists.scss */
-li.edited {
+#items li.edited {
   background: #9f9;
 }
 
@@ -331,9 +348,135 @@ button {
   box-shadow: 0 0 5px #333;
 }
 /* line 28, ../scss/components/_preloader.scss */
+#loading-box span {
+  display: none;
+}
+/* line 32, ../scss/components/_preloader.scss */
 #loading-box svg {
   width: 30px;
   fill: #009DFF;
   -webkit-animation: rotating .8s linear infinite;
   animation: rotating .8s linear infinite;
 }
+
+/* line 41, ../scss/components/_preloader.scss */
+.quiet-loading .reload {
+  -webkit-animation: rotating .8s linear infinite;
+  animation: rotating .8s linear infinite;
+}
+
+/* line 2, ../scss/components/_personSelector.scss */
+.notifying #loading-bg {
+  display: flex;
+}
+/* line 6, ../scss/components/_personSelector.scss */
+.notifying #loading-box {
+  display: none;
+}
+/* line 11, ../scss/components/_personSelector.scss */
+.notifying.loading #loading-box {
+  display: flex;
+  z-index: 201;
+}
+
+/* line 19, ../scss/components/_personSelector.scss */
+.notified #loading-bg {
+  display: flex;
+}
+/* line 23, ../scss/components/_personSelector.scss */
+.notified #loading-box {
+  display: flex;
+}
+/* line 26, ../scss/components/_personSelector.scss */
+.notified #loading-box span {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #009DFF;
+}
+/* line 34, ../scss/components/_personSelector.scss */
+.notified #loading-box svg {
+  -webkit-animation: rotating .5s linear .6s;
+  animation: rotating .5s linear .6s;
+}
+
+/* line 41, ../scss/components/_personSelector.scss */
+#person-selector {
+  position: fixed;
+  top: 170px;
+  display: block;
+  width: 80%;
+  margin: 0 10%;
+  padding: 0;
+  background: #fff;
+  box-shadow: 0 0 10px #333;
+  z-index: 200;
+}
+/* line 52, ../scss/components/_personSelector.scss */
+#person-selector header {
+  position: relative;
+  padding: 20px 15px;
+  border-bottom: 1px solid #ddd;
+}
+/* line 57, ../scss/components/_personSelector.scss */
+#person-selector header h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+/* line 63, ../scss/components/_personSelector.scss */
+#person-selector header button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  float: right;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1;
+}
+/* line 74, ../scss/components/_personSelector.scss */
+#person-selector menu {
+  margin: 0;
+  padding: 0;
+}
+/* line 78, ../scss/components/_personSelector.scss */
+#person-selector menu li:first-child {
+  border-bottom: 1px solid #ddd;
+}
+/* line 82, ../scss/components/_personSelector.scss */
+#person-selector menu button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: left;
+}
+/* line 93, ../scss/components/_personSelector.scss */
+#person-selector menu button:active, #person-selector menu button:focus {
+  background: #009DFF;
+  color: #fff;
+}
+/* line 99, ../scss/components/_personSelector.scss */
+#person-selector menu img {
+  border: 1px solid #fff;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+/*
+<div id="person-selector">
+  <header>
+    <h4>Choose your loved one:</h4>
+    <button data-trigger-close-modal>X</button>
+  </header>
+  <menu class="people">
+    <li><button class="anna">Anna</button></li>
+    <li><button class="lucas">Lucas</button></li>
+  </menu>
+</div>
+*/

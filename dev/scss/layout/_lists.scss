@@ -1,99 +1,100 @@
-ol {
+#items {
   list-style: none;
   margin: 64px 0 35px;
   padding: 0;
-}
 
-li {
-  position: relative;
-  display: flex;
-  align-items: center;
-  height: auto;
-  padding: 20px;
-  border-bottom: 1px solid $lines;
+  li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 28px;
+    padding: 20px;
+    border-bottom: 1px solid $lines;
 
-  transition: background .2s ease-in-out;
+    transition: background .2s ease-in-out;
 
-  [type=checkbox] {
-    position: absolute;
-    left: -9999px;
+    [type=checkbox] {
+      position: absolute;
+      left: -9999px;
 
-    & + label {
-      position: relative;
-      align-self: flex-start;
-      width: 12%;
-      cursor: pointer;
+      & + label {
+        position: relative;
+        align-self: flex-start;
+        width: 12%;
+        cursor: pointer;
 
-      &:before {
-        position: absolute;
-        top: 0;
-        left: 0;
-        content: "";
-        height: 25px;
-        width: 25px;
-        border: 1px solid $blue;
-        border-radius: 50%;
+        &:before {
+          position: absolute;
+          top: 0;
+          left: 0;
+          content: "";
+          height: 25px;
+          width: 25px;
+          border: 1px solid $blue;
+          border-radius: 50%;
+        }
+      }
+
+      &:checked + label:before {
+        content: '=';
+        background: $blue;
+        color: $white;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
       }
     }
 
-    &:checked + label:before {
-      content: '=';
-      background: $blue;
-      color: $white;
+    h2, [type=text] {
+      width: 76%;
+      padding: 10px 0;
+      margin: -2px 0 0;
       font-size: 18px;
-      font-weight: bold;
-      text-align: center;
+      font-weight: normal;
+      line-height: 1.2;
+      letter-spacing: 0.02em;
+      color: $txt;
     }
-  }
 
-  h2, [type=text] {
-    width: 76%;
-    margin: -2px 0 0;
-    font-size: 18px;
-    font-weight: normal;
-    line-height: 1.2;
-    letter-spacing: 0.02em;
-    color: $txt;
-  }
-
-  [type=text] {
-    display: none;
-    border: 0;
-    margin: 0;
-    outline: none;
-  }
-
-  button {
-    width: 12%;
-    text-align: right;
-
-    svg {
-      width: 25px;
-      fill: $delete;
-    }
-  }
-
-  &.editing, &.new {
     [type=text] {
-      display: block;
-    }
-
-    h2 {
       display: none;
+      border: 0;
+      margin: 0;
+      outline: none;
     }
-  }
 
-  &.new {
     button {
-      display: none;
+      width: 12%;
+      text-align: right;
+
+      svg {
+        width: 25px;
+        fill: $delete;
+      }
     }
-  }
 
-  &.deleted {
-    background: $deleted;
-  }
+    &.editing, &.new {
+      [type=text] {
+        display: block;
+      }
 
-  &.edited {
-    background: $edited;
+      h2 {
+        display: none;
+      }
+    }
+
+    &.new {
+      button {
+        display: none;
+      }
+    }
+
+    &.deleted {
+      background: $deleted;
+    }
+
+    &.edited {
+      background: $edited;
+    }
   }
 }

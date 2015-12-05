@@ -9,18 +9,18 @@
   $output .= appendContent(null, $i);
 
   function appendContent($item, $i) {
-    $checked = $item["checked"] == 'true' ? " checked" : "";
+    $checked = $item["checked"] == true ? " checked" : "";
     $content = $item["content"] ? $item["content"] : "";
-    $newItemClass = $item == null ? ' class="new"' : "";
+    $itemStatusClass = $item == null ? 'new' : 'existing';
 
     $html = "";
     $template = '
-    <li{{NEW_ITEM_CLASS}}>
-      <input id="item-{{ID}}" type="checkbox">
+    <li class="{{ITEM_STATUS}}" data-item="{{ID}}" data-item-status="{{ITEM_STATUS}}">
+      <input id="item-{{ID}}" type="checkbox"{{CHECKED}}>
       <label for="item-{{ID}}"></label>
-      <h2>{{CONTENT}}</h2>
-      <input type="text" value="{{CONTENT}}"{{CHECKED}}>
-      <button>
+      <h2 data-trigger-item-content>{{CONTENT}}</h2>
+      <input type="text" value="{{CONTENT}}">
+      <button data-trigger-delete>
         <svg viewBox="0 0 32 32">
           <use xlink:href="#shape-trash"></use>
         </svg>
@@ -29,7 +29,7 @@
     ';
 
     $html .= $template;
-    $html = str_replace('{{NEW_ITEM_CLASS}}', $newItemClass, $html);
+    $html = str_replace('{{ITEM_STATUS}}', $itemStatusClass, $html);
     $html = str_replace('{{ID}}', $i, $html);
     $html = str_replace('{{CONTENT}}', $content, $html);
     $html = str_replace('{{CHECKED}}', $checked, $html);

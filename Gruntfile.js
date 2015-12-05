@@ -23,7 +23,8 @@ module.exports = function(grunt) {
           browser: "google chrome",
           proxy: "superlist.dev",
           watchTask: true,
-          ghostMode: false
+          ghostMode: false,
+          notify: false
         }
       }
     },
@@ -35,7 +36,7 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('dev', ['browserSync', 'watch']);
+  grunt.registerTask('default', ['browserSync', 'watch']);
 };
 
 /*

@@ -9,7 +9,6 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="author" href="humans.txt">
   <link rel="shortcut icon" href="favicon.png">
-
   <link href="css/main.css" rel="stylesheet">
 </head><?php flush(); ob_flush(); ?>
 <body class="loading">
@@ -20,23 +19,53 @@
       <svg viewBox="0 0 32 32">
         <use xlink:href="#shape-smiley"></use>
       </svg>
+      <span>Notified!</span>
+    </div>
+    <div id="person-selector">
+      <header>
+        <h4>Choose your loved one</h4>
+        <button data-trigger-close-modal>X</button>
+      </header>
+
+      <menu>
+        <li>
+          <button data-trigger-person="anna" class="anna">
+            <img alt="Notify Lucas" height="50" width="50"
+                  src="img/people/anna.png"
+                  srcset="img/people/anna@2x.png 2x,
+                          img/people/anna@3x.png 3x">
+            Anna
+          </button>
+        </li>
+        <li>
+          <button data-trigger-person="lucas" class="lucas">
+            <img alt="Notify Lucas" height="50" width="50"
+                  src="img/people/lucas.png"
+                  srcset="img/people/lucas@2x.png 2x,
+                          img/people/lucas@3x.png 3x">
+            Lucas
+          </button>
+        </li>
+      </menu>
     </div>
   </div>
 
   <section>
     <article>
-      <header>
+      <header class="main-header">
         <h1>SuperList</h1>
-        <button class="notify">
-          <svg viewBox="0 0 32 32">
-            <use xlink:href="#shape-bell"></use>
-          </svg>
-        </button>
-        <button class="reload">
-          <svg viewBox="0 0 32 32">
-            <use xlink:href="#shape-reload"></use>
-          </svg>
-        </button>
+        <menu>
+          <button data-trigger-notify class="notify">
+            <svg viewBox="0 0 32 32">
+              <use xlink:href="#shape-bell"></use>
+            </svg>
+          </button>
+          <button data-trigger-reload class="reload">
+            <svg viewBox="0 0 32 32">
+              <use xlink:href="#shape-reload"></use>
+            </svg>
+          </button>
+        </menu>
       </header>
 
       <main>
