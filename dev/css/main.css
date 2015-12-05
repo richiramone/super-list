@@ -480,3 +480,18 @@ button {
   </menu>
 </div>
 */
+/*--------------------------------------------------
+/* Responsive: iPad
+-------------------------------------------------- */
+@media only screen and (min-device-width: 768px) {
+  /* line 7, ../scss/scenarios/_tablet.scss */
+  #items li h2, #items li [type=text] {
+    width: 220%;
+  }
+
+  /* line 13, ../scss/scenarios/_tablet.scss */
+  #person-selector {
+    width: 50%;
+    margin: 0 25%;
+  }
+}

@@ -4,6 +4,8 @@
 
   unset($items["items"][$_GET["id"]]);
 
+  $items['items'] = array_values($items['items']);
   $newJson = json_encode($items);
+  
   file_put_contents(JSON, $newJson);
 ?>
