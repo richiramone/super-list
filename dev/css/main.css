@@ -355,13 +355,11 @@ button {
 #loading-box svg {
   width: 30px;
   fill: #009DFF;
-  -webkit-animation: rotating .8s linear infinite;
   animation: rotating .8s linear infinite;
 }
 
-/* line 41, ../scss/components/_preloader.scss */
+/* line 40, ../scss/components/_preloader.scss */
 .quiet-loading .reload {
-  -webkit-animation: rotating .8s linear infinite;
   animation: rotating .8s linear infinite;
 }
 
@@ -378,16 +376,20 @@ button {
   display: flex;
   z-index: 201;
 }
+/* line 16, ../scss/components/_personSelector.scss */
+.notifying.loading #person-selector {
+  display: none;
+}
 
-/* line 19, ../scss/components/_personSelector.scss */
+/* line 23, ../scss/components/_personSelector.scss */
 .notified #loading-bg {
   display: flex;
 }
-/* line 23, ../scss/components/_personSelector.scss */
+/* line 27, ../scss/components/_personSelector.scss */
 .notified #loading-box {
   display: flex;
 }
-/* line 26, ../scss/components/_personSelector.scss */
+/* line 30, ../scss/components/_personSelector.scss */
 .notified #loading-box span {
   display: inline-block;
   margin-left: 10px;
@@ -395,13 +397,12 @@ button {
   font-weight: bold;
   color: #009DFF;
 }
-/* line 34, ../scss/components/_personSelector.scss */
+/* line 38, ../scss/components/_personSelector.scss */
 .notified #loading-box svg {
-  -webkit-animation: rotating .5s linear .6s;
-  animation: rotating .5s linear .6s;
+  animation: none !important;
 }
 
-/* line 41, ../scss/components/_personSelector.scss */
+/* line 44, ../scss/components/_personSelector.scss */
 #person-selector {
   position: fixed;
   top: 170px;
@@ -413,19 +414,19 @@ button {
   box-shadow: 0 0 10px #333;
   z-index: 200;
 }
-/* line 52, ../scss/components/_personSelector.scss */
+/* line 55, ../scss/components/_personSelector.scss */
 #person-selector header {
   position: relative;
   padding: 20px 15px;
   border-bottom: 1px solid #ddd;
 }
-/* line 57, ../scss/components/_personSelector.scss */
+/* line 60, ../scss/components/_personSelector.scss */
 #person-selector header h4 {
   margin: 0;
   font-size: 18px;
   font-weight: 500;
 }
-/* line 63, ../scss/components/_personSelector.scss */
+/* line 66, ../scss/components/_personSelector.scss */
 #person-selector header button {
   position: absolute;
   top: 10px;
@@ -435,16 +436,16 @@ button {
   font-weight: bold;
   line-height: 1;
 }
-/* line 74, ../scss/components/_personSelector.scss */
+/* line 77, ../scss/components/_personSelector.scss */
 #person-selector menu {
   margin: 0;
   padding: 0;
 }
-/* line 78, ../scss/components/_personSelector.scss */
+/* line 81, ../scss/components/_personSelector.scss */
 #person-selector menu li:first-child {
   border-bottom: 1px solid #ddd;
 }
-/* line 82, ../scss/components/_personSelector.scss */
+/* line 85, ../scss/components/_personSelector.scss */
 #person-selector menu button {
   display: flex;
   align-items: center;
@@ -456,12 +457,12 @@ button {
   font-weight: 500;
   text-align: left;
 }
-/* line 93, ../scss/components/_personSelector.scss */
+/* line 96, ../scss/components/_personSelector.scss */
 #person-selector menu button:active, #person-selector menu button:focus {
   background: #009DFF;
   color: #fff;
 }
-/* line 99, ../scss/components/_personSelector.scss */
+/* line 102, ../scss/components/_personSelector.scss */
 #person-selector menu img {
   border: 1px solid #fff;
   border-radius: 50%;
@@ -483,7 +484,7 @@ button {
 /*--------------------------------------------------
 /* Responsive: iPad
 -------------------------------------------------- */
-@media only screen and (min-device-width: 768px) {
+@media only screen and (min-width: 768px) {
   /* line 7, ../scss/scenarios/_tablet.scss */
   #items li h2, #items li [type=text] {
     width: 220%;

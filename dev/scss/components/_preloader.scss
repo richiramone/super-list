@@ -32,14 +32,12 @@
   svg {
     width: 30px;
     fill: $blue;
-    -webkit-animation: rotating .8s linear infinite;
     animation: rotating .8s linear infinite;
   }
 }
 
 .quiet-loading {
   .reload {
-    -webkit-animation: rotating .8s linear infinite;
     animation: rotating .8s linear infinite;
   }
 }

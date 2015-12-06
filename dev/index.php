@@ -34,7 +34,7 @@
                   src="img/people/anna.png"
                   srcset="img/people/anna@2x.png 2x,
                           img/people/anna@3x.png 3x">
-            Anna
+            <p>Anna</p>
           </button>
         </li>
         <li>
@@ -43,7 +43,7 @@
                   src="img/people/lucas.png"
                   srcset="img/people/lucas@2x.png 2x,
                           img/people/lucas@3x.png 3x">
-            Lucas
+            <p>Lucas</p>
           </button>
         </li>
       </menu>

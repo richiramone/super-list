@@ -12,6 +12,10 @@
       display: flex;
       z-index: 201;
     }
+
+    #person-selector {
+      display: none;
+    }
   }
 }
 
@@ -32,8 +36,7 @@
     }
 
     svg {
-      -webkit-animation: rotating .5s linear .6s;
-      animation: rotating .5s linear .6s;
+      animation: none !important;
     }
   }
 }
