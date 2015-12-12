@@ -1,3 +1,0 @@
-<?php
-  $output = 'OK';
-?>

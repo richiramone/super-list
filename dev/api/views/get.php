@@ -1,6 +1,7 @@
 <?php
   $output = "";
   $i = 0;
+
   foreach ($items["items"] as $item) {
     $output .= appendContent($item, $i);
     $i++;

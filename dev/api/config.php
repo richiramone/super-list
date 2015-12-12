@@ -1,5 +1,5 @@
 <?php
   define("JSON", DOCROOT . '/super-list.json');
-  define("LUCAS", 'ramoslucasd@gmail.com');
-  define("ANNA", 'dallarianna@gmail.com');
+  define("MAIL_LUCAS", 'ramoslucasd@gmail.com');
+  define("MAIL_ANNA", 'dallarianna@gmail.com');
 ?>
