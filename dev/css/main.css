@@ -162,7 +162,7 @@ li {
   top: 0;
   z-index: 100;
   width: 100%;
-  padding: 18px 0;
+  padding: 34px 0 18px 0;
   background: #009DFF;
 }
 /* line 9, ../scss/layout/_header.scss */
@@ -214,7 +214,7 @@ footer svg {
 /* line 1, ../scss/layout/_lists.scss */
 #items {
   list-style: none;
-  margin: 64px 0 35px;
+  margin: 80px 0 35px;
   padding: 0;
 }
 /* line 6, ../scss/layout/_lists.scss */

@@ -14,9 +14,11 @@ module.exports = function(grunt) {
         }
       },
       rc: {
-        outputStyle: 'minified',
-        cssDir: 'rc/css',
-        sassDir: 'dev/scss'
+        options: {
+          outputStyle: 'compressed',
+          cssDir: 'rc/css',
+          sassDir: 'dev/scss'
+        }
       }
     },
     browserSync: {
@@ -66,9 +68,16 @@ module.exports = function(grunt) {
           'rc/js/app.js': 'rc/js/app.js'
         }
       }
+    },
+    cssmin: {
+      target: {
+        files: {
+          'rc/css/main.css': 'rc/css/main.css'
+        }
+      }
     }
   });
 
   grunt.registerTask('default', ['browserSync', 'watch']);
-  grunt.registerTask('rc', ['compass', 'copy', 'htmlmin', 'uglify']);
+  grunt.registerTask('rc', ['compass', 'copy', 'htmlmin', 'uglify', 'cssmin']);
 };
