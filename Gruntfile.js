@@ -12,6 +12,11 @@ module.exports = function(grunt) {
           cssDir: 'dev/css',
           sassDir: 'dev/scss'
         }
+      },
+      rc: {
+        outputStyle: 'minified',
+        cssDir: 'rc/css',
+        sassDir: 'dev/scss'
       }
     },
     browserSync: {
@@ -33,13 +38,35 @@ module.exports = function(grunt) {
         files: 'dev/scss/**/*.scss',
         tasks: 'compass'
       }
+    },
+    htmlmin: {
+      rc: {
+        options: {
+          removeComments: true,
+          collapseWhitespace: true,
+          removeAttributeQuotes: true,
+          removeEmptyAttributes: true
+        },
+        files: {
+          'rc/index.php': 'dev/index.php'
+        }
+      }
+    },
+    copy: {
+      main: {
+        src: 'dev/**/*',
+        dest: 'rc/'
+      }
+    },
+    uglify: {
+      rc: {
+        files: {
+          'rc/js/app.js': 'dev/js/app.js'
+        }
+      }
     }
   });
 
   grunt.registerTask('default', ['browserSync', 'watch']);
+  grunt.registerTask('rc', ['compass', 'htmlmin', 'copy', 'uglify']);
 };
-
-/*
-https://github.com/gruntjs/grunt-contrib-copy
-https://github.com/gruntjs/grunt-contrib-concat
-*/
