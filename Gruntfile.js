@@ -48,25 +48,27 @@ module.exports = function(grunt) {
           removeEmptyAttributes: true
         },
         files: {
-          'rc/index.php': 'dev/index.php'
+          'rc/index.php': 'rc/index.php'
         }
       }
     },
     copy: {
       main: {
-        src: 'dev/**/*',
-        dest: 'rc/'
+        cwd: 'dev/',
+        src: '**',
+        dest: 'rc/',
+        expand: true
       }
     },
     uglify: {
       rc: {
         files: {
-          'rc/js/app.js': 'dev/js/app.js'
+          'rc/js/app.js': 'rc/js/app.js'
         }
       }
     }
   });
 
   grunt.registerTask('default', ['browserSync', 'watch']);
-  grunt.registerTask('rc', ['compass', 'htmlmin', 'copy', 'uglify']);
+  grunt.registerTask('rc', ['compass', 'copy', 'htmlmin', 'uglify']);
 };
