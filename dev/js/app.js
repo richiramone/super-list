@@ -1,33 +1,15 @@
-(function(){
+(function(body){
   'use strict';
 
   var app = {
     DOM: {
-      body: null,
+      body: body,
       header: null,
-      triggers: {
-        header: {
-          reload: null,
-          notify: null
-        },
-        people: {
-          close: null,
-          person: null
-        },
-        list: {
-          check: null,
-          delete: null,
-          edit: null,
-          update: null,
-          put: null
-        }
-      },
-      list: null,
+      list: body.find('#items'),
       newItemTPL: null
     },
 
     init: function () {
-      app.getDOM();
       app.api.get();
       app.setBaseTriggers();
     },
@@ -44,6 +26,7 @@
             if (typeof callback === 'function') {
               callback(response);
             }
+
             app.DOM.body.removeClass(loadingClass);
           });
       },
@@ -70,14 +53,7 @@
       }
     },
 
-    getDOM: function () {
-      app.DOM.body = $('body');
-      app.DOM.header = app.DOM.body.find('header');
-      app.DOM.list = app.DOM.body.find('#items');
-    },
-
     updateDOMList: function (html) {
-      app.DOM.triggers.list = {};
       app.DOM.list.html(html);
       app.DOM.newItemTPL = app.DOM.list.find('.new').clone();
       app.attachListEventListeners();
@@ -85,37 +61,26 @@
 
     setBaseTriggers: function () {
       //HEADER
-      app.DOM.triggers.header.notify = app.DOM.header.find('[data-trigger-notify]');
-      app.DOM.triggers.header.notify.on('click', app.notification.showPeopleChooser);
-      app.DOM.triggers.header.reload = app.DOM.header.find('[data-trigger-reload]');
-      app.DOM.triggers.header.reload.on('click', app.api.get);
+      app.DOM.body.find('[data-trigger-notify]').on('click', app.notification.showPeopleChooser);
+      app.DOM.body.find('[data-trigger-reload]').on('click', app.api.get);
 
       //PEOPLE
-      app.DOM.triggers.people.person = app.DOM.body.find('[data-trigger-person]');
-      app.DOM.triggers.people.person.on('click', app.api.notify);
-      app.DOM.triggers.people.close = app.DOM.body.find('[data-trigger-close-modal]');
-      app.DOM.triggers.people.close.on('click', app.notification.closePeopleChooser);
+      app.DOM.body.find('[data-trigger-person]').on('click', app.api.notify);
+      app.DOM.body.find('[data-trigger-close-modal]').on('click', app.notification.closePeopleChooser);
     },
 
     attachListEventListeners: function () {
-      app.DOM.triggers.list.delete = app.DOM.list.find('[data-trigger-delete]');
-      app.DOM.triggers.list.delete.on('click', app.itemManager.deleteitem);
-
-      app.DOM.triggers.list.edit = app.DOM.list.find('[data-trigger-item-content]');
-      app.DOM.triggers.list.edit.on('click', app.itemManager.startEditing);
-
-      app.DOM.triggers.list.check = app.DOM.list.find('[type=checkbox]');
-      app.DOM.triggers.list.check.on('change', app.itemManager.toggleItemCheck);
-
-      app.DOM.triggers.list.update = app.DOM.list.find('[type=text]');
-      app.DOM.triggers.list.update.on('blur keydown', app.itemManager.changeItem);
+      app.DOM.list.find('[data-trigger-delete]').on('click', app.itemManager.deleteitem);
+      app.DOM.list.find('[data-trigger-item-content]').on('click', app.itemManager.startEditing);
+      app.DOM.list.find('[type=checkbox]').on('change', app.itemManager.toggleItemCheck);
+      app.DOM.list.find('[type=text]').on('blur keydown', app.itemManager.changeItem);
     },
 
     resetListEventListeners: function () {
-      app.DOM.triggers.list.delete.off('click');
-      app.DOM.triggers.list.edit.off('click');
-      app.DOM.triggers.list.check.off('change');
-      app.DOM.triggers.list.update.off('blur keydown');
+      app.DOM.list.find('[data-trigger-delete]').off('click');
+      app.DOM.list.find('[data-trigger-item-content]').off('click');
+      app.DOM.list.find('[type=checkbox]').off('change');
+      app.DOM.list.find('[type=text]').off('blur keydown');
 
       app.attachListEventListeners();
     },
@@ -237,4 +202,4 @@
   };
 
   app.init();
-})();
+})($('body'));
