@@ -55,14 +55,19 @@
       <header class="main-header">
         <h1>SuperList</h1>
         <menu>
-          <button data-trigger-notify class="notify">
+          <button data-trigger-notify>
             <svg viewBox="0 0 32 32">
               <use xlink:href="#shape-bell"></use>
             </svg>
           </button>
-          <button data-trigger-reload class="reload">
+          <button data-trigger-reload>
             <svg viewBox="0 0 32 32">
               <use xlink:href="#shape-reload"></use>
+            </svg>
+          </button>
+          <button data-trigger-empty>
+            <svg viewBox="0 0 32 32">
+              <use xlink:href="#shape-trash"></use>
             </svg>
           </button>
         </menu>

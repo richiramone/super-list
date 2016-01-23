@@ -1,4 +1,5 @@
-(function(body){
+(function(body) {
+
   'use strict';
 
   var app = {
@@ -47,6 +48,10 @@
         app.api.fire('delete', { id: id }, null, false);
       },
 
+      empty: function (id) {
+        app.api.fire('delete', { 'empty': true }, app.api.get, false);
+      },
+
       notify: function (evt) {
         var person = $(evt.currentTarget).data('trigger-person');
         app.api.fire('notify', { person: person }, app.notification.showNotifiedMessage);
@@ -63,6 +68,7 @@
       //HEADER
       app.DOM.body.find('[data-trigger-notify]').on('click', app.notification.showPeopleChooser);
       app.DOM.body.find('[data-trigger-reload]').on('click', app.api.get);
+      app.DOM.body.find('[data-trigger-empty]').on('click', app.api.empty);
 
       //PEOPLE
       app.DOM.body.find('[data-trigger-person]').on('click', app.api.notify);
@@ -202,4 +208,5 @@
   };
 
   app.init();
+
 })($('body'));
