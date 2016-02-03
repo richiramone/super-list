@@ -27,7 +27,7 @@ module.exports = function(grunt) {
           src: ['dev/js/app.css', 'dev/css/*.css', 'dev/index.php'],
         },
         options: {
-          browser: "google chrome",
+          browser: "google chrome canary",
           proxy: "superlist.dev",
           watchTask: true,
           ghostMode: false,

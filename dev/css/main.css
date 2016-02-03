@@ -177,7 +177,7 @@ li {
 /* line 13, ../scss/layout/_header.scss */
 .main-header button {
   float: right;
-  margin: 0 18px;
+  margin: 0 8px;
 }
 /* line 18, ../scss/layout/_header.scss */
 .main-header svg {
