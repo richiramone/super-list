@@ -49,7 +49,9 @@
       },
 
       empty: function (id) {
-        app.api.fire('delete', { 'empty': true }, app.api.get, false);
+        if (confirm('Are you sure you want to empty the list?')) {
+          app.api.fire('delete', { 'empty': true }, app.api.get, false);
+        }
       },
 
       notify: function (evt) {
@@ -131,7 +133,6 @@
       },
 
       changeItem: function (evt) {
-
         if (evt.which !== 13 && evt.which !== 9 && evt.which !== 0) {
           return;
         }
