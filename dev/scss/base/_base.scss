@@ -16,3 +16,10 @@ li {
   margin: 0;
   padding: 0;
 }
+
+[draggable] {
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: grab;
+  cursor: -webkit-grab;
+}

@@ -7,14 +7,14 @@
     display: none;
   }
 
+  #person-selector {
+    display: block;
+  }
+
   &.loading {
     #loading-box {
       display: flex;
       z-index: 201;
-    }
-
-    #person-selector {
-      display: none;
     }
   }
 }
@@ -44,7 +44,7 @@
 #person-selector {
   position: fixed;
   top: 170px;
-  display: block;
+  display: none;
   width: 80%;
   margin: 0 10%;
   padding: 0;
@@ -106,16 +106,3 @@
     }
   }
 }
-
-/*
-<div id="person-selector">
-  <header>
-    <h4>Choose your loved one:</h4>
-    <button data-trigger-close-modal>X</button>
-  </header>
-  <menu class="people">
-    <li><button class="anna">Anna</button></li>
-    <li><button class="lucas">Lucas</button></li>
-  </menu>
-</div>
-*/

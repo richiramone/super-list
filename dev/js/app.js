@@ -7,7 +7,8 @@
       body: body,
       header: null,
       list: body.find('#items'),
-      newItemTPL: null
+      newItemTPL: null,
+      dragTempElm: null
     },
 
     init: function () {
@@ -48,10 +49,18 @@
         app.api.fire('delete', { id: id }, null, false);
       },
 
-      empty: function (id) {
-        if (confirm('Are you sure you want to empty the list?')) {
-          app.api.fire('delete', { 'empty': true }, app.api.get, false);
-        }
+      empty: function () {
+        app.notification.hideEmptyConfirm();
+        app.api.fire('delete', { 'empty': true }, app.api.get, false);
+      },
+
+      saveNewSortOrder: function () {
+        var itemsOrder = [];
+        $.each($('[data-item-status=existing]'), function (i, el) {
+          itemsOrder.push($(el).data('item'));
+        });
+
+        app.api.fire('order', { 'itemsOrder': itemsOrder }, null, false);
       },
 
       notify: function (evt) {
@@ -70,7 +79,9 @@
       //HEADER
       app.DOM.body.find('[data-trigger-notify]').on('click', app.notification.showPeopleChooser);
       app.DOM.body.find('[data-trigger-reload]').on('click', app.api.get);
-      app.DOM.body.find('[data-trigger-empty]').on('click', app.api.empty);
+      app.DOM.body.find('[data-trigger-empty]').on('click', app.notification.showEmptyConfirm);
+      app.DOM.body.find('[data-trigger-confirmation-confirm]').on('click', app.api.empty);
+      app.DOM.body.find('[data-trigger-confirmation-cancel]').on('click', app.notification.hideEmptyConfirm);
 
       //PEOPLE
       app.DOM.body.find('[data-trigger-person]').on('click', app.api.notify);
@@ -78,28 +89,50 @@
     },
 
     attachListEventListeners: function () {
+      //DRAG
+      app.DOM.list.find('[data-item]').on('dragstart', app.ui.handleDragStart);
+      app.DOM.list.find('[data-item]').on('drop', app.ui.handleDrop);
+
       app.DOM.list.find('[data-trigger-delete]').on('click', app.itemManager.deleteitem);
       app.DOM.list.find('[data-trigger-item-content]').on('click', app.itemManager.startEditing);
-      app.DOM.list.find('[type=checkbox]').on('change', app.itemManager.toggleItemCheck);
       app.DOM.list.find('[type=text]').on('blur keydown', app.itemManager.changeItem);
     },
 
     resetListEventListeners: function () {
+      app.DOM.list.find('[data-item]').off('dragstart drop');
       app.DOM.list.find('[data-trigger-delete]').off('click');
       app.DOM.list.find('[data-trigger-item-content]').off('click');
-      app.DOM.list.find('[type=checkbox]').off('change');
       app.DOM.list.find('[type=text]').off('blur keydown');
 
       app.attachListEventListeners();
     },
 
+    ui: {
+      handleDragStart: function (ev) {
+        ev.originalEvent.dataTransfer.effectAllowed = 'move';
+        ev.originalEvent.dataTransfer.setData('item', this.outerHTML);
+
+        app.DOM.dragTempElm = this;
+      },
+
+      handleDrop: function (ev) {
+        this.outerHTML = ev.originalEvent.dataTransfer.getData('item') + this.outerHTML;
+        app.DOM.dragTempElm.remove();
+        app.DOM.dragTempElm = null;
+
+        $('.dragging').removeClass('dragging');
+        app.resetListEventListeners();
+        app.api.saveNewSortOrder();
+      }
+    },
+
     itemManager: {
       getItemElement: function (evt) {
-        return $(evt.currentTarget).parents('li');
+        return $(evt.currentTarget).parents('[data-item]');
       },
 
       resetIndexes: function () {
-        var $lis = app.DOM.list.find('li');
+        var $lis = app.DOM.list.find('[data-item]');
 
         $.each($lis, function (i, el) {
           $(el).attr('data-item', i);
@@ -138,18 +171,18 @@
         }
 
         var elm = app.itemManager.getItemElement(evt),
-            id = elm.attr('data-item'),
             isNewItem = elm.attr('data-item-status') === 'new' ? true : false,
             val = elm.find('[type=text]').val(),
             oldValContainer = elm.find('[data-trigger-item-content]'),
             oldVal = oldValContainer.html();
 
-        elm.removeClass('editing new');
+        elm.removeClass('editing');
 
         if (val === '' || (!isNewItem && val === oldVal)) {
           return;
         }
 
+        elm.removeClass('new');
         oldValContainer.html(val);
         elm.addClass('edited');
 
@@ -157,9 +190,12 @@
           app.api.put({ content: val });
           elm.attr('data-item-status', 'existing').addClass('existing');
           app.itemManager.insertNew(elm.data('item'));
+
         } else {
-          var isChecked = elm.find('[type=checkbox]').prop('checked');
-          app.api.update({ id: id, content: val, checked: isChecked });
+          var id = elm.attr('data-item'),
+              isChecked = elm.find('[type=checkbox]').prop('checked');
+
+          app.api.update({ id: id, content: val });
         }
 
         setTimeout(function () {
@@ -176,15 +212,6 @@
         app.DOM.newItemTPL = app.DOM.list.find('.new').clone();
 
         app.resetListEventListeners();
-      },
-
-      toggleItemCheck: function (evt) {
-        var elm = app.itemManager.getItemElement(evt),
-            id = elm.data('item'),
-            val = elm.find('[data-trigger-item-content]').html(),
-            isChecked = elm.find('[type=checkbox]').prop('checked');
-
-        app.api.update({ id: id, content: val, checked: isChecked });
       }
     },
 
@@ -204,6 +231,14 @@
         setTimeout(function () {
           app.DOM.body.removeClass('notified');
         }, 1000);
+      },
+
+      showEmptyConfirm: function () {
+        app.DOM.body.addClass('showConfirm');
+      },
+
+      hideEmptyConfirm: function () {
+        app.DOM.body.removeClass('showConfirm');
       }
     }
   };

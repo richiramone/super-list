@@ -21,6 +21,7 @@
       </svg>
       <span>Notified!</span>
     </div>
+
     <div id="person-selector">
       <header>
         <h4>Choose your loved one</h4>
@@ -48,6 +49,14 @@
         </li>
       </menu>
     </div>
+
+    <div id="deleteAll-box">
+      <h3>Sei sicuro di voler svuotare la lista?</h3>
+      <ol>
+        <li><button data-trigger-confirmation-cancel>No</button></li>
+        <li><button data-trigger-confirmation-confirm>Si</button></li>
+      </ol>
+    </div>
   </div>
 
   <section>
@@ -74,16 +83,8 @@
       </header>
 
       <main>
-        <ol id="items"></ol>
+        <div id="items"></div>
       </main>
-
-      <footer>
-        <p>Made with
-          <svg viewBox="0 0 32 32">
-            <use xlink:href="#shape-heart"></use>
-          </svg>
-          for Anna &amp; Pancho.</p>
-      </footer>
   </section>
 
   <script src="js/vendor/jquery-2.1.4.min.js"></script>

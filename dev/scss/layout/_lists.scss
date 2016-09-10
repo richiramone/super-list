@@ -3,52 +3,19 @@
   margin: 80px 0 35px;
   padding: 0;
 
-  li {
+  .item {
     position: relative;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     height: 28px;
-    padding: 20px;
+    padding: 12px;
     border-bottom: 1px solid $lines;
-
     transition: background .2s ease-in-out;
 
-    [type=checkbox] {
-      position: absolute;
-      left: -9999px;
-
-      & + label {
-        position: relative;
-        align-self: flex-start;
-        width: 12%;
-        cursor: pointer;
-
-        &:before {
-          position: absolute;
-          top: 0;
-          left: 0;
-          content: "";
-          height: 25px;
-          width: 25px;
-          border: 1px solid $blue;
-          border-radius: 50%;
-        }
-      }
-
-      &:checked + label:before {
-        content: '=';
-        background: $blue;
-        color: $white;
-        font-size: 18px;
-        font-weight: bold;
-        text-align: center;
-      }
-    }
-
-    h2, [type=text] {
-      width: 76%;
-      padding: 10px 0;
-      margin: -2px 0 0;
+    h2,
+    [type=text] {
+      width: 90%;
       font-size: 18px;
       font-weight: normal;
       line-height: 1.2;
@@ -64,7 +31,6 @@
     }
 
     button {
-      width: 12%;
       text-align: right;
 
       svg {
@@ -73,7 +39,8 @@
       }
     }
 
-    &.editing, &.new {
+    &.editing,
+    &.new {
       [type=text] {
         display: block;
       }
@@ -84,6 +51,10 @@
     }
 
     &.new {
+      [type=text] {
+        width: 100%
+      }
+
       button {
         display: none;
       }

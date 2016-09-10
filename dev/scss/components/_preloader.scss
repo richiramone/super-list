@@ -1,8 +1,11 @@
-#loading-bg {
-  .loading & {
+.loading {
+  #loading-bg,
+  #loading-box {
     display: flex;
   }
+}
 
+#loading-bg {
   position: fixed;
   display: none;
   align-items: center;
@@ -15,7 +18,7 @@
 }
 
 #loading-box {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   width: 100%;
