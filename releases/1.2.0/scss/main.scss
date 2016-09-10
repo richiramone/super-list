@@ -1,0 +1,16 @@
+@import 'utils/variables';
+@import 'utils/mixins';
+@import 'utils/effects';
+
+@import 'base/normalize';
+@import 'base/base';
+
+@import 'layout/header';
+@import 'layout/lists';
+
+@import 'components/buttons';
+@import 'components/preloader';
+@import 'components/confirm';
+@import 'components/personSelector';
+
+@import 'scenarios/tablet';
