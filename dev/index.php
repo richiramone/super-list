@@ -88,6 +88,7 @@
   </section>
 
   <script src="js/vendor/jquery-2.1.4.min.js"></script>
+  <script src="js/vendor/dragAndDropTouch.min.js"></script>
   <script src="js/app.js" async></script>
 </body>
 </html>
