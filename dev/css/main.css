@@ -341,8 +341,8 @@ button {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 90%;
-  margin: -52px 0 0 -45%;
+  width: 80%;
+  margin: -59px 0 0 -40%;
   background: #fff;
   text-align: center;
   border-radius: 4px;
@@ -351,7 +351,7 @@ button {
 /* line 23, ../scss/components/_confirm.scss */
 #deleteAll-box h3 {
   margin: 0;
-  padding: 22px 12px;
+  padding: 30px 12px;
 }
 /* line 28, ../scss/components/_confirm.scss */
 #deleteAll-box ol {
