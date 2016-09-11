@@ -188,7 +188,9 @@
 
         if (isNewItem) {
           app.api.put({ content: val });
-          elm.attr('data-item-status', 'existing').addClass('existing');
+          elm.attr('data-item-status', 'existing');
+          elm.attr('draggable', true);
+          elm.addClass('existing');
           app.itemManager.insertNew(elm.data('item'));
 
         } else {

@@ -12,10 +12,11 @@
   function appendContent($item, $i) {
     $content = $item["content"] ? $item["content"] : "";
     $itemStatusClass = $item == null ? 'new' : 'existing';
+    $draggableAttr = $item == null ? 'false' : 'true';
 
     $html = "";
     $template = '
-    <div class="{{ITEM_STATUS}} item" data-item="{{ID}}" data-item-status="{{ITEM_STATUS}}" draggable="true">
+    <div class="{{ITEM_STATUS}} item" data-item="{{ID}}" data-item-status="{{ITEM_STATUS}}" draggable="{{ITEM_DRAGGABLE}}">
       <input id="item-{{ID}}" type="hidden">
       <label for="item-{{ID}}"></label>
       <h2 data-trigger-item-content>{{CONTENT}}</h2>
@@ -29,6 +30,7 @@
     ';
 
     $html .= $template;
+    $html = str_replace('{{ITEM_DRAGGABLE}}', $draggableAttr, $html);
     $html = str_replace('{{ITEM_STATUS}}', $itemStatusClass, $html);
     $html = str_replace('{{ID}}', $i, $html);
     $html = str_replace('{{CONTENT}}', $content, $html);

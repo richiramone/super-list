@@ -5,8 +5,8 @@ FB: lucas.d.ramos
 Location: Bologna, Italy.
 
 /* SITE */
-Version: 1.2.1
-Last update: 10/09/2016
+Version: 1.2.2
+Last update: 11/09/2016
 Language: Italian
 Standards: HTML5, CSS3
 Encoding: UTF-8

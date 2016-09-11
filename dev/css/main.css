@@ -221,7 +221,7 @@ h1 {
 /* line 16, ../scss/layout/_lists.scss */
 #items .item h2,
 #items .item [type=text] {
-  width: 90%;
+  width: 100%;
   font-size: 18px;
   font-weight: normal;
   line-height: 1.2;
