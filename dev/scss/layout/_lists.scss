@@ -39,6 +39,14 @@
       }
     }
 
+    .draggable-btn {
+      margin-right: 6px;
+      padding: 0 6px;
+      font-size: 20px;
+      text-align: center;
+      color: #999;
+    }
+
     &.editing,
     &.new {
       [type=text] {
