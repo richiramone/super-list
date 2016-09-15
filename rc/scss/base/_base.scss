@@ -1,0 +1,25 @@
+body {
+  background: $white;
+}
+
+svg {
+  fill: $white;
+}
+
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+[draggable] {
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: grab;
+  cursor: -webkit-grab;
+}

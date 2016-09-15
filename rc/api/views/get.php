@@ -12,13 +12,13 @@
   function appendContent($item, $i) {
     $content = $item["content"] ? $item["content"] : "";
     $itemStatusClass = $item == null ? 'new' : 'existing';
-    $draggableAttr = $item == null ? 'false' : 'true';
+    $draggableAttr = $item == null ? '' : '<button class="draggable-btn" draggable="true">=</button>';
 
     $html = "";
     $template = '
-    <div class="{{ITEM_STATUS}} item" data-item="{{ID}}" data-item-status="{{ITEM_STATUS}}" draggable="{{ITEM_DRAGGABLE}}">
+    <div class="{{ITEM_STATUS}} item" data-item="{{ID}}" data-item-status="{{ITEM_STATUS}}">
       <input id="item-{{ID}}" type="hidden">
-      <label for="item-{{ID}}"></label>
+      {{ITEM_DRAGGABLE}}
       <h2 data-trigger-item-content>{{CONTENT}}</h2>
       <input type="text" value="{{CONTENT}}">
       <button data-trigger-delete>

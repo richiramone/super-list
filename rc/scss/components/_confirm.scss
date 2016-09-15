@@ -1,0 +1,58 @@
+.showConfirm {
+  #loading-bg {
+    display: flex;
+  }
+
+  #deleteAll-box {
+    display: block;
+  }
+}
+
+#deleteAll-box {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  margin: -59px 0 0 -40%;
+  background: $white;
+  text-align: center;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px #333;
+
+  h3 {
+    margin: 0;
+    padding: 30px 12px;
+  }
+
+  ol {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  li {
+    width: 50%;
+    border-top: 1px solid $title;
+
+    &:first-child {
+      border-right: 1px solid $title;
+    }
+  }
+
+  button {
+    width: 100%;
+    height: auto;
+    padding: 12px 0;
+    font-size: 14px;
+    text-align: center;
+
+    &:focus,
+    &:active {
+      background: $btn-hover
+    }
+  }
+
+  &.showConfirm {
+    display: flex;
+  }
+}
