@@ -221,7 +221,7 @@ h1 {
 /* line 16, ../scss/layout/_lists.scss */
 #items .item h2,
 #items .item [type=text] {
-  width: 100%;
+  width: auto;
   font-size: 18px;
   font-weight: normal;
   line-height: 1.2;
@@ -244,35 +244,27 @@ h1 {
   width: 25px;
   fill: #cacaca;
 }
-/* line 42, ../scss/layout/_lists.scss */
-#items .item .draggable-btn {
-  margin-right: 6px;
-  padding: 0 6px;
-  font-size: 20px;
-  text-align: center;
-  color: #999;
-}
-/* line 52, ../scss/layout/_lists.scss */
+/* line 44, ../scss/layout/_lists.scss */
 #items .item.editing [type=text], #items .item.new [type=text] {
   display: block;
 }
-/* line 56, ../scss/layout/_lists.scss */
+/* line 48, ../scss/layout/_lists.scss */
 #items .item.editing h2, #items .item.new h2 {
   display: none;
 }
-/* line 62, ../scss/layout/_lists.scss */
+/* line 54, ../scss/layout/_lists.scss */
 #items .item.new [type=text] {
   width: 100%;
 }
-/* line 66, ../scss/layout/_lists.scss */
+/* line 58, ../scss/layout/_lists.scss */
 #items .item.new button {
   display: none;
 }
-/* line 71, ../scss/layout/_lists.scss */
+/* line 63, ../scss/layout/_lists.scss */
 #items .item.deleted {
   background: #f55;
 }
-/* line 75, ../scss/layout/_lists.scss */
+/* line 67, ../scss/layout/_lists.scss */
 #items .item.edited {
   background: #9f9;
 }

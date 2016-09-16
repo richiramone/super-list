@@ -15,7 +15,7 @@
 
     h2,
     [type=text] {
-      width: 100%;
+      width: auto;
       font-size: 18px;
       font-weight: normal;
       line-height: 1.2;
@@ -37,14 +37,6 @@
         width: 25px;
         fill: $delete;
       }
-    }
-
-    .draggable-btn {
-      margin-right: 6px;
-      padding: 0 6px;
-      font-size: 20px;
-      text-align: center;
-      color: #999;
     }
 
     &.editing,
