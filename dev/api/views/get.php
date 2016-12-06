@@ -1,13 +1,11 @@
 <?php
-  $output = "";
-  $i = 0;
+  $output = appendContent(null, 0);
 
+  $i = 0;
   foreach ($items["items"] as $item) {
     $output .= appendContent($item, $i);
     $i++;
   }
-
-  $output .= appendContent(null, $i);
 
   function appendContent($item, $i) {
     $content = $item["content"] ? $item["content"] : "";
@@ -20,6 +18,11 @@
       <input id="item-{{ID}}" type="hidden">
       <h2 data-trigger-item-content>{{CONTENT}}</h2>
       <input type="text" value="{{CONTENT}}" placeholder="{{PLACEHOLDER}}">
+      <button data-trigger-delete>
+        <svg viewBox="0 0 32 32">
+          <use xlink:href="#shape-trash"></use>
+        </svg>
+      </button>
     </li>';
 
     $html .= $template;

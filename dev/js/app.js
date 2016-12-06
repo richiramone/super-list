@@ -21,8 +21,7 @@
                 var loadingClass = typeof isNormalLoadingType === 'undefined' ? 'loading' : 'quiet-loading';
                 app.DOM.body.addClass(loadingClass);
 
-                $.get(
-                    '/api/' + action,
+                $.get('/api/' + action,
                     params,
                     function (response) {
                         if (typeof callback === 'function') {
@@ -80,14 +79,14 @@
             },
 
             attachListEventListeners: function () {
-                //app.DOM.list.find('[data-trigger-delete]').on('click', app.itemManager.deleteitem); TODO
                 app.DOM.list.find('[data-trigger-item-content]').on('click', app.itemManager.startEditing);
+                app.DOM.list.find('[data-trigger-delete]').on('click', app.itemManager.deleteitem);
                 app.DOM.list.find('[type=text]').on('blur keydown', app.itemManager.changeItem);
             },
 
             resetListEventListeners: function () {
-                //app.DOM.list.find('[data-trigger-delete]').off('click'); TODO
                 app.DOM.list.find('[data-trigger-item-content]').off('click');
+                app.DOM.list.find('[data-trigger-delete]').off('click');
                 app.DOM.list.find('[type=text]').off('blur keydown');
 
                 app.attachListEventListeners();
@@ -112,7 +111,7 @@
 
                     app.api.delete(id);
 
-                    elm.addClass('deleted').slideUp(300, function () {
+                    elm.addClass('deleted').animate({ width: 0 }, function () {
                         elm.remove();
                         app.itemManager.resetIndexes();
                     });
@@ -173,7 +172,7 @@
                 },
 
                 insertNew: function (id) {
-                    app.DOM.list.append(app.DOM.newItemTPL);
+                    app.DOM.list.prepend(app.DOM.newItemTPL);
                     var newItem = app.DOM.list.find('[data-item-status=new]');
                     newItem.attr('data-item', (id + 1));
                     newItem.find('[type=text]').focus();

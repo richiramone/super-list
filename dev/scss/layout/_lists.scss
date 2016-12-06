@@ -39,9 +39,20 @@
             outline: none;
         }
 
+        button {
+            width: auto;
+            height: auto;
+            margin-left: 12px;
+
+            svg {
+                width: 20px;
+                fill: #fff;
+            }
+        }
+
         &.editing,
         &.new {
-            width: 120px;
+            width: 100%;
 
             [type=text] {
                 display: block;
@@ -49,6 +60,12 @@
             }
 
             h2 {
+                display: none;
+            }
+        }
+
+        &.new {
+            button {
                 display: none;
             }
         }
