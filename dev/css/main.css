@@ -229,12 +229,13 @@ h1 {
   height: auto;
   margin: 6px;
   padding: 4px 8px;
+  white-space: nowrap;
   background: #09f;
   border-radius: 4px;
   cursor: pointer;
   transition: background .2s ease-in-out;
 }
-/* line 23, ../scss/layout/_lists.scss */
+/* line 24, ../scss/layout/_lists.scss */
 #items .item h2,
 #items .item [type=text] {
   margin: 0;
@@ -245,7 +246,7 @@ h1 {
   color: #fff;
   background: none;
 }
-/* line 34, ../scss/layout/_lists.scss */
+/* line 35, ../scss/layout/_lists.scss */
 #items .item [type=text] {
   display: none;
   border: 0;
@@ -253,39 +254,39 @@ h1 {
   font-weight: normal;
   outline: none;
 }
-/* line 42, ../scss/layout/_lists.scss */
+/* line 43, ../scss/layout/_lists.scss */
 #items .item button {
   width: auto;
   height: auto;
   margin-left: 12px;
 }
-/* line 47, ../scss/layout/_lists.scss */
+/* line 48, ../scss/layout/_lists.scss */
 #items .item button svg {
   width: 20px;
   fill: #fff;
 }
-/* line 53, ../scss/layout/_lists.scss */
+/* line 54, ../scss/layout/_lists.scss */
 #items .item.editing, #items .item.new {
   width: 100%;
 }
-/* line 57, ../scss/layout/_lists.scss */
+/* line 58, ../scss/layout/_lists.scss */
 #items .item.editing [type=text], #items .item.new [type=text] {
   display: block;
   width: 100%;
 }
-/* line 62, ../scss/layout/_lists.scss */
+/* line 63, ../scss/layout/_lists.scss */
 #items .item.editing h2, #items .item.new h2 {
   display: none;
 }
-/* line 68, ../scss/layout/_lists.scss */
+/* line 69, ../scss/layout/_lists.scss */
 #items .item.new button {
   display: none;
 }
-/* line 73, ../scss/layout/_lists.scss */
+/* line 74, ../scss/layout/_lists.scss */
 #items .item.deleted {
   background: #f55;
 }
-/* line 77, ../scss/layout/_lists.scss */
+/* line 78, ../scss/layout/_lists.scss */
 #items .item.edited {
   background: #00f;
 }
