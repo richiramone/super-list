@@ -83,7 +83,7 @@
       </header>
 
       <main>
-        <div id="items"></div>
+        <ul id="items"></ul>
       </main>
   </section>
 

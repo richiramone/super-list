@@ -11,28 +11,22 @@
 
   function appendContent($item, $i) {
     $content = $item["content"] ? $item["content"] : "";
+    $placeholder = $item == null ? "altro..." : "";
     $itemStatusClass = $item == null ? 'new' : 'existing';
-    $draggableAttr = $item == null ? '' : ' draggable="true" ';
 
     $html = "";
     $template = '
-    <div class="{{ITEM_STATUS}} item" data-item="{{ID}}" data-item-status="{{ITEM_STATUS}}">
+    <li class="{{ITEM_STATUS}} item" data-item="{{ID}}" data-item-status="{{ITEM_STATUS}}">
       <input id="item-{{ID}}" type="hidden">
-      <h2 {{ITEM_DRAGGABLE}} data-trigger-item-content>{{CONTENT}}</h2>
-      <input type="text" value="{{CONTENT}}">
-      <button data-trigger-delete>
-        <svg viewBox="0 0 32 32">
-          <use xlink:href="#shape-trash"></use>
-        </svg>
-      </button>
-    </div>
-    ';
+      <h2 data-trigger-item-content>{{CONTENT}}</h2>
+      <input type="text" value="{{CONTENT}}" placeholder="{{PLACEHOLDER}}">
+    </li>';
 
     $html .= $template;
-    $html = str_replace('{{ITEM_DRAGGABLE}}', $draggableAttr, $html);
     $html = str_replace('{{ITEM_STATUS}}', $itemStatusClass, $html);
     $html = str_replace('{{ID}}', $i, $html);
     $html = str_replace('{{CONTENT}}', $content, $html);
+    $html = str_replace('{{PLACEHOLDER}}', $placeholder, $html);
 
     return $html;
   }

@@ -162,11 +162,21 @@ li {
 }
 
 /* line 20, ../scss/base/_base.scss */
-[draggable] {
-  -webkit-user-select: none;
-  user-select: none;
-  cursor: grab;
-  cursor: -webkit-grab;
+::-webkit-input-placeholder {
+  color: #dfdfdf;
+  font-style: italic;
+}
+
+/* line 25, ../scss/base/_base.scss */
+::-moz-placeholder {
+  color: #dfdfdf;
+  font-style: italic;
+}
+
+/* line 30, ../scss/base/_base.scss */
+:-ms-input-placeholder {
+  color: #dfdfdf;
+  font-style: italic;
 }
 
 /* line 1, ../scss/layout/_header.scss */
@@ -203,70 +213,66 @@ h1 {
 
 /* line 1, ../scss/layout/_lists.scss */
 #items {
-  list-style: none;
-  margin: 80px 0 35px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 86px 6px 6px;
   padding: 0;
+  list-style: none;
 }
-/* line 6, ../scss/layout/_lists.scss */
+/* line 10, ../scss/layout/_lists.scss */
 #items .item {
   position: relative;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  height: 28px;
-  padding: 12px;
-  border-bottom: 1px solid #9FDAFC;
+  height: auto;
+  margin: 6px;
+  padding: 4px 8px;
+  background: #09f;
+  border-radius: 4px;
+  cursor: pointer;
   transition: background .2s ease-in-out;
 }
-/* line 16, ../scss/layout/_lists.scss */
+/* line 23, ../scss/layout/_lists.scss */
 #items .item h2,
 #items .item [type=text] {
+  margin: 0;
   width: auto;
   font-size: 18px;
-  font-weight: normal;
   line-height: 1.2;
   letter-spacing: 0.02em;
-  color: #333;
+  color: #fff;
+  background: none;
 }
-/* line 26, ../scss/layout/_lists.scss */
+/* line 34, ../scss/layout/_lists.scss */
 #items .item [type=text] {
   display: none;
   border: 0;
   margin: 0;
+  font-weight: normal;
   outline: none;
 }
-/* line 33, ../scss/layout/_lists.scss */
-#items .item button {
-  text-align: right;
+/* line 42, ../scss/layout/_lists.scss */
+#items .item.editing, #items .item.new {
+  width: 120px;
 }
-/* line 36, ../scss/layout/_lists.scss */
-#items .item button svg {
-  width: 25px;
-  fill: #cacaca;
-}
-/* line 44, ../scss/layout/_lists.scss */
+/* line 46, ../scss/layout/_lists.scss */
 #items .item.editing [type=text], #items .item.new [type=text] {
   display: block;
+  width: 100%;
 }
-/* line 48, ../scss/layout/_lists.scss */
+/* line 51, ../scss/layout/_lists.scss */
 #items .item.editing h2, #items .item.new h2 {
   display: none;
 }
-/* line 54, ../scss/layout/_lists.scss */
-#items .item.new [type=text] {
-  width: 100%;
-}
-/* line 58, ../scss/layout/_lists.scss */
-#items .item.new button {
-  display: none;
-}
-/* line 63, ../scss/layout/_lists.scss */
+/* line 56, ../scss/layout/_lists.scss */
 #items .item.deleted {
   background: #f55;
 }
-/* line 67, ../scss/layout/_lists.scss */
+/* line 60, ../scss/layout/_lists.scss */
 #items .item.edited {
-  background: #9f9;
+  background: #00f;
 }
 
 /* line 1, ../scss/components/_buttons.scss */

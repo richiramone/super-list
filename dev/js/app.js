@@ -80,13 +80,13 @@
             },
 
             attachListEventListeners: function () {
-                app.DOM.list.find('[data-trigger-delete]').on('click', app.itemManager.deleteitem);
+                //app.DOM.list.find('[data-trigger-delete]').on('click', app.itemManager.deleteitem); TODO
                 app.DOM.list.find('[data-trigger-item-content]').on('click', app.itemManager.startEditing);
                 app.DOM.list.find('[type=text]').on('blur keydown', app.itemManager.changeItem);
             },
 
             resetListEventListeners: function () {
-                app.DOM.list.find('[data-trigger-delete]').off('click');
+                //app.DOM.list.find('[data-trigger-delete]').off('click'); TODO
                 app.DOM.list.find('[data-trigger-item-content]').off('click');
                 app.DOM.list.find('[type=text]').off('blur keydown');
 

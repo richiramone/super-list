@@ -2,7 +2,6 @@ CACHE MANIFEST
 # 06-12-2016:v1.3.0
 
 # Explicitly cached entries
-/index.php
 /js/vendor/jquery-2.1.4.min.js
 /img/people/lucas.png
 /img/people/lucas@2x.png

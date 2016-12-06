@@ -17,9 +17,17 @@ li {
   padding: 0;
 }
 
-[draggable] {
-  -webkit-user-select: none;
-  user-select: none;
-  cursor: grab;
-  cursor: -webkit-grab;
+::-webkit-input-placeholder {
+   color: #dfdfdf;
+   font-style: italic;
+}
+
+::-moz-placeholder {
+    color: #dfdfdf;
+    font-style: italic;
+}
+
+:-ms-input-placeholder {
+    color: #dfdfdf;
+    font-style: italic;
 }
