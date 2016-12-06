@@ -54,6 +54,7 @@
         &.editing,
         &.new {
             width: 100%;
+            max-width: 300px;
 
             [type=text] {
                 display: block;

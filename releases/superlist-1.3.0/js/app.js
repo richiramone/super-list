@@ -111,7 +111,7 @@
 
                     app.api.delete(id);
 
-                    elm.addClass('deleted').animate({ width: 0 }, function () {
+                    elm.addClass('deleted').animate({ width: 0 }, 300, function () {
                         elm.remove();
                         app.itemManager.resetIndexes();
                     });

@@ -268,25 +268,26 @@ h1 {
 /* line 54, ../scss/layout/_lists.scss */
 #items .item.editing, #items .item.new {
   width: 100%;
+  max-width: 300px;
 }
-/* line 58, ../scss/layout/_lists.scss */
+/* line 59, ../scss/layout/_lists.scss */
 #items .item.editing [type=text], #items .item.new [type=text] {
   display: block;
   width: 100%;
 }
-/* line 63, ../scss/layout/_lists.scss */
+/* line 64, ../scss/layout/_lists.scss */
 #items .item.editing h2, #items .item.new h2 {
   display: none;
 }
-/* line 69, ../scss/layout/_lists.scss */
+/* line 70, ../scss/layout/_lists.scss */
 #items .item.new button {
   display: none;
 }
-/* line 74, ../scss/layout/_lists.scss */
+/* line 75, ../scss/layout/_lists.scss */
 #items .item.deleted {
   background: #f55;
 }
-/* line 78, ../scss/layout/_lists.scss */
+/* line 79, ../scss/layout/_lists.scss */
 #items .item.edited {
   background: #00f;
 }
