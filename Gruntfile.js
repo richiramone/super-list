@@ -4,6 +4,9 @@ module.exports = function(grunt) {
 
   require('load-grunt-tasks')(grunt);
 
+  var pkgJson = require('./package.json');
+  var version = pkgJson.version;
+
   grunt.initConfig({
     compass: {
       dev: {
@@ -57,8 +60,14 @@ module.exports = function(grunt) {
     copy: {
       main: {
         cwd: 'dev/',
-        src: '**',
-        dest: 'rc/',
+        src: ['**', '!**/sass/**'],
+        dest: 'releases/superlist_' + version + '/',
+        expand: true
+      },
+      latest: {
+        cwd: 'dev/',
+        src: ['**', '!**/sass/**'],
+        dest: 'releases/latest/',
         expand: true
       }
     },
@@ -78,6 +87,6 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.registerTask('release', ['compass', 'copy', 'htmlmin', 'uglify', 'cssmin']);
   grunt.registerTask('default', ['browserSync', 'watch']);
-  grunt.registerTask('rc', ['compass', 'copy', 'htmlmin', 'uglify', 'cssmin']);
 };
