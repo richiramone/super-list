@@ -1,12 +1,9 @@
 CACHE MANIFEST
-# 16-09-2016:v1.2.5
+# 06-12-2016:v1.3.0
 
 # Explicitly cached entries
 /index.php
 /js/vendor/jquery-2.1.4.min.js
-/js/vendor/dragAndDropTouch.min.js
-/js/app.js
-/css/main.css
 /img/people/lucas.png
 /img/people/lucas@2x.png
 /img/people/lucas@3x.png

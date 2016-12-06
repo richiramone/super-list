@@ -54,15 +54,6 @@
         app.api.fire('delete', { 'empty': true }, app.api.get, false);
       },
 
-      saveNewSortOrder: function () {
-        var itemsOrder = [];
-        $.each($('[data-item-status=existing]'), function (i, el) {
-          itemsOrder.push($(el).data('item'));
-        });
-
-        app.api.fire('order', { 'itemsOrder': itemsOrder }, null, false);
-      },
-
       notify: function (evt) {
         var person = $(evt.currentTarget).data('trigger-person');
         app.api.fire('notify', { person: person }, app.notification.showNotifiedMessage);
@@ -89,41 +80,17 @@
     },
 
     attachListEventListeners: function () {
-      //DRAG
-      app.DOM.list.find('[data-item]').on('dragstart', app.ui.handleDragStart);
-      app.DOM.list.find('[data-item]').on('drop', app.ui.handleDrop);
-
       app.DOM.list.find('[data-trigger-delete]').on('click', app.itemManager.deleteitem);
       app.DOM.list.find('[data-trigger-item-content]').on('click', app.itemManager.startEditing);
       app.DOM.list.find('[type=text]').on('blur keydown', app.itemManager.changeItem);
     },
 
     resetListEventListeners: function () {
-      app.DOM.list.find('[data-item]').off('dragstart drop');
       app.DOM.list.find('[data-trigger-delete]').off('click');
       app.DOM.list.find('[data-trigger-item-content]').off('click');
       app.DOM.list.find('[type=text]').off('blur keydown');
 
       app.attachListEventListeners();
-    },
-
-    ui: {
-      handleDragStart: function (ev) {
-        ev.originalEvent.dataTransfer.effectAllowed = 'move';
-        ev.originalEvent.dataTransfer.setData('item', this.outerHTML);
-
-        app.DOM.dragTempElm = this;
-      },
-
-      handleDrop: function (ev) {
-        this.outerHTML = ev.originalEvent.dataTransfer.getData('item') + this.outerHTML;
-        app.DOM.dragTempElm.remove();
-        app.DOM.dragTempElm = null;
-
-        $('.dragging').removeClass('dragging');
-        app.resetListEventListeners();
-        app.api.saveNewSortOrder();
-      }
     },
 
     itemManager: {
