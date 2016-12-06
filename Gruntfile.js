@@ -71,7 +71,7 @@ module.exports = function(grunt) {
                 expand: true
             }
         },
-        clean: 'releases/latest/**',
+        clean: 'releases/superlist-' + version + '/**',
         uglify: {
             release: {
                 files: {
@@ -88,7 +88,7 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('latest', ['clean', 'copy:latest']);
-    grunt.registerTask('release', ['compass', 'copy', 'htmlmin', 'uglify', 'cssmin']);
+    grunt.registerTask('latest', ['copy:latest']);
+    grunt.registerTask('release', ['compass', 'clean', 'copy', 'htmlmin', 'uglify', 'cssmin']);
     grunt.registerTask('default', ['browserSync', 'watch']);
 };
