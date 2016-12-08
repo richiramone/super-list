@@ -11,10 +11,11 @@
         position: relative;
         display: flex;
         align-items: center;
-        height: auto;
         margin: 6px;
         padding: 4px 8px;
-        white-space: nowrap;
+        height: auto;
+        width: auto;
+        max-width: 390px;
         background: #09f;
         border-radius: 4px;
         cursor: pointer;
@@ -54,7 +55,6 @@
         &.editing,
         &.new {
             width: 100%;
-            max-width: 300px;
 
             [type=text] {
                 display: block;
@@ -73,6 +73,9 @@
         }
 
         &.deleted {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
             background: $deleted;
         }
 

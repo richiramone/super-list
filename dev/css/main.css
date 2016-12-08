@@ -226,16 +226,17 @@ h1 {
   position: relative;
   display: flex;
   align-items: center;
-  height: auto;
   margin: 6px;
   padding: 4px 8px;
-  white-space: nowrap;
+  height: auto;
+  width: auto;
+  max-width: 390px;
   background: #09f;
   border-radius: 4px;
   cursor: pointer;
   transition: background .2s ease-in-out;
 }
-/* line 24, ../scss/layout/_lists.scss */
+/* line 25, ../scss/layout/_lists.scss */
 #items .item h2,
 #items .item [type=text] {
   margin: 0;
@@ -246,7 +247,7 @@ h1 {
   color: #fff;
   background: none;
 }
-/* line 35, ../scss/layout/_lists.scss */
+/* line 36, ../scss/layout/_lists.scss */
 #items .item [type=text] {
   display: none;
   border: 0;
@@ -254,21 +255,20 @@ h1 {
   font-weight: normal;
   outline: none;
 }
-/* line 43, ../scss/layout/_lists.scss */
+/* line 44, ../scss/layout/_lists.scss */
 #items .item button {
   width: auto;
   height: auto;
   margin-left: 12px;
 }
-/* line 48, ../scss/layout/_lists.scss */
+/* line 49, ../scss/layout/_lists.scss */
 #items .item button svg {
   width: 20px;
   fill: #fff;
 }
-/* line 54, ../scss/layout/_lists.scss */
+/* line 55, ../scss/layout/_lists.scss */
 #items .item.editing, #items .item.new {
   width: 100%;
-  max-width: 300px;
 }
 /* line 59, ../scss/layout/_lists.scss */
 #items .item.editing [type=text], #items .item.new [type=text] {
@@ -285,9 +285,12 @@ h1 {
 }
 /* line 75, ../scss/layout/_lists.scss */
 #items .item.deleted {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   background: #f55;
 }
-/* line 79, ../scss/layout/_lists.scss */
+/* line 82, ../scss/layout/_lists.scss */
 #items .item.edited {
   background: #00f;
 }
