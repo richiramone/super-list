@@ -132,15 +132,15 @@
                 },
 
                 changeItem: function (evt) {
-                    if (evt.which !== 13 && evt.which !== 9 && evt.which !== 0) {
+                    if (evt.which !== 13 && evt.which !== 9) {
                         return;
                     }
 
-                    var elm = app.itemManager.getItemElement(evt),
-                    isNewItem = elm.attr('data-item-status') === 'new' ? true : false,
-                    val = elm.find('[type=text]').val(),
-                    oldValContainer = elm.find('[data-trigger-item-content]'),
-                    oldVal = oldValContainer.html();
+                    var elm = app.itemManager.getItemElement(evt);
+                    var isNewItem = elm.attr('data-item-status') === 'new' ? true : false;
+                    var val = elm.find('[type=text]').val();
+                    var oldValContainer = elm.find('[data-trigger-item-content]');
+                    var oldVal = oldValContainer.html();
 
                     elm.removeClass('editing');
 
