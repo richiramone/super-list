@@ -1,26 +1,20 @@
 'use strict'
 
 module.exports = function(grunt) {
-
     require('load-grunt-tasks')(grunt);
 
     var pkgJson = require('./package.json');
     var version = pkgJson.version;
 
     grunt.initConfig({
-        compass: {
-            dev: {
-                options: {
-                    outputStyle: 'expanded',
-                    cssDir: 'dev/css',
-                    sassDir: 'dev/scss'
-                }
+        sass: {
+            options: {
+                sourceMap: true,
+                outputStyle: 'compressed' //nested, expanded, compact, compressed
             },
-            release: {
-                options: {
-                    outputStyle: 'compressed',
-                    cssDir: 'releases/latest/css',
-                    sassDir: 'dev/scss'
+            dist: {
+                files: {
+                    'dev/css/main.css': 'dev/scss/main.scss'
                 }
             }
         },
@@ -33,7 +27,7 @@ module.exports = function(grunt) {
                     browser: "google chrome",
                     proxy: "superlist.dev",
                     watchTask: true,
-                    ghostMode: false,
+                    ghostMode: true,
                     notify: false
                 }
             }
@@ -41,7 +35,7 @@ module.exports = function(grunt) {
         watch: {
             compass: {
                 files: 'dev/scss/**/*.scss',
-                tasks: 'compass'
+                tasks: 'sass'
             }
         },
         htmlmin: {
@@ -89,6 +83,6 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('latest', ['copy:latest']);
-    grunt.registerTask('release', ['compass', 'clean', 'copy', 'htmlmin', 'uglify', 'cssmin']);
-    grunt.registerTask('default', ['browserSync', 'watch']);
+    grunt.registerTask('release', ['sass', 'clean', 'copy', 'htmlmin', 'uglify', 'cssmin']);
+    grunt.registerTask('default', ['sass', 'browserSync', 'watch']);
 };
