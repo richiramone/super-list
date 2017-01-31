@@ -1,8 +1,8 @@
 #items {
     display: flex;
-    justify-content: flex-start;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: flex-start;
     margin: 86px 6px 6px;
     padding: 0;
     list-style: none;
@@ -13,11 +13,11 @@
         align-items: center;
         margin: 6px;
         padding: 4px 8px;
-        height: auto;
-        width: auto;
         max-width: 390px;
-        background: #09f;
+        width: auto;
+        height: auto;
         border-radius: 4px;
+        background: #09f;
         cursor: pointer;
 
         transition: background .2s ease-in-out;
@@ -26,25 +26,25 @@
         [type=text] {
             margin: 0;
             width: auto;
+            background: none;
+            color: #fff;
+            letter-spacing: 0.02em;
             font-size: 18px;
             line-height: 1.2;
-            letter-spacing: 0.02em;
-            color: #fff;
-            background: none;
         }
 
         [type=text] {
             display: none;
-            border: 0;
             margin: 0;
-            font-weight: normal;
             outline: none;
+            border: 0;
+            font-weight: normal;
         }
 
         button {
+            margin-left: 12px;
             width: auto;
             height: auto;
-            margin-left: 12px;
 
             svg {
                 width: 20px;
@@ -74,9 +74,9 @@
 
         &.deleted {
             overflow: hidden;
+            background: $deleted;
             text-overflow: ellipsis;
             white-space: nowrap;
-            background: $deleted;
         }
 
         &.edited {

@@ -1,25 +1,25 @@
 body {
-  background: $white;
+    background: $white;
 }
 
 svg {
-  fill: $white;
+    fill: $white;
 }
 
 ol {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 ::-webkit-input-placeholder {
-   color: #dfdfdf;
-   font-style: italic;
+    color: #dfdfdf;
+    font-style: italic;
 }
 
 ::-moz-placeholder {

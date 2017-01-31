@@ -2,16 +2,16 @@
 /* Responsive: iPad
 -------------------------------------------------- */
 @media only screen and (min-width : 768px) {
-  #items {
-    li {
-      h2, [type=text] {
-        width: 220%;
-      }
+    #items {
+        li {
+            h2, [type=text] {
+                width: 220%;
+            }
+        }
     }
-  }
 
-  #person-selector {
-    width: 50%;
-    margin: 0 25%;
-  }
+    #person-selector {
+        margin: 0 25%;
+        width: 50%;
+    }
 }
