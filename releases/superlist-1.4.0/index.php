@@ -1,5 +1,5 @@
 <?php ob_start();?><!doctype html>
-<html lang="it-IT">
+<html lang="it-IT" >
 <head>
   <title>SuperList</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
@@ -10,6 +10,7 @@
   <link rel="author" href="humans.txt">
   <link rel="shortcut icon" href="favicon.png">
   <link href="css/main.css" rel="stylesheet">
+  <meta charset="utf-8">
 </head><?php flush(); ob_flush(); ?>
 <body class="loading">
   <?php echo file_get_contents('svg/svg-sprite.svg'); ?>

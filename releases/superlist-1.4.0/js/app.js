@@ -59,7 +59,7 @@
 
             updateDOMList: function (html) {
                 app.DOM.list.html(html);
-                app.DOM.listWrapper.find('[data-item-status=new]').find('[type=text]').focus();console.log(2)
+                app.DOM.listWrapper.find('[data-item-status=new]').find('[type=text]').focus();
                 app.attachListEventListeners();
             },
 
@@ -87,31 +87,22 @@
                     return $(evt.currentTarget).parents('[data-item]');
                 },
 
-                resetIndexes: function () {
-                    var $lis = app.DOM.list.find('[data-item]');
-
-                    $.each($lis, function (i, el) {
-                        $(el).attr('data-item', i);
-                    });
-                },
-
                 deleteitem: function (evt) {
-                    var elm = app.itemManager.getItemElement(evt),
-                    id = elm.data('item');
+                    var elm = app.itemManager.getItemElement(evt);
+                    var id = elm.data('item');
 
                     app.api.delete(id);
 
                     elm.addClass('deleted').animate({ width: 0 }, 300, function () {
                         elm.remove();
-                        app.itemManager.resetIndexes();
                     });
                 },
 
                 startEditing: function (evt) {
                     app.DOM.list.find('.editing').removeClass('editing');
 
-                    var elm = app.itemManager.getItemElement(evt),
-                    id = elm.data('item');
+                    var elm = app.itemManager.getItemElement(evt);
+                    var id = elm.data('item');
 
                     elm.addClass('editing');
 
@@ -187,8 +178,8 @@
                     app.DOM.body.removeClass('showConfirm');
                 }
             }
-        };
+    };
 
         app.init();
 
-    })($('body'));
+})($('body'));
