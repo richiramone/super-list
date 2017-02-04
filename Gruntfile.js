@@ -82,7 +82,6 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('latest', ['copy:latest']);
-    grunt.registerTask('release', ['sass', 'clean', 'copy', 'htmlmin', 'uglify', 'cssmin']);
+    grunt.registerTask('release', ['sass', 'clean', 'copy', 'htmlmin', 'uglify', 'cssmin', 'copy:latest']);
     grunt.registerTask('default', ['sass', 'browserSync', 'watch']);
 };
