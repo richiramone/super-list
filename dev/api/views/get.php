@@ -1,19 +1,19 @@
 <?php
-  $output = appendContent(null, 0);
+    $output = appendContent(null);
 
-  $i = 0;
-  foreach ($items["items"] as $item) {
-    $output .= appendContent($item, $i);
-    $i++;
-  }
+    while ($item = $items->fetch_assoc()) {
+        $output .= appendContent($item);
+    }
 
-  function appendContent($item, $i) {
-    $content = $item["content"] ? $item["content"] : "";
-    $placeholder = $item == null ? "altro..." : "";
-    $itemStatusClass = $item == null ? 'new' : 'existing';
+    $items->free();
 
-    $html = "";
-    $template = '
+    function appendContent($item) {
+        $content = $item["name"] ? $item["name"] : "";
+        $placeholder = $item == null ? "altro..." : "";
+        $itemStatusClass = $item == null ? 'new' : 'existing';
+
+        $html = "";
+        $template = '
     <li class="{{ITEM_STATUS}} item" data-item="{{ID}}" data-item-status="{{ITEM_STATUS}}">
       <input id="item-{{ID}}" type="hidden">
       <h2 data-trigger-item-content>{{CONTENT}}</h2>
@@ -25,12 +25,12 @@
       </button>
     </li>';
 
-    $html .= $template;
-    $html = str_replace('{{ITEM_STATUS}}', $itemStatusClass, $html);
-    $html = str_replace('{{ID}}', $i, $html);
-    $html = str_replace('{{CONTENT}}', $content, $html);
-    $html = str_replace('{{PLACEHOLDER}}', $placeholder, $html);
+        $html .= $template;
+        $html = str_replace('{{ITEM_STATUS}}', $itemStatusClass, $html);
+        $html = str_replace('{{ID}}', $item['id'], $html);
+        $html = str_replace('{{CONTENT}}', $content, $html);
+        $html = str_replace('{{PLACEHOLDER}}', $placeholder, $html);
 
-    return $html;
-  }
+        return $html;
+    }
 ?>

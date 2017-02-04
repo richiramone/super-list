@@ -7,8 +7,7 @@
             body: body,
             header: null,
             list: body.find('#items'),
-            newItemTPL: null,
-            dragTempElm: null
+            newItemTPL: null
         },
 
         init: function () {
@@ -41,7 +40,7 @@
                 },
 
                 put: function (content) {
-                    app.api.fire('put', content, {}, false);
+                    app.api.fire('put', content, app.itemManager.insertNew, false);
                 },
 
                 delete: function (id) {
@@ -154,11 +153,6 @@
 
                     if (isNewItem) {
                         app.api.put({ content: val });
-                        elm.attr('data-item-status', 'existing');
-                        elm.attr('draggable', true);
-                        elm.addClass('existing');
-                        app.itemManager.insertNew(elm.data('item'));
-
                     } else {
                         var id = elm.attr('data-item'),
                         isChecked = elm.find('[type=checkbox]').prop('checked');
@@ -172,12 +166,14 @@
                 },
 
                 insertNew: function (id) {
-                    app.DOM.list.prepend(app.DOM.newItemTPL);
                     var newItem = app.DOM.list.find('[data-item-status=new]');
-                    newItem.attr('data-item', (id + 1));
+                    newItem.attr('data-item', id);
+                    newItem.attr('data-item-status', 'existing');
+                    newItem.addClass('existing');
+                    newItem.find('[type=hidden]').attr('id', 'item-' + id);
                     newItem.find('[type=text]').focus();
 
-                    app.DOM.newItemTPL = app.DOM.list.find('.new').clone();
+                    app.DOM.list.prepend(app.DOM.newItemTPL);
 
                     app.resetListEventListeners();
                 }

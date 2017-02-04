@@ -1,4 +1,4 @@
 <?php
-  $json = file_get_contents(JSON);
-  $items = json_decode($json, true);
+    $sql = 'SELECT * FROM items ORDER BY id DESC;';
+    $items = $db->query($sql);
 ?>

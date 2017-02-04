@@ -1,15 +1,7 @@
 <?php
-  $json = file_get_contents(JSON);
-  $items = json_decode($json, true);
-
-  if ($_GET["empty"] == true) {
-    $items["items"] = array();
-  } else {
-    unset($items["items"][$_GET["id"]]);
-  }
-
-  $items['items'] = array_values($items['items']);
-  $newJson = json_encode($items);
-
-  file_put_contents(JSON, $newJson);
+    $whichItem = $_GET["empty"] == true ? '' : 'WHERE id=' . $_GET["id"];
+    $sql = 'DELETE FROM items ' . $whichItem . ';';
+    $db->escape_string($sql);
+    $db->query('SET CHARACTER SET utf8');
+    $db->query($sql);
 ?>
