@@ -14,7 +14,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: {
-                    'dev/css/main.css': 'dev/scss/main.scss'
+                    'dev/css/main.css': 'dev/sass/main.scss'
                 }
             }
         },
@@ -34,7 +34,7 @@ module.exports = function(grunt) {
         },
         watch: {
             compass: {
-                files: 'dev/scss/**/*.scss',
+                files: 'dev/sass/**/*.scss',
                 tasks: 'sass'
             }
         },
@@ -54,7 +54,7 @@ module.exports = function(grunt) {
         copy: {
             release: {
                 cwd: 'dev/',
-                src: ['**', '!**/scss/**'],
+                src: ['**', '!**/sass/**'],
                 dest: 'releases/superlist-' + version + '/',
                 expand: true
             },

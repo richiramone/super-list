@@ -82,8 +82,11 @@
         </menu>
       </header>
 
-      <main>
-        <ul id="items"></ul>
+      <main data-list-wrapper>
+        <aside class="new item" data-item data-item-status="new">
+            <input type="text" placeholder="altro...">
+        </aside>
+        <ul id="items" data-list></ul>
       </main>
   </section>
 

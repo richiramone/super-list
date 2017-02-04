@@ -1,13 +1,12 @@
 (function(body) {
-
     'use strict';
 
     var app = {
         DOM: {
             body: body,
             header: null,
-            list: body.find('#items'),
-            newItemTPL: null
+            listWrapper: body.find('[data-list-wrapper]'),
+            list: body.find('[data-list]')
         },
 
         init: function () {
@@ -40,7 +39,7 @@
                 },
 
                 put: function (content) {
-                    app.api.fire('put', content, app.itemManager.insertNew, false);
+                    app.api.fire('put', content, app.updateDOMList, false);
                 },
 
                 delete: function (id) {
@@ -60,7 +59,7 @@
 
             updateDOMList: function (html) {
                 app.DOM.list.html(html);
-                app.DOM.newItemTPL = app.DOM.list.find('.new').clone();
+                app.DOM.listWrapper.find('[data-item-status=new]').find('[type=text]').focus();console.log(2)
                 app.attachListEventListeners();
             },
 
@@ -80,15 +79,7 @@
             attachListEventListeners: function () {
                 app.DOM.list.find('[data-trigger-item-content]').on('click', app.itemManager.startEditing);
                 app.DOM.list.find('[data-trigger-delete]').on('click', app.itemManager.deleteitem);
-                app.DOM.list.find('[type=text]').on('blur keydown', app.itemManager.changeItem);
-            },
-
-            resetListEventListeners: function () {
-                app.DOM.list.find('[data-trigger-item-content]').off('click');
-                app.DOM.list.find('[data-trigger-delete]').off('click');
-                app.DOM.list.find('[type=text]').off('blur keydown');
-
-                app.attachListEventListeners();
+                app.DOM.listWrapper.find('[type=text]').on('blur keydown', app.itemManager.changeItem);
             },
 
             itemManager: {
@@ -136,14 +127,25 @@
                     }
 
                     var elm = app.itemManager.getItemElement(evt);
-                    var isNewItem = elm.attr('data-item-status') === 'new' ? true : false;
                     var val = elm.find('[type=text]').val();
+
+                    if (val === '') {
+                        return;
+                    }
+
+                    if (elm.attr('data-item-status') === 'new') {
+                        app.api.put({ content: val });
+                        elm.find('[type=text]').val('');
+
+                        return;
+                    }
+
                     var oldValContainer = elm.find('[data-trigger-item-content]');
                     var oldVal = oldValContainer.html();
 
                     elm.removeClass('editing');
 
-                    if (val === '' || (!isNewItem && val === oldVal)) {
+                    if (val === oldVal) {
                         return;
                     }
 
@@ -151,31 +153,11 @@
                     oldValContainer.html(val);
                     elm.addClass('edited');
 
-                    if (isNewItem) {
-                        app.api.put({ content: val });
-                    } else {
-                        var id = elm.attr('data-item'),
-                        isChecked = elm.find('[type=checkbox]').prop('checked');
-
-                        app.api.update({ id: id, content: val });
-                    }
+                    app.api.update({ id: elm.attr('data-item'), content: val });
 
                     setTimeout(function () {
-                        elm.removeClass('edited');
+                        $('.edited').removeClass('edited');
                     }, 250);
-                },
-
-                insertNew: function (id) {
-                    var newItem = app.DOM.list.find('[data-item-status=new]');
-                    newItem.attr('data-item', id);
-                    newItem.attr('data-item-status', 'existing');
-                    newItem.addClass('existing');
-                    newItem.find('[type=hidden]').attr('id', 'item-' + id);
-                    newItem.find('[type=text]').focus();
-
-                    app.DOM.list.prepend(app.DOM.newItemTPL);
-
-                    app.resetListEventListeners();
                 }
             },
 
