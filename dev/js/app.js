@@ -39,6 +39,7 @@
                 },
 
                 put: function (content) {
+                    app.putTempContent(content.content);
                     app.api.fire('put', content, app.updateDOMList, false);
                 },
 
@@ -55,6 +56,20 @@
                     var person = $(evt.currentTarget).data('trigger-person');
                     app.api.fire('notify', { person: person }, app.notification.showNotifiedMessage);
                 }
+            },
+
+            putTempContent: function (text) {
+                const html = '\
+                <li class="existing item" data-item="temp">\
+                    <h2 data-trigger-item-content>' + text + '</h2>\
+                    <button data-trigger-delete>\
+                    <svg viewBox="0 0 32 32">\
+                        <use xlink:href="#shape-trash"></use>\
+                    </svg>\
+                    </button>\
+                </li>';
+
+                app.DOM.list.prepend(html);
             },
 
             updateDOMList: function (html) {
