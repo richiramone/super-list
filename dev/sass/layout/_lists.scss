@@ -9,7 +9,8 @@
 }
 
 .new.item {
-    margin: 92px 12px 6px;
+    margin: 72px 12px 6px;
+    border-top: env(safe-area-inset-top, 0) solid #fff;
 
     [type=text] {
         display: block;
