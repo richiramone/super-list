@@ -79,6 +79,12 @@
             },
 
             setBaseTriggers: function () {
+                document.addEventListener("visibilitychange", function () {
+                    if (document.visibilityState === "visible") {
+                        app.api.get();
+                    }
+                }, false);
+
                 //HEADER
                 app.DOM.body.find('[data-trigger-notify]').on('click', app.notification.showPeopleChooser);
                 app.DOM.body.find('[data-trigger-reload]').on('click', app.api.get);

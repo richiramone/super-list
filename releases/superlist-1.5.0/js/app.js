@@ -79,6 +79,20 @@
             },
 
             setBaseTriggers: function () {
+
+                document.addEventListener("visibilitychange", function(){
+                    if (!document.hidden)
+                    {
+                        alert("not hidden")
+                    }
+
+
+                    alert(document.visibilityState === "visible" ? "visi" : "boh")
+                });
+
+                //app.DOM.body.on('pageshow', app.api.get);
+                //app.DOM.body.on('focus', app.api.get);
+
                 //HEADER
                 app.DOM.body.find('[data-trigger-notify]').on('click', app.notification.showPeopleChooser);
                 app.DOM.body.find('[data-trigger-reload]').on('click', app.api.get);

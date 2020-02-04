@@ -10,7 +10,7 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="author" href="humans.txt">
   <link rel="shortcut icon" href="favicon.png">
-  <link href="css/main.css" rel="stylesheet">
+  <link href="css/main.css?v=1.6.0" rel="stylesheet">
   <meta charset="utf-8">
 </head><?php flush(); ob_flush(); ?>
 <body class="loading">
@@ -92,7 +92,7 @@
       </main>
   </section>
 
-  <script src="js/vendor/jquery-2.1.4.min.js"></script>
-  <script src="js/app.js" async></script>
+  <script src="js/vendor/jquery-2.2.5.min.js"></script>
+  <script src="js/app.js?v=1.6.0" async></script>
 </body>
 </html>
