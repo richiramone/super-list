@@ -1,5 +1,4 @@
 .DS_Store
-*.codekit
 /node_modules/
 node_modules/
 /node_modules/**/*
