@@ -1,16 +1,38 @@
 {
-    "name": "SuperList",
-    "version": "1.6.0",
-    "devDependencies": {
-        "grunt": "^0.4.5",
-        "grunt-browser-sync": "^2.2.0",
-        "grunt-contrib-clean": "^1.0.0",
-        "grunt-contrib-copy": "^0.8.2",
-        "grunt-contrib-cssmin": "^0.14.0",
-        "grunt-contrib-htmlmin": "^0.6.0",
-        "grunt-contrib-uglify": "^0.11.0",
-        "grunt-contrib-watch": "^0.6.1",
-        "grunt-sass": "^2.0.0",
-        "load-grunt-tasks": "^3.3.0"
-    }
+  "name": "superlist",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.4",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "5.0.0",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
