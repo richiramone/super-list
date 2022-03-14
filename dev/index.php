@@ -1,20 +1,4 @@
-<?php ob_start();?><!doctype html>
-<html lang="it-IT" >
-<head>
-  <title>SuperList</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="SuperList">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="author" href="humans.txt">
-  <link rel="shortcut icon" href="favicon.png">
-  <link href="css/main.css?v=1.6.0" rel="stylesheet">
-  <meta charset="utf-8">
-</head><?php flush(); ob_flush(); ?>
-<body class="loading">
-  <?php echo file_get_contents('svg/svg-sprite.svg'); ?>
+
 
   <div id="loading-bg">
     <div id="loading-box">
@@ -91,8 +75,3 @@
         <ul id="items" data-list></ul>
       </main>
   </section>
-
-  <script src="js/vendor/jquery-2.2.5.min.js"></script>
-  <script src="js/app.js?v=1.6.0" async></script>
-</body>
-</html>
