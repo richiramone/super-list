@@ -34,19 +34,28 @@ After deploying, view your app at super-9a549.web.app
 
 # DRAFT 1
 
--   react
--   css components
+- react
+- css components
+- css naming
+- styled component reutilizzo
+- check todoes
 
 # DRAFT 2
 
--   redux
--   firebase db
+- redux
+- firebase db
 
 # DRAFT 3
 
--   new features
+- new features
 
 # DRAFT 2
 
--   webpack di merda
--   deploy firebase
+- webpack di merda
+- deploy firebase
+
+# KEYWORDS
+
+- https://fettblog.eu/typescript-react/
+- functional components
+- https://testing-library.com/docs/react-testing-library/intro/

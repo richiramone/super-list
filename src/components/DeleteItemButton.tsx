@@ -1,15 +1,18 @@
 import styled from "styled-components";
 
 const Button = styled.button`
+  margin-left: 1rem;
   padding: 0;
-  width: 26px;
-  height: 26px;
-  outline: none;
-  border: none;
-  background: none;
+  width: auto;
+  height: auto;
+
+  svg {
+    width: 20px;
+    fill: #fff;
+  }
 `;
 
-function EmptyListButton() {
+function DeleteItemButton() {
   return (
     <Button>
       <svg viewBox="0 0 32 32">
@@ -19,4 +22,4 @@ function EmptyListButton() {
   );
 }
 
-export default EmptyListButton;
+export default DeleteItemButton;

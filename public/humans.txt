@@ -11,4 +11,4 @@ Encoding: UTF-8
 Doctype: HTML5
 Environment: NodeJS
 Languages: HTML5, SCSS, CSS3, Javascript, MySQL
-Software: Sketch 3, Visual Studio Code, React js, Redux, Webpack, Css components, Node.js, GitHub, Firebase
+Software: Sketch 3, Visual Studio Code, React js, Redux, Webpack, Styled components, Node.js, GitHub, Firebase
