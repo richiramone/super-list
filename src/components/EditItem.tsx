@@ -15,6 +15,7 @@ function EditItem() {
     color: #fff;
 
     & .editing {
+      // todo
       display: block;
       width: 100%;
     }

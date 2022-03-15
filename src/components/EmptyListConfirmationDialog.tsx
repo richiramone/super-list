@@ -14,7 +14,7 @@ function EmptyListConfirmationDialog() {
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
 
-    .confirmationDialog {
+    .confirmation-dialog {
       position: absolute;
       top: 50%;
       left: calc(50% - 160px);
@@ -34,7 +34,7 @@ function EmptyListConfirmationDialog() {
       font-weight: normal;
     }
 
-    .buttonsWrapper {
+    .buttons-wrapper {
       display: flex;
       justify-content: space-evenly;
       margin: 2rem 0;
@@ -49,12 +49,12 @@ function EmptyListConfirmationDialog() {
       border-radius: 4px;
       border: 1px solid;
 
-      &.cancel {
+      &.cancel-button {
         color: #009dff;
         border-color: #009dff;
       }
 
-      &.confirm {
+      &.confirm-button {
         color: #fff;
         background: #009dff;
         border-color: #009dff;
@@ -70,11 +70,11 @@ function EmptyListConfirmationDialog() {
 
   return (
     <Dialog>
-      <div className="confirmationDialog">
+      <div className="confirmation-dialog">
         <h3>Sei sicuro di voler svuotare la lista?</h3>
-        <div className="buttonsWrapper">
-          <button className="cancel">No</button>
-          <button className="confirm">Si</button>
+        <div className="buttons-wrapper">
+          <button className="cancel-button">No</button>
+          <button className="confirm-button">Si</button>
         </div>
       </div>
     </Dialog>

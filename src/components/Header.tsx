@@ -40,7 +40,7 @@ function Header() {
   `;
 
   return (
-    <Header className="App-header">
+    <Header>
       <h1>SuperList</h1>
       <menu>
         <ReloadListButton />
