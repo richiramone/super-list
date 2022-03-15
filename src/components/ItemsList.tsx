@@ -1,5 +1,7 @@
 import Item from "./Item";
 import styled from "styled-components";
+import { useContext } from "react";
+import { App } from "../App";
 
 function ItemsList() {
   const ItemsList = styled.ul`
@@ -12,13 +14,14 @@ function ItemsList() {
     list-style: none;
   `;
 
+  const items = useContext(ListContext);
+
   return (
-    <ItemsList>
-      <Item />
-      <Item />
-      <Item />
-      <Item />
-    </ItemsList>
+    <App.ListContext.Consumer>
+      <ItemsList>
+        <Item />
+      </ItemsList>
+    </App.ListContext.Consumer>
   );
 }
 

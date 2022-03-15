@@ -1,6 +1,5 @@
 ## Priorita
 
-react
 useEffect
 useState
 useRef
@@ -20,11 +19,10 @@ deploy
 
 apple icons + metadata fix
 Border color by person
-Silent update (loading on landing if ko get from local storage)
+Silent update (prende da local mentre scarica da api)
 Update after edit
 Domanda in giallo (carne?)
 Push notification after edit
-webpack
 
 ## Notes
 
@@ -34,10 +32,8 @@ After deploying, view your app at super-9a549.web.app
 
 # DRAFT 1
 
-- react
+- react / hooks only
 - css components
-- css naming
-- styled component reutilizzo
 - check todoes
 
 # DRAFT 2

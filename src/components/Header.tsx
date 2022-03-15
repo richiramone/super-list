@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import ReloadListButton from "./ReloadListButton";
-import EmptyListButton from "./EmptyListButton";
+import EmptyList from "./EmptyList";
 
 function Header() {
   const Header = styled.header`
@@ -44,7 +44,7 @@ function Header() {
       <h1>SuperList</h1>
       <menu>
         <ReloadListButton />
-        <EmptyListButton />
+        <EmptyList />
       </menu>
     </Header>
   );

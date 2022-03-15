@@ -9,9 +9,11 @@ const Button = styled.button`
   background: none;
 `;
 
+function reloadList() {}
+
 function ReloadListButton() {
   return (
-    <Button>
+    <Button onClick={reloadList}>
       <svg viewBox="0 0 32 32">
         <use xlinkHref="#shape-reload"></use>
       </svg>
