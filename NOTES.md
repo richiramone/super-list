@@ -58,3 +58,7 @@ After deploying, view your app at super-9a549.web.app
 - https://fettblog.eu/typescript-react/
 - functional components
 - https://testing-library.com/docs/react-testing-library/intro/
+
+- fragments ???
+- how to debug / tools
+- unit testing

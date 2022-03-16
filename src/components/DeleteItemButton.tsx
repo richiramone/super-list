@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { useContext } from "react";
+import { ListContext } from "../contexts/ListContext";
 
 const Button = styled.button`
   margin-left: 1rem;
@@ -12,9 +14,15 @@ const Button = styled.button`
   }
 `;
 
-function DeleteItemButton() {
+type DeleteItemButtonProps = {
+  id: string;
+};
+
+function DeleteItemButton({ id }: DeleteItemButtonProps) {
+  const { deleteItem } = useContext(ListContext);
+
   return (
-    <Button>
+    <Button onClick={() => deleteItem(id)}>
       <svg viewBox="0 0 32 32">
         <use xlinkHref="#shape-trash"></use>
       </svg>

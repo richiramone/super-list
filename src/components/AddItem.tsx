@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { useContext } from "react";
+import { ListContext } from "../contexts/ListContext";
 
 function AddItem() {
   const AddItem = styled.aside`
@@ -28,9 +30,21 @@ function AddItem() {
     }
   `;
 
+  const { addItem } = useContext(ListContext);
+
+  const tryAddItem = (event: SyntheticEvent): void => {
+    if (event.which !== 13 && event.which !== 9) {
+      return;
+    }
+
+    if (event.currentTarget.value !== "") {
+      addItem(event.currentTarget.value);
+    }
+  };
+
   return (
     <AddItem>
-      <input type="text" placeholder="altro..." />
+      <input onInput={tryAddItem} type="text" placeholder="altro..." />
     </AddItem>
   );
 }

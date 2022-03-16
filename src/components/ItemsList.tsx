@@ -4,7 +4,7 @@ import { ListContext } from "../contexts/ListContext";
 import { useContext } from "react";
 
 function ItemsList() {
-  const ItemsList = styled.ul`
+  const ItemsList = styled.div`
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -18,11 +18,13 @@ function ItemsList() {
 
   return (
     <ItemsList>
-      {items.map((item) => (
-        <li key={item.id}>
-          <Item item={item} />
-        </li>
-      ))}
+      <ul>
+        {items.map((item) => (
+          <li key={item.id}>
+            <Item item={item} />
+          </li>
+        ))}
+      </ul>
     </ItemsList>
   );
 }

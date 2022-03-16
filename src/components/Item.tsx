@@ -3,7 +3,11 @@ import DeleteItemButton from "./DeleteItemButton";
 import styled from "styled-components";
 import { IItem } from "../config/interfaces";
 
-function Item(item: IItem) {
+type ItemProps = {
+  item: IItem;
+};
+
+function Item({ item }: ItemProps) {
   const Item = styled.span`
     position: relative;
     display: flex;
@@ -77,7 +81,7 @@ function Item(item: IItem) {
     <Item>
       <EditItem />
       {item.value}
-      <DeleteItemButton />
+      <DeleteItemButton id={item.id} />
     </Item>
   );
 }

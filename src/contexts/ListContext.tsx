@@ -1,15 +1,16 @@
-import { createContext, useState, FC } from "react";
+import { createContext, useState, useEffect, FC } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { IListContext } from "../config/interfaces";
 
+const urlParams = new URLSearchParams(window.location.search);
+const author = urlParams.has("author") ? urlParams.get("author") : "lucas";
+
 const defaultState: IListContext = {
-  items: [
-    {
-      id: "1",
-      author: "lucas",
-      value: "tripps",
-    },
-  ],
+  author: author,
+  items: [],
+  addItem: () => {},
+  updateItem: () => {},
+  deleteItem: () => {},
 };
 
 export const ListContext = createContext<IListContext>(defaultState);
@@ -21,7 +22,18 @@ export const ListContextProvider: FC = ({ children }) => {
 
   const [items, setItems] = useState(defaultState.items);
 
-  const addItem = (author: string, item: string) => {
+  useEffect(() => {
+    const items = localStorage.getItem("items");
+    const parsedItems = items !== null ? JSON.parse(items) : [];
+
+    setItems(parsedItems);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("items", JSON.stringify(items));
+  });
+
+  const addItem = (item: string) => {
     setItems([...items, { id: uuidv4(), author: author, value: item }]);
   };
 
