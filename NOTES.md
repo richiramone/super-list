@@ -35,11 +35,14 @@ After deploying, view your app at super-9a549.web.app
 - react / hooks only
 - css components
 - check todoes
+  https://github.com/NIKMAKEFIRE/REACT-TODO/blob/master/src/contexts/EmployeeContext.jsx
 
 # DRAFT 2
 
 - redux
+- ts strong
 - firebase db
+  https://github.com/Melvin-Abraham/todomatic/blob/master/src/utils/reducer.ts
 
 # DRAFT 3
 

@@ -1,9 +1,10 @@
 import EditItem from "./EditItem";
 import DeleteItemButton from "./DeleteItemButton";
 import styled from "styled-components";
+import { IItem } from "../config/interfaces";
 
-function Item() {
-  const Item = styled.li`
+function Item(item: IItem) {
+  const Item = styled.span`
     position: relative;
     display: flex;
     align-items: center;
@@ -75,7 +76,7 @@ function Item() {
   return (
     <Item>
       <EditItem />
-      <span>cippa</span>
+      {item.value}
       <DeleteItemButton />
     </Item>
   );

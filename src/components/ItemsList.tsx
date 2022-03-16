@@ -1,7 +1,7 @@
 import Item from "./Item";
 import styled from "styled-components";
+import { ListContext } from "../contexts/ListContext";
 import { useContext } from "react";
-import { App } from "../App";
 
 function ItemsList() {
   const ItemsList = styled.ul`
@@ -14,14 +14,16 @@ function ItemsList() {
     list-style: none;
   `;
 
-  const items = useContext(ListContext);
+  const { items } = useContext(ListContext);
 
   return (
-    <App.ListContext.Consumer>
-      <ItemsList>
-        <Item />
-      </ItemsList>
-    </App.ListContext.Consumer>
+    <ItemsList>
+      {items.map((item) => (
+        <li key={item.id}>
+          <Item item={item} />
+        </li>
+      ))}
+    </ItemsList>
   );
 }
 
