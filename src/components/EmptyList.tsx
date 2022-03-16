@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { ListContext } from "../contexts/ListContext";
 
 const Button = styled.button`
   padding: 0;
@@ -83,8 +84,11 @@ const Dialog = styled.div`
 function EmptyList() {
   const [isActive, setState] = useState(false);
 
-  function emptyList() {
+  const { emptyList } = useContext(ListContext);
+
+  function _emptyList() {
     setState(isActive ? false : true);
+    emptyList();
   }
 
   return (
@@ -100,7 +104,7 @@ function EmptyList() {
               No
             </button>
 
-            <button className="confirm-button" onClick={emptyList}>
+            <button className="confirm-button" onClick={_emptyList}>
               Si
             </button>
           </div>

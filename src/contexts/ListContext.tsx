@@ -3,7 +3,10 @@ import { v4 as uuidv4 } from "uuid";
 import { IListContext } from "../config/interfaces";
 
 const urlParams = new URLSearchParams(window.location.search);
-const author = urlParams.has("author") ? urlParams.get("author") : "lucas";
+const authorFromParams = urlParams.has("author")
+  ? urlParams.get("author")
+  : "lucas";
+const author = authorFromParams ? authorFromParams : "lucas";
 
 const defaultState: IListContext = {
   author: author,
@@ -11,6 +14,7 @@ const defaultState: IListContext = {
   addItem: () => {},
   updateItem: () => {},
   deleteItem: () => {},
+  emptyList: () => {},
 };
 
 export const ListContext = createContext<IListContext>(defaultState);
@@ -47,8 +51,14 @@ export const ListContextProvider: FC = ({ children }) => {
     setItems(items.filter((item: { id: any }) => item.id !== id));
   };
 
+  const emptyList = () => {
+    setItems([]);
+  };
+
   return (
-    <ListContext.Provider value={{ items, addItem, deleteItem, updateItem }}>
+    <ListContext.Provider
+      value={{ author, items, addItem, deleteItem, updateItem, emptyList }}
+    >
       {children}
     </ListContext.Provider>
   );

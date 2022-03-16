@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { useContext } from "react";
+import { useRef, useContext, useEffect } from "react";
 import { ListContext } from "../contexts/ListContext";
 
-function AddItem() {
+const AddItem = () => {
   const AddItem = styled.aside`
     margin: 5rem 0.5rem 0;
     display: flex;
@@ -30,23 +30,41 @@ function AddItem() {
     }
   `;
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const { addItem } = useContext(ListContext);
 
-  const tryAddItem = (event: SyntheticEvent): void => {
-    if (event.which !== 13 && event.which !== 9) {
+  const renderCount = useRef(1);
+
+  useEffect(() => {
+    if (renderCount.current < 3) {
+      renderCount.current += 1;
       return;
     }
 
-    if (event.currentTarget.value !== "") {
-      addItem(event.currentTarget.value);
+    if (inputRef.current) {
+      inputRef.current.focus();
     }
+  });
+
+  const tryAddItem = (event: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (event.key !== "Enter" || event.currentTarget.value === "") {
+      return;
+    }
+
+    addItem(event.currentTarget.value);
   };
 
   return (
     <AddItem>
-      <input onInput={tryAddItem} type="text" placeholder="altro..." />
+      <input
+        onKeyPress={tryAddItem}
+        ref={inputRef}
+        type="text"
+        placeholder="altro..."
+      />
     </AddItem>
   );
-}
+};
 
 export default AddItem;

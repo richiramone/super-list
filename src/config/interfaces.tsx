@@ -5,9 +5,10 @@ export interface IItem {
 }
 
 export type IListContext = {
-  author: string | null;
+  author: string;
   items: IItem[];
   addItem: (item: string) => void;
   updateItem: (id: string, updatedItem: any) => void;
   deleteItem: (id: string) => void;
+  emptyList: () => void;
 };
