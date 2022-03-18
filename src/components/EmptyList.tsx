@@ -81,7 +81,7 @@ const Dialog = styled.div`
   }
 `;
 
-function EmptyList() {
+const EmptyList = () => {
   const [isActive, setState] = useState(false);
 
   const { emptyList } = useContext(ListContext);
@@ -118,6 +118,6 @@ function EmptyList() {
       </Button>
     </span>
   );
-}
+};
 
 export default EmptyList;

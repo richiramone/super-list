@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect, FC } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { IListContext } from "../config/interfaces";
+import { IListContext, IItem } from "../config/interfaces";
 
 const urlParams = new URLSearchParams(window.location.search);
 const authorFromParams = urlParams.has("author")
@@ -41,14 +41,19 @@ export const ListContextProvider: FC = ({ children }) => {
     setItems([...items, { id: uuidv4(), author: author, value: item }]);
   };
 
-  const updateItem = (id: string, updatedItem: any) => {
+  const updateItem = (id: string, updateItemValue: string) => {
     setItems(
-      items.map((item: { id: any }) => (item.id === id ? updatedItem : item))
+      items.map((item: IItem) => {
+        if (item.id === id) {
+          item.value = updateItemValue;
+        }
+        return item;
+      })
     );
   };
 
   const deleteItem = (id: string) => {
-    setItems(items.filter((item: { id: any }) => item.id !== id));
+    setItems(items.filter((item: { id: string }) => item.id !== id));
   };
 
   const emptyList = () => {

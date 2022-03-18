@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-function Preloader() {
+const Preloader = () => {
   const Preloader = styled.div`
     display: none;
     position: fixed;
@@ -54,6 +54,6 @@ function Preloader() {
       </div>
     </Preloader>
   );
-}
+};
 
 export default Preloader;

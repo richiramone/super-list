@@ -9,9 +9,9 @@ const Button = styled.button`
   background: none;
 `;
 
-function reloadList() {}
+const ReloadListButton = () => {
+  function reloadList() {}
 
-function ReloadListButton() {
   return (
     <Button onClick={reloadList}>
       <svg viewBox="0 0 32 32">
@@ -19,6 +19,6 @@ function ReloadListButton() {
       </svg>
     </Button>
   );
-}
+};
 
 export default ReloadListButton;

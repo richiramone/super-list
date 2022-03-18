@@ -18,7 +18,7 @@ type DeleteItemButtonProps = {
   id: string;
 };
 
-function DeleteItemButton({ id }: DeleteItemButtonProps) {
+const DeleteItemButton = ({ id }: DeleteItemButtonProps) => {
   const { deleteItem } = useContext(ListContext);
 
   return (
@@ -28,6 +28,6 @@ function DeleteItemButton({ id }: DeleteItemButtonProps) {
       </svg>
     </Button>
   );
-}
+};
 
 export default DeleteItemButton;

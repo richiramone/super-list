@@ -2,7 +2,7 @@ import styled from "styled-components";
 import ReloadListButton from "./ReloadListButton";
 import EmptyList from "./EmptyList";
 
-function Header() {
+const Header = () => {
   const Header = styled.header`
     position: fixed;
     top: 0;
@@ -48,6 +48,6 @@ function Header() {
       </menu>
     </Header>
   );
-}
+};
 
 export default Header;
