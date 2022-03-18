@@ -3,7 +3,7 @@ import { useRef, useContext, useEffect } from "react";
 import { ListContext } from "../contexts/ListContext";
 
 const AddItem = () => {
-  const AddItem = styled.aside`
+  const AddItem = styled.div`
     margin: 5rem 0.5rem 0;
     display: flex;
     padding: 0.3rem 0.5rem;
@@ -30,11 +30,11 @@ const AddItem = () => {
     }
   `;
 
-  const inputRef = useRef<HTMLInputElement>(null);
-
   const { addItem } = useContext(ListContext);
 
+  const inputRef = useRef<HTMLInputElement>(null);
   const renderCount = useRef(1);
+  const hasRecentlyAddedItems = useRef(false);
 
   useEffect(() => {
     if (renderCount.current < 3) {
@@ -42,8 +42,9 @@ const AddItem = () => {
       return;
     }
 
-    if (inputRef.current) {
-      inputRef.current.focus();
+    if (hasRecentlyAddedItems.current) {
+      inputRef.current!.focus();
+      hasRecentlyAddedItems.current = false;
     }
   });
 
@@ -52,6 +53,7 @@ const AddItem = () => {
       return;
     }
 
+    hasRecentlyAddedItems.current = true;
     addItem(event.currentTarget.value);
   };
 

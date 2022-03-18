@@ -18,7 +18,9 @@ function App() {
         <section>
           <Header />
           <Main>
-            <AddItem />
+            <aside>
+              <AddItem />
+            </aside>
             <ItemsList />
           </Main>
         </section>
