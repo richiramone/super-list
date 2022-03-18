@@ -1,6 +1,7 @@
 import Item from "../Item/Item";
 import styled from "styled-components";
 import { ListContext } from "../../contexts/ListContext";
+import { ItemContextProvider } from "../../contexts/ItemContext";
 import { useContext } from "react";
 
 const ItemsList = () => {
@@ -22,7 +23,9 @@ const ItemsList = () => {
     <ItemsList>
       <ul>
         {items.map((item) => (
-          <Item item={item} key={item.id} />
+          <ItemContextProvider key={item.id}>
+            <Item item={item} key={item.id} />
+          </ItemContextProvider>
         ))}
       </ul>
     </ItemsList>

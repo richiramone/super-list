@@ -12,3 +12,9 @@ export type IListContext = {
   deleteItem: (id: string) => void;
   emptyList: () => void;
 };
+
+export type IItemContext = {
+  isEditing: boolean;
+  enableEditingMode: () => void;
+  disableEditingMode: () => void;
+};

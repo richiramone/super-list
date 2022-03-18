@@ -2,6 +2,8 @@ import EditItem from "../EditItem/EditItem";
 import DeleteItemButton from "../DeleteItemButton";
 import styled from "styled-components";
 import { IItem } from "../../config/interfaces";
+import { ItemContext } from "../../contexts/ItemContext";
+import { useContext } from "react";
 
 type ItemProps = {
   item: IItem;
@@ -22,15 +24,13 @@ const Item = ({ item }: ItemProps) => {
     cursor: pointer;
     transition: background 0.2s ease-in-out;
 
-    span,
+    .item__value,
     input {
       margin: 0;
       width: auto;
       background: none;
       color: #fff;
       letter-spacing: 0.02em;
-      font-size: 18px;
-      line-height: 1.2;
     }
 
     input {
@@ -41,8 +41,7 @@ const Item = ({ item }: ItemProps) => {
       font-weight: normal;
     }
 
-    &.editing {
-      // todo
+    &.is-editing {
       width: 100%;
 
       input {
@@ -50,7 +49,7 @@ const Item = ({ item }: ItemProps) => {
         width: 100%;
       }
 
-      span {
+      .item__value {
         display: none;
       }
     }
@@ -69,7 +68,7 @@ const Item = ({ item }: ItemProps) => {
     }
 
     @media only screen and (min-width: 768px) {
-      span,
+      .item__value,
       input {
         // todo
         width: 220%;
@@ -77,10 +76,17 @@ const Item = ({ item }: ItemProps) => {
     }
   `;
 
+  const { isEditing, enableEditingMode, disableEditingMode } =
+    useContext(ItemContext);
+
   return (
-    <Item>
-      <EditItem />
-      {item.value}
+    <Item
+      className={isEditing ? "is-editing" : ""}
+      onClick={enableEditingMode}
+      onBlur={disableEditingMode}
+    >
+      <EditItem id={item.id} value={item.value} />
+      <span className="item__value">{item.value}</span>
       <DeleteItemButton id={item.id} />
     </Item>
   );
