@@ -54,7 +54,7 @@ const EditItem = ({ id, value }: EditItemProps) => {
 
   useEffect(() => {
     if (isEditing) {
-      inputRef.current!.focus();
+      inputRef.current?.focus();
     }
   }, [isEditing]);
 

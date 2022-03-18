@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { createContext, useState, FC } from "react";
 import { IItemContext } from "../config/interfaces";
 

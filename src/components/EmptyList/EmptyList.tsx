@@ -83,7 +83,6 @@ const Dialog = styled.div`
 
 const EmptyList = () => {
   const [isActive, setState] = useState(false);
-
   const { emptyList } = useContext(ListContext);
 
   function _emptyList() {

@@ -31,7 +31,6 @@ const AddItem = () => {
   `;
 
   const { addItem } = useContext(ListContext);
-
   const inputRef = useRef<HTMLInputElement>(null);
   const renderCount = useRef(1);
   const hasRecentlyAddedItems = useRef(false);
@@ -43,7 +42,7 @@ const AddItem = () => {
     }
 
     if (hasRecentlyAddedItems.current) {
-      inputRef.current!.focus();
+      inputRef.current?.focus();
       hasRecentlyAddedItems.current = false;
     }
   });

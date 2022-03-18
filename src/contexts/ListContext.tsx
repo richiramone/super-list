@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { createContext, useState, useEffect, FC } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { IListContext, IItem } from "../config/interfaces";

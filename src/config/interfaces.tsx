@@ -8,7 +8,7 @@ export type IListContext = {
   author: string;
   items: IItem[];
   addItem: (item: string) => void;
-  updateItem: (id: string, updatedItem: any) => void;
+  updateItem: (id: string, updatedItem: string) => void;
   deleteItem: (id: string) => void;
   emptyList: () => void;
 };

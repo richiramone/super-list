@@ -18,6 +18,7 @@ const DeleteItemButton = ({ id }: DeleteItemButtonProps) => {
       fill: #fff;
     }
   `;
+
   const { deleteItem } = useContext(ListContext);
 
   return (

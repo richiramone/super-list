@@ -10,7 +10,9 @@ const ReloadListButton = () => {
     background: none;
   `;
 
-  function reloadList() {}
+  function reloadList() {
+    return;
+  }
 
   return (
     <Button onClick={reloadList}>
