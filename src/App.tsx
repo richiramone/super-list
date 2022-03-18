@@ -1,8 +1,8 @@
 import "./App.css";
-import Preloader from "./components/Preloader";
-import Header from "./components/Header";
+import Preloader from "./components/Preloader/Preloader";
+import Header from "./components/Header/Header";
 import AddItem from "./components/AddItem";
-import ItemsList from "./components/ItemsList";
+import ItemsList from "./components/ItemList/ItemsList";
 import styled from "styled-components";
 import { ListContextProvider } from "./contexts/ListContext";
 

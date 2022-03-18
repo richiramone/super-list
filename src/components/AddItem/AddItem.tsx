@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useRef, useContext, useEffect } from "react";
-import { ListContext } from "../contexts/ListContext";
+import { ListContext } from "../../contexts/ListContext";
 
 const AddItem = () => {
   const AddItem = styled.div`

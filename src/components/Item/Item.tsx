@@ -1,14 +1,14 @@
-import EditItem from "./EditItem";
-import DeleteItemButton from "./DeleteItemButton";
+import EditItem from "../EditItem/EditItem";
+import DeleteItemButton from "../DeleteItemButton";
 import styled from "styled-components";
-import { IItem } from "../config/interfaces";
+import { IItem } from "../../config/interfaces";
 
 type ItemProps = {
   item: IItem;
 };
 
-function Item({ item }: ItemProps) {
-  const Item = styled.span`
+const Item = ({ item }: ItemProps) => {
+  const Item = styled.li`
     position: relative;
     display: flex;
     align-items: center;
@@ -84,6 +84,6 @@ function Item({ item }: ItemProps) {
       <DeleteItemButton id={item.id} />
     </Item>
   );
-}
+};
 
 export default Item;

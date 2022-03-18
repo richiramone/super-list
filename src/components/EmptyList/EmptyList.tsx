@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useState, useContext } from "react";
-import { ListContext } from "../contexts/ListContext";
+import { ListContext } from "../../contexts/ListContext";
 
 const Button = styled.button`
   padding: 0;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-function EditItem() {
+const EditItem = () => {
   const EditItem = styled.input`
     display: none;
     margin: 0;
@@ -29,6 +29,6 @@ function EditItem() {
   `;
 
   return <EditItem type="text" value="trippa" readOnly />;
-}
+};
 
 export default EditItem;

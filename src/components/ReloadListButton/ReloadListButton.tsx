@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
-const Button = styled.button`
-  padding: 0;
-  width: 26px;
-  height: 26px;
-  outline: none;
-  border: none;
-  background: none;
-`;
-
 const ReloadListButton = () => {
+  const Button = styled.button`
+    padding: 0;
+    width: 26px;
+    height: 26px;
+    outline: none;
+    border: none;
+    background: none;
+  `;
+
   function reloadList() {}
 
   return (

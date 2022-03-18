@@ -1,9 +1,9 @@
-import Item from "./Item";
+import Item from "../Item/Item";
 import styled from "styled-components";
-import { ListContext } from "../contexts/ListContext";
+import { ListContext } from "../../contexts/ListContext";
 import { useContext } from "react";
 
-function ItemsList() {
+const ItemsList = () => {
   const ItemsList = styled.div`
     ul {
       display: flex;
@@ -22,13 +22,11 @@ function ItemsList() {
     <ItemsList>
       <ul>
         {items.map((item) => (
-          <li key={item.id}>
-            <Item item={item} />
-          </li>
+          <Item item={item} key={item.id} />
         ))}
       </ul>
     </ItemsList>
   );
-}
+};
 
 export default ItemsList;

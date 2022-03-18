@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import ReloadListButton from "./ReloadListButton";
-import EmptyList from "./EmptyList";
+import ReloadListButton from "../ReloadListButton/ReloadListButton";
+import EmptyList from "../EmptyList/EmptyList";
 
 const Header = () => {
   const Header = styled.header`
