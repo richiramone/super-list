@@ -13,6 +13,7 @@ export type IListContext = {
   items: IItems;
   addItem: (item: string) => void;
   updateItem: (id: string, updatedItem: string) => void;
+  confirmItem: (id: string) => void;
   deleteItem: (id: string) => void;
   emptyList: () => void;
 };

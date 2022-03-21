@@ -1,5 +1,6 @@
 import EditItem from "../EditItem/EditItem";
 import DeleteItemButton from "../DeleteItemButton";
+import ConfirmItemButton from "../ConfirmItemButton";
 import styled from "styled-components";
 import { IItem } from "../../config/interfaces";
 import { ItemContext } from "../../contexts/ItemContext";
@@ -42,6 +43,10 @@ const Item = ({ item, id }: ItemProps) => {
       font-weight: normal;
     }
 
+    &.has-question-mark {
+      background: #ff4700;
+    }
+
     &.is-editing {
       width: 100%;
 
@@ -80,14 +85,24 @@ const Item = ({ item, id }: ItemProps) => {
   const { isEditing, enableEditingMode, disableEditingMode } =
     useContext(ItemContext);
 
+  const itemClassName = [
+    isEditing ? "is-editing" : "",
+    item.hasQuestionMark ? "has-question-mark" : "",
+  ].join(" ");
+
+  const confirmItemButton = item.hasQuestionMark ? (
+    <ConfirmItemButton id={id} />
+  ) : null;
+
   return (
     <Item
-      className={isEditing ? "is-editing" : ""}
+      className={itemClassName}
       onClick={enableEditingMode}
       onBlur={disableEditingMode}
     >
       <EditItem id={id} value={item.value} />
       <span className="item__value">{item.value}</span>
+      {confirmItemButton}
       <DeleteItemButton id={id} />
     </Item>
   );

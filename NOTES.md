@@ -1,8 +1,6 @@
 ## Features and fixes
 
-Silent update (prende da local mentre scarica da api)
 Update after edit
-Border color by person
 Domanda in giallo (carne?) and ok button to confirm it
 
 ## Notes
@@ -12,8 +10,13 @@ After deploying, view your app at super-9a549.web.app
 
 # DRAFT 1
 
+- controller
+  https://firebase.google.com/docs/database/web/read-and-write#write_data
+  - confirm ?
+  - update
+  - delete
+  - preloader
 - check todoes CSS
-- fetch from firebase
   https://github.com/NIKMAKEFIRE/REACT-TODO/blob/master/src/contexts/EmployeeContext.jsx
 
 # DRAFT 2

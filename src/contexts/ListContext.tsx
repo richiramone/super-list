@@ -14,6 +14,7 @@ const defaultState: IListContext = {
   items: {},
   addItem: () => {},
   updateItem: () => {},
+  confirmItem: () => {},
   deleteItem: () => {},
   emptyList: () => {},
 };
@@ -24,9 +25,9 @@ export const ListContextProvider: FC = ({ children }) => {
   const [items, setItems] = useState(defaultState.items);
 
   useEffect(() => {
-    // const items = localStorage.getItem("items");
-    // const parsedItems = items !== null ? JSON.parse(items) : [];
-    // todo: merge with localStorage
+    const items = localStorage.getItem("items");
+    const parsedItems = items !== null ? JSON.parse(items) : [];
+    setItems(parsedItems);
 
     const getItemsAsync = async () => {
       setItems(await SuperListApiControlller.getItems());
@@ -62,6 +63,17 @@ export const ListContextProvider: FC = ({ children }) => {
     setItems(items);
   };
 
+  const confirmItem = (itemKey: string) => {
+    Object.keys(items).map((key: string) => {
+      if (itemKey === key) {
+        items[key].value = items[key].value.replace("?", "/");
+      }
+      return items[key];
+    });
+
+    setItems(items);
+  };
+
   const deleteItem = (id: string) => {
     // setItems(items.filter((item: { id: string }) => item.id !== id));
   };
@@ -72,7 +84,15 @@ export const ListContextProvider: FC = ({ children }) => {
 
   return (
     <ListContext.Provider
-      value={{ author, items, addItem, deleteItem, updateItem, emptyList }}
+      value={{
+        author,
+        items,
+        addItem,
+        deleteItem,
+        updateItem,
+        confirmItem,
+        emptyList,
+      }}
     >
       {children}
     </ListContext.Provider>
