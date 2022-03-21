@@ -2,6 +2,7 @@
 import { createContext, useState, useEffect, FC } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { IListContext, IItem } from "../config/interfaces";
+import { SuperListApiControlller } from "../controllers/superListApiControlller";
 
 const urlParams = new URLSearchParams(window.location.search);
 const authorFromParams = urlParams.has("author")
@@ -39,7 +40,11 @@ export const ListContextProvider: FC = ({ children }) => {
   });
 
   const addItem = (item: string) => {
-    setItems([...items, { id: uuidv4(), author: author, value: item }]);
+    const newItem: IItem = { id: uuidv4(), author: author, value: item };
+
+    SuperListApiControlller.getItems();
+
+    setItems([...items, newItem]);
   };
 
   const updateItem = (id: string, updateItemValue: string) => {

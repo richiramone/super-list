@@ -18,3 +18,9 @@ export type IItemContext = {
   enableEditingMode: () => void;
   disableEditingMode: () => void;
 };
+
+export type ISuperListApiControlller = {
+  getItems: () => [IItem?];
+  set: () => void;
+  delete: () => void;
+};

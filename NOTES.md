@@ -1,11 +1,9 @@
 ## Features and fixes
 
-apple icons + metadata fix
-Border color by person
 Silent update (prende da local mentre scarica da api)
 Update after edit
-Domanda in giallo (carne?)
-Push notification after edit
+Border color by person
+Domanda in giallo (carne?) and ok button to confirm it
 
 ## Notes
 
