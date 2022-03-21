@@ -6,10 +6,11 @@ import { ItemContext } from "../../contexts/ItemContext";
 import { useContext } from "react";
 
 type ItemProps = {
+  id: string;
   item: IItem;
 };
 
-const Item = ({ item }: ItemProps) => {
+const Item = ({ item, id }: ItemProps) => {
   const Item = styled.li`
     position: relative;
     display: flex;
@@ -85,9 +86,9 @@ const Item = ({ item }: ItemProps) => {
       onClick={enableEditingMode}
       onBlur={disableEditingMode}
     >
-      <EditItem id={item.id} value={item.value} />
+      <EditItem id={id} value={item.value} />
       <span className="item__value">{item.value}</span>
-      <DeleteItemButton id={item.id} />
+      <DeleteItemButton id={id} />
     </Item>
   );
 };

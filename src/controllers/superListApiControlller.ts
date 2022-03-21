@@ -1,12 +1,12 @@
-import { IItem, ISuperListApiControlller } from "../config/interfaces";
+import { IItem, IItems, ISuperListApiControlller } from "../config/interfaces";
 import { dbRef } from "../config/database";
-import { get, child, DataSnapshot } from "firebase/database";
+import { push, get, set, DataSnapshot } from "firebase/database";
 
 export const SuperListApiControlller: ISuperListApiControlller = {
-  getItems: () => {
-    let items: [IItem?] = [];
+  getItems: async () => {
+    let items: IItems = {};
 
-    get(child(dbRef, "items"))
+    await get(dbRef)
       .then((snapshot: DataSnapshot) => {
         if (snapshot.exists()) {
           items = snapshot.val();
@@ -18,10 +18,8 @@ export const SuperListApiControlller: ISuperListApiControlller = {
 
     return items;
   },
-  set: () => {
-    console.log("set");
-  },
-  delete: () => {
-    console.log("set");
+  addItem: async (item: IItem) => {
+    const newListRef = push(dbRef);
+    await set(newListRef, item);
   },
 };

@@ -1,12 +1,16 @@
 export interface IItem {
-  id: string;
+  hasQuestionMark: boolean;
   author: string;
   value: string;
 }
 
+export type IItems = {
+  [key: string]: IItem;
+};
+
 export type IListContext = {
   author: string;
-  items: IItem[];
+  items: IItems;
   addItem: (item: string) => void;
   updateItem: (id: string, updatedItem: string) => void;
   deleteItem: (id: string) => void;
@@ -20,7 +24,6 @@ export type IItemContext = {
 };
 
 export type ISuperListApiControlller = {
-  getItems: () => [IItem?];
-  set: () => void;
-  delete: () => void;
+  getItems: () => Promise<IItems>;
+  addItem: (item: IItem) => Promise<void>;
 };

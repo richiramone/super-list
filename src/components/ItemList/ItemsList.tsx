@@ -22,9 +22,9 @@ const ItemsList = () => {
   return (
     <ItemsList>
       <ul>
-        {items.map((item) => (
-          <ItemContextProvider key={item.id}>
-            <Item item={item} key={item.id} />
+        {Object.keys(items).map((key: string) => (
+          <ItemContextProvider key={key}>
+            <Item item={items[key]} id={key} />
           </ItemContextProvider>
         ))}
       </ul>

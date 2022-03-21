@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { createContext, useState, useEffect, FC } from "react";
-import { v4 as uuidv4 } from "uuid";
-import { IListContext, IItem } from "../config/interfaces";
+import { IListContext, IItem, IItems } from "../config/interfaces";
 import { SuperListApiControlller } from "../controllers/superListApiControlller";
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -12,7 +11,7 @@ const author = authorFromParams ? authorFromParams : "lucas";
 
 const defaultState: IListContext = {
   author: author,
-  items: [],
+  items: {},
   addItem: () => {},
   updateItem: () => {},
   deleteItem: () => {},
@@ -22,17 +21,18 @@ const defaultState: IListContext = {
 export const ListContext = createContext<IListContext>(defaultState);
 
 export const ListContextProvider: FC = ({ children }) => {
-  //fetching products data from a public API
-  /*const getItems = async (): Promise<IListItem[]> =>
-    await (await fetch("https://fakestoreapi.com/products")).json();*/
-
   const [items, setItems] = useState(defaultState.items);
 
   useEffect(() => {
-    const items = localStorage.getItem("items");
-    const parsedItems = items !== null ? JSON.parse(items) : [];
+    // const items = localStorage.getItem("items");
+    // const parsedItems = items !== null ? JSON.parse(items) : [];
+    // todo: merge with localStorage
 
-    setItems(parsedItems);
+    const getItemsAsync = async () => {
+      setItems(await SuperListApiControlller.getItems());
+    };
+
+    getItemsAsync();
   }, []);
 
   useEffect(() => {
@@ -40,30 +40,34 @@ export const ListContextProvider: FC = ({ children }) => {
   });
 
   const addItem = (item: string) => {
-    const newItem: IItem = { id: uuidv4(), author: author, value: item };
+    const newItem: IItem = {
+      hasQuestionMark: item.includes("?"),
+      author: author,
+      value: item,
+    };
 
-    SuperListApiControlller.getItems();
+    SuperListApiControlller.addItem(newItem);
 
-    setItems([...items, newItem]);
+    setItems({ ...items, newItem });
   };
 
-  const updateItem = (id: string, updateItemValue: string) => {
-    setItems(
-      items.map((item: IItem) => {
-        if (item.id === id) {
-          item.value = updateItemValue;
-        }
-        return item;
-      })
-    );
+  const updateItem = (itemKey: string, updateItemValue: string) => {
+    Object.keys(items).map((key: string) => {
+      if (itemKey === key) {
+        items[key].value = updateItemValue;
+      }
+      return items[key];
+    });
+
+    setItems(items);
   };
 
   const deleteItem = (id: string) => {
-    setItems(items.filter((item: { id: string }) => item.id !== id));
+    // setItems(items.filter((item: { id: string }) => item.id !== id));
   };
 
   const emptyList = () => {
-    setItems([]);
+    setItems({});
   };
 
   return (
