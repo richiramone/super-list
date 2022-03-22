@@ -1,21 +1,5 @@
-## Features and fixes
-
-Update after edit
-Domanda in giallo (carne?) and ok button to confirm it
-
-## Notes
-
-firebase deploy --only hosting:super-9a549
-After deploying, view your app at super-9a549.web.app
-
 # DRAFT 1
 
-- controller
-  https://firebase.google.com/docs/database/web/read-and-write#write_data
-  - confirm ?
-  - update
-  - delete
-  - preloader
 - check todoes CSS
   https://github.com/NIKMAKEFIRE/REACT-TODO/blob/master/src/contexts/EmployeeContext.jsx
 
@@ -26,24 +10,19 @@ After deploying, view your app at super-9a549.web.app
 
 # DRAFT 3
 
-- new features
-
-# DRAFT 4
-
 - perf
 - lazy loading
-
-# DRAFT 5
-
 - webpack di merda
 - next js
 - deploy firebase
 
+# DRAFT 4
+
+- unit testing
+  - https://testing-library.com/docs/react-testing-library/intro/
+- storybook
+
 # KEYWORDS
 
-- https://fettblog.eu/typescript-react/
-- functional components
-- https://testing-library.com/docs/react-testing-library/intro/
-
-- how to debug / tools
-- unit testing
+firebase deploy --only hosting:super-9a549
+After deploying, view your app at super-9a549.web.app

@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { useContext } from "react";
+import { ListContext } from "../../contexts/ListContext";
 
 const Preloader = () => {
   const Preloader = styled.div`
@@ -13,7 +15,7 @@ const Preloader = () => {
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
 
-    &.loading {
+    &.is-loading {
       display: flex;
     }
 
@@ -45,8 +47,10 @@ const Preloader = () => {
     }
   `;
 
+  const { isPreloaderActive } = useContext(ListContext);
+
   return (
-    <Preloader>
+    <Preloader className={isPreloaderActive ? "is-loading" : ""}>
       <div className="loading-wrapper">
         <svg viewBox="0 0 32 32">
           <use xlinkHref="#shape-smiley"></use>

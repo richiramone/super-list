@@ -1,6 +1,8 @@
 import styled from "styled-components";
+import { useContext } from "react";
+import { ListContext } from "../../contexts/ListContext";
 
-const ReloadListButton = () => {
+const RefreshListButton = () => {
   const Button = styled.button`
     padding: 0;
     width: 26px;
@@ -10,12 +12,14 @@ const ReloadListButton = () => {
     background: none;
   `;
 
-  function reloadList() {
-    return;
-  }
+  const { refreshList } = useContext(ListContext);
 
   return (
-    <Button onClick={reloadList}>
+    <Button
+      onClick={() => {
+        refreshList(true);
+      }}
+    >
       <svg viewBox="0 0 32 32">
         <use xlinkHref="#shape-reload"></use>
       </svg>
@@ -23,4 +27,4 @@ const ReloadListButton = () => {
   );
 };
 
-export default ReloadListButton;
+export default RefreshListButton;

@@ -10,8 +10,10 @@ const authorFromParams = urlParams.has("author")
 const author = authorFromParams ? authorFromParams : "lucas";
 
 const defaultState: IListContext = {
+  isPreloaderActive: false,
   author: author,
   items: {},
+  refreshList: () => {},
   addItem: () => {},
   updateItem: () => {},
   confirmItem: () => {},
@@ -23,22 +25,30 @@ export const ListContext = createContext<IListContext>(defaultState);
 
 export const ListContextProvider: FC = ({ children }) => {
   const [items, setItems] = useState(defaultState.items);
+  const [isPreloaderActive, setIsPreloaderActive] = useState(true);
 
   useEffect(() => {
     const items = localStorage.getItem("items");
     const parsedItems = items !== null ? JSON.parse(items) : [];
     setItems(parsedItems);
 
-    const getItemsAsync = async () => {
-      setItems(await SuperListApiControlller.getItems());
-    };
-
-    getItemsAsync();
+    refreshList(true);
   }, []);
 
   useEffect(() => {
     localStorage.setItem("items", JSON.stringify(items));
   });
+
+  const refreshList = async (shouldShowPreloader?: boolean) => {
+    if (shouldShowPreloader) {
+      setIsPreloaderActive(true);
+    }
+
+    await SuperListApiControlller.getItems().then((items) => {
+      setItems(items);
+      setIsPreloaderActive(false);
+    });
+  };
 
   const addItem = async (item: string) => {
     const newItem: IItem = {
@@ -47,7 +57,9 @@ export const ListContextProvider: FC = ({ children }) => {
       value: item,
     };
 
-    await SuperListApiControlller.addItem(newItem);
+    await SuperListApiControlller.addItem(newItem).then(() => {
+      refreshList();
+    });
 
     setItems({ ...items, newItem });
   };
@@ -64,7 +76,11 @@ export const ListContextProvider: FC = ({ children }) => {
       return tempItems[key];
     });
 
-    await SuperListApiControlller.updateItem(itemKey, tempItems[itemKey]);
+    await SuperListApiControlller.updateItem(itemKey, tempItems[itemKey]).then(
+      () => {
+        refreshList();
+      }
+    );
     setItems(tempItems);
   };
 
@@ -81,7 +97,11 @@ export const ListContextProvider: FC = ({ children }) => {
     });
 
     setItems(tempItems);
-    await SuperListApiControlller.updateItem(itemKey, tempItems[itemKey]);
+    await SuperListApiControlller.updateItem(itemKey, tempItems[itemKey]).then(
+      () => {
+        refreshList();
+      }
+    );
   };
 
   const deleteItem = async (itemKey: string) => {
@@ -89,7 +109,9 @@ export const ListContextProvider: FC = ({ children }) => {
     delete tempItems[itemKey];
     setItems(tempItems);
 
-    await SuperListApiControlller.deleteItem(itemKey);
+    await SuperListApiControlller.deleteItem(itemKey).then(() => {
+      refreshList();
+    });
   };
 
   const emptyList = async () => {
@@ -100,8 +122,10 @@ export const ListContextProvider: FC = ({ children }) => {
   return (
     <ListContext.Provider
       value={{
+        isPreloaderActive,
         author,
         items,
+        refreshList,
         addItem,
         deleteItem,
         updateItem,

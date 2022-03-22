@@ -1,5 +1,5 @@
 import { IItem, IItems, ISuperListApiControlller } from "../config/interfaces";
-import { db, dbRef } from "../config/database";
+import { db, itemsDbRef } from "../config/database";
 import {
   push,
   get,
@@ -14,7 +14,7 @@ export const SuperListApiControlller: ISuperListApiControlller = {
   getItems: async () => {
     let items: IItems = {};
 
-    await get(dbRef)
+    await get(itemsDbRef)
       .then((snapshot: DataSnapshot) => {
         if (snapshot.exists()) {
           items = snapshot.val();
@@ -28,7 +28,7 @@ export const SuperListApiControlller: ISuperListApiControlller = {
   },
 
   addItem: async (item: IItem) => {
-    const newListRef = push(dbRef);
+    const newListRef = push(itemsDbRef);
     await set(newListRef, item);
   },
 
@@ -36,7 +36,7 @@ export const SuperListApiControlller: ISuperListApiControlller = {
     const updates: IItems = {};
     updates[itemKey] = item;
 
-    await update(dbRef, updates);
+    await update(itemsDbRef, updates);
   },
 
   deleteItem: async (itemKey: string) => {
@@ -46,6 +46,6 @@ export const SuperListApiControlller: ISuperListApiControlller = {
   },
 
   emptyList: async () => {
-    await remove(dbRef);
+    await remove(itemsDbRef);
   },
 };

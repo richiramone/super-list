@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import ReloadListButton from "../ReloadListButton/ReloadListButton";
+import ReloadListButton from "../ReloadListButton/RefreshListButton";
 import EmptyList from "../EmptyList/EmptyList";
 
 const Header = () => {

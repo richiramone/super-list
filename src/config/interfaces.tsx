@@ -9,8 +9,10 @@ export type IItems = {
 };
 
 export type IListContext = {
+  isPreloaderActive: boolean;
   author: string;
   items: IItems;
+  refreshList: (shouldShowPreloader: boolean) => void;
   addItem: (item: string) => void;
   updateItem: (itemKey: string, updatedItem: string) => void;
   confirmItem: (itemKey: string) => void;
