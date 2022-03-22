@@ -1,7 +1,6 @@
 # DRAFT 1
 
 - check todoes CSS
-  https://github.com/NIKMAKEFIRE/REACT-TODO/blob/master/src/contexts/EmployeeContext.jsx
 
 # DRAFT 2
 
