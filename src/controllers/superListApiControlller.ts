@@ -20,7 +20,7 @@ export const SuperListApiControlller: ISuperListApiControlller = {
           items = snapshot.val();
         }
       })
-      .catch((error: any) => {
+      .catch((error: unknown) => {
         console.error(error);
       });
 
