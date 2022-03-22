@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { useContext } from "react";
+import { useContext, memo } from "react";
 import { ListContext } from "../../contexts/ListContext";
+import { ItemContext } from "../../contexts/ItemContext";
 
 type DeleteItemButtonProps = {
   id: string;
@@ -20,9 +21,15 @@ const DeleteItemButton = ({ id }: DeleteItemButtonProps) => {
   `;
 
   const { deleteItem } = useContext(ListContext);
+  const { enableDeletedMode } = useContext(ItemContext);
+
+  const _deleteItem = () => {
+    enableDeletedMode();
+    deleteItem(id);
+  };
 
   return (
-    <Button onClick={() => deleteItem(id)}>
+    <Button onClick={_deleteItem}>
       <svg viewBox="0 0 32 32">
         <use xlinkHref="#shape-trash"></use>
       </svg>
@@ -30,4 +37,4 @@ const DeleteItemButton = ({ id }: DeleteItemButtonProps) => {
   );
 };
 
-export default DeleteItemButton;
+export default memo(DeleteItemButton);

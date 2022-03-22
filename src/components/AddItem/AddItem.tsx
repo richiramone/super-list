@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useRef, useContext, useEffect } from "react";
+import { useRef, useContext, useEffect, memo } from "react";
 import { ListContext } from "../../contexts/ListContext";
 
 const AddItem = () => {
@@ -68,4 +68,4 @@ const AddItem = () => {
   );
 };
 
-export default AddItem;
+export default memo(AddItem);

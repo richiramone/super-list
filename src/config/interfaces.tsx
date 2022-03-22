@@ -21,7 +21,10 @@ export type IListContext = {
 };
 
 export type IItemContext = {
-  isEditing: boolean;
+  isBeingEdited: boolean;
+  isBeingDeleted: boolean;
+  enableDeletedMode: () => void;
+  disableDeletedMode: () => void;
   enableEditingMode: () => void;
   disableEditingMode: () => void;
 };

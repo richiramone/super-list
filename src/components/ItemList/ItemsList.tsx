@@ -2,7 +2,7 @@ import Item from "../Item/Item";
 import styled from "styled-components";
 import { ListContext } from "../../contexts/ListContext";
 import { ItemContextProvider } from "../../contexts/ItemContext";
-import { useContext } from "react";
+import { useContext, memo } from "react";
 
 const ItemsList = () => {
   const ItemsList = styled.ul`
@@ -28,4 +28,4 @@ const ItemsList = () => {
   );
 };
 
-export default ItemsList;
+export default memo(ItemsList);

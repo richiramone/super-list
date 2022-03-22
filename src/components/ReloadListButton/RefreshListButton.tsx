@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useContext } from "react";
+import { useContext, memo } from "react";
 import { ListContext } from "../../contexts/ListContext";
 
 const RefreshListButton = () => {
@@ -27,4 +27,4 @@ const RefreshListButton = () => {
   );
 };
 
-export default RefreshListButton;
+export default memo(RefreshListButton);

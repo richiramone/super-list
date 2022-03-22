@@ -106,6 +106,7 @@ export const ListContextProvider: FC = ({ children }) => {
     });
 
     setItems(tempItems);
+
     await SuperListApiControlller.updateItem(itemKey, tempItems[itemKey]).then(
       () => {
         refreshList();

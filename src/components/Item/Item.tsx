@@ -4,7 +4,7 @@ import ConfirmItemButton from "../ConfirmItemButton";
 import styled from "styled-components";
 import { IItem } from "../../config/interfaces";
 import { ItemContext } from "../../contexts/ItemContext";
-import { useContext } from "react";
+import { useContext, memo } from "react";
 
 type ItemProps = {
   id: string;
@@ -24,6 +24,7 @@ const Item = ({ item, id }: ItemProps) => {
     border-radius: 4px;
     background: #09f;
     cursor: pointer;
+    transition: background-color 2.3s ease-in-out;
 
     .item__value,
     input {
@@ -62,13 +63,25 @@ const Item = ({ item, id }: ItemProps) => {
         display: none;
       }
     }
+
+    &.deleted {
+      overflow: hidden;
+      background-color: #f55;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   `;
 
-  const { isEditing, enableEditingMode, disableEditingMode } =
-    useContext(ItemContext);
+  const {
+    isBeingEdited,
+    isBeingDeleted,
+    enableEditingMode,
+    disableEditingMode,
+  } = useContext(ItemContext);
 
   const itemClassName = [
-    isEditing ? "is-editing" : "",
+    isBeingEdited ? "is-editing" : "",
+    isBeingDeleted ? "deleted" : "",
     item.hasQuestionMark ? "has-question-mark" : "",
     item.author !== "lucas" ? "author-anna" : "",
   ].join(" ");
@@ -89,4 +102,4 @@ const Item = ({ item, id }: ItemProps) => {
   );
 };
 
-export default Item;
+export default memo(Item);

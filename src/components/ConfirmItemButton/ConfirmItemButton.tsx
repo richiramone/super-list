@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useContext } from "react";
+import { useContext, memo } from "react";
 import { ListContext } from "../../contexts/ListContext";
 
 type ConfirmItemButtonProps = {
@@ -31,4 +31,4 @@ const ConfirmItemButton = ({ id }: ConfirmItemButtonProps) => {
   );
 };
 
-export default ConfirmItemButton;
+export default memo(ConfirmItemButton);

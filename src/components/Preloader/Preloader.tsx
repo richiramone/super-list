@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useContext } from "react";
+import { useContext, memo } from "react";
 import { ListContext } from "../../contexts/ListContext";
 
 const Preloader = () => {
@@ -60,4 +60,4 @@ const Preloader = () => {
   );
 };
 
-export default Preloader;
+export default memo(Preloader);

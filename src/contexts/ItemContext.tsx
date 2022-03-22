@@ -3,7 +3,10 @@ import { createContext, useState, FC } from "react";
 import { IItemContext } from "../config/interfaces";
 
 const defaultState: IItemContext = {
-  isEditing: false,
+  isBeingDeleted: false,
+  isBeingEdited: false,
+  enableDeletedMode: () => {},
+  disableDeletedMode: () => {},
   enableEditingMode: () => {},
   disableEditingMode: () => {},
 };
@@ -11,20 +14,32 @@ const defaultState: IItemContext = {
 export const ItemContext = createContext<IItemContext>(defaultState);
 
 export const ItemContextProvider: FC = ({ children }) => {
-  const [isEditing, setIsEditing] = useState(false);
+  const [isBeingEdited, setIsBeingEdited] = useState(false);
+  const [isBeingDeleted, setIsBeingDeleted] = useState(false);
 
   const enableEditingMode = () => {
-    setIsEditing(true);
+    setIsBeingEdited(true);
   };
 
   const disableEditingMode = () => {
-    setIsEditing(false);
+    setIsBeingEdited(false);
+  };
+
+  const enableDeletedMode = () => {
+    setIsBeingDeleted(true);
+  };
+
+  const disableDeletedMode = () => {
+    setIsBeingDeleted(false);
   };
 
   return (
     <ItemContext.Provider
       value={{
-        isEditing,
+        isBeingDeleted: isBeingDeleted,
+        isBeingEdited: isBeingEdited,
+        enableDeletedMode,
+        disableDeletedMode,
         enableEditingMode,
         disableEditingMode,
       }}

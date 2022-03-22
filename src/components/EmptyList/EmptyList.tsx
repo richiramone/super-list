@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState, useContext } from "react";
+import { useState, useContext, memo } from "react";
 import { ListContext } from "../../contexts/ListContext";
 
 const Button = styled.button`
@@ -119,4 +119,4 @@ const EmptyList = () => {
   );
 };
 
-export default EmptyList;
+export default memo(EmptyList);

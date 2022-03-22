@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, memo } from "react";
 import { ListContext } from "../../contexts/ListContext";
 import { ItemContext } from "../../contexts/ItemContext";
 
@@ -25,8 +25,11 @@ const EditItem = ({ id, value }: EditItemProps) => {
 
   const inputRef = useRef<HTMLInputElement>(null);
   const { updateItem } = useContext(ListContext);
-  const { isEditing, enableEditingMode, disableEditingMode } =
-    useContext(ItemContext);
+  const {
+    isBeingEdited: isEditing,
+    enableEditingMode,
+    disableEditingMode,
+  } = useContext(ItemContext);
 
   const tryUpdateItem = (
     event: React.KeyboardEvent<HTMLInputElement>
@@ -56,4 +59,4 @@ const EditItem = ({ id, value }: EditItemProps) => {
   );
 };
 
-export default EditItem;
+export default memo(EditItem);

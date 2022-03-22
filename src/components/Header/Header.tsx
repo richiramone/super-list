@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import ReloadListButton from "../ReloadListButton/RefreshListButton";
 import EmptyList from "../EmptyList/EmptyList";
+import { memo } from "react";
 
 const Header = () => {
   const Header = styled.header`
@@ -50,4 +51,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default memo(Header);
