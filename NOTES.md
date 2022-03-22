@@ -1,5 +1,3 @@
-- animation css?
-
 # DRAFT 2
 
 - redux
@@ -7,9 +5,9 @@
 
 # DRAFT 3
 
-- perf
+- lighthouse
 - lazy loading
-- webpack di merda
+  - https://web.dev/code-splitting-suspense/?utm_source=lighthouse&utm_medium=devtools
 - next js
 - deploy firebase
 - firebase securitha
@@ -24,3 +22,8 @@
 
 firebase deploy --only hosting:super-9a549
 After deploying, view your app at super-9a549.web.app
+
+# BRUNO
+
+- animation css?
+- webpack di merda?
