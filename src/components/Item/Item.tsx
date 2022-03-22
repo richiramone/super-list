@@ -44,7 +44,7 @@ const Item = ({ item, id }: ItemProps) => {
     }
 
     &.has-question-mark {
-      background: #ff4700;
+      background: #ff6a00;
     }
 
     &.is-editing {
@@ -95,13 +95,11 @@ const Item = ({ item, id }: ItemProps) => {
   ) : null;
 
   return (
-    <Item
-      className={itemClassName}
-      onClick={enableEditingMode}
-      onBlur={disableEditingMode}
-    >
+    <Item className={itemClassName} onBlur={disableEditingMode}>
       <EditItem id={id} value={item.value} />
-      <span className="item__value">{item.value}</span>
+      <span onClick={enableEditingMode} className="item__value">
+        {item.value}
+      </span>
       {confirmItemButton}
       <DeleteItemButton id={id} />
     </Item>

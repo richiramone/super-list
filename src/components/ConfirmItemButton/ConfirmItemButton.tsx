@@ -8,20 +8,27 @@ type ConfirmItemButtonProps = {
 
 const ConfirmItemButton = ({ id }: ConfirmItemButtonProps) => {
   const Button = styled.button`
+    display: flex;
     margin-left: 1rem;
     padding: 0;
     width: auto;
     height: auto;
 
     svg {
-      width: 20px;
+      width: 24px;
       fill: #fff;
     }
   `;
 
   const { confirmItem } = useContext(ListContext);
 
-  return <Button onClick={() => confirmItem(id)}>tik</Button>;
+  return (
+    <Button onClick={() => confirmItem(id)}>
+      <svg viewBox="0 0 24 24">
+        <use xlinkHref="#confirm-icon"></use>
+      </svg>
+    </Button>
+  );
 };
 
 export default ConfirmItemButton;

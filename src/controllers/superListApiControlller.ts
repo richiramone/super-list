@@ -1,6 +1,14 @@
 import { IItem, IItems, ISuperListApiControlller } from "../config/interfaces";
-import { dbRef } from "../config/database";
-import { push, get, set, DataSnapshot } from "firebase/database";
+import { db, dbRef } from "../config/database";
+import {
+  push,
+  get,
+  set,
+  DataSnapshot,
+  update,
+  remove,
+  ref,
+} from "firebase/database";
 
 export const SuperListApiControlller: ISuperListApiControlller = {
   getItems: async () => {
@@ -18,8 +26,26 @@ export const SuperListApiControlller: ISuperListApiControlller = {
 
     return items;
   },
+
   addItem: async (item: IItem) => {
     const newListRef = push(dbRef);
     await set(newListRef, item);
+  },
+
+  updateItem: async (itemKey: string, item: IItem) => {
+    const updates: IItems = {};
+    updates[itemKey] = item;
+
+    await update(dbRef, updates);
+  },
+
+  deleteItem: async (itemKey: string) => {
+    const dbItemRef = ref(db, `items/${itemKey}`);
+
+    await remove(dbItemRef);
+  },
+
+  emptyList: async () => {
+    await remove(dbRef);
   },
 };

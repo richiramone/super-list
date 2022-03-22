@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { createContext, useState, useEffect, FC } from "react";
-import { IListContext, IItem, IItems } from "../config/interfaces";
+import { IListContext, IItem } from "../config/interfaces";
 import { SuperListApiControlller } from "../controllers/superListApiControlller";
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -40,46 +40,61 @@ export const ListContextProvider: FC = ({ children }) => {
     localStorage.setItem("items", JSON.stringify(items));
   });
 
-  const addItem = (item: string) => {
+  const addItem = async (item: string) => {
     const newItem: IItem = {
       hasQuestionMark: item.includes("?"),
       author: author,
       value: item,
     };
 
-    SuperListApiControlller.addItem(newItem);
+    await SuperListApiControlller.addItem(newItem);
 
     setItems({ ...items, newItem });
   };
 
-  const updateItem = (itemKey: string, updateItemValue: string) => {
-    Object.keys(items).map((key: string) => {
+  const updateItem = async (itemKey: string, updateItemValue: string) => {
+    const tempItems = { ...items };
+
+    Object.keys(tempItems).map((key: string) => {
       if (itemKey === key) {
-        items[key].value = updateItemValue;
+        tempItems[key].value = updateItemValue;
+        tempItems[key].hasQuestionMark = updateItemValue.includes("?");
       }
-      return items[key];
+
+      return tempItems[key];
     });
 
-    setItems(items);
+    await SuperListApiControlller.updateItem(itemKey, tempItems[itemKey]);
+    setItems(tempItems);
   };
 
-  const confirmItem = (itemKey: string) => {
-    Object.keys(items).map((key: string) => {
+  const confirmItem = async (itemKey: string) => {
+    const tempItems = { ...items };
+
+    Object.keys(tempItems).map((key: string) => {
       if (itemKey === key) {
-        items[key].value = items[key].value.replace("?", "/");
+        tempItems[key].value = tempItems[key].value.replace("?", "");
+        tempItems[key].hasQuestionMark = false;
       }
-      return items[key];
+
+      return tempItems[key];
     });
 
-    setItems(items);
+    setItems(tempItems);
+    await SuperListApiControlller.updateItem(itemKey, tempItems[itemKey]);
   };
 
-  const deleteItem = (id: string) => {
-    // setItems(items.filter((item: { id: string }) => item.id !== id));
+  const deleteItem = async (itemKey: string) => {
+    const tempItems = { ...items };
+    delete tempItems[itemKey];
+    setItems(tempItems);
+
+    await SuperListApiControlller.deleteItem(itemKey);
   };
 
-  const emptyList = () => {
+  const emptyList = async () => {
     setItems({});
+    await SuperListApiControlller.emptyList();
   };
 
   return (
