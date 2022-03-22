@@ -1,3 +1,5 @@
+- animation css?
+
 # DRAFT 2
 
 - redux

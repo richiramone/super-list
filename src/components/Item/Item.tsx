@@ -46,6 +46,10 @@ const Item = ({ item, id }: ItemProps) => {
       background: #ff6a00;
     }
 
+    &.author-anna {
+      background: #ff0099;
+    }
+
     &.is-editing {
       width: 100%;
 
@@ -66,6 +70,7 @@ const Item = ({ item, id }: ItemProps) => {
   const itemClassName = [
     isEditing ? "is-editing" : "",
     item.hasQuestionMark ? "has-question-mark" : "",
+    item.author !== "lucas" ? "author-anna" : "",
   ].join(" ");
 
   const confirmItemButton = item.hasQuestionMark ? (
