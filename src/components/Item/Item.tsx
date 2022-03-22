@@ -24,7 +24,6 @@ const Item = ({ item, id }: ItemProps) => {
     border-radius: 4px;
     background: #09f;
     cursor: pointer;
-    transition: background 0.2s ease-in-out;
 
     .item__value,
     input {
@@ -57,27 +56,6 @@ const Item = ({ item, id }: ItemProps) => {
 
       .item__value {
         display: none;
-      }
-    }
-
-    &.deleted {
-      // todo
-      overflow: hidden;
-      background: #f55;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    &.edited {
-      // todo
-      background: #00f;
-    }
-
-    @media only screen and (min-width: 768px) {
-      .item__value,
-      input {
-        // todo
-        width: 220%;
       }
     }
   `;

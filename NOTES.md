@@ -1,7 +1,3 @@
-# DRAFT 1
-
-- check todoes CSS
-
 # DRAFT 2
 
 - redux
@@ -14,6 +10,7 @@
 - webpack di merda
 - next js
 - deploy firebase
+- firebase securitha
 
 # DRAFT 4
 

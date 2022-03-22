@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { createContext, useState, useEffect, FC } from "react";
-import { IListContext, IItem } from "../config/interfaces";
+import { IListContext, IItem, IItems } from "../config/interfaces";
 import { SuperListApiControlller } from "../controllers/superListApiControlller";
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -39,13 +39,22 @@ export const ListContextProvider: FC = ({ children }) => {
     localStorage.setItem("items", JSON.stringify(items));
   });
 
+  const reverseItems = (items: IItems) => {
+    return Object.keys(items)
+      .reverse()
+      .reduce((a: any, key) => {
+        a[key] = items[key];
+        return a;
+      }, {});
+  };
+
   const refreshList = async (shouldShowPreloader?: boolean) => {
     if (shouldShowPreloader) {
       setIsPreloaderActive(true);
     }
 
     await SuperListApiControlller.getItems().then((items) => {
-      setItems(items);
+      setItems(reverseItems(items));
       setIsPreloaderActive(false);
     });
   };
@@ -61,7 +70,7 @@ export const ListContextProvider: FC = ({ children }) => {
       refreshList();
     });
 
-    setItems({ ...items, newItem });
+    setItems({ newItem, ...items });
   };
 
   const updateItem = async (itemKey: string, updateItemValue: string) => {

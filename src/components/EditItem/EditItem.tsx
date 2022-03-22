@@ -21,19 +21,6 @@ const EditItem = ({ id, value }: EditItemProps) => {
     line-height: 1.2;
     letter-spacing: 0.02em;
     color: #fff;
-
-    & .editing {
-      // todo
-      display: block;
-      width: 100%;
-    }
-
-    @media only screen and (min-width: 768px) {
-      // todo
-      width: 220%;
-      display: block;
-      width: 100%;
-    }
   `;
 
   const inputRef = useRef<HTMLInputElement>(null);
