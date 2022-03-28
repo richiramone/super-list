@@ -47,8 +47,8 @@ const Item = ({ item, id }: ItemProps) => {
       background: #ff6a00;
     }
 
-    &.author-anna {
-      background: #ff0099;
+    &.not-lucas {
+      background: #ff0099 !important;
     }
 
     &.is-editing {
@@ -83,7 +83,7 @@ const Item = ({ item, id }: ItemProps) => {
     isBeingEdited ? "is-editing" : "",
     isBeingDeleted ? "deleted" : "",
     item.hasQuestionMark ? "has-question-mark" : "",
-    item.author !== "lucas" ? "author-anna" : "",
+    item.author !== "lucas" ? "not-lucas" : "",
   ].join(" ");
 
   const confirmItemButton = item.hasQuestionMark ? (
