@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { useContext, memo } from "react";
-import { ListContext } from "../../contexts/ListContext";
+import { memo } from "react";
 
 const Preloader = () => {
   const Preloader = styled.div`
@@ -47,7 +46,7 @@ const Preloader = () => {
     }
   `;
 
-  const { isPreloaderActive } = useContext(ListContext);
+  const isPreloaderActive = false;
 
   return (
     <Preloader className={isPreloaderActive ? "is-loading" : ""}>

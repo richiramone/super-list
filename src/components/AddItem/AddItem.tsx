@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { useRef, useContext, useEffect, memo } from "react";
-import { ListContext } from "../../contexts/ListContext";
+import { useRef, useEffect, memo } from "react";
 
 const AddItem = () => {
   const AddItem = styled.div`
@@ -30,7 +29,6 @@ const AddItem = () => {
     }
   `;
 
-  const { addItem } = useContext(ListContext);
   const inputRef = useRef<HTMLInputElement>(null);
   const renderCount = useRef(1);
   const hasRecentlyAddedItems = useRef(false);
@@ -53,7 +51,7 @@ const AddItem = () => {
     }
 
     hasRecentlyAddedItems.current = true;
-    addItem(event.currentTarget.value);
+    // addItem(event.currentTarget.value);
   };
 
   return (

@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { useContext, useEffect, useRef, memo } from "react";
-import { ListContext } from "../../contexts/ListContext";
 import { ItemContext } from "../../contexts/ItemContext";
 
 type EditItemProps = {
@@ -24,7 +23,6 @@ const EditItem = ({ id, value }: EditItemProps) => {
   `;
 
   const inputRef = useRef<HTMLInputElement>(null);
-  const { updateItem } = useContext(ListContext);
   const {
     isBeingEdited: isEditing,
     enableEditingMode,
@@ -39,7 +37,7 @@ const EditItem = ({ id, value }: EditItemProps) => {
     }
 
     disableEditingMode();
-    updateItem(id, event.currentTarget.value);
+    // updateItem(id, event.currentTarget.value);
   };
 
   useEffect(() => {

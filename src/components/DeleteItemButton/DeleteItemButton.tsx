@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { useContext, memo } from "react";
-import { ListContext } from "../../contexts/ListContext";
 import { ItemContext } from "../../contexts/ItemContext";
 
 type DeleteItemButtonProps = {
@@ -20,12 +19,11 @@ const DeleteItemButton = ({ id }: DeleteItemButtonProps) => {
     }
   `;
 
-  const { deleteItem } = useContext(ListContext);
   const { enableDeletedMode } = useContext(ItemContext);
 
   const _deleteItem = () => {
     enableDeletedMode();
-    deleteItem(id);
+    // deleteItem(id);
   };
 
   return (

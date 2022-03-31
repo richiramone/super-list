@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { useContext, memo } from "react";
-import { ListContext } from "../../contexts/ListContext";
 
 type ConfirmItemButtonProps = {
   id: string;
@@ -20,7 +19,9 @@ const ConfirmItemButton = ({ id }: ConfirmItemButtonProps) => {
     }
   `;
 
-  const { confirmItem } = useContext(ListContext);
+  const confirmItem = (id: string) => {
+    return id;
+  };
 
   return (
     <Button onClick={() => confirmItem(id)}>

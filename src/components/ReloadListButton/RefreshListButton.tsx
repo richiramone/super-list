@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { useContext, memo } from "react";
-import { ListContext } from "../../contexts/ListContext";
+import { memo } from "react";
 
 const RefreshListButton = () => {
   const Button = styled.button`
@@ -12,7 +11,9 @@ const RefreshListButton = () => {
     background: none;
   `;
 
-  const { refreshList } = useContext(ListContext);
+  const refreshList = (x: boolean) => {
+    return x;
+  };
 
   return (
     <Button

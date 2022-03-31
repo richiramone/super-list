@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { useState, useContext, memo } from "react";
-import { ListContext } from "../../contexts/ListContext";
+import { useState, memo } from "react";
 
 const EmptyListButton = () => {
   const Button = styled.button`
@@ -83,11 +82,10 @@ const EmptyListButton = () => {
   `;
 
   const [isActive, setState] = useState(false);
-  const { emptyList } = useContext(ListContext);
 
   function _emptyList() {
     setState(isActive ? false : true);
-    emptyList();
+    // emptyList();
   }
 
   return (

@@ -1,8 +1,8 @@
 import Item from "../Item/Item";
 import styled from "styled-components";
-import { ListContext } from "../../contexts/ListContext";
 import { ItemContextProvider } from "../../contexts/ItemContext";
-import { useContext, memo } from "react";
+import { memo } from "react";
+import { IItems } from "../../config/interfaces";
 
 const ItemsList = () => {
   const ItemsList = styled.ul`
@@ -15,7 +15,7 @@ const ItemsList = () => {
     list-style: none;
   `;
 
-  const { items } = useContext(ListContext);
+  const items: IItems = {};
 
   return (
     <ItemsList>
