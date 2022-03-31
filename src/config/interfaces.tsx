@@ -29,7 +29,7 @@ export type IItemContext = {
   disableEditingMode: () => void;
 };
 
-export type ISuperListApiControlller = {
+export type IListApiController = {
   getItems: () => Promise<IItems>;
   addItem: (item: IItem) => Promise<void>;
   updateItem: (itemKey: string, item: IItem) => Promise<void>;

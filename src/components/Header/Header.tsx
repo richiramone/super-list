@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import ReloadListButton from "../ReloadListButton/RefreshListButton";
-import EmptyList from "../EmptyList/EmptyList";
+import EmptyList from "../EmptyListButton/EmptyListButton";
 import { memo } from "react";
 
 const Header = () => {
