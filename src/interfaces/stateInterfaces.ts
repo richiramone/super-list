@@ -1,7 +1,7 @@
 import { IItems } from "../interfaces";
 
 export const ITEMS_REQUESTED = "ITEMS_REQUESTED";
-export const ITEMS_REFRESHED = "ITEMS_REFRESHED";
+export const ITEMS_RECEIVED = "ITEMS_RECEIVED";
 export const ITEM_ADDED = "ITEM_ADDED";
 export const ITEM_UPDATED = "ITEM_UPDATED";
 export const ITEM_CONFIRMED = "ITEM_CONFIRMED";
@@ -13,7 +13,7 @@ interface IItemsRequested {
 }
 
 interface IItemsRefreshed {
-  type: typeof ITEMS_REFRESHED;
+  type: typeof ITEMS_RECEIVED;
   payload: IItems;
 }
 

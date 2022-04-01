@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === "development") {
 
 const Store = createStore(
   RootReducer,
-  composeWithDevTools(applyMiddleware(thunk))
+  composeWithDevTools(applyMiddleware(...middlewares))
 );
 
 export type RootStore = ReturnType<typeof RootReducer>;

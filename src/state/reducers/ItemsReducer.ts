@@ -1,7 +1,7 @@
 import {
   ItemsDispatchTypes,
   ITEMS_REQUESTED,
-  ITEMS_REFRESHED,
+  ITEMS_RECEIVED,
   ITEM_ADDED,
   ITEM_UPDATED,
   ITEM_CONFIRMED,
@@ -28,20 +28,22 @@ const ItemsReducer = (
   switch (action.type) {
     case ITEMS_REQUESTED:
       return {
+        ...state,
         isLoading: true,
-        items: state.items,
       };
-    case ITEMS_REFRESHED:
+    case ITEMS_RECEIVED:
     case ITEM_ADDED:
     case ITEM_UPDATED:
     case ITEM_CONFIRMED:
     case ITEM_DELETED:
       return {
+        ...state,
         isLoading: false,
-        items: state.items,
+        items: action.payload,
       };
     case LIST_EMPTIED:
       return {
+        ...state,
         isLoading: false,
         items: {},
       };

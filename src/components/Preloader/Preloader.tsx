@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { memo } from "react";
+import { useSelector } from "react-redux";
+import { RootStore } from "../../state";
 
 const PreloaderStyles = styled.div`
   display: none;
@@ -46,10 +48,10 @@ const PreloaderStyles = styled.div`
 `;
 
 const Preloader: React.FC = () => {
-  const isPreloaderActive = false;
+  const isLoading = useSelector((state: RootStore) => state.app.isLoading);
 
   return (
-    <PreloaderStyles className={isPreloaderActive ? "is-loading" : ""}>
+    <PreloaderStyles className={isLoading ? "is-loading" : ""}>
       <div className="loading-wrapper">
         <svg viewBox="0 0 32 32">
           <use xlinkHref="#shape-smiley"></use>

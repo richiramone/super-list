@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import Item from "../Item/Item";
 import styled from "styled-components";
 import { ItemContextProvider } from "../../contexts/ItemContext";
@@ -6,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { RootStore } from "../../state/store";
 import { itemsActions } from "../../state";
+import { ITEMS_RECEIVED, ITEMS_REQUESTED } from "../../interfaces";
 
 const ItemsListStyles = styled.ul`
   display: flex;
@@ -18,19 +20,26 @@ const ItemsListStyles = styled.ul`
 `;
 
 const ItemsList: React.FC = () => {
-  const state = useSelector((state: RootStore) => state.items);
+  const { items } = useSelector((state: RootStore) => state.app);
   const dispatch = useDispatch();
   const { refreshList } = bindActionCreators(itemsActions, dispatch);
 
   useEffect(() => {
-    //dispatch(refreshList(true));
+    dispatch({
+      type: ITEMS_REQUESTED,
+    });
+
+    dispatch({
+      type: ITEMS_RECEIVED,
+      payload: async () => await refreshList(),
+    });
   }, []);
 
   return (
     <ItemsListStyles>
-      {Object.keys(state.items!).map((key: string) => (
+      {Object.keys(items!).map((key: string) => (
         <ItemContextProvider key={key}>
-          <Item item={state.items![key]} id={key} />
+          <Item item={items![key]} id={key} />
         </ItemContextProvider>
       ))}
     </ItemsListStyles>

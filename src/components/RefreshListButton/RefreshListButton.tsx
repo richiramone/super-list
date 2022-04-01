@@ -20,12 +20,12 @@ const RefreshListButton: React.FC = () => {
 
   return (
     <RefreshListButtonStyles
-      onClick={() => {
+      onClick={async () => {
         dispatch({
           type: ITEMS_REQUESTED,
         });
 
-        dispatch(refreshList());
+        dispatch(await refreshList());
       }}
     >
       <svg viewBox="0 0 32 32">

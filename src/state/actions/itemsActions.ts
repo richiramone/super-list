@@ -1,6 +1,6 @@
 import { Dispatch } from "redux";
 import {
-  ITEMS_REFRESHED,
+  ITEMS_RECEIVED,
   ITEM_ADDED,
   ITEM_UPDATED,
   ITEM_CONFIRMED,
@@ -9,16 +9,18 @@ import {
   ItemsDispatchTypes,
   IItem,
 } from "../../interfaces";
-import { author } from "../../utils";
+import { author, updateLocalStorage } from "../../utils";
 import { listApiController } from "../../controllers/listApiController";
 
-export const refreshList = () => (dispatch: Dispatch<ItemsDispatchTypes>) => {
-  listApiController.getItems().then((items) => {
-    dispatch({
-      type: ITEMS_REFRESHED,
-      payload: items,
-    });
-  });
+export const refreshList = () => async () => {
+  const items = await listApiController.getItems();
+
+  updateLocalStorage(items);
+
+  return {
+    type: ITEMS_RECEIVED,
+    payload: items,
+  };
 };
 
 export const addItem = (item: string) => {
