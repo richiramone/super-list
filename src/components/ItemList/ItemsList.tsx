@@ -1,8 +1,10 @@
 import Item from "../Item/Item";
 import styled from "styled-components";
 import { ItemContextProvider } from "../../contexts/ItemContext";
-import { memo } from "react";
-import { IItems } from "../../config/interfaces";
+import { memo, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootStore } from "../../Store";
+import { refreshList } from "../../actions/ItemsActions";
 
 const ItemsList = () => {
   const ItemsList = styled.ul`
@@ -15,13 +17,19 @@ const ItemsList = () => {
     list-style: none;
   `;
 
-  const items: IItems = {};
+  const itemsState = useSelector((state: RootStore) => state.items);
+  const dispatch = useDispatch();
+  dispatch(refreshList());
+
+  useEffect(() => {
+    //dispatch(refreshList());
+  }, []);
 
   return (
     <ItemsList>
-      {Object.keys(items).map((key: string) => (
+      {Object.keys(itemsState.items).map((key: string) => (
         <ItemContextProvider key={key}>
-          <Item item={items[key]} id={key} />
+          <Item item={itemsState.items[key]} id={key} />
         </ItemContextProvider>
       ))}
     </ItemsList>

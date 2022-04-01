@@ -8,18 +8,6 @@ export type IItems = {
   [key: string]: IItem;
 };
 
-export type IListContext = {
-  isPreloaderActive: boolean;
-  author: string;
-  items: IItems;
-  refreshList: (shouldShowPreloader: boolean) => void;
-  addItem: (item: string) => void;
-  updateItem: (itemKey: string, updatedItem: string) => void;
-  confirmItem: (itemKey: string) => void;
-  deleteItem: (itemKey: string) => void;
-  emptyList: () => void;
-};
-
 export type IItemContext = {
   isBeingEdited: boolean;
   isBeingDeleted: boolean;

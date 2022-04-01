@@ -13,7 +13,7 @@ import { getItemsFromLocalStorage } from "../utils/utils";
 
 interface IDefaultState {
   isLoading?: boolean;
-  items?: IItems;
+  items: IItems;
 }
 
 const defaultState: IDefaultState = {
@@ -29,6 +29,7 @@ const ItemsReducer = (
     case ITEMS_REQUESTED:
       return {
         isLoading: true,
+        items: state.items,
       };
     case ITEMS_REFRESHED:
       return {
