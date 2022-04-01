@@ -7,21 +7,24 @@ type EditItemProps = {
   value: string;
 };
 
-const EditItem = ({ id, value }: EditItemProps) => {
-  const EditItem = styled.input`
-    display: none;
-    margin: 0;
-    width: auto;
-    background: none;
-    border: 0;
-    outline: none;
-    font-size: 18px;
-    font-weight: normal;
-    line-height: 1.2;
-    letter-spacing: 0.02em;
-    color: #fff;
-  `;
+const EditItemStyles = styled.input`
+  display: none;
+  margin: 0;
+  width: auto;
+  background: none;
+  border: 0;
+  outline: none;
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  color: #fff;
+`;
 
+const EditItem: React.FC<{
+  id: string;
+  value: string;
+}> = ({ id, value }: EditItemProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const {
     isBeingEdited: isEditing,
@@ -47,7 +50,7 @@ const EditItem = ({ id, value }: EditItemProps) => {
   }, [isEditing]);
 
   return (
-    <EditItem
+    <EditItemStyles
       type="text"
       defaultValue={value}
       ref={inputRef}

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { createContext, useState, FC } from "react";
-import { IItemContext } from "../config/interfaces";
+import { IItemContext } from "../interfaces/appInterfaces";
 
 const defaultState: IItemContext = {
   isBeingDeleted: false,

@@ -1,4 +1,4 @@
-import { IItems } from "../config/interfaces";
+import { IItems } from "../interfaces/appInterfaces";
 
 export const reverseItems = (items: IItems) => {
   return Object.keys(items)

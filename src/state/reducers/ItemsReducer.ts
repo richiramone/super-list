@@ -7,13 +7,13 @@ import {
   ITEM_CONFIRMED,
   ITEM_DELETED,
   LIST_EMPTIED,
-} from "../actions/ItemsActionTypes";
-import { IItems } from "../config/interfaces";
-import { getItemsFromLocalStorage } from "../utils/utils";
+  IItems,
+} from "../../interfaces";
+import { getItemsFromLocalStorage } from "../../utils";
 
 interface IDefaultState {
   isLoading?: boolean;
-  items: IItems;
+  items?: IItems;
 }
 
 const defaultState: IDefaultState = {
@@ -32,28 +32,17 @@ const ItemsReducer = (
         items: state.items,
       };
     case ITEMS_REFRESHED:
+    case ITEM_ADDED:
+    case ITEM_UPDATED:
+    case ITEM_CONFIRMED:
+    case ITEM_DELETED:
       return {
         isLoading: false,
         items: state.items,
       };
-    case ITEM_ADDED:
-      return {
-        items: state.items,
-      };
-    case ITEM_UPDATED:
-      return {
-        items: state.items,
-      };
-    case ITEM_CONFIRMED:
-      return {
-        items: state.items,
-      };
-    case ITEM_DELETED:
-      return {
-        items: state.items,
-      };
     case LIST_EMPTIED:
       return {
+        isLoading: false,
         items: {},
       };
     default:

@@ -1,4 +1,4 @@
-import { IItems } from "../config/interfaces";
+import { IItems } from "../interfaces";
 
 export const ITEMS_REQUESTED = "ITEMS_REQUESTED";
 export const ITEMS_REFRESHED = "ITEMS_REFRESHED";
@@ -39,7 +39,6 @@ interface IItemDeleted {
 
 interface IListEmptied {
   type: typeof LIST_EMPTIED;
-  payload: IItems;
 }
 
 export type ItemsDispatchTypes =

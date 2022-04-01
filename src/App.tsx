@@ -5,25 +5,25 @@ import AddItem from "./components/AddItem";
 import ItemsList from "./components/ItemList/ItemsList";
 import styled from "styled-components";
 
-function App() {
-  const Main = styled.main`
-    margin-top: 60px;
-  `;
+const MainStyles = styled.main`
+  margin-top: 60px;
+`;
 
+const App: React.FC = () => {
   return (
     <div className="App">
       <Preloader />
       <section>
         <Header />
-        <Main>
+        <MainStyles>
           <aside>
             <AddItem />
           </aside>
           <ItemsList />
-        </Main>
+        </MainStyles>
       </section>
     </div>
   );
-}
+};
 
 export default App;

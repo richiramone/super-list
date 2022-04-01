@@ -1,5 +1,5 @@
-import { IItem, IItems, IListApiController } from "../config/interfaces";
-import { db, itemsDbRef } from "../config/database";
+import { IItem, IItems, IListApiController } from "../interfaces/appInterfaces";
+import { db, itemsDbRef } from "../db";
 import * as Firebase from "firebase/database";
 import { reverseItems } from "../utils/utils";
 
