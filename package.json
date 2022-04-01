@@ -24,7 +24,6 @@
     "redux-thunk": "^2.4.1",
     "styled-components": "^5.3.5",
     "typescript": "^4.6.2",
-    "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -52,7 +51,7 @@
     ]
   },
   "devDependencies": {
-    "@types/uuid": "^8.3.4",
-    "eslint-plugin-react-hooks": "^4.5.0-next-aa05e7315-20220331"
+    "@types/redux-logger": "^3.0.9",
+    "redux-logger": "^3.0.6"
   }
 }

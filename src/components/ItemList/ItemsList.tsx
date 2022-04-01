@@ -1,7 +1,7 @@
 import Item from "../Item/Item";
 import styled from "styled-components";
 import { ItemContextProvider } from "../../contexts/ItemContext";
-import { memo, useEffect } from "react";
+import { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootStore } from "../../Store";
 import { refreshList } from "../../actions/ItemsActions";
@@ -18,12 +18,6 @@ const ItemsList = () => {
   `;
 
   const itemsState = useSelector((state: RootStore) => state.items);
-  const dispatch = useDispatch();
-  dispatch(refreshList());
-
-  useEffect(() => {
-    //dispatch(refreshList());
-  }, []);
 
   return (
     <ItemsList>
