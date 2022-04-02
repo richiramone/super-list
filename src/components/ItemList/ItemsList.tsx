@@ -24,15 +24,16 @@ const ItemsList: React.FC = () => {
   const dispatch = useDispatch();
   const { refreshList } = bindActionCreators(itemsActions, dispatch);
 
-  useEffect(() => {
+  const loadItems = async () => {
     dispatch({
       type: ITEMS_REQUESTED,
     });
 
-    dispatch({
-      type: ITEMS_RECEIVED,
-      payload: async () => await refreshList(),
-    });
+    dispatch(await refreshList());
+  };
+
+  useEffect(() => {
+    loadItems();
   }, []);
 
   return (
