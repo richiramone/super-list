@@ -1,8 +1,3 @@
-# DRAFT 2
-
-- redux
-  https://github.com/Melvin-Abraham/todomatic/blob/master/src/utils/reducer.ts
-
 # DRAFT 3
 
 - lighthouse
@@ -12,7 +7,6 @@
   - https://web.dev/code-splitting-suspense/?utm_source=lighthouse&utm_medium=devtools
 - next js
 - deploy firebase
-- firebase securitha
 
 # DRAFT 4
 
@@ -28,4 +22,3 @@ After deploying, view your app at super-9a549.web.app
 # BRUNO
 
 - animation css?
-- webpack di merda?
