@@ -59,6 +59,7 @@ const AddItem: React.FC = () => {
 
     dispatch(await addItem(event.currentTarget.value));
 
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     inputRef.current!.value = "";
   };
 

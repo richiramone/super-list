@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { memo } from "react";
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import { itemsActions } from "../../state";
 
 type ConfirmItemButtonProps = {
   id: string;
@@ -19,12 +22,15 @@ const ConfirmItemButtonStyles = styled.button`
 `;
 
 const ConfirmItemButton = ({ id }: ConfirmItemButtonProps) => {
-  const confirmItem = (id: string) => {
-    return id;
+  const dispatch = useDispatch();
+  const { confirmItem } = bindActionCreators(itemsActions, dispatch);
+
+  const _confirmItem = async () => {
+    dispatch(await confirmItem(id));
   };
 
   return (
-    <ConfirmItemButtonStyles onClick={() => confirmItem(id)}>
+    <ConfirmItemButtonStyles onClick={_confirmItem}>
       <svg viewBox="0 0 24 24">
         <use xlinkHref="#confirm-icon"></use>
       </svg>

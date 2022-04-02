@@ -23,7 +23,7 @@ const ItemStyles = styled.li`
   border-radius: 4px;
   background: #09f;
   cursor: pointer;
-  transition: background-color 2.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
 
   .item__value,
   input {

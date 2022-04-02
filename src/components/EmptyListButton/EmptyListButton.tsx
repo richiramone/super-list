@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { useState, memo } from "react";
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import { itemsActions } from "../../state";
 
 const EmptyListButtonStyles = styled.button`
   padding: 0;
@@ -82,11 +85,13 @@ const DialogStyles = styled.div`
 
 const EmptyListButton: React.FC = () => {
   const [isActive, setState] = useState(false);
+  const dispatch = useDispatch();
+  const { emptyList } = bindActionCreators(itemsActions, dispatch);
 
-  function _emptyList() {
+  const _emptyList = async () => {
     setState(isActive ? false : true);
-    // emptyList();
-  }
+    dispatch(emptyList);
+  };
 
   return (
     <span>

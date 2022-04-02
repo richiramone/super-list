@@ -24,23 +24,17 @@ const ItemsList: React.FC = () => {
   const dispatch = useDispatch();
   const { refreshList } = bindActionCreators(itemsActions, dispatch);
 
-  const loadItems = async (shouldDispatchItemsRequested: boolean) => {
-    if (shouldDispatchItemsRequested) {
-      dispatch({
-        type: ITEMS_REQUESTED,
-      });
-    }
+  const loadItems = async () => {
+    dispatch({
+      type: ITEMS_REQUESTED,
+    });
 
     dispatch(await refreshList());
   };
 
   useEffect(() => {
-    loadItems(true);
+    loadItems();
   }, []);
-
-  useEffect(() => {
-    loadItems(false);
-  });
 
   return (
     <ItemsListStyles>

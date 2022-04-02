@@ -12,7 +12,7 @@ interface IItemsRequested {
   type: typeof ITEMS_REQUESTED;
 }
 
-interface IItemsRefreshed {
+interface IItemsReceived {
   type: typeof ITEMS_RECEIVED;
   payload: IItems;
 }
@@ -43,7 +43,7 @@ interface IListEmptied {
 
 export type ItemsDispatchTypes =
   | IItemsRequested
-  | IItemsRefreshed
+  | IItemsReceived
   | IItemAdded
   | IItemUpdated
   | IItemConfirmed

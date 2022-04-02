@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { useContext, useEffect, useRef, memo } from "react";
 import { ItemContext } from "../../contexts/ItemContext";
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import { itemsActions } from "../../state";
 
 type EditItemProps = {
   id: string;
@@ -14,7 +17,6 @@ const EditItemStyles = styled.input`
   background: none;
   border: 0;
   outline: none;
-  font-size: 18px;
   font-weight: normal;
   line-height: 1.2;
   letter-spacing: 0.02em;
@@ -31,16 +33,18 @@ const EditItem: React.FC<{
     enableEditingMode,
     disableEditingMode,
   } = useContext(ItemContext);
+  const dispatch = useDispatch();
+  const { updateItem } = bindActionCreators(itemsActions, dispatch);
 
-  const tryUpdateItem = (
+  const tryUpdateItem = async (
     event: React.KeyboardEvent<HTMLInputElement>
-  ): void => {
+  ) => {
     if (event.key !== "Enter" || event.currentTarget.value === "") {
       return;
     }
 
     disableEditingMode();
-    // updateItem(id, event.currentTarget.value);
+    dispatch(await updateItem(id, event.currentTarget.value));
   };
 
   useEffect(() => {

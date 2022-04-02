@@ -12,45 +12,41 @@ import {
 import { author, updateLocalStorage } from "../../utils";
 import { listApiController } from "../../controllers/listApiController";
 
-export const refreshList = () => async () => {
+const _refreshList = async () => {
   const items = await listApiController.getItems();
 
   updateLocalStorage(items);
 
+  return items;
+};
+
+export const refreshList = () => async () => {
   return {
     type: ITEMS_RECEIVED,
-    payload: items,
+    payload: await _refreshList(),
   };
 };
 
-export const addItem =
-  (item: string) =>
-  async (dispatch: Dispatch<ItemsDispatchTypes>, getState: any) => {
-    const items = getState().app.items;
-
-    const newItem: IItem = {
-      hasQuestionMark: item.includes("?"),
-      author: author,
-      value: item,
-    };
-
-    return await listApiController
-      .addItem(newItem)
-      .then(() => {
-        refreshList()();
-      })
-      .then(() => {
-        return {
-          type: ITEM_ADDED,
-          payload: { newItem, ...items },
-        };
-      });
+export const addItem = (item: string) => async () => {
+  const newItem: IItem = {
+    author: author,
+    hasQuestionMark: item.includes("?"),
+    value: item,
   };
 
-export const updateItem = (itemKey: string, updateItemValue: string) => {
-  async (dispatch: Dispatch<ItemsDispatchTypes>, getState: any) => {
-    const state = getState().items;
-    const tempItems = { ...state.items }; // todo
+  await listApiController.addItem(newItem);
+
+  return {
+    type: ITEM_ADDED,
+    payload: await _refreshList(),
+  };
+};
+
+export const updateItem =
+  (itemKey: string, updateItemValue: string) =>
+  async (_dispatch: Dispatch<ItemsDispatchTypes>, getState: any) => {
+    const items = getState().app.items;
+    const tempItems = { ...items };
 
     Object.keys(tempItems).map((key: string) => {
       if (itemKey === key) {
@@ -61,21 +57,19 @@ export const updateItem = (itemKey: string, updateItemValue: string) => {
       return tempItems[key];
     });
 
-    dispatch({
+    await listApiController.updateItem(itemKey, tempItems[itemKey]);
+
+    return {
       type: ITEM_UPDATED,
-      payload: tempItems,
-    });
-
-    await listApiController.updateItem(itemKey, tempItems[itemKey]).then(() => {
-      refreshList();
-    });
+      payload: await _refreshList(),
+    };
   };
-};
 
-export const confirmItem = (itemKey: string) => {
-  async (dispatch: Dispatch<ItemsDispatchTypes>, getState: any) => {
-    const state = getState().items;
-    const tempItems = { ...state.items }; // todo
+export const confirmItem =
+  (itemKey: string) =>
+  async (_dispatch: Dispatch<ItemsDispatchTypes>, getState: any) => {
+    const items = getState().app.items;
+    const tempItems = { ...items };
 
     Object.keys(tempItems).map((key: string) => {
       if (itemKey === key) {
@@ -86,40 +80,28 @@ export const confirmItem = (itemKey: string) => {
       return tempItems[key];
     });
 
-    dispatch({
+    await listApiController.updateItem(itemKey, tempItems[itemKey]);
+
+    return {
       type: ITEM_CONFIRMED,
-      payload: tempItems,
-    });
-
-    await listApiController.updateItem(itemKey, tempItems[itemKey]).then(() => {
-      refreshList();
-    });
+      payload: await _refreshList(),
+    };
   };
-};
 
-export const deleteItem = (itemKey: string) => {
-  async (dispatch: Dispatch<ItemsDispatchTypes>, getState: any) => {
-    const state = getState().items;
-    const tempItems = { ...state.items };
-    delete tempItems[itemKey];
+export const deleteItem = (itemKey: string) => async () => {
+  await listApiController.deleteItem(itemKey);
+  await _refreshList();
 
-    dispatch({
-      type: ITEM_DELETED,
-      payload: tempItems,
-    });
-
-    await listApiController.deleteItem(itemKey).then(() => {
-      refreshList();
-    });
+  return {
+    type: ITEM_DELETED,
+    payload: await _refreshList(),
   };
 };
 
 export const emptyList = () => {
-  async (dispatch: Dispatch<ItemsDispatchTypes>) => {
-    await listApiController.emptyList();
+  updateLocalStorage({});
 
-    dispatch({
-      type: LIST_EMPTIED,
-    });
-  };
+  listApiController.emptyList();
+
+  return { type: LIST_EMPTIED };
 };
