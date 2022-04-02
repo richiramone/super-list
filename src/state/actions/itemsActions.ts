@@ -11,6 +11,7 @@ import {
 } from "../../interfaces";
 import { author, updateLocalStorage } from "../../utils";
 import { listApiController } from "../../controllers/listApiController";
+import { RootStore } from "../store";
 
 const _refreshList = async () => {
   const items = await listApiController.getItems();
@@ -44,7 +45,10 @@ export const addItem = (item: string) => async () => {
 
 export const updateItem =
   (itemKey: string, updateItemValue: string) =>
-  async (_dispatch: Dispatch<ItemsDispatchTypes>, getState: any) => {
+  async (
+    _dispatch: Dispatch<ItemsDispatchTypes>,
+    getState: () => RootStore
+  ) => {
     const items = getState().app.items;
     const tempItems = { ...items };
 
@@ -67,7 +71,10 @@ export const updateItem =
 
 export const confirmItem =
   (itemKey: string) =>
-  async (_dispatch: Dispatch<ItemsDispatchTypes>, getState: any) => {
+  async (
+    _dispatch: Dispatch<ItemsDispatchTypes>,
+    getState: () => RootStore
+  ) => {
     const items = getState().app.items;
     const tempItems = { ...items };
 
