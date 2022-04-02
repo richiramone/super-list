@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { useRef, useEffect, memo } from "react";
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import { itemsActions } from "../../state";
 
 const AddItemStyles = styled.div`
   margin: 5rem 0.5rem 0;
@@ -32,6 +35,8 @@ const AddItem: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const renderCount = useRef(1);
   const hasRecentlyAddedItems = useRef(false);
+  const dispatch = useDispatch();
+  const { addItem } = bindActionCreators(itemsActions, dispatch);
 
   useEffect(() => {
     if (renderCount.current < 3) {
@@ -45,13 +50,16 @@ const AddItem: React.FC = () => {
     }
   });
 
-  const tryAddItem = (event: React.KeyboardEvent<HTMLInputElement>): void => {
+  const tryAddItem = async (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key !== "Enter" || event.currentTarget.value === "") {
       return;
     }
 
     hasRecentlyAddedItems.current = true;
-    // addItem(event.currentTarget.value);
+
+    dispatch(await addItem(event.currentTarget.value));
+
+    inputRef.current!.value = "";
   };
 
   return (

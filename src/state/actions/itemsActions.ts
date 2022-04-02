@@ -23,9 +23,10 @@ export const refreshList = () => async () => {
   };
 };
 
-export const addItem = (item: string) => {
+export const addItem =
+  (item: string) =>
   async (dispatch: Dispatch<ItemsDispatchTypes>, getState: any) => {
-    const state = getState().items;
+    const items = getState().app.items;
 
     const newItem: IItem = {
       hasQuestionMark: item.includes("?"),
@@ -33,16 +34,18 @@ export const addItem = (item: string) => {
       value: item,
     };
 
-    dispatch({
-      type: ITEM_ADDED,
-      payload: { newItem, ...state.items },
-    });
-
-    await listApiController.addItem(newItem).then(() => {
-      refreshList();
-    });
+    return await listApiController
+      .addItem(newItem)
+      .then(() => {
+        refreshList()();
+      })
+      .then(() => {
+        return {
+          type: ITEM_ADDED,
+          payload: { newItem, ...items },
+        };
+      });
   };
-};
 
 export const updateItem = (itemKey: string, updateItemValue: string) => {
   async (dispatch: Dispatch<ItemsDispatchTypes>, getState: any) => {

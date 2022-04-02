@@ -18,16 +18,16 @@ const RefreshListButton: React.FC = () => {
   const dispatch = useDispatch();
   const { refreshList } = bindActionCreators(itemsActions, dispatch);
 
-  return (
-    <RefreshListButtonStyles
-      onClick={async () => {
-        dispatch({
-          type: ITEMS_REQUESTED,
-        });
+  const refreshItems = async () => {
+    dispatch({
+      type: ITEMS_REQUESTED,
+    });
 
-        dispatch(await refreshList());
-      }}
-    >
+    dispatch(await refreshList());
+  };
+
+  return (
+    <RefreshListButtonStyles onClick={refreshItems}>
       <svg viewBox="0 0 32 32">
         <use xlinkHref="#shape-reload"></use>
       </svg>

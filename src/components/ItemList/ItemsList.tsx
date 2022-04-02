@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { RootStore } from "../../state/store";
 import { itemsActions } from "../../state";
-import { ITEMS_RECEIVED, ITEMS_REQUESTED } from "../../interfaces";
+import { ITEMS_REQUESTED } from "../../interfaces";
 
 const ItemsListStyles = styled.ul`
   display: flex;
@@ -24,17 +24,23 @@ const ItemsList: React.FC = () => {
   const dispatch = useDispatch();
   const { refreshList } = bindActionCreators(itemsActions, dispatch);
 
-  const loadItems = async () => {
-    dispatch({
-      type: ITEMS_REQUESTED,
-    });
+  const loadItems = async (shouldDispatchItemsRequested: boolean) => {
+    if (shouldDispatchItemsRequested) {
+      dispatch({
+        type: ITEMS_REQUESTED,
+      });
+    }
 
     dispatch(await refreshList());
   };
 
   useEffect(() => {
-    loadItems();
+    loadItems(true);
   }, []);
+
+  useEffect(() => {
+    loadItems(false);
+  });
 
   return (
     <ItemsListStyles>
