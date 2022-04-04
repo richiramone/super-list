@@ -1,3 +1,11 @@
+# DRAFT 1
+
+- devtoolkit
+
+# DRAFT 2
+
+- stekit
+
 # DRAFT 3
 
 - lighthouse
@@ -13,12 +21,9 @@
 - unit testing
   - https://testing-library.com/docs/react-testing-library/intro/
 - storybook
+- animation css
 
 # KEYWORDS
 
 firebase deploy --only hosting:super-9a549
 After deploying, view your app at super-9a549.web.app
-
-# BRUNO
-
-- animation css?
