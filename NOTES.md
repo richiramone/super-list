@@ -1,13 +1,10 @@
-# DRAFT 1
+# FIGA
 
-- devtoolkit
+- tailwind
 
-# DRAFT 2
+# BEFORE DEPLOYING
 
-- stekit
-
-# DRAFT 3
-
+- firebase security
 - lighthouse
 - sw
 - pwa
@@ -16,7 +13,7 @@
 - next js
 - deploy firebase
 
-# DRAFT 4
+# AFTER DEPLOYING
 
 - unit testing
   - https://testing-library.com/docs/react-testing-library/intro/
