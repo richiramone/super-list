@@ -1,8 +1,4 @@
-# FIGA
-
-- tailwind
-
-# BEFORE DEPLOYING
+# TODO
 
 - firebase security
 - lighthouse
@@ -12,9 +8,6 @@
   - https://web.dev/code-splitting-suspense/?utm_source=lighthouse&utm_medium=devtools
 - next js
 - deploy firebase
-
-# AFTER DEPLOYING
-
 - unit testing
   - https://testing-library.com/docs/react-testing-library/intro/
 - storybook
