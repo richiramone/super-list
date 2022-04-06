@@ -1,4 +1,4 @@
-import { IItems } from "../interfaces/appInterfaces";
+import { IItems } from '../Interfaces/AppInterfaces';
 
 export const reverseItems = (items: IItems) => {
   return Object.keys(items)
@@ -11,20 +11,18 @@ export const reverseItems = (items: IItems) => {
 
 const getAuthor = () => {
   const urlParams = new URLSearchParams(window.location.search);
-  const authorFromParams = urlParams.has("author")
-    ? urlParams.get("author")
-    : "lucas";
+  const authorFromParams = urlParams.has('author') ? urlParams.get('author') : 'lucas';
 
-  return authorFromParams ? authorFromParams : "lucas";
+  return authorFromParams ? authorFromParams : 'lucas';
 };
 export const author = getAuthor();
 
 export const getItemsFromLocalStorage = () => {
-  const localStorageItems = localStorage.getItem("items");
+  const localStorageItems = localStorage.getItem('items');
 
   return localStorageItems === null ? {} : JSON.parse(localStorageItems);
 };
 
 export const updateLocalStorage = (items: IItems) => {
-  localStorage.setItem("items", JSON.stringify(items));
+  localStorage.setItem('items', JSON.stringify(items));
 };

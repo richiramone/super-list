@@ -1,5 +1,5 @@
 import { GetState, SetState } from 'zustand';
-import { MyState } from '../useStore';
+import { MyState } from '../UseStore';
 
 export interface AddItemSlice {
   addItem: () => void;

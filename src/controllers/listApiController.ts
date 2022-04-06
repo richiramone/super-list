@@ -1,7 +1,7 @@
-import { IItem, IItems, IListApiController } from "../interfaces/appInterfaces";
-import { db, itemsDbRef } from "../db";
-import * as Firebase from "firebase/database";
-import { reverseItems } from "../utils/utils";
+import { IItem, IItems, IListApiController } from '../Interfaces/AppInterfaces';
+import { db, itemsDbRef } from '../Database';
+import * as Firebase from 'firebase/database';
+import { reverseItems } from '../Utilities';
 
 export const listApiController: IListApiController = {
   getItems: async () => {

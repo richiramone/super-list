@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import Item from '../Item/Item';
+import Item from '../Item';
 import styled from 'styled-components';
-import { ItemContextProvider } from '../../contexts/ItemContext';
+import { ItemContextProvider } from '../../Contexts/ItemContext';
 import { memo, useEffect } from 'react';
-import { IItems } from '../../interfaces/appInterfaces';
+import { IItems } from '../../Interfaces/AppInterfaces';
 
 const ItemsListStyles = styled.ul`
   display: flex;

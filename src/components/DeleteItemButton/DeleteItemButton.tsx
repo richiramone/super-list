@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useContext, memo } from 'react';
-import { ItemContext } from '../../contexts/ItemContext';
+import { ItemContext } from '../../Contexts/ItemContext';
 
 type DeleteItemButtonProps = {
   id: string;

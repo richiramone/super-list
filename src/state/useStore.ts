@@ -1,6 +1,6 @@
 import create from 'zustand';
 
-import addItemSlice, { AddItemSlice } from './slices/addItemSlice';
+import addItemSlice, { AddItemSlice } from './Slices/AddItemSlice';
 
 export type MyState = AddItemSlice;
 
