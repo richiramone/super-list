@@ -1,8 +1,5 @@
-import styled from "styled-components";
-import { useState, memo } from "react";
-import { useDispatch } from "react-redux";
-import { bindActionCreators } from "redux";
-import { itemsActions } from "../../state";
+import styled from 'styled-components';
+import { useState, memo } from 'react';
 
 const EmptyListButtonStyles = styled.button`
   padding: 0;
@@ -84,25 +81,25 @@ const DialogStyles = styled.div`
 `;
 
 const EmptyListButton: React.FC = () => {
-  const [isActive, setState] = useState(false);
-  const dispatch = useDispatch();
-  const { emptyList } = bindActionCreators(itemsActions, dispatch);
+  // const [isActive, setState] = useState(false);
+  // const dispatch = useDispatch();
+  // const { emptyList } = bindActionCreators(itemsActions, dispatch);
+  const isActive = false;
+
+  const setState = (a: boolean) => a;
 
   const _emptyList = async () => {
-    setState(isActive ? false : true);
-    dispatch(emptyList);
+    // setState(isActive ? false : true);
+    // dispatch(emptyList);
   };
 
   return (
     <span>
-      <DialogStyles className={isActive ? "isActive" : ""}>
+      <DialogStyles className={isActive ? 'isActive' : ''}>
         <div className="confirmation-dialog">
           <h3>Sei sicuro di voler svuotare la lista?</h3>
           <div className="buttons-wrapper">
-            <button
-              className="cancel-button"
-              onClick={() => setState(isActive ? false : true)}
-            >
+            <button className="cancel-button" onClick={() => setState(isActive ? false : true)}>
               No
             </button>
 

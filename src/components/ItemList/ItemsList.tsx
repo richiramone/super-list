@@ -1,13 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import Item from "../Item/Item";
-import styled from "styled-components";
-import { ItemContextProvider } from "../../contexts/ItemContext";
-import { memo, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { bindActionCreators } from "redux";
-import { RootStore } from "../../state/store";
-import { itemsActions } from "../../state";
-import { ITEMS_REQUESTED } from "../../interfaces";
+import Item from '../Item/Item';
+import styled from 'styled-components';
+import { ItemContextProvider } from '../../contexts/ItemContext';
+import { memo, useEffect } from 'react';
+import { IItems } from '../../interfaces/appInterfaces';
 
 const ItemsListStyles = styled.ul`
   display: flex;
@@ -20,16 +16,12 @@ const ItemsListStyles = styled.ul`
 `;
 
 const ItemsList: React.FC = () => {
-  const { items } = useSelector((state: RootStore) => state.app);
-  const dispatch = useDispatch();
-  const { refreshList } = bindActionCreators(itemsActions, dispatch);
-
+  // const { items } = useSelector((state: RootStore) => state.app);
+  // const dispatch = useDispatch();
+  // const { refreshList } = bindActionCreators(itemsActions, dispatch);
+  const items: IItems = {};
   const loadItems = async () => {
-    dispatch({
-      type: ITEMS_REQUESTED,
-    });
-
-    dispatch(await refreshList());
+    // dispatch(await refreshList());
   };
 
   useEffect(() => {

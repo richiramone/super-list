@@ -1,9 +1,5 @@
-import styled from "styled-components";
-import { memo } from "react";
-import { useDispatch } from "react-redux";
-import { bindActionCreators } from "redux";
-import { itemsActions } from "../../state";
-import { ITEMS_REQUESTED } from "../../interfaces";
+import styled from 'styled-components';
+import { memo } from 'react';
 
 const RefreshListButtonStyles = styled.button`
   padding: 0;
@@ -15,15 +11,8 @@ const RefreshListButtonStyles = styled.button`
 `;
 
 const RefreshListButton: React.FC = () => {
-  const dispatch = useDispatch();
-  const { refreshList } = bindActionCreators(itemsActions, dispatch);
-
   const refreshItems = async () => {
-    dispatch({
-      type: ITEMS_REQUESTED,
-    });
-
-    dispatch(await refreshList());
+    // dispatch(await refreshList());
   };
 
   return (

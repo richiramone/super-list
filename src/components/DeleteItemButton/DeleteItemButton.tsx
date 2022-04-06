@@ -1,9 +1,6 @@
-import styled from "styled-components";
-import { useContext, memo } from "react";
-import { ItemContext } from "../../contexts/ItemContext";
-import { useDispatch } from "react-redux";
-import { itemsActions } from "../../state";
-import { bindActionCreators } from "redux";
+import styled from 'styled-components';
+import { useContext, memo } from 'react';
+import { ItemContext } from '../../contexts/ItemContext';
 
 type DeleteItemButtonProps = {
   id: string;
@@ -25,12 +22,12 @@ const DeleteItemButton: React.FC<{
   id: string;
 }> = ({ id }: DeleteItemButtonProps) => {
   const { enableDeletedMode } = useContext(ItemContext);
-  const dispatch = useDispatch();
-  const { deleteItem } = bindActionCreators(itemsActions, dispatch);
+  // const dispatch = useDispatch();
+  // const { deleteItem } = bindActionCreators(itemsActions, dispatch);
 
   const _deleteItem = async () => {
     enableDeletedMode();
-    dispatch(await deleteItem(id));
+    //dispatch(await deleteItem(id));
   };
 
   return (

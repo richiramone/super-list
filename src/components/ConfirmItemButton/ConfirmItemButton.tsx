@@ -1,8 +1,5 @@
-import styled from "styled-components";
-import { memo } from "react";
-import { useDispatch } from "react-redux";
-import { bindActionCreators } from "redux";
-import { itemsActions } from "../../state";
+import styled from 'styled-components';
+import { memo } from 'react';
 
 type ConfirmItemButtonProps = {
   id: string;
@@ -22,11 +19,11 @@ const ConfirmItemButtonStyles = styled.button`
 `;
 
 const ConfirmItemButton = ({ id }: ConfirmItemButtonProps) => {
-  const dispatch = useDispatch();
-  const { confirmItem } = bindActionCreators(itemsActions, dispatch);
+  // const dispatch = useDispatch();
+  // const { confirmItem } = bindActionCreators(itemsActions, dispatch);
 
   const _confirmItem = async () => {
-    dispatch(await confirmItem(id));
+    // dispatch(await confirmItem(id));
   };
 
   return (

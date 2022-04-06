@@ -1,9 +1,6 @@
-import styled from "styled-components";
-import { useContext, useEffect, useRef, memo } from "react";
-import { ItemContext } from "../../contexts/ItemContext";
-import { useDispatch } from "react-redux";
-import { bindActionCreators } from "redux";
-import { itemsActions } from "../../state";
+import styled from 'styled-components';
+import { useContext, useEffect, useRef, memo } from 'react';
+import { ItemContext } from '../../contexts/ItemContext';
 
 type EditItemProps = {
   id: string;
@@ -28,23 +25,17 @@ const EditItem: React.FC<{
   value: string;
 }> = ({ id, value }: EditItemProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const {
-    isBeingEdited: isEditing,
-    enableEditingMode,
-    disableEditingMode,
-  } = useContext(ItemContext);
-  const dispatch = useDispatch();
-  const { updateItem } = bindActionCreators(itemsActions, dispatch);
+  const { isBeingEdited: isEditing, enableEditingMode, disableEditingMode } = useContext(ItemContext);
+  // const dispatch = useDispatch();
+  // const { updateItem } = bindActionCreators(itemsActions, dispatch);
 
-  const tryUpdateItem = async (
-    event: React.KeyboardEvent<HTMLInputElement>
-  ) => {
-    if (event.key !== "Enter" || event.currentTarget.value === "") {
+  const tryUpdateItem = async (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key !== 'Enter' || event.currentTarget.value === '') {
       return;
     }
 
     disableEditingMode();
-    dispatch(await updateItem(id, event.currentTarget.value));
+    // dispatch(await updateItem(id, event.currentTarget.value));
   };
 
   useEffect(() => {
@@ -53,15 +44,7 @@ const EditItem: React.FC<{
     }
   }, [isEditing]);
 
-  return (
-    <EditItemStyles
-      type="text"
-      defaultValue={value}
-      ref={inputRef}
-      onKeyPress={tryUpdateItem}
-      onClick={enableEditingMode}
-    />
-  );
+  return <EditItemStyles type="text" defaultValue={value} ref={inputRef} onKeyPress={tryUpdateItem} onClick={enableEditingMode} />;
 };
 
 export default memo(EditItem);
