@@ -1,23 +1,3 @@
-import { IItem } from '../../interfaces';
-import { author, updateLocalStorage } from '../../utils';
-import { listApiController } from '../../controllers/listApiController';
-import useStore from '../useStore';
-
-const _refreshList = async () => {
-  const items = await listApiController.getItems();
-
-  updateLocalStorage(items);
-
-  return items;
-};
-
-export const refreshList = () => async () => {
-  return {
-    type: ITEMS_RECEIVED,
-    payload: await _refreshList(),
-  };
-};
-
 export const addItem = (item: string) => async () => {
   const newItem: IItem = {
     author: author,
