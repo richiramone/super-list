@@ -1,3 +1,4 @@
+import { listApiController } from '../Controllers/ListApiController';
 import { IItems } from '../Interfaces/AppInterfaces';
 
 export const reverseItems = (items: IItems) => {
@@ -25,4 +26,12 @@ export const getItemsFromLocalStorage = () => {
 
 export const updateLocalStorage = (items: IItems) => {
   localStorage.setItem('items', JSON.stringify(items));
+};
+
+export const baseRefreshItems = async () => {
+  const items = await listApiController.getItems();
+
+  updateLocalStorage(items);
+
+  return items;
 };

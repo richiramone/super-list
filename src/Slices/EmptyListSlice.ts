@@ -1,10 +1,10 @@
 import { SetState } from 'zustand';
 import { ListState } from '../Store/UseStore';
 
-const addItemSlice = (set: SetState<ListState>) => ({
-  addItem: () => {
+const emptyListSlice = (set: SetState<ListState>) => ({
+  emptyList: () => {
     set(() => ({}));
   },
 });
 
-export default addItemSlice;
+export default emptyListSlice;

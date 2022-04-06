@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { ItemContextProvider } from '../../Contexts/ItemContext';
 import { memo, useEffect } from 'react';
 import { IItems } from '../../Interfaces/AppInterfaces';
+import useStore from '../../Store/UseStore';
 
 const ItemsListStyles = styled.ul`
   display: flex;
@@ -16,12 +17,10 @@ const ItemsListStyles = styled.ul`
 `;
 
 const ItemsList: React.FC = () => {
-  // const { items } = useSelector((state: RootStore) => state.app);
-  // const dispatch = useDispatch();
-  // const { refreshList } = bindActionCreators(itemsActions, dispatch);
-  const items: IItems = {};
+  const items: IItems = useStore(state => state.items);
+  const refreshItems = useStore(state => state.refreshItems);
   const loadItems = async () => {
-    // dispatch(await refreshList());
+    await refreshItems();
   };
 
   useEffect(() => {

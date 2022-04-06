@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
+import useStore from '../../Store/UseStore';
 
 const PreloaderStyles = styled.div`
   display: none;
@@ -46,10 +47,11 @@ const PreloaderStyles = styled.div`
 `;
 
 const Preloader: React.FC = () => {
-  const isLoading = true; // useSelector((state: RootStore) => state.app.isLoading);
+  // const isFetching: boolean = useStore(state => state.isFetching);
+  const isFetching: boolean = useStore(useCallback(state => state.isFetching, [false]));
 
   return (
-    <PreloaderStyles className={isLoading ? 'is-loading' : ''}>
+    <PreloaderStyles className={isFetching ? 'is-loading' : ''}>
       <div className="loading-wrapper">
         <svg viewBox="0 0 32 32">
           <use xlinkHref="#shape-smiley"></use>

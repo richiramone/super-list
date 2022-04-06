@@ -1,10 +1,10 @@
 import { SetState } from 'zustand';
 import { ListState } from '../Store/UseStore';
 
-const addItemSlice = (set: SetState<ListState>) => ({
-  addItem: () => {
+const deleteItemSlice = (set: SetState<ListState>) => ({
+  deleteItem: () => {
     set(() => ({}));
   },
 });
 
-export default addItemSlice;
+export default deleteItemSlice;
