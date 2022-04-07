@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useContext, useEffect, useRef, memo } from 'react';
 import { ItemContext } from '../../Contexts/ItemContext';
+import useStore from '../../Store/UseStore';
 
 type EditItemProps = {
   id: string;
@@ -26,8 +27,7 @@ const EditItem: React.FC<{
 }> = ({ id, value }: EditItemProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { isBeingEdited: isEditing, enableEditingMode, disableEditingMode } = useContext(ItemContext);
-  // const dispatch = useDispatch();
-  // const { updateItem } = bindActionCreators(itemsActions, dispatch);
+  const updateItem = useStore(state => state.updateItem);
 
   const tryUpdateItem = async (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key !== 'Enter' || event.currentTarget.value === '') {
@@ -35,7 +35,7 @@ const EditItem: React.FC<{
     }
 
     disableEditingMode();
-    // dispatch(await updateItem(id, event.currentTarget.value));
+    await updateItem(id, event.currentTarget.value);
   };
 
   useEffect(() => {

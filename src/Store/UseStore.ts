@@ -1,33 +1,16 @@
-import create from 'zustand';
-import refreshItemsSlice from '../Slices/RefreshItemsSlice';
-import addItemSlice from '../Slices/AddItemSlice';
-import updateItemSlice from '../Slices/UpdateItemSlice';
-import confirmItemSlice from '../Slices/ConfirmItemSlice';
-import deleteItemSlice from '../Slices/DeleteItemSlice';
-import emptyListSlice from '../Slices/EmptyListSlice';
-import { IItems } from '../Interfaces';
-import { getItemsFromLocalStorage } from '../Utilities';
+import create, { GetState, SetState } from 'zustand';
+import { devtools } from 'zustand/middleware';
 
-export interface ListState {
-  items: IItems;
-  isFetching: boolean;
-  refreshItems: () => void;
-  addItem: () => void;
-  updateItem: () => void;
-  confirmItem: () => void;
-  deleteItem: () => void;
-  emptyList: () => void;
-}
+import listSlice, { IListSlice } from '../Slices/ListSlice';
+import globalSlice, { IGlobalSlice } from '../Slices/GlobalSlice';
 
-const useStore = create<ListState>((set, get) => ({
-  items: getItemsFromLocalStorage(),
-  isFetching: true,
-  ...refreshItemsSlice(set),
-  ...addItemSlice(set),
-  ...updateItemSlice(set, get),
-  ...confirmItemSlice(set, get),
-  ...deleteItemSlice(set),
-  ...emptyListSlice(set),
-}));
+export type AppState = IGlobalSlice & IListSlice;
+
+const useStore = create<AppState>(
+  devtools((set: SetState<AppState>, get: GetState<AppState>) => ({
+    ...globalSlice(set),
+    ...listSlice(set, get),
+  })),
+);
 
 export default useStore;

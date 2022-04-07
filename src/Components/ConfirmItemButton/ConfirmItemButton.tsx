@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { memo } from 'react';
+import useStore from '../../Store/UseStore';
 
 type ConfirmItemButtonProps = {
   id: string;
@@ -19,11 +20,10 @@ const ConfirmItemButtonStyles = styled.button`
 `;
 
 const ConfirmItemButton = ({ id }: ConfirmItemButtonProps) => {
-  // const dispatch = useDispatch();
-  // const { confirmItem } = bindActionCreators(itemsActions, dispatch);
+  const confirmItem = useStore(state => state.confirmItem);
 
   const _confirmItem = async () => {
-    // dispatch(await confirmItem(id));
+    await confirmItem(id);
   };
 
   return (

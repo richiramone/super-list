@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useRef, useEffect, memo } from 'react';
+import useStore from '../../Store/UseStore';
 
 const AddItemStyles = styled.div`
   margin: 5rem 0.5rem 0;
@@ -32,6 +33,7 @@ const AddItem: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const renderCount = useRef(1);
   const hasRecentlyAddedItems = useRef(false);
+  const addItem = useStore(state => state.addItem);
 
   useEffect(() => {
     if (renderCount.current < 3) {
@@ -52,7 +54,7 @@ const AddItem: React.FC = () => {
 
     hasRecentlyAddedItems.current = true;
 
-    // dispatch(await addItem(event.currentTarget.value));
+    await addItem(event.currentTarget.value);
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     inputRef.current!.value = '';

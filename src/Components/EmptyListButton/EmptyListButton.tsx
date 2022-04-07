@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { useState, memo } from 'react';
+import { memo, useState } from 'react';
+import useStore from '../../Store/UseStore';
 
 const EmptyListButtonStyles = styled.button`
   padding: 0;
@@ -81,16 +82,12 @@ const DialogStyles = styled.div`
 `;
 
 const EmptyListButton: React.FC = () => {
-  // const [isActive, setState] = useState(false);
-  // const dispatch = useDispatch();
-  // const { emptyList } = bindActionCreators(itemsActions, dispatch);
-  const isActive = false;
-
-  const setState = (a: boolean) => a;
+  const [isActive, setState] = useState(false);
+  const emptyList = useStore(state => state.emptyList);
 
   const _emptyList = async () => {
-    // setState(isActive ? false : true);
-    // dispatch(emptyList);
+    setState(isActive ? false : true);
+    emptyList();
   };
 
   return (

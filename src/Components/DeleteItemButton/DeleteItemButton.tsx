@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useContext, memo } from 'react';
 import { ItemContext } from '../../Contexts/ItemContext';
+import useStore from '../../Store/UseStore';
 
 type DeleteItemButtonProps = {
   id: string;
@@ -22,12 +23,11 @@ const DeleteItemButton: React.FC<{
   id: string;
 }> = ({ id }: DeleteItemButtonProps) => {
   const { enableDeletedMode } = useContext(ItemContext);
-  // const dispatch = useDispatch();
-  // const { deleteItem } = bindActionCreators(itemsActions, dispatch);
+  const deleteItem = useStore(state => state.deleteItem);
 
   const _deleteItem = async () => {
     enableDeletedMode();
-    //dispatch(await deleteItem(id));
+    await deleteItem(id);
   };
 
   return (
