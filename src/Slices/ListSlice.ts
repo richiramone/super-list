@@ -2,26 +2,27 @@ import { GetState, SetState } from 'zustand';
 import { listApiController } from '../Controllers/ListApiController';
 import { IItem, IItems } from '../Interfaces';
 import { AppState } from '../Store/UseStore';
-import { baseRefreshItems, getItemsFromLocalStorage, updateLocalStorage } from '../Utilities';
 
 export interface IListSlice {
   items: IItems;
-  refreshItems: () => void;
-  addItem: (itemValue: string) => void;
-  updateItem: (itemKey: string, updateItemValue: string) => void;
-  confirmItem: (itemKey: string) => void;
-  deleteItem: (itemKey: string) => void;
+  refreshItems: (shouldRenderPreloader?: boolean) => Promise<void>;
+  addItem: (itemValue: string) => Promise<void>;
+  updateItem: (itemKey: string, updateItemValue: string) => Promise<void>;
+  confirmItem: (itemKey: string) => Promise<void>;
+  deleteItem: (itemKey: string) => Promise<void>;
   emptyList: () => void;
 }
 
 const listSlice = (set: SetState<AppState>, get: GetState<AppState>) => ({
-  items: getItemsFromLocalStorage(),
-  refreshItems: async () => {
-    set(state => {
-      state.isFetching = true;
-    });
+  items: {},
+  refreshItems: async (shouldRenderPreloader?: boolean) => {
+    if (shouldRenderPreloader) {
+      set(state => {
+        state.isFetching = true;
+      });
+    }
 
-    const items = await baseRefreshItems();
+    const items = await listApiController.getItems();
 
     set(state => {
       state.isFetching = false;
@@ -36,13 +37,11 @@ const listSlice = (set: SetState<AppState>, get: GetState<AppState>) => ({
     };
 
     await listApiController.addItem(newItem);
-    const items = await baseRefreshItems();
+    const items = await listApiController.getItems();
 
     set(state => {
       state.items = items;
     });
-
-    set({ author: '' });
   },
   updateItem: async (itemKey: string, updateItemValue: string) => {
     const items = get().items;
@@ -58,7 +57,7 @@ const listSlice = (set: SetState<AppState>, get: GetState<AppState>) => ({
     });
 
     await listApiController.updateItem(itemKey, tempItems[itemKey]);
-    const refreshdItems = await baseRefreshItems();
+    const refreshdItems = await listApiController.getItems();
 
     set(state => {
       state.items = refreshdItems;
@@ -78,7 +77,7 @@ const listSlice = (set: SetState<AppState>, get: GetState<AppState>) => ({
     });
 
     await listApiController.updateItem(itemKey, tempItems[itemKey]);
-    const refreshdItems = await baseRefreshItems();
+    const refreshdItems = await listApiController.getItems();
 
     set(state => {
       state.items = refreshdItems;
@@ -87,17 +86,14 @@ const listSlice = (set: SetState<AppState>, get: GetState<AppState>) => ({
   deleteItem: async (itemKey: string) => {
     await listApiController.deleteItem(itemKey);
 
-    const items = await baseRefreshItems();
+    const items = await listApiController.getItems();
 
     set(state => {
       state.items = items;
     });
   },
   emptyList: () => {
-    updateLocalStorage({});
-
     listApiController.emptyList();
-
     set({ items: {} });
   },
 });

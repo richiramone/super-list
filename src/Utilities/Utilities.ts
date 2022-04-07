@@ -1,4 +1,3 @@
-import { listApiController } from '../Controllers/ListApiController';
 import { IItems } from '../Interfaces/AppInterfaces';
 
 export const reverseItems = (items: IItems) => {
@@ -15,22 +14,4 @@ export const getAuthor = () => {
   const authorFromParams = urlParams.has('author') ? urlParams.get('author') : 'lucas';
 
   return authorFromParams ? authorFromParams : 'lucas';
-};
-
-export const getItemsFromLocalStorage = () => {
-  const localStorageItems = localStorage.getItem('items');
-
-  return localStorageItems === null ? {} : JSON.parse(localStorageItems);
-};
-
-export const updateLocalStorage = (items: IItems) => {
-  localStorage.setItem('items', JSON.stringify(items));
-};
-
-export const baseRefreshItems = async () => {
-  const items = await listApiController.getItems();
-
-  updateLocalStorage(items);
-
-  return items;
 };
