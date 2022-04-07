@@ -1,3 +1,7 @@
+memo all? yt?
+devtools logs
+middleware api?
+
 # TODO
 
 - firebase security
