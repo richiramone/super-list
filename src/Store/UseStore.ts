@@ -1,4 +1,4 @@
-import create, { GetState, SetState, State, StateCreator } from 'zustand';
+import create, { GetState, SetState } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
 import listSlice, { IListSlice } from '../Slices/ListSlice';
 import globalSlice, { IGlobalSlice } from '../Slices/GlobalSlice';
