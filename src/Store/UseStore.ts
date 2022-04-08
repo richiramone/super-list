@@ -1,5 +1,5 @@
-import create, { GetState, SetState } from 'zustand';
-import { devtools, persist } from 'zustand/middleware';
+import create, { GetState } from 'zustand';
+import { devtools, NamedSet, persist } from 'zustand/middleware';
 import listSlice, { IListSlice } from '../Slices/ListSlice';
 import globalSlice, { IGlobalSlice } from '../Slices/GlobalSlice';
 
@@ -7,12 +7,13 @@ export type AppState = IGlobalSlice & IListSlice;
 
 const store = devtools(
   persist(
-    (set: SetState<AppState>, get: GetState<AppState>) => ({
+    (set: NamedSet<AppState>, get: GetState<AppState>) => ({
       ...globalSlice(set),
       ...listSlice(set, get),
     }),
     { name: 'superList' },
   ),
+  { anonymousActionType: 'action' },
 );
 
 const useStore = create<AppState>(store);

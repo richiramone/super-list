@@ -1,4 +1,5 @@
-import { GetState, SetState } from 'zustand';
+import { GetState } from 'zustand';
+import { NamedSet } from 'zustand/middleware';
 import { listApiController } from '../Controllers/ListApiController';
 import { IItem, IItems } from '../Interfaces';
 import { AppState } from '../Store/UseStore';
@@ -13,21 +14,29 @@ export interface IListSlice {
   emptyList: () => void;
 }
 
-const listSlice = (set: SetState<AppState>, get: GetState<AppState>) => ({
+const listSlice = (set: NamedSet<AppState>, get: GetState<AppState>) => ({
   items: {},
   refreshItems: async (shouldRenderPreloader?: boolean) => {
     if (shouldRenderPreloader) {
-      set(state => {
-        state.isFetching = true;
-      });
+      set(
+        state => {
+          state.isFetching = true;
+        },
+        false,
+        'fetching',
+      );
     }
 
     const items = await listApiController.getItems();
 
-    set(state => {
-      state.isFetching = false;
-      state.items = items;
-    });
+    set(
+      state => {
+        state.isFetching = false;
+        state.items = items;
+      },
+      false,
+      'refreshItems',
+    );
   },
   addItem: async (itemValue: string) => {
     const newItem: IItem = {
@@ -39,9 +48,13 @@ const listSlice = (set: SetState<AppState>, get: GetState<AppState>) => ({
     await listApiController.addItem(newItem);
     const items = await listApiController.getItems();
 
-    set(state => {
-      state.items = items;
-    });
+    set(
+      state => {
+        state.items = items;
+      },
+      false,
+      'addItem',
+    );
   },
   updateItem: async (itemKey: string, updateItemValue: string) => {
     const items = get().items;
@@ -59,9 +72,13 @@ const listSlice = (set: SetState<AppState>, get: GetState<AppState>) => ({
     await listApiController.updateItem(itemKey, tempItems[itemKey]);
     const refreshdItems = await listApiController.getItems();
 
-    set(state => {
-      state.items = refreshdItems;
-    });
+    set(
+      state => {
+        state.items = refreshdItems;
+      },
+      false,
+      'updateItem',
+    );
   },
   confirmItem: async (itemKey: string) => {
     const items = get().items;
@@ -79,22 +96,30 @@ const listSlice = (set: SetState<AppState>, get: GetState<AppState>) => ({
     await listApiController.updateItem(itemKey, tempItems[itemKey]);
     const refreshdItems = await listApiController.getItems();
 
-    set(state => {
-      state.items = refreshdItems;
-    });
+    set(
+      state => {
+        state.items = refreshdItems;
+      },
+      false,
+      'confirmItem',
+    );
   },
   deleteItem: async (itemKey: string) => {
     await listApiController.deleteItem(itemKey);
 
     const items = await listApiController.getItems();
 
-    set(state => {
-      state.items = items;
-    });
+    set(
+      state => {
+        state.items = items;
+      },
+      false,
+      'deleteItem',
+    );
   },
   emptyList: () => {
     listApiController.emptyList();
-    set({ items: {} });
+    set({ items: {} }, false, 'emptyList');
   },
 });
 

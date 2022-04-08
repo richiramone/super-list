@@ -1,4 +1,4 @@
-import { SetState } from 'zustand';
+import { NamedSet } from 'zustand/middleware';
 import { AppState } from '../Store/UseStore';
 import { getAuthor } from '../Utilities';
 
@@ -7,7 +7,7 @@ export interface IGlobalSlice {
   isFetching: boolean;
 }
 
-const globalSlice = (set: SetState<AppState>) => ({
+const globalSlice = (set: NamedSet<AppState>) => ({
   author: getAuthor(),
   isFetching: false,
 });

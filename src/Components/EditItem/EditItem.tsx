@@ -44,6 +44,10 @@ const EditItem: React.FC<{
     }
   }, [isEditing]);
 
+  useEffect(() => {
+    inputRef.current!.value = value;
+  }, [value]);
+
   return <EditItemStyles type="text" defaultValue={value} ref={inputRef} onKeyPress={tryUpdateItem} onClick={enableEditingMode} />;
 };
 
