@@ -77,7 +77,12 @@ const Item: React.FC<{
 }> = ({ item, id }: ItemProps) => {
   const { isBeingEdited, isBeingDeleted, enableEditingMode, disableEditingMode } = useContext(ItemContext);
 
-  const itemClassName = [isBeingEdited ? 'is-editing' : '', isBeingDeleted ? 'deleted' : '', item.hasQuestionMark ? 'has-question-mark' : '', item.author !== 'lucas' ? 'not-lucas' : ''].join(' ');
+  const itemClassName = [
+    isBeingEdited ? 'is-editing' : '',
+    isBeingDeleted ? 'deleted' : '',
+    item.hasQuestionMark ? 'has-question-mark' : '',
+    item.author !== 'lucas' ? 'not-lucas' : '',
+  ].join(' ');
 
   const confirmItemButton = item.hasQuestionMark ? <ConfirmItemButton id={id} /> : null;
 

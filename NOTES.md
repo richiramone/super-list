@@ -1,7 +1,3 @@
-devtools logs
-memo all
-middleware api
-
 # TODO
 
 - firebase security
