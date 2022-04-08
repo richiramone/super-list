@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { IItem } from '../../Interfaces/AppInterfaces';
 import { ItemContext } from '../../Contexts/ItemContext';
 import { useContext, memo } from 'react';
+import { TransitionGroup } from 'react-transition-group';
 
 type ItemProps = {
   id: string;
@@ -75,7 +76,8 @@ const Item: React.FC<{
   id: string;
   item: IItem;
 }> = ({ item, id }: ItemProps) => {
-  const { isBeingEdited, isBeingDeleted, enableEditingMode, disableEditingMode } = useContext(ItemContext);
+  const { isBeingEdited, isBeingDeleted, enableEditingMode, disableEditingMode } =
+    useContext(ItemContext);
 
   const itemClassName = [
     isBeingEdited ? 'is-editing' : '',
@@ -87,14 +89,20 @@ const Item: React.FC<{
   const confirmItemButton = item.hasQuestionMark ? <ConfirmItemButton id={id} /> : null;
 
   return (
-    <ItemStyles className={itemClassName} onBlur={disableEditingMode}>
-      <EditItem id={id} value={item.value} />
-      <span onClick={enableEditingMode} className="item__value">
-        {item.value}
-      </span>
-      {confirmItemButton}
-      <DeleteItemButton id={id} />
-    </ItemStyles>
+    <TransitionGroup
+      transitionName="example"
+      transitionEnterTimeout={500}
+      transitionLeaveTimeout={300}
+    >
+      <ItemStyles className={itemClassName} onBlur={disableEditingMode}>
+        <EditItem id={id} value={item.value} />
+        <span onClick={enableEditingMode} className="item__value">
+          {item.value}
+        </span>
+        {confirmItemButton}
+        <DeleteItemButton id={id} />
+      </ItemStyles>
+    </TransitionGroup>
   );
 };
 
