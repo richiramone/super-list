@@ -7,6 +7,7 @@ export interface IGlobalSlice {
   isFetching: boolean;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const globalSlice = (set: NamedSet<AppState>) => ({
   author: getAuthor(),
   isFetching: false,

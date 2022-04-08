@@ -45,6 +45,7 @@ const EditItem: React.FC<{
   }, [isEditing]);
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     inputRef.current!.value = value;
   }, [value]);
 

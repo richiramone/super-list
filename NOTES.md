@@ -1,3 +1,5 @@
+- animation css
+
 # TODO
 
 - firebase security
@@ -6,12 +8,10 @@
 - pwa
 - lazy loading
   - https://web.dev/code-splitting-suspense/?utm_source=lighthouse&utm_medium=devtools
-- next js
 - deploy firebase
 - unit testing
   - https://testing-library.com/docs/react-testing-library/intro/
 - storybook
-- animation css
 
 # KEYWORDS
 
