@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { IItem } from '../../Interfaces/AppInterfaces';
 import { ItemContext } from '../../Contexts/ItemContext';
 import { useContext, memo } from 'react';
-import { TransitionGroup } from 'react-transition-group';
 
 type ItemProps = {
   id: string;
@@ -89,20 +88,14 @@ const Item: React.FC<{
   const confirmItemButton = item.hasQuestionMark ? <ConfirmItemButton id={id} /> : null;
 
   return (
-    <TransitionGroup
-      transitionName="example"
-      transitionEnterTimeout={500}
-      transitionLeaveTimeout={300}
-    >
-      <ItemStyles className={itemClassName} onBlur={disableEditingMode}>
-        <EditItem id={id} value={item.value} />
-        <span onClick={enableEditingMode} className="item__value">
-          {item.value}
-        </span>
-        {confirmItemButton}
-        <DeleteItemButton id={id} />
-      </ItemStyles>
-    </TransitionGroup>
+    <ItemStyles className={itemClassName} onBlur={disableEditingMode}>
+      <EditItem id={id} value={item.value} />
+      <span onClick={enableEditingMode} className="item__value">
+        {item.value}
+      </span>
+      {confirmItemButton}
+      <DeleteItemButton id={id} />
+    </ItemStyles>
   );
 };
 
