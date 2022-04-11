@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useRef, useEffect, memo } from 'react';
 import useStore from '../../Store/UseStore';
+import { hasDuplicatedValue } from '../../Utilities';
 
 const AddItemStyles = styled.div`
   margin: 5rem 0.5rem 0;
@@ -33,7 +34,10 @@ const AddItem: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const renderCount = useRef(1);
   const hasRecentlyAddedItems = useRef(false);
+  const items = useStore(state => state.items);
   const addItem = useStore(state => state.addItem);
+  const renderConfirmationDialog = useStore(state => state.renderConfirmationDialog);
+  const confirmationDialogCancelAction = useStore(state => state.confirmationDialogCancelAction);
 
   useEffect(() => {
     if (renderCount.current < 3) {
@@ -47,14 +51,30 @@ const AddItem: React.FC = () => {
     }
   });
 
-  const tryAddItem = async (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const tryAddItem = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key !== 'Enter' || event.currentTarget.value === '') {
       return;
     }
 
+    const value = event.currentTarget.value;
+
+    if (hasDuplicatedValue(items, value)) {
+      renderConfirmationDialog(
+        'Sembra che questo item ci sia giá, sei sicuro di voler aggiungerlo?',
+        async () => {
+          confirmationDialogCancelAction();
+          await _addItem(value);
+        },
+      );
+    } else {
+      _addItem(value);
+    }
+  };
+
+  const _addItem = async (value: string) => {
     hasRecentlyAddedItems.current = true;
 
-    await addItem(event.currentTarget.value);
+    await addItem(value);
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     inputRef.current!.value = '';

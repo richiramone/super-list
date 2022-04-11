@@ -42,12 +42,16 @@ const ItemStyles = styled.li`
     font-weight: normal;
   }
 
+  &.is-duplicated {
+    background: #223889 !important;
+  }
+
   &.has-question-mark {
     background: #ff6a00;
   }
 
   &.not-lucas {
-    background: #ff0099 !important;
+    background: #ff0099;
   }
 
   &.is-editing {
@@ -71,16 +75,14 @@ const ItemStyles = styled.li`
   }
 `;
 
-const Item: React.FC<{
-  id: string;
-  item: IItem;
-}> = ({ item, id }: ItemProps) => {
+const Item: React.FC<{ id: string; item: IItem }> = ({ item, id }: ItemProps) => {
   const { isBeingEdited, isBeingDeleted, enableEditingMode, disableEditingMode } =
     useContext(ItemContext);
 
   const itemClassName = [
     isBeingEdited ? 'is-editing' : '',
     isBeingDeleted ? 'deleted' : '',
+    item.isDuplicated ? 'is-duplicated' : '',
     item.hasQuestionMark ? 'has-question-mark' : '',
     item.author !== 'lucas' ? 'not-lucas' : '',
   ].join(' ');

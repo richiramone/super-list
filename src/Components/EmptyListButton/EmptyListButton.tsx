@@ -26,7 +26,7 @@ const EmptyListButton: React.FC = () => {
   };
 
   return (
-    <EmptyListButtonStyles onClick={_renderConfirmationDialog}>
+    <EmptyListButtonStyles onClick={() => _renderConfirmationDialog()}>
       <svg viewBox="0 0 32 32">
         <use xlinkHref="#shape-trash"></use>
       </svg>

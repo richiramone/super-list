@@ -34,8 +34,9 @@ const DialogStyles = styled.div`
   h3 {
     margin: 0;
     padding: 2rem 1rem 0;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: normal;
+    line-height: 1.5rem;
   }
 
   .buttons-wrapper {

@@ -5,7 +5,7 @@ export interface IConfirmationDialogSlice {
   shouldRenderConfirmationDialog: boolean;
   confirmationDialogQuestion: string;
   confirmationDialogCallbackFn?: () => void;
-  renderConfirmationDialog: (question: string, callbackFn: () => void) => void;
+  renderConfirmationDialog: (question: string, callbackFn: () => void | Promise<void>) => void;
   confirmationDialogCancelAction: () => void;
 }
 
@@ -13,7 +13,7 @@ const confirmationDialogSlice = (set: NamedSet<AppState>) => {
   return {
     shouldRenderConfirmationDialog: false,
     confirmationDialogQuestion: '',
-    renderConfirmationDialog: (question: string, callbackFn: () => void) => {
+    renderConfirmationDialog: (question: string, callbackFn: () => void | Promise<void>) => {
       set(
         state => {
           state.confirmationDialogQuestion = question;

@@ -3,6 +3,7 @@ import { NamedSet } from 'zustand/middleware';
 import { listApiController } from '../Controllers/ListApiController';
 import { IItem, IItems } from '../Interfaces';
 import { AppState } from '../Store/UseStore';
+import { hasDuplicatedValue } from '../Utilities';
 
 export interface IListSlice {
   items: IItems;
@@ -43,6 +44,7 @@ const listSlice = (set: NamedSet<AppState>, get: GetState<AppState>) => ({
       author: get().author,
       hasQuestionMark: itemValue.includes('?'),
       value: itemValue,
+      isDuplicated: hasDuplicatedValue(get().items, itemValue),
     };
 
     await listApiController.addItem(newItem);

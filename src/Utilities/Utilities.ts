@@ -15,3 +15,19 @@ export const getAuthor = () => {
 
   return authorFromParams ? authorFromParams : 'lucas';
 };
+
+export const hasDuplicatedValue = (items: IItems, newValue: string) => {
+  let alreadyExists = false;
+
+  for (const [key] of Object.entries(items)) {
+    const itemValue = items[key].value.toLowerCase();
+    newValue.toLowerCase();
+
+    if (itemValue.includes(newValue) || newValue.includes(itemValue)) {
+      alreadyExists = true;
+      break;
+    }
+  }
+
+  return alreadyExists;
+};

@@ -1,4 +1,5 @@
 export interface IItem {
+  isDuplicated: boolean;
   hasQuestionMark: boolean;
   author: string;
   value: string;
