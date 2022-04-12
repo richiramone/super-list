@@ -1,14 +1,17 @@
-- animation css
-
 # TODO
 
 - firebase security
+
+- lazy loading
+
+  - https://web.dev/code-splitting-suspense/?utm_source=lighthouse&utm_medium=devtools
+
 - lighthouse
 - sw
 - pwa
-- lazy loading
-  - https://web.dev/code-splitting-suspense/?utm_source=lighthouse&utm_medium=devtools
+
 - deploy firebase
+
 - unit testing
   - https://testing-library.com/docs/react-testing-library/intro/
 - storybook
