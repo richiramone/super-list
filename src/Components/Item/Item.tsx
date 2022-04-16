@@ -11,15 +11,11 @@ type ItemProps = {
   item: IItem;
 };
 
-const ItemStyles = styled.li`
+const ItemStyles = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  margin: 0 0.5rem 0.5rem;
   padding: 4px 8px;
-  max-width: 390px;
-  width: auto;
-  height: auto;
   border-radius: 4px;
   background: #09f;
   cursor: pointer;
@@ -68,10 +64,7 @@ const ItemStyles = styled.li`
   }
 
   &.deleted {
-    overflow: hidden;
-    background-color: #f55;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    background-color: #f55 !important;
   }
 `;
 

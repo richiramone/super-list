@@ -5,6 +5,7 @@ import { ItemContextProvider } from '../../Contexts/ItemContext';
 import { memo, useEffect } from 'react';
 import { IItems } from '../../Interfaces/AppInterfaces';
 import useStore from '../../Store/UseStore';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const ItemsListStyles = styled.ul`
   display: flex;
@@ -14,6 +15,13 @@ const ItemsListStyles = styled.ul`
   margin: 1rem 0 2rem;
   padding: 0;
   list-style: none;
+
+  > li {
+    margin: 0 0.5rem 0.5rem;
+    max-width: 390px;
+    width: auto;
+    height: auto;
+  }
 `;
 
 const ItemsList: React.FC = () => {
@@ -29,11 +37,21 @@ const ItemsList: React.FC = () => {
 
   return (
     <ItemsListStyles>
-      {Object.keys(items!).map((key: string) => (
-        <ItemContextProvider key={key}>
-          <Item item={items![key]} id={key} />
-        </ItemContextProvider>
-      ))}
+      <AnimatePresence>
+        {Object.keys(items!).map((key: string) => (
+          <ItemContextProvider key={key}>
+            <motion.li
+              id={key}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ delay: 0.1, duration: 0.3 }}
+            >
+              <Item item={items![key]} id={key} />
+            </motion.li>
+          </ItemContextProvider>
+        ))}
+      </AnimatePresence>
     </ItemsListStyles>
   );
 };
