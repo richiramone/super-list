@@ -77,7 +77,7 @@ const Item: React.FC<{ id: string; item: IItem }> = ({ item, id }: ItemProps) =>
     isBeingDeleted ? 'deleted' : '',
     item.isDuplicated ? 'is-duplicated' : '',
     item.hasQuestionMark ? 'has-question-mark' : '',
-    item.author !== 'lucas' ? 'not-lucas' : '',
+    item.author !== 'ramoslucasd@gmail.com' ? 'not-lucas' : '',
   ].join(' ');
 
   const confirmItemButton = item.hasQuestionMark ? <ConfirmItemButton id={id} /> : null;
