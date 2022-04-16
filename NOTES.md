@@ -1,7 +1,5 @@
 # TODO
 
-- firebase security
-
 - lazy loading
 
   - https://web.dev/code-splitting-suspense/?utm_source=lighthouse&utm_medium=devtools
