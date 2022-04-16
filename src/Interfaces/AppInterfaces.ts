@@ -25,3 +25,9 @@ export type IListApiController = {
   deleteItem: (itemKey: string) => Promise<void>;
   emptyList: () => Promise<void>;
 };
+
+export type IAuthContext = {
+  isUserLoggedIn: boolean;
+  userEmail: string;
+  logUser: () => void;
+};

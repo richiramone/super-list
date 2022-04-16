@@ -9,13 +9,6 @@ export const reverseItems = (items: IItems) => {
     }, {});
 };
 
-export const getAuthor = () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const authorFromParams = urlParams.has('author') ? urlParams.get('author') : 'lucas';
-
-  return authorFromParams ? authorFromParams : 'lucas';
-};
-
 export const hasDuplicatedValue = (items: IItems, newValue: string) => {
   let alreadyExists = false;
 
