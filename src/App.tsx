@@ -6,7 +6,7 @@ import ItemsList from './Components/ItemList';
 import styled from 'styled-components';
 import ConfirmationDialog from './Components/ConfirmationDialog';
 import useStore from './Store/UseStore';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { signInWithPopup } from 'firebase/auth';
 import { auth, googleAuthProvider } from './Firebase/Auth';
 
@@ -15,7 +15,7 @@ const MainStyles = styled.main`
 `;
 
 const App: React.FC = () => {
-  const isAuthorLogged = useStore(state => state.isAuthorLogged);
+  const isAuthorLogged = useStore(useCallback(state => state.isAuthorLogged, []));
   const setUserEmail = useStore(state => state.setAuthor);
 
   const _logUser = async () => {
@@ -33,21 +33,21 @@ const App: React.FC = () => {
 
   return (
     <>
-      {isAuthorLogged && (
-        <div className="App">
-          <Preloader />
-          <ConfirmationDialog />
-          <section>
-            <Header />
+      <div className="App">
+        <Preloader />
+        <ConfirmationDialog />
+        <section>
+          <Header />
+          {isAuthorLogged && (
             <MainStyles>
               <aside>
                 <AddItem />
               </aside>
               <ItemsList />
             </MainStyles>
-          </section>
-        </div>
-      )}
+          )}
+        </section>
+      </div>
     </>
   );
 };

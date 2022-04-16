@@ -1,8 +1,8 @@
 {
   "rules": {
     "$uid": {
-      ".read": "request.auth != null && request.auth.uid == $uid",
-      ".write": "request.auth != null && request.auth.uid == $uid"
+      ".read": "auth != null",
+      ".write": "auth != null"
     }
   }
 }

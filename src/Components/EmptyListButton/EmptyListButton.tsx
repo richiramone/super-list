@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import useStore from '../../Store/UseStore';
 
 const EmptyListButtonStyles = styled.button`
@@ -12,6 +12,7 @@ const EmptyListButtonStyles = styled.button`
 `;
 
 const EmptyListButton: React.FC = () => {
+  const isAuthorLogged = useStore(useCallback(state => state.isAuthorLogged, []));
   const emptyList = useStore(state => state.emptyList);
   const renderConfirmationDialog = useStore(state => state.renderConfirmationDialog);
   const confirmationDialogCancelAction = useStore(state => state.confirmationDialogCancelAction);
@@ -26,11 +27,15 @@ const EmptyListButton: React.FC = () => {
   };
 
   return (
-    <EmptyListButtonStyles onClick={() => _renderConfirmationDialog()}>
-      <svg viewBox="0 0 32 32">
-        <use xlinkHref="#shape-trash"></use>
-      </svg>
-    </EmptyListButtonStyles>
+    <>
+      {isAuthorLogged && (
+        <EmptyListButtonStyles onClick={() => _renderConfirmationDialog()}>
+          <svg viewBox="0 0 32 32">
+            <use xlinkHref="#shape-trash"></use>
+          </svg>
+        </EmptyListButtonStyles>
+      )}
+    </>
   );
 };
 
