@@ -1,11 +1,7 @@
 # TODO
 
-- lazy loading
-
-  - https://web.dev/code-splitting-suspense/?utm_source=lighthouse&utm_medium=devtools
-
 - lighthouse
-- sw
+- service workers
 - pwa
 
 - deploy firebase
