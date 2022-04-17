@@ -1,12 +1,8 @@
 import './App.css';
-import Preloader from './Components/Preloader';
 import Header from './Components/Header';
-import AddItem from './Components/AddItem';
-import ItemsList from './Components/ItemList';
 import styled from 'styled-components';
-import ConfirmationDialog from './Components/ConfirmationDialog';
 import useStore from './Store/UseStore';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, lazy, Suspense } from 'react';
 import { signInWithPopup } from 'firebase/auth';
 import { auth, googleAuthProvider } from './Firebase/Auth';
 
@@ -31,8 +27,14 @@ const App: React.FC = () => {
     }
   }, []);
 
+  const renderLoader = () => <></>;
+  const Preloader = lazy(() => import('./Components/Preloader'));
+  const ConfirmationDialog = lazy(() => import('./Components/ConfirmationDialog'));
+  const AddItem = lazy(() => import('./Components/AddItem'));
+  const ItemsList = lazy(() => import('./Components/ItemsList'));
+
   return (
-    <>
+    <Suspense fallback={renderLoader()}>
       <div className="App">
         <Preloader />
         <ConfirmationDialog />
@@ -48,7 +50,7 @@ const App: React.FC = () => {
           )}
         </section>
       </div>
-    </>
+    </Suspense>
   );
 };
 
