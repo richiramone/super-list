@@ -1,9 +1,8 @@
 # TODO
 
-- lighthouse
-- service workers
 - pwa
-
+- service workers
+- lighthouse
 - deploy firebase
 
 - unit testing
