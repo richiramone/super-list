@@ -1,8 +1,6 @@
 {
   "rules": {
-    "$uid": {
-      ".read": "auth != null",
-      ".write": "auth != null"
-    }
+    ".read": "auth.token.email_verified == true",
+    ".write": "auth.token.email_verified == true"
   }
 }
