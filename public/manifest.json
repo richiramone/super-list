@@ -1,25 +1,31 @@
 {
-    "short_name": "SuperList",
-    "name": "SuperList",
-    "icons": [
-        {
-            "src": "favicon.png",
-            "sizes": "64x64 32x32 24x24 16x16",
-            "type": "image/png"
-        },
-        {
-            "src": "logo.png",
-            "type": "image/png",
-            "sizes": "180x180"
-        },
-        {
-            "src": "apple-touch-icon.png",
-            "type": "image/png",
-            "sizes": "180x180"
-        }
-    ],
-    "start_url": ".",
-    "display": "standalone",
-    "theme_color": "#009DFF",
-    "background_color": "#ffffff"
+  "short_name": "SuperList",
+  "name": "SuperList",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "type": "image/png",
+      "sizes": "64x64 32x32 24x24 16x16"
+    },
+    {
+      "src": "logo.png",
+      "type": "image/png",
+      "sizes": "180x180"
+    },
+    {
+      "src": "logo_512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "type": "image/png",
+      "sizes": "180x180"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#009DFF",
+  "background_color": "#ffffff"
 }
