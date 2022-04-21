@@ -1,3 +1,5 @@
+import { type } from 'os';
+
 export interface IItem {
   isDuplicated: boolean;
   hasQuestionMark: boolean;
@@ -30,4 +32,18 @@ export type IAuthContext = {
   isUserLoggedIn: boolean;
   userEmail: string;
   logUser: () => void;
+};
+
+export type IFirebaseConfiguration = {
+  apiKey: string;
+  authDomain: string;
+  databaseURL: string;
+  projectId: string;
+  storageBucket: string;
+  messagingSenderId: string;
+  appId: string;
+};
+
+export type IFirebaseConfigurations = {
+  [key: string]: IFirebaseConfiguration;
 };
