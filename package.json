@@ -17,11 +17,11 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-firebase-hooks": "^3.0.5",
+    "react-focus-lock": "^2.8.1",
     "simple-zustand-devtools": "^1.0.1",
     "styled-components": "^5.3.5",
     "typescript": "^4.6.2",
     "web-vitals": "^2.1.4",
-    "zustand": "^3.7.1",
     "workbox-background-sync": "^5.1.4",
     "workbox-broadcast-update": "^5.1.4",
     "workbox-cacheable-response": "^5.1.4",
@@ -33,7 +33,8 @@
     "workbox-range-requests": "^5.1.4",
     "workbox-routing": "^5.1.4",
     "workbox-strategies": "^5.1.4",
-    "workbox-streams": "^5.1.4"
+    "workbox-streams": "^5.1.4",
+    "zustand": "^3.7.1"
   },
   "devDependencies": {
     "react-scripts": "5.0.0"

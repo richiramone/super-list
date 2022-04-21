@@ -37,6 +37,7 @@ const AddItem: React.FC = () => {
   const addItem = useStore(state => state.addItem);
   const renderConfirmationDialog = useStore(state => state.renderConfirmationDialog);
   const confirmationDialogCancelAction = useStore(state => state.confirmationDialogCancelAction);
+  const shouldRender = useStore(state => state.shouldRenderConfirmationDialog);
 
   useEffect(() => {
     if (renderCount.current < 3) {
@@ -49,6 +50,12 @@ const AddItem: React.FC = () => {
       hasRecentlyAddedItems.current = false;
     }
   });
+
+  useEffect(() => {
+    if (!shouldRender && renderCount.current > 2) {
+      inputRef.current?.focus();
+    }
+  }, [shouldRender]);
 
   const tryAddItem = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key !== 'Enter' || event.currentTarget.value === '') {
@@ -81,7 +88,13 @@ const AddItem: React.FC = () => {
 
   return (
     <AddItemStyles>
-      <input onKeyPress={tryAddItem} ref={inputRef} type="text" placeholder="altro..." />
+      <input
+        data-add-item-input
+        onKeyPress={tryAddItem}
+        ref={inputRef}
+        type="text"
+        placeholder="altro..."
+      />
     </AddItemStyles>
   );
 };

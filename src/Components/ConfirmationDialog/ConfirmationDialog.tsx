@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import { memo } from 'react';
+import { memo, useEffect, useRef } from 'react';
 import useStore from '../../Store/UseStore';
+import FocusLock from 'react-focus-lock';
 
 const DialogStyles = styled.div`
   display: none;
@@ -56,7 +57,7 @@ const DialogStyles = styled.div`
 
     &.cancel-button {
       color: #009dff;
-      border-color: #009dff;
+      border-color: #008ce3;
     }
 
     &.confirm-button {
@@ -67,8 +68,7 @@ const DialogStyles = styled.div`
 
     &:focus,
     &:active {
-      color: #fff;
-      background: #0073d5;
+      box-shadow: 0 0 4px 0px #009dff;
     }
   }
 `;
@@ -78,21 +78,41 @@ const EmptyListButton: React.FC = () => {
   const question = useStore(state => state.confirmationDialogQuestion);
   const cancelAction = useStore(state => state.confirmationDialogCancelAction);
   const confirmnAction = useStore(state => state.confirmationDialogCallbackFn);
+  const okInputRef = useRef<HTMLButtonElement>(null);
+
+  const ESCAPE_KEYS = ['27', 'Escape'];
+
+  const escapehandler = (event: KeyboardEvent) => {
+    if (ESCAPE_KEYS.includes(event.key)) {
+      cancelAction();
+    }
+  };
+
+  useEffect(() => {
+    if (shouldRender) {
+      window.addEventListener('keydown', escapehandler);
+      okInputRef.current?.focus();
+    } else {
+      window.removeEventListener('keydown', escapehandler);
+    }
+  }, [shouldRender]);
 
   return (
     <DialogStyles className={shouldRender ? 'isActive' : ''}>
-      <div className="confirmation-dialog">
-        <h3>{question}</h3>
-        <div className="buttons-wrapper">
-          <button className="cancel-button" onClick={cancelAction}>
-            No
-          </button>
+      <FocusLock>
+        <div className="confirmation-dialog">
+          <h3>{question}</h3>
+          <div className="buttons-wrapper">
+            <button className="cancel-button" onClick={cancelAction}>
+              No
+            </button>
 
-          <button className="confirm-button" onClick={confirmnAction}>
-            Si
-          </button>
+            <button ref={okInputRef} className="confirm-button" onClick={confirmnAction}>
+              Si
+            </button>
+          </div>
         </div>
-      </div>
+      </FocusLock>
     </DialogStyles>
   );
 };
