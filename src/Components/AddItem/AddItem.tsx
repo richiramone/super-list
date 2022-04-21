@@ -4,7 +4,7 @@ import useStore from '../../Store/UseStore';
 import { hasDuplicatedValue } from '../../Utilities';
 
 const AddItemStyles = styled.div`
-  margin: 5rem 0.5rem 0;
+  margin: 0 0.5rem 0;
   display: flex;
   padding: 0.3rem 0.5rem;
   max-width: 390px;

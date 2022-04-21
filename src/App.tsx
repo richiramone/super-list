@@ -7,6 +7,8 @@ import LoginButton from './Components/LoginButton';
 
 const SectionStyles = styled.section`
   margin-top: 5rem;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
+    env(safe-area-inset-left);
 `;
 
 const App: React.FC = () => {
