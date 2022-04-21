@@ -5,8 +5,8 @@ import useStore from './Store/UseStore';
 import { useCallback, lazy, Suspense } from 'react';
 import LoginButton from './Components/LoginButton';
 
-const MainStyles = styled.main`
-  margin-top: 60px;
+const SectionStyles = styled.section`
+  margin-top: 5rem;
 `;
 
 const App: React.FC = () => {
@@ -22,19 +22,19 @@ const App: React.FC = () => {
       <div className="App">
         <Preloader />
         <ConfirmationDialog />
-        <section>
-          <Header />
+        <Header />
+        <SectionStyles>
           {!isAuthorLogged ? (
             <LoginButton />
           ) : (
-            <MainStyles>
+            <main>
               <aside>
                 <AddItem />
               </aside>
               <ItemsList />
-            </MainStyles>
+            </main>
           )}
-        </section>
+        </SectionStyles>
       </div>
     </Suspense>
   );
