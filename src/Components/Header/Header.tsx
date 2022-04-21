@@ -1,7 +1,8 @@
-import styled from "styled-components";
-import ReloadListButton from "../RefreshListButton/RefreshListButton";
-import EmptyList from "../EmptyListButton/EmptyListButton";
-import { memo } from "react";
+import styled from 'styled-components';
+import ReloadListButton from '../RefreshListButton/RefreshListButton';
+import EmptyList from '../EmptyListButton/EmptyListButton';
+import { memo, useCallback } from 'react';
+import useStore from '../../Store/UseStore';
 
 const HeaderStyles = styled.header`
   position: fixed;
@@ -39,14 +40,20 @@ const HeaderStyles = styled.header`
   }
 `;
 
-const Header: React.FC = () => (
-  <HeaderStyles>
-    <h1>SuperList</h1>
-    <menu>
-      <ReloadListButton />
-      <EmptyList />
-    </menu>
-  </HeaderStyles>
-);
+const Header: React.FC = () => {
+  const isAuthorLogged = useStore(useCallback(state => state.isAuthorLogged, []));
+
+  return (
+    <HeaderStyles>
+      <h1>SuperList</h1>
+      {isAuthorLogged && (
+        <menu>
+          <ReloadListButton />
+          <EmptyList />
+        </menu>
+      )}
+    </HeaderStyles>
+  );
+};
 
 export default memo(Header);

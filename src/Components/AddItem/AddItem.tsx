@@ -25,7 +25,6 @@ const AddItemStyles = styled.div`
     background: none;
     color: #fff;
     letter-spacing: 0.02em;
-    font-size: 18px;
     line-height: 1.2;
   }
 `;

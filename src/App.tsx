@@ -2,9 +2,8 @@ import './App.css';
 import Header from './Components/Header';
 import styled from 'styled-components';
 import useStore from './Store/UseStore';
-import { useCallback, useEffect, lazy, Suspense } from 'react';
-import { signInWithPopup } from 'firebase/auth';
-import { auth, googleAuthProvider } from './Firebase/Auth';
+import { useCallback, lazy, Suspense } from 'react';
+import LoginButton from './Components/LoginButton';
 
 const MainStyles = styled.main`
   margin-top: 60px;
@@ -12,21 +11,6 @@ const MainStyles = styled.main`
 
 const App: React.FC = () => {
   const isAuthorLogged = useStore(useCallback(state => state.isAuthorLogged, []));
-  const setUserEmail = useStore(state => state.setAuthor);
-
-  const _logUser = async () => {
-    const signInResult = await signInWithPopup(auth, googleAuthProvider);
-    const userEmailFromResult = signInResult.user.email ? signInResult.user.email : '';
-
-    setUserEmail(userEmailFromResult);
-  };
-
-  useEffect(() => {
-    if (!isAuthorLogged) {
-      _logUser();
-    }
-  }, []);
-
   const renderLoader = () => <></>;
   const Preloader = lazy(() => import('./Components/Preloader'));
   const ConfirmationDialog = lazy(() => import('./Components/ConfirmationDialog'));
@@ -40,7 +24,9 @@ const App: React.FC = () => {
         <ConfirmationDialog />
         <section>
           <Header />
-          {isAuthorLogged && (
+          {!isAuthorLogged ? (
+            <LoginButton />
+          ) : (
             <MainStyles>
               <aside>
                 <AddItem />
