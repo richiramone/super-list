@@ -1,6 +1,6 @@
 {
   "rules": {
-    ".read": "auth.token.email_verified == true",
-    ".write": "auth.token.email_verified == true"
+    ".read": "auth.uid != null && auth.token.email_verified == true",
+    ".write": "auth.uid != null && auth.token.email_verified == true"
   }
 }
