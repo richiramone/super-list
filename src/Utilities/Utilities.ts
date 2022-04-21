@@ -14,9 +14,9 @@ export const hasDuplicatedValue = (items: IItems, newValue: string) => {
 
   for (const [key] of Object.entries(items)) {
     const itemValue = items[key].value.toLowerCase();
-    newValue.toLowerCase();
+    const newValueLowered = newValue.toLowerCase();
 
-    if (itemValue.includes(newValue) || newValue.includes(itemValue)) {
+    if (itemValue.includes(newValueLowered) || newValueLowered.includes(itemValue)) {
       alreadyExists = true;
       break;
     }
