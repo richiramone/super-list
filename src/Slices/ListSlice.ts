@@ -8,6 +8,7 @@ import { hasDuplicatedValue } from '../Utilities';
 export interface IListSlice {
   items: IItems;
   refreshItems: (shouldRenderPreloader?: boolean) => Promise<void>;
+  createNewList: () => Promise<void>;
   addItem: (itemValue: string) => Promise<void>;
   updateItem: (itemKey: string, updateItemValue: string) => Promise<void>;
   confirmItem: (itemKey: string) => Promise<void>;
@@ -37,6 +38,27 @@ const listSlice = (set: NamedSet<AppState>, get: GetState<AppState>) => ({
       },
       false,
       'refreshItems',
+    );
+  },
+  createNewList: async () => {
+    set(
+      state => {
+        state.isFetching = true;
+      },
+      false,
+      'fetching',
+    );
+
+    await listApiController.createNewList();
+    const items = await listApiController.getItems();
+
+    set(
+      state => {
+        state.isFetching = false;
+        state.items = items;
+      },
+      false,
+      'createNewList',
     );
   },
   addItem: async (itemValue: string) => {

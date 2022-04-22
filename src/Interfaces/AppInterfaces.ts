@@ -23,6 +23,7 @@ export type IItemContext = {
 export type IListApiController = {
   getItems: () => Promise<IItems>;
   addItem: (item: IItem) => Promise<void>;
+  createNewList: () => Promise<void>;
   updateItem: (itemKey: string, item: IItem) => Promise<void>;
   deleteItem: (itemKey: string) => Promise<void>;
   emptyList: () => Promise<void>;

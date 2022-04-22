@@ -2,6 +2,7 @@ import { IItem, IItems, IListApiController } from '../Interfaces/AppInterfaces';
 import { db, itemsDbRef } from '../Firebase/Database';
 import * as Firebase from 'firebase/database';
 import { reverseItems } from '../Utilities';
+import itemsListTemplate from '../Utilities/itemsListTemplate';
 
 export const listApiController: IListApiController = {
   getItems: async () => {
@@ -23,6 +24,11 @@ export const listApiController: IListApiController = {
   addItem: async (item: IItem) => {
     const newListRef = Firebase.push(itemsDbRef);
     await Firebase.set(newListRef, item);
+  },
+
+  createNewList: async () => {
+    await Firebase.remove(itemsDbRef);
+    await Firebase.update(itemsDbRef, itemsListTemplate);
   },
 
   updateItem: async (itemKey: string, item: IItem) => {

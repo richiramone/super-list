@@ -3,6 +3,7 @@ import ReloadListButton from '../RefreshListButton/RefreshListButton';
 import EmptyList from '../EmptyListButton/EmptyListButton';
 import { memo, useCallback } from 'react';
 import useStore from '../../Store/UseStore';
+import CreateNewListButton from '../CreateNewListButton';
 
 const HeaderStyles = styled.header`
   position: fixed;
@@ -48,6 +49,7 @@ const Header: React.FC = () => {
       <h1>SuperList</h1>
       {isAuthorLogged && (
         <menu>
+          <CreateNewListButton />
           <ReloadListButton />
           <EmptyList />
         </menu>
