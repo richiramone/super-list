@@ -82,10 +82,12 @@ const Item: React.FC<{ id: string; item: IItem }> = ({ item, id }: ItemProps) =>
 
   return (
     <ItemStyles className={itemClassName} onBlur={disableEditingMode}>
-      <EditItem id={id} value={item.value} />
-      <span onClick={enableEditingMode} className="item__value">
-        {item.value}
-      </span>
+      {isBeingEdited && <EditItem id={id} value={item.value} />}
+      {!isBeingEdited && (
+        <span onClick={enableEditingMode} className="item__value">
+          {item.value}
+        </span>
+      )}
       {confirmItemButton}
       <DeleteItemButton id={id} />
     </ItemStyles>
