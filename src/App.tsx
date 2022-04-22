@@ -5,10 +5,14 @@ import useStore from './Store/UseStore';
 import { useCallback, lazy, Suspense } from 'react';
 import LoginButton from './Components/LoginButton';
 
-const SectionStyles = styled.section`
-  margin-top: 5rem;
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
-    env(safe-area-inset-left);
+const AppStyles = styled.div`
+  height: 100vh;
+
+  section {
+    margin-top: 5rem;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
+      env(safe-area-inset-left);
+  }
 `;
 
 const App: React.FC = () => {
@@ -21,11 +25,11 @@ const App: React.FC = () => {
 
   return (
     <Suspense fallback={renderLoader()}>
-      <div className="App">
+      <AppStyles>
         <Preloader />
         <ConfirmationDialog />
         <Header />
-        <SectionStyles>
+        <section>
           {!isAuthorLogged ? (
             <LoginButton />
           ) : (
@@ -36,8 +40,8 @@ const App: React.FC = () => {
               <ItemsList />
             </main>
           )}
-        </SectionStyles>
-      </div>
+        </section>
+      </AppStyles>
     </Suspense>
   );
 };

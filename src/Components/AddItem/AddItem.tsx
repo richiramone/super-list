@@ -65,13 +65,10 @@ const AddItem: React.FC = () => {
     const value = event.currentTarget.value;
 
     if (hasDuplicatedValue(items, value)) {
-      renderConfirmationDialog(
-        'Sembra che questo item ci sia giá, sei sicuro di voler aggiungerlo?',
-        async () => {
-          confirmationDialogCancelAction();
-          await _addItem(value);
-        },
-      );
+      renderConfirmationDialog('Sembra che ci sia giá. Vuoi procedere?', async () => {
+        confirmationDialogCancelAction();
+        await _addItem(value);
+      });
     } else {
       _addItem(value);
     }

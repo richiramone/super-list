@@ -26,7 +26,7 @@ const EditItem: React.FC<{
   value: string;
 }> = ({ id, value }: EditItemProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { isBeingEdited: isEditing, enableEditingMode, disableEditingMode } = useContext(ItemContext);
+  const { isBeingEdited, enableEditingMode, disableEditingMode } = useContext(ItemContext);
   const updateItem = useStore(state => state.updateItem);
 
   const tryUpdateItem = async (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -39,17 +39,25 @@ const EditItem: React.FC<{
   };
 
   useEffect(() => {
-    if (isEditing) {
+    if (isBeingEdited) {
       inputRef.current?.focus();
     }
-  }, [isEditing]);
+  }, [isBeingEdited]);
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     inputRef.current!.value = value;
   }, [value]);
 
-  return <EditItemStyles type="text" defaultValue={value} ref={inputRef} onKeyPress={tryUpdateItem} onClick={enableEditingMode} />;
+  return (
+    <EditItemStyles
+      type="text"
+      defaultValue={value}
+      ref={inputRef}
+      onKeyPress={tryUpdateItem}
+      onClick={enableEditingMode}
+    />
+  );
 };
 
 export default memo(EditItem);
