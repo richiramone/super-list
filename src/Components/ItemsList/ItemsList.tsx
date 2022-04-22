@@ -7,16 +7,22 @@ import { IItems } from '../../Interfaces/AppInterfaces';
 import useStore from '../../Store/UseStore';
 import { AnimatePresence, motion } from 'framer-motion';
 
-const ItemsListStyles = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-start;
-  margin: 1rem 0 2rem;
-  padding: 0;
-  list-style: none;
+const ItemsListStyles = styled.div`
+  margin: 1rem 0;
+  height: calc(100vh - 12.5rem);
+  overflow: scroll;
 
-  > li {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0 0 2rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
     margin: 0 0.5rem 0.5rem;
     max-width: 390px;
     width: auto;
@@ -37,21 +43,23 @@ const ItemsList: React.FC = () => {
 
   return (
     <ItemsListStyles>
-      <AnimatePresence>
-        {Object.keys(items!).map((key: string) => (
-          <ItemContextProvider key={key}>
-            <motion.li
-              id={key}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ delay: 0.1, duration: 0.3 }}
-            >
-              <Item item={items![key]} id={key} />
-            </motion.li>
-          </ItemContextProvider>
-        ))}
-      </AnimatePresence>
+      <ul>
+        <AnimatePresence>
+          {Object.keys(items!).map((key: string) => (
+            <ItemContextProvider key={key}>
+              <motion.li
+                id={key}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ delay: 0.1, duration: 0.3 }}
+              >
+                <Item item={items![key]} id={key} />
+              </motion.li>
+            </ItemContextProvider>
+          ))}
+        </AnimatePresence>
+      </ul>
     </ItemsListStyles>
   );
 };

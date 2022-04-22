@@ -80,8 +80,12 @@ const Item: React.FC<{ id: string; item: IItem }> = ({ item, id }: ItemProps) =>
 
   const confirmItemButton = item.hasQuestionMark ? <ConfirmItemButton id={id} /> : null;
 
+  const _disableEditingMode = () => {
+    setTimeout(disableEditingMode, 100);
+  };
+
   return (
-    <ItemStyles className={itemClassName} onBlur={disableEditingMode}>
+    <ItemStyles className={itemClassName} onBlur={_disableEditingMode}>
       {isBeingEdited && <EditItem id={id} value={item.value} />}
       {!isBeingEdited && (
         <span onClick={enableEditingMode} className="item__value">

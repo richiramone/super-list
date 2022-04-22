@@ -6,12 +6,11 @@ import { useCallback, lazy, Suspense } from 'react';
 import LoginButton from './Components/LoginButton';
 
 const AppStyles = styled.div`
-  height: 100vh;
-
   section {
     margin-top: 5rem;
     padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
       env(safe-area-inset-left);
+    width: 100vw;
   }
 `;
 
@@ -28,8 +27,8 @@ const App: React.FC = () => {
       <AppStyles>
         <Preloader />
         <ConfirmationDialog />
-        <Header />
         <section>
+          <Header />
           {!isAuthorLogged ? (
             <LoginButton />
           ) : (

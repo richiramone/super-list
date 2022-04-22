@@ -47,7 +47,7 @@ const PreloaderStyles = styled.div`
 `;
 
 const Preloader: React.FC = () => {
-  const isFetching: boolean = useStore(useCallback(state => state.isFetching, []));
+  const isFetching = useStore(useCallback(state => state.isFetching, []));
 
   return (
     <PreloaderStyles className={isFetching ? 'is-loading' : ''}>

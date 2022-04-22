@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { memo } from 'react';
+import { memo, useCallback, useState } from 'react';
 import useStore from '../../Store/UseStore';
 import { signInWithPopup } from 'firebase/auth';
 import { auth, googleAuthProvider } from '../../Firebase/Auth';
@@ -25,20 +25,29 @@ const LoginButtonStyles = styled.button`
 `;
 
 const LoginButton: React.FC = () => {
-  const setUserEmail = useStore(state => state.setAuthor);
+  const [shouldBeHidden, setShouldBeHidden] = useState(false);
+  const setIsFetching = useStore(useCallback(state => state.setIsFetching, []));
+  const setUserEmail = useStore(useCallback(state => state.setAuthor, []));
 
   const logUser = () => {
     _logUser();
   };
 
   const _logUser = async () => {
+    setShouldBeHidden(true);
+    setIsFetching(true);
+
     const signInResult = await signInWithPopup(auth, googleAuthProvider);
     const userEmailFromResult = signInResult.user.email ? signInResult.user.email : '';
 
     setUserEmail(userEmailFromResult);
   };
 
-  return <LoginButtonStyles onClick={logUser}>Login</LoginButtonStyles>;
+  return (
+    <LoginButtonStyles hidden={shouldBeHidden} onClick={logUser}>
+      Login
+    </LoginButtonStyles>
+  );
 };
 
 export default memo(LoginButton);

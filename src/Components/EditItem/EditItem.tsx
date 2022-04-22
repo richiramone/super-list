@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useContext, useEffect, useRef, memo } from 'react';
+import { useContext, useEffect, useRef, memo, useCallback } from 'react';
 import { ItemContext } from '../../Contexts/ItemContext';
 import useStore from '../../Store/UseStore';
 
@@ -21,13 +21,10 @@ const EditItemStyles = styled.input`
   color: #fff;
 `;
 
-const EditItem: React.FC<{
-  id: string;
-  value: string;
-}> = ({ id, value }: EditItemProps) => {
+const EditItem: React.FC<{ id: string; value: string }> = ({ id, value }: EditItemProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { enableEditingMode, disableEditingMode } = useContext(ItemContext);
-  const updateItem = useStore(state => state.updateItem);
+  const updateItem = useStore(useCallback(state => state.updateItem, []));
 
   const tryUpdateItem = async (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key !== 'Enter' || event.currentTarget.value === '') {
