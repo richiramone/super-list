@@ -51,8 +51,6 @@ const ItemStyles = styled.div`
   }
 
   &.is-editing {
-    width: 100%;
-
     input {
       display: block;
       width: 100%;
