@@ -11,7 +11,7 @@ const items: string[] = [
 const itemsListTemplate: IItems = {};
 
 items.forEach((item, index) => {
-  itemsListTemplate[index] = {
+  itemsListTemplate[`-N0Vw4tbuCCbBFaVTfxC${index}`] = {
     author: 'ramoslucasd@gmail.com',
     hasQuestionMark: false,
     value: item,
