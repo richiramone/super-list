@@ -27,7 +27,6 @@ export const listApiController: IListApiController = {
   },
 
   createNewList: async () => {
-    await Firebase.remove(itemsDbRef);
     await Firebase.update(itemsDbRef, itemsListTemplate);
   },
 
