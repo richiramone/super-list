@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useRef, useEffect, memo } from 'react';
+import { useRef, useEffect, memo, useCallback } from 'react';
 import useStore from '../../Store/UseStore';
 import { hasDuplicatedValue } from '../../Utilities';
 
@@ -26,6 +26,10 @@ const AddItemStyles = styled.div`
     color: #fff;
     letter-spacing: 0.02em;
     line-height: 1.2;
+
+    &:disabled {
+      opacity: 0.5;
+    }
   }
 `;
 
@@ -33,11 +37,16 @@ const AddItem: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const renderCount = useRef(1);
   const hasRecentlyAddedItems = useRef(false);
-  const items = useStore(state => state.items);
-  const addItem = useStore(state => state.addItem);
-  const renderConfirmationDialog = useStore(state => state.renderConfirmationDialog);
-  const confirmationDialogCancelAction = useStore(state => state.confirmationDialogCancelAction);
-  const shouldRender = useStore(state => state.shouldRenderConfirmationDialog);
+  const items = useStore(useCallback(state => state.items, []));
+  const addItem = useStore(useCallback(state => state.addItem, []));
+  const renderConfirmationDialog = useStore(
+    useCallback(state => state.renderConfirmationDialog, []),
+  );
+  const confirmationDialogCancelAction = useStore(
+    useCallback(state => state.confirmationDialogCancelAction, []),
+  );
+  const shouldRender = useStore(useCallback(state => state.shouldRenderConfirmationDialog, []));
+  const isOnline = useStore(useCallback(state => state.isOnline, []));
 
   useEffect(() => {
     if (renderCount.current < 3) {
@@ -91,6 +100,7 @@ const AddItem: React.FC = () => {
         ref={inputRef}
         type="text"
         placeholder="altro..."
+        disabled={!isOnline}
       />
     </AddItemStyles>
   );

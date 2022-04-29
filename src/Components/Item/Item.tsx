@@ -4,7 +4,8 @@ import ConfirmItemButton from '../ConfirmItemButton';
 import styled from 'styled-components';
 import { IItem } from '../../Interfaces/AppInterfaces';
 import { ItemContext } from '../../Contexts/ItemContext';
-import { useContext, memo } from 'react';
+import { useContext, memo, useCallback } from 'react';
+import useStore from '../../Store/UseStore';
 
 type ItemProps = {
   id: string;
@@ -70,6 +71,8 @@ const Item: React.FC<{ id: string; item: IItem }> = ({ item, id }: ItemProps) =>
   const { isBeingEdited, isBeingDeleted, enableEditingMode, disableEditingMode } =
     useContext(ItemContext);
 
+  const isOnline = useStore(useCallback(state => state.isOnline, []));
+
   const itemClassName = [
     isBeingEdited ? 'is-editing' : '',
     isBeingDeleted ? 'deleted' : '',
@@ -81,14 +84,22 @@ const Item: React.FC<{ id: string; item: IItem }> = ({ item, id }: ItemProps) =>
   const confirmItemButton = item.hasQuestionMark ? <ConfirmItemButton id={id} /> : null;
 
   const _disableEditingMode = () => {
-    setTimeout(disableEditingMode, 100);
+    if (isOnline) {
+      setTimeout(disableEditingMode, 100);
+    }
+  };
+
+  const _enableEditingMode = () => {
+    if (isOnline) {
+      enableEditingMode();
+    }
   };
 
   return (
     <ItemStyles className={itemClassName} onBlur={_disableEditingMode}>
       {isBeingEdited && <EditItem id={id} value={item.value} />}
       {!isBeingEdited && (
-        <span onClick={enableEditingMode} className="item__value">
+        <span onClick={_enableEditingMode} className="item__value">
           {item.value}
         </span>
       )}

@@ -9,6 +9,10 @@ const EmptyListButtonStyles = styled.button`
   outline: none;
   border: none;
   background: none;
+
+  &:disabled {
+    opacity: 0.5;
+  }
 `;
 
 const EmptyListButton: React.FC = () => {
@@ -16,6 +20,7 @@ const EmptyListButton: React.FC = () => {
   const emptyList = useStore(state => state.emptyList);
   const renderConfirmationDialog = useStore(state => state.renderConfirmationDialog);
   const confirmationDialogCancelAction = useStore(state => state.confirmationDialogCancelAction);
+  const isOnline = useStore(useCallback(state => state.isOnline, []));
 
   const _emptyList = () => {
     emptyList();
@@ -29,7 +34,7 @@ const EmptyListButton: React.FC = () => {
   return (
     <>
       {isAuthorLogged && (
-        <EmptyListButtonStyles onClick={() => _renderConfirmationDialog()}>
+        <EmptyListButtonStyles onClick={() => _renderConfirmationDialog()} disabled={!isOnline}>
           <svg viewBox="0 0 32 32">
             <use xlinkHref="#shape-trash"></use>
           </svg>

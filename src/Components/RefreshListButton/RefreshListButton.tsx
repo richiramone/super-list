@@ -9,11 +9,16 @@ const RefreshListButtonStyles = styled.button`
   outline: none;
   border: none;
   background: none;
+
+  &:disabled {
+    opacity: 0.5;
+  }
 `;
 
 const RefreshListButton: React.FC = () => {
   const isAuthorLogged = useStore(useCallback(state => state.isAuthorLogged, []));
   const refreshItems = useStore(useCallback(state => state.refreshItems, []));
+  const isOnline = useStore(useCallback(state => state.isOnline, []));
 
   const _refreshItems = async () => {
     await refreshItems(true);
@@ -22,7 +27,7 @@ const RefreshListButton: React.FC = () => {
   return (
     <>
       {isAuthorLogged && (
-        <RefreshListButtonStyles onClick={_refreshItems}>
+        <RefreshListButtonStyles onClick={_refreshItems} disabled={!isOnline}>
           <svg viewBox="0 0 32 32">
             <use xlinkHref="#shape-reload"></use>
           </svg>

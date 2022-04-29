@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useContext, memo } from 'react';
+import { useContext, memo, useCallback } from 'react';
 import { ItemContext } from '../../Contexts/ItemContext';
 import useStore from '../../Store/UseStore';
 
@@ -17,13 +17,18 @@ const DeleteItemButtonStyles = styled.button`
     width: 20px;
     fill: #fff;
   }
+
+  &:disabled {
+    opacity: 0.5;
+  }
 `;
 
 const DeleteItemButton: React.FC<{
   id: string;
 }> = ({ id }: DeleteItemButtonProps) => {
   const { enableDeletedMode } = useContext(ItemContext);
-  const deleteItem = useStore(state => state.deleteItem);
+  const deleteItem = useStore(useCallback(state => state.deleteItem, []));
+  const isOnline = useStore(useCallback(state => state.isOnline, []));
 
   const _deleteItem = async () => {
     enableDeletedMode();
@@ -31,7 +36,7 @@ const DeleteItemButton: React.FC<{
   };
 
   return (
-    <DeleteItemButtonStyles onClick={_deleteItem}>
+    <DeleteItemButtonStyles onClick={_deleteItem} disabled={!isOnline}>
       <svg viewBox="0 0 32 32">
         <use xlinkHref="#shape-trash"></use>
       </svg>

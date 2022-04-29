@@ -9,6 +9,10 @@ const CreateNewListButtonStyles = styled.button`
   outline: none;
   border: none;
   background: none;
+
+  &:disabled {
+    opacity: 0.5;
+  }
 `;
 
 const CreateNewListButton: React.FC = () => {
@@ -16,6 +20,7 @@ const CreateNewListButton: React.FC = () => {
   const createNewList = useStore(state => state.createNewList);
   const renderConfirmationDialog = useStore(state => state.renderConfirmationDialog);
   const confirmationDialogCancelAction = useStore(state => state.confirmationDialogCancelAction);
+  const isOnline = useStore(useCallback(state => state.isOnline, []));
 
   const _createNewList = () => {
     createNewList();
@@ -29,7 +34,7 @@ const CreateNewListButton: React.FC = () => {
   return (
     <>
       {isAuthorLogged && (
-        <CreateNewListButtonStyles onClick={() => _renderConfirmationDialog()}>
+        <CreateNewListButtonStyles onClick={() => _renderConfirmationDialog()} disabled={!isOnline}>
           <svg viewBox="0 0 32 32">
             <use xlinkHref="#create-new-list"></use>
           </svg>
