@@ -16,11 +16,15 @@ const AppStyles = styled.div`
 
 const App: React.FC = () => {
   const isAuthorLogged = useStore(useCallback(state => state.isAuthorLogged, []));
+  const setConnectionStatus = useStore(useCallback(state => state.setConnectionStatus, []));
   const renderLoader = () => <></>;
   const Preloader = lazy(() => import('./Components/Preloader'));
   const ConfirmationDialog = lazy(() => import('./Components/ConfirmationDialog'));
   const AddItem = lazy(() => import('./Components/AddItem'));
   const ItemsList = lazy(() => import('./Components/ItemsList'));
+
+  window.addEventListener('online', () => setConnectionStatus(true));
+  window.addEventListener('offline', () => setConnectionStatus(false));
 
   return (
     <Suspense fallback={renderLoader()}>

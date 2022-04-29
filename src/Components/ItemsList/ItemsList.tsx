@@ -9,8 +9,13 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 const ItemsListStyles = styled.div`
   margin: 1rem 0;
-  height: calc(100vh - 12.5rem);
-  overflow: scroll;
+  height: calc(100vh - 8rem);
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  @media (min-width: 450px) {
+    overflow-y: hidden !important;
+  }
 
   ul {
     display: flex;
@@ -23,7 +28,7 @@ const ItemsListStyles = styled.div`
   }
 
   li {
-    margin: 0 0.5rem 0.5rem;
+    margin: 0 0.3rem 0.5rem;
     max-width: 390px;
     width: auto;
     height: auto;

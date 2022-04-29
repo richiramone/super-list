@@ -29,6 +29,19 @@ const listSlice = (set: NamedSet<AppState>, get: GetState<AppState>) => ({
       );
     }
 
+    if (!get().isOnline) {
+      set(
+        state => {
+          state.isFetching = false;
+          state.items = get().items;
+        },
+        false,
+        'refreshItems',
+      );
+
+      return;
+    }
+
     const items = await listApiController.getItems();
 
     set(
