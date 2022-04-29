@@ -33,6 +33,7 @@ const ItemsListStyles = styled.div`
 const ItemsList: React.FC = () => {
   const items: IItems = useStore(state => state.items);
   const refreshItems = useStore(state => state.refreshItems);
+
   const loadItems = async () => {
     await refreshItems(true);
   };

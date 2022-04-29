@@ -37,10 +37,15 @@ const LoginButton: React.FC = () => {
     setShouldBeHidden(true);
     setIsFetching(true);
 
-    const signInResult = await signInWithPopup(auth, googleAuthProvider);
-    const userEmailFromResult = signInResult.user.email ? signInResult.user.email : '';
-
-    setUserEmail(userEmailFromResult);
+    signInWithPopup(auth, googleAuthProvider)
+      .then(result => {
+        const userEmail = result.user.email ? result.user.email : '';
+        setUserEmail(userEmail);
+      })
+      .catch(() => {
+        setIsFetching(false);
+        setShouldBeHidden(false);
+      });
   };
 
   return (
