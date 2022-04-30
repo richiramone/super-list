@@ -30,28 +30,18 @@ const listSlice = (set: NamedSet<AppState>, get: GetState<AppState>) => ({
     }
 
     if (!get().isOnline) {
-      set(
-        state => {
-          state.isFetching = false;
-          state.items = get().items;
-        },
-        false,
-        'refreshItems',
-      );
-
+      setItemsIntoState(set, get().items);
       return;
     }
 
-    const items = await listApiController.getItems();
-
-    set(
-      state => {
-        state.isFetching = false;
-        state.items = items;
-      },
-      false,
-      'refreshItems',
-    );
+    await listApiController
+      .getItems()
+      .then(result => {
+        setItemsIntoState(set, result);
+      })
+      .catch(() => {
+        setItemsIntoState(set, get().items);
+      });
   },
   createNewList: async () => {
     set(
@@ -161,3 +151,18 @@ const listSlice = (set: NamedSet<AppState>, get: GetState<AppState>) => ({
 });
 
 export default listSlice;
+
+// private methods
+
+const setItemsIntoState = (set: NamedSet<AppState>, items: IItems) => {
+  set(
+    state => {
+      state.isFetching = false;
+      state.items = items;
+    },
+    false,
+    'refreshItems',
+  );
+};
+
+// end private methods
