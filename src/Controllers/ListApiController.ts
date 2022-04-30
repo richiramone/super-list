@@ -16,6 +16,7 @@ export const listApiController: IListApiController = {
       })
       .catch((error: unknown) => {
         console.error(error);
+        throw {};
       });
 
     return reverseItems(items);
