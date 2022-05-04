@@ -9,12 +9,13 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 const ItemsListStyles = styled.div`
   margin: 1rem 0;
-  height: calc(100vh - 8rem);
+  height: calc(100vh - 12.5rem);
   overflow-y: scroll;
   overflow-x: hidden;
 
   @media (min-width: 450px) {
-    overflow-y: hidden !important;
+    overflow-y: hidden;
+    height: calc(100vh - 8rem);
   }
 
   ul {
