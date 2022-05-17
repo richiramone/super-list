@@ -8,28 +8,21 @@ import useStore from '../../Store/UseStore';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const ItemsListStyles = styled.div`
-  margin: 1rem 0;
-  height: calc(100vh - 12.5rem);
-  overflow-y: scroll;
-  overflow-x: hidden;
-
-  @media (min-width: 450px) {
-    overflow-y: hidden;
-    height: calc(100vh - 8rem);
-  }
+  margin: 1rem 0 5rem;
+  // height: calc(100vh - 12.5rem);
 
   ul {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-start;
-    margin: 0 0 2rem;
+    margin: 0;
     padding: 0;
     list-style: none;
   }
 
   li {
-    margin: 0 0.3rem 0.5rem;
+    margin: 0 0.5rem 0.5rem 0;
     max-width: 390px;
     width: auto;
     height: auto;

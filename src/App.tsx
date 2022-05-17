@@ -4,13 +4,13 @@ import styled from 'styled-components';
 import useStore from './Store/UseStore';
 import { useCallback, lazy, Suspense } from 'react';
 import LoginButton from './Components/LoginButton';
+import React from 'react';
 
-const AppStyles = styled.div`
-  section {
+const AppStyles = styled.section`
+  main {
     margin-top: 5rem;
-    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
-      env(safe-area-inset-left);
-    width: 100vw;
+    padding: 0 0.5rem;
+    height: calc(100vh - 8rem);
   }
 `;
 
@@ -31,19 +31,19 @@ const App: React.FC = () => {
       <AppStyles>
         <Preloader />
         <ConfirmationDialog />
-        <section>
-          <Header />
+        <Header />
+        <main>
           {!isAuthorLogged ? (
             <LoginButton />
           ) : (
-            <main>
+            <>
               <aside>
                 <AddItem />
               </aside>
               <ItemsList />
-            </main>
+            </>
           )}
-        </section>
+        </main>
       </AppStyles>
     </Suspense>
   );
