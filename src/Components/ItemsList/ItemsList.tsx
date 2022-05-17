@@ -9,7 +9,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 const ItemsListStyles = styled.div`
   margin: 1rem 0 5rem;
-  // height: calc(100vh - 12.5rem);
 
   ul {
     display: flex;

@@ -10,7 +10,10 @@ const AppStyles = styled.section`
   main {
     margin-top: 5rem;
     padding: 0 0.5rem;
-    height: calc(100vh - 8rem);
+
+    @media (min-width: 450px) {
+      margin-top: 8rem;
+    }
   }
 `;
 
