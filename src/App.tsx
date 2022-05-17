@@ -8,11 +8,11 @@ import React from 'react';
 
 const AppStyles = styled.section`
   main {
-    margin-top: 5rem;
+    margin-top: 8rem;
     padding: 0 0.5rem;
 
     @media (min-width: 450px) {
-      margin-top: 8rem;
+      margin-top: 5rem;
     }
   }
 `;
