@@ -8,12 +8,8 @@ import React from 'react';
 
 const AppStyles = styled.section`
   main {
-    margin-top: 8rem;
+    margin-top: calc(5rem + env(safe-area-inset-top, 5rem));
     padding: 0 0.5rem;
-
-    @media (min-width: 450px) {
-      margin-top: 5rem;
-    }
   }
 `;
 
