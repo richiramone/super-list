@@ -1,9 +1,9 @@
 import './App.css';
-import Header from './Components/Header';
+import Header from './components/Header';
 import styled from 'styled-components';
 import useStore from './Store/UseStore';
 import { useCallback, lazy, Suspense } from 'react';
-import LoginButton from './Components/LoginButton';
+import LoginButton from './components/LoginButton';
 import React from 'react';
 
 const AppStyles = styled.section`
@@ -17,10 +17,10 @@ const App: React.FC = () => {
   const isAuthorLogged = useStore(useCallback(state => state.isAuthorLogged, []));
   const setConnectionStatus = useStore(useCallback(state => state.setConnectionStatus, []));
   const renderLoader = () => <></>;
-  const Preloader = lazy(() => import('./Components/Preloader'));
-  const ConfirmationDialog = lazy(() => import('./Components/ConfirmationDialog'));
-  const AddItem = lazy(() => import('./Components/AddItem'));
-  const ItemsList = lazy(() => import('./Components/ItemsList'));
+  const Preloader = lazy(() => import('./components/Preloader'));
+  const ConfirmationDialog = lazy(() => import('./components/ConfirmationDialog'));
+  const AddItem = lazy(() => import('./components/AddItem'));
+  const ItemsList = lazy(() => import('./components/ItemsList'));
 
   window.addEventListener('online', () => setConnectionStatus(true));
   window.addEventListener('offline', () => setConnectionStatus(false));
