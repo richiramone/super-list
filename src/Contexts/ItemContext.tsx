@@ -12,8 +12,10 @@ const defaultState: IItemContext = {
 };
 
 export const ItemContext = createContext<IItemContext>(defaultState);
-
-export const ItemContextProvider: FC = ({ children }) => {
+type Props = {
+  children?: React.ReactNode;
+};
+export const ItemContextProvider: FC<Props> = ({ children }) => {
   const [isBeingEdited, setIsBeingEdited] = useState(false);
   const [isBeingDeleted, setIsBeingDeleted] = useState(false);
 
