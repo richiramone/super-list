@@ -1,0 +1,21 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider = "mysql"
+  url = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+model Items {
+  id              Int    @default(autoincrement()) @id
+  author          String @db.VarChar(75)
+  text            String @db.VarChar(50)
+  hasQuestionMark Boolean
+  hasDuplicate    Boolean
+}
