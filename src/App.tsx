@@ -1,34 +1,24 @@
-import { useState } from 'react'
+import { Suspense } from 'react'
+import Header from './Components/Header'
 import './index.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+const App: React.FC = () => {
 
   return (
-    <div className="App clear-both">
-      <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">df
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    <Suspense>
+      preloader
+      confirmation dialog
+
+      <Header />
+
+      <main>
+        <aside>
+          AddItem
+        </aside>
+
+        ItemsList
+      </main>
+    </Suspense>
   )
 }
 
