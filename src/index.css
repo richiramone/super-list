@@ -5,3 +5,8 @@
 svg {
   fill: #fff;
 }
+
+main {
+  margin-top: calc(5rem + env(safe-area-inset-top, 5rem));
+  padding: 0 0.75rem;
+}

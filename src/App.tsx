@@ -1,4 +1,5 @@
 import { Suspense } from 'react';
+import AddItemForm from './Components/AddItemForm';
 import Header from './Components/Header';
 import './index.css';
 
@@ -9,7 +10,9 @@ const App: React.FC = () => {
       <Header />
 
       <main>
-        <aside>AddItem</aside>
+        <aside>
+          <AddItemForm />
+        </aside>
         ItemsList
       </main>
     </Suspense>
