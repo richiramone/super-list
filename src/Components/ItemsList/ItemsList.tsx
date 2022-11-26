@@ -2,8 +2,9 @@ import Item from '../Item';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
-import { IItem, isLoadingAtom, needsRefreshAtom } from '../../Atoms';
+import { isLoadingAtom, needsRefreshAtom } from '../../Atoms';
 import { getItems } from '../../Server/Db/client';
+import { IItem } from '../../Interfaces';
 
 const ItemsList: React.FC = () => {
   const [, setIsLoading] = useAtom(isLoadingAtom);

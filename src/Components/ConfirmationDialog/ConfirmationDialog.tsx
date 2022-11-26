@@ -1,9 +1,7 @@
-import styled from 'styled-components';
 import { memo, useEffect, useRef } from 'react';
-import useStore from '../../Store/UseStore';
 import FocusLock from 'react-focus-lock';
 
-const DialogStyles = styled.div`
+const DialogStyles = `
   display: none;
   position: fixed;
   top: 0;
@@ -45,7 +43,6 @@ const DialogStyles = styled.div`
     justify-content: space-evenly;
     margin: 2rem 0;
   }
-
   button {
     padding: 0.5rem;
     width: 140px;
@@ -98,7 +95,7 @@ const EmptyListButton: React.FC = () => {
   }, [shouldRender]);
 
   return (
-    <DialogStyles className={shouldRender ? 'isActive' : ''}>
+    <div className={shouldRender ? 'isActive' : ''}>
       <FocusLock>
         <div className="confirmation-dialog">
           <h3>{question}</h3>
@@ -113,7 +110,7 @@ const EmptyListButton: React.FC = () => {
           </div>
         </div>
       </FocusLock>
-    </DialogStyles>
+    </div>
   );
 };
 
