@@ -30,8 +30,12 @@ const EmptyListButton: React.FC = () => {
   };
 
   return (
-    <button type='button' onClick={() => renderConfirmationDialog()} disabled={!isOnline}>
-      empty list
+    <button
+      className="my-0 mx-5 h-7 w-7 border-none bg-transparent	p-0 outline-none disabled:opacity-50"
+      type="button"
+      onClick={() => renderConfirmationDialog()}
+      disabled={!isOnline}
+    >
       <svg viewBox="0 0 32 32">
         <use xlinkHref="#shape-trash"></use>
       </svg>
