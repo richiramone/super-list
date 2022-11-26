@@ -2,18 +2,31 @@ import Item from '../Item';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
-import { IItem, isLoadingAtom } from '../../Atoms';
+import { IItem, isLoadingAtom, needsRefreshAtom } from '../../Atoms';
+import { getItems } from '../../Server/Db/client';
 
 const ItemsList: React.FC = () => {
   const [, setIsLoading] = useAtom(isLoadingAtom);
-  const [items, setItems] = useState([]);
+  const [needsRefresh, setNeedsRefreshAtom] = useAtom(needsRefreshAtom);
+  const [items, setItems] = useState<IItem[]>([]);
 
-  fetch('https://randomuser.me/api')
-    .then(response => response.json())
-    .then(items => {
+  const loadItems = async () => {
+    await getItems().then(dbResult => {
       setIsLoading(false);
-      setItems(items);
+      setItems(dbResult.rows as IItem[]);
     });
+  };
+
+  useEffect(() => {
+    loadItems();
+  }, []);
+
+  useEffect(() => {
+    if (needsRefreshAtom) {
+      setNeedsRefreshAtom(false);
+      loadItems();
+    }
+  }, [needsRefresh]);
 
   return (
     <div className="mt-4 mr-0 mb-20">
@@ -22,7 +35,7 @@ const ItemsList: React.FC = () => {
           {items.map((item: IItem) => (
             <motion.li
               className="mt-0 ml-0 mr-2 mb-2 h-auto w-auto max-w-sm"
-              id={item.id.toString()}
+              key={item.id.toString()}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
