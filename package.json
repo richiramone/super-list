@@ -11,6 +11,9 @@
   },
   "dependencies": {
     "@prisma/client": "^4.6.1",
+    "framer-motion": "^7.6.12",
+    "jotai": "^1.10.0",
+    "jotai-immer": "^0.1.0",
     "react": "experimental",
     "react-dom": "experimental",
     "zod": "^3.19.1"

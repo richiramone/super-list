@@ -5,6 +5,10 @@ module.exports = {
     extend: {
       colors: {
         primary: '#009dff',
+        'item-is-duplicated': '#223889',
+        'item-is-anna': '#ff0099',
+        'item-has-question-mark': '#ff6a00',
+        'item-was-deleted': '#f55',
       },
     },
   },

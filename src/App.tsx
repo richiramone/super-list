@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import AddItemForm from './Components/AddItemForm';
 import Header from './Components/Header';
+import ItemsList from './Components/ItemsList';
 import './index.css';
 
 const App: React.FC = () => {
@@ -13,7 +14,8 @@ const App: React.FC = () => {
         <aside>
           <AddItemForm />
         </aside>
-        ItemsList
+
+        <ItemsList />
       </main>
     </Suspense>
   );
