@@ -9,6 +9,7 @@ module.exports = {
         'item-is-anna': '#ff0099',
         'item-has-question-mark': '#ff6a00',
         'item-was-deleted': '#f55',
+        'cancel-button-border': '#008ce3',
         modal: 'rgba(0,0,0,.5)',
       },
     },
