@@ -28,3 +28,4 @@ const ConfirmItemButton = ({ id }: ConfirmItemButtonProps) => {
 };
 
 export default memo(ConfirmItemButton);
+``;

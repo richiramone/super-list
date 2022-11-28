@@ -2,7 +2,7 @@
 
 export interface IItem {
   id: number;
-  hasDuplicate: boolean;
+  hasDuplicate?: boolean;
   hasQuestionMark: boolean;
   author: string;
   text: string;
@@ -11,6 +11,6 @@ export interface IItem {
 export interface IConfirmationDialogSettings {
   shouldRender: boolean;
   question: string;
-  confirmCallback: () => void;
-  cancelCallback: () => void;
+  confirmCallback: () => void | Promise<void>;
+  cancelCallback?: () => void;
 }

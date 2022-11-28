@@ -1,15 +1,17 @@
 import Item from '../Item';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
-import { useAtom } from 'jotai';
+import { useEffect } from 'react';
+import { atom, useAtom } from 'jotai';
 import { isLoadingAtom, needsRefreshAtom } from '../../Atoms';
 import { getItems } from '../../Server/Db/client';
 import { IItem } from '../../Interfaces';
 
+export const itemsAtom = atom<IItem[]>([]);
+
 const ItemsList: React.FC = () => {
   const [, setIsLoading] = useAtom(isLoadingAtom);
   const [needsRefresh, setNeedsRefreshAtom] = useAtom(needsRefreshAtom);
-  const [items, setItems] = useState<IItem[]>([]);
+  const [items, setItems] = useAtom(itemsAtom);
 
   const loadItems = async () => {
     await getItems().then(dbResult => {

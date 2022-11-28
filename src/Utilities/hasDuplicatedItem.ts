@@ -1,17 +1,18 @@
-import { IItem } from '../Atoms';
+import { IItem } from '../Interfaces';
 
 export const hasDuplicatedValue = (items: IItem[], newValue: string) => {
   let alreadyExists = false;
 
-  for (const [key] of Object.entries(items)) {
-    const itemValue = items[0].text.toLowerCase();
+  items.every(item => {
+    const itemValue = item.text.toLowerCase();
     const newValueLowered = newValue.toLowerCase();
 
     if (itemValue.includes(newValueLowered) || newValueLowered.includes(itemValue)) {
       alreadyExists = true;
-      break;
+    } else {
+      return true;
     }
-  }
+  });
 
   return alreadyExists;
 };

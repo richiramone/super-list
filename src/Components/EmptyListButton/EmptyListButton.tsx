@@ -13,6 +13,14 @@ const EmptyListButtonStyles = `
   }
 `;
 
+// const renderConfirmationDialog = (text: string) => {
+//   confirmationDialogSettings.question = 'Sembra che ci sia giá. Vuoi continuare?';
+//   confirmationDialogSettings.confirmCallback = async () => {
+//     await addItem(text);
+//   };
+//   confirmationDialogSettings.shouldRender = true;
+// };
+
 const EmptyListButton: React.FC = () => {
   // const emptyList = useStore(state => state.emptyList);
   // const renderConfirmationDialog = useStore(state => state.renderConfirmationDialog);
