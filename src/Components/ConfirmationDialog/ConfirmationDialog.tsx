@@ -2,16 +2,7 @@ import { useAtom } from 'jotai';
 import { memo, useEffect, useRef } from 'react';
 import FocusLock from 'react-focus-lock';
 import { confirmationDialogSettingsAtom } from '../../Atoms';
-import { IConfirmationDialogSettings } from '../../Interfaces';
 import { noop } from '../../Utilities';
-
-const DialogStyles = `
-    &:focus,
-    &:active {
-      box-shadow: 0 0 4px 0px #009dff;
-    }
-  }
-`;
 
 const EmptyListButton: React.FC = () => {
   const [settings, setSettings] = useAtom(confirmationDialogSettingsAtom);
@@ -65,7 +56,7 @@ const EmptyListButton: React.FC = () => {
 
               <div className="my-8 mx-0 flex justify-evenly">
                 <button
-                  className="h-auto w-36 rounded border border-solid border-cancel-button-border p-2 text-center text-base text-primary hover:shadow-lg hover:shadow-lg focus:shadow-primary focus:shadow-primary"
+                  className="h-auto w-36 rounded border border-solid border-cancel-button-border p-2 text-center text-base text-primary hover:shadow-lg hover:shadow-primary focus:shadow-lg focus:shadow-primary"
                   onClick={cancelAction}
                   type="button"
                 >
@@ -74,7 +65,7 @@ const EmptyListButton: React.FC = () => {
 
                 <button
                   ref={okInputRef}
-                  className="h-auto w-36 rounded border border-solid border-primary bg-primary p-2 text-center text-base text-white hover:shadow-lg hover:shadow-primary focus:shadow-primary focus:shadow-primary"
+                  className="h-auto w-36 rounded border border-solid border-primary bg-primary p-2 text-center text-base text-white hover:shadow-lg hover:shadow-primary focus:shadow-lg focus:shadow-primary"
                   onClick={confrimAction}
                   type="button"
                 >
