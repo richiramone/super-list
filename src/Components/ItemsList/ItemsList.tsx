@@ -10,7 +10,7 @@ export const itemsAtom = atom<IItem[]>([]);
 
 const ItemsList: React.FC = () => {
   const [, setIsLoading] = useAtom(isLoadingAtom);
-  const [needsRefresh, setNeedsRefreshAtom] = useAtom(needsRefreshAtom);
+  const [needsRefresh] = useAtom(needsRefreshAtom);
   const [items, setItems] = useAtom(itemsAtom);
 
   const loadItems = async () => {
@@ -22,13 +22,6 @@ const ItemsList: React.FC = () => {
 
   useEffect(() => {
     loadItems();
-  }, []);
-
-  useEffect(() => {
-    if (needsRefreshAtom) {
-      setNeedsRefreshAtom(false);
-      loadItems();
-    }
   }, [needsRefresh]);
 
   return (

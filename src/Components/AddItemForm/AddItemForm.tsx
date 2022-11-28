@@ -13,7 +13,7 @@ const AddItemForm: React.FC = () => {
   const [author] = useAtom(authorAtom);
   const [isOnline] = useAtom(isOnlineAtom);
   const [items] = useAtom(itemsAtom);
-  const [, setNeedsRefresh] = useAtom(needsRefreshAtom);
+  const [needRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
 
   const submitForm = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -34,7 +34,7 @@ const AddItemForm: React.FC = () => {
     };
 
     await insertItem(item).then(() => {
-      setNeedsRefresh(true);
+      setNeedsRefresh(needRefresh + 1);
     });
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
