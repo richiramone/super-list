@@ -16,7 +16,6 @@ const App: React.FC = () => {
   return (
     <Suspense>
       <Preloader />
-      <template>preloader confirmation dialog</template>
       <Header />
 
       <main>
