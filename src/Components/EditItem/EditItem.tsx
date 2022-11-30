@@ -1,6 +1,4 @@
-import { useAtom } from 'jotai';
-import { useEffect, useRef, memo } from 'react';
-import { isBeingEditedAtom } from '../Item/Item';
+import { useEffect, useRef, memo, useState } from 'react';
 
 type EditItemProps = {
   id: string;
@@ -9,7 +7,7 @@ type EditItemProps = {
 
 const EditItem: React.FC<{ id: string; value: string }> = ({ id, value }: EditItemProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [isBeingEdited, setIsBeingEdited] = useAtom(isBeingEditedAtom);
+  const [isBeingEdited, setIsBeingEdited] = useState(false);
 
   const tryUpdateItem = async (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key !== 'Enter' || event.currentTarget.value === '') {

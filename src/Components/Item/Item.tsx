@@ -1,7 +1,7 @@
 import EditItem from '../EditItem';
 import DeleteItemButton from '../DeleteItemButton';
-import { atom, useAtom } from 'jotai';
-import { memo } from 'react';
+import { useAtom } from 'jotai';
+import { memo, useState } from 'react';
 import { isOnlineAtom } from '../../Atoms';
 import { IItem } from '../../Interfaces';
 import ConfirmItemButton from '../ConfirmItemButton';
@@ -11,18 +11,11 @@ type ItemProps = {
   item: IItem;
 };
 
-export const isBeingEditedAtom = atom<boolean>(false);
-export const isBeingDeletedAtom = atom<boolean>(false);
-
 const Item: React.FC<{ item: IItem; id: string }> = ({ item, id }: ItemProps) => {
-  const [isBeingEdited, setIsBeingEdited] = useAtom(isBeingEditedAtom);
-  const [isBeingDeleted] = useAtom(isBeingDeletedAtom);
+  const [isBeingEdited, setIsBeingEdited] = useState(false);
   const [isOnline] = useAtom(isOnlineAtom);
-
   const isBeingEditedClassName = isBeingEdited ? 'hidden' : '';
-
   const dynamicClassName = [
-    isBeingDeleted ? 'bg-item-was-deleted' : '',
     item.hasDuplicate ? 'bg-item-is-duplicated' : '',
     item.hasQuestionMark ? 'bg-item-has-question-mark' : '',
     item.author !== 'lucas' ? 'bg-item-is-anna' : '',

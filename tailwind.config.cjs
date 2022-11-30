@@ -8,7 +8,6 @@ module.exports = {
         'item-is-duplicated': '#223889',
         'item-is-anna': '#ff0099',
         'item-has-question-mark': '#ff6a00',
-        'item-was-deleted': '#f55',
         'cancel-button-border': '#008ce3',
         modal: 'rgba(0,0,0,.5)',
       },
