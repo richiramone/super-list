@@ -1,5 +1,12 @@
 import { IItem } from '../Interfaces';
 
+export const getAuthor = () => {
+  const params = new URLSearchParams(window.location.search);
+  const userFromQS = params.has('user') ? params.get('user') : 'lucas';
+
+  return userFromQS ? userFromQS : 'lucas';
+};
+
 export const hasDuplicatedValue = (items: IItem[], newValue: string) => {
   let alreadyExists = false;
 
@@ -15,4 +22,11 @@ export const hasDuplicatedValue = (items: IItem[], newValue: string) => {
   });
 
   return alreadyExists;
+};
+
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+export const noop = () => {};
+
+export const sanitize = (input: string) => {
+  return input.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 };

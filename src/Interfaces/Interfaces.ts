@@ -7,10 +7,3 @@ export interface IItem {
   author: string;
   text: string;
 }
-
-export interface IConfirmationDialogSettings {
-  shouldRender: boolean;
-  question: string;
-  confirmCallback: () => void | Promise<void>;
-  cancelCallback?: () => void;
-}

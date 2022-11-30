@@ -1,5 +1,6 @@
 import { connect } from '@planetscale/database';
 import { IItem } from '../../Interfaces';
+import { sanitize } from '../../Utilities';
 
 const dbConnection = () => {
   const config = {
@@ -21,7 +22,7 @@ export const insertItem = async (item: IItem) => {
     VALUES
       (
         '${item.author}',
-        '${item.text}',
+        '${sanitize(item.text)}',
         ${item.text.includes('?')},
         ${item.hasDuplicate}
       )`);
@@ -33,4 +34,12 @@ export const insertItem = async (item: IItem) => {
   }
 
   return Promise.resolve();
+};
+
+export const deleteItem = async (id: string) => {
+  return await dbConnection().execute(`DELETE FROM Items WHERE id = ${id}`);
+};
+
+export const emptyList = async () => {
+  return await dbConnection().execute('TRUNCATE TABLE Items');
 };

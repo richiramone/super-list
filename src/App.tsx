@@ -9,7 +9,6 @@ const App: React.FC = () => {
   window.addEventListener('offline', () => setConnectionStatus(false));
 
   const Preloader = lazy(() => import('./Components/Preloader'));
-  const ConfirmationDialog = lazy(() => import('./Components/ConfirmationDialog'));
   const Header = lazy(() => import('./Components/Header'));
   const AddItemForm = lazy(() => import('./Components/AddItemForm'));
   const ItemsList = lazy(() => import('./Components/ItemsList'));
@@ -17,7 +16,6 @@ const App: React.FC = () => {
   return (
     <Suspense>
       <Preloader />
-      <ConfirmationDialog />
       <template>preloader confirmation dialog</template>
       <Header />
 

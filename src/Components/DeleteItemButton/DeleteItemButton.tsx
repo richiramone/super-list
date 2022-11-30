@@ -1,6 +1,7 @@
 import { useAtom } from 'jotai';
 import { memo } from 'react';
 import { isOnlineAtom } from '../../Atoms';
+import { deleteItem } from '../../Server/Db/client';
 import { isBeingDeletedAtom } from '../Item/Item';
 
 type DeleteItemButtonProps = {
@@ -16,7 +17,7 @@ const DeleteItemButton: React.FC<{
 
   const _deleteItem = async () => {
     setIsBeingDeleted(true);
-    // await deleteItem(id);
+    await deleteItem(id);
   };
 
   return (

@@ -1,53 +1,49 @@
-import { memo } from 'react';
-
-const EmptyListButtonStyles = `
-  padding: 0;
-  width: 26px;
-  height: 26px;
-  outline: none;
-  border: none;
-  background: none;
-
-  &:disabled {
-    opacity: 0.5;
-  }
-`;
-
-// const renderConfirmationDialog = (text: string) => {
-//   confirmationDialogSettings.question = 'Sembra che ci sia giá. Vuoi continuare?';
-//   confirmationDialogSettings.confirmCallback = async () => {
-//     await addItem(text);
-//   };
-//   confirmationDialogSettings.shouldRender = true;
-// };
+import { useAtom } from 'jotai';
+import { memo, useState } from 'react';
+import { isOnlineAtom, needsRefreshAtom } from '../../Atoms';
+import { emptyList } from '../../Server/Db/client';
+import ConfirmationDialog from '../ConfirmationDialog';
 
 const EmptyListButton: React.FC = () => {
-  // const emptyList = useStore(state => state.emptyList);
-  // const renderConfirmationDialog = useStore(state => state.renderConfirmationDialog);
-  // const confirmationDialogCancelAction = useStore(state => state.confirmationDialogCancelAction);
-  // const isOnline = useStore(useCallback(state => state.isOnline, []));
-  const isOnline = true;
+  const [isOnline] = useAtom(isOnlineAtom);
+  const [needRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
+  const [isDialogHidden, setIsDialogHidden] = useState(true);
 
-  // const _emptyList = () => {
-  //   emptyList();
-  //   confirmationDialogCancelAction();
-  // };
+  const _emptyList = async () => {
+    await emptyList().then(() => {
+      setNeedsRefresh(needRefresh + 1);
+      hideDialog();
+    });
+  };
 
-  const renderConfirmationDialog = () => {
-    // renderConfirmationDialog('Sei sicuro di voler svuotare la lista?', _emptyList);
+  const hideDialog = () => {
+    setIsDialogHidden(true);
+  };
+
+  const showDialog = () => {
+    setIsDialogHidden(false);
   };
 
   return (
-    <button
-      className="my-0 mx-5 h-7 w-7 border-none bg-transparent	p-0 outline-none disabled:opacity-50"
-      type="button"
-      onClick={() => renderConfirmationDialog()}
-      disabled={!isOnline}
-    >
-      <svg viewBox="0 0 32 32">
-        <use xlinkHref="#shape-trash"></use>
-      </svg>
-    </button>
+    <>
+      {!isDialogHidden && (
+        <ConfirmationDialog
+          question={'Sei sicuro di voler svuotare la lista?'}
+          confirmCallback={_emptyList}
+          cancelCallback={hideDialog}
+        />
+      )}
+      <button
+        className="my-0 mx-5 h-7 w-7 border-none bg-transparent	p-0 outline-none disabled:opacity-50"
+        type="button"
+        onClick={showDialog}
+        disabled={!isOnline}
+      >
+        <svg viewBox="0 0 32 32">
+          <use xlinkHref="#shape-trash"></use>
+        </svg>
+      </button>
+    </>
   );
 };
 

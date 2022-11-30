@@ -55,7 +55,7 @@ const AddItemForm: React.FC = () => {
 
   return (
     <form
-      className="flex h-auto w-auto max-w-sm cursor-pointer rounded bg-primary py-1.5 px-2 transition-colors duration-200	ease-in-out"
+      className="flex h-auto w-auto max-w-sm cursor-pointer rounded bg-primary py-1.5 px-2"
       onSubmit={submitForm}
     >
       <input
