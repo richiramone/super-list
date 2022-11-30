@@ -39,7 +39,9 @@ export const insertItem = async (item: IItem) => {
 export const updateItem = async (id: string, text: string) => {
   return await dbConnection().execute(`
     UPDATE Items
-    SET text = '${sanitize(text)}'
+    SET
+      text = '${sanitize(text)}',
+      hasQuestionMark = ${text.includes('?')}
     WHERE id = ${id}`);
 };
 
