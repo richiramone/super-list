@@ -36,6 +36,13 @@ export const insertItem = async (item: IItem) => {
   return Promise.resolve();
 };
 
+export const updateItem = async (id: string, text: string) => {
+  return await dbConnection().execute(`
+    UPDATE Items SET
+      text = '${sanitize(text)}',
+    WHERE id = ${id}`);
+};
+
 export const deleteItem = async (id: string) => {
   return await dbConnection().execute(`DELETE FROM Items WHERE id = ${id}`);
 };

@@ -14,7 +14,6 @@ type ItemProps = {
 const Item: React.FC<{ item: IItem; id: string }> = ({ item, id }: ItemProps) => {
   const [isBeingEdited, setIsBeingEdited] = useState(false);
   const [isOnline] = useAtom(isOnlineAtom);
-  const isBeingEditedClassName = isBeingEdited ? 'hidden' : '';
   const dynamicClassName = [
     item.hasDuplicate ? 'bg-item-is-duplicated' : '',
     item.hasQuestionMark ? 'bg-item-has-question-mark' : '',
@@ -35,15 +34,16 @@ const Item: React.FC<{ item: IItem; id: string }> = ({ item, id }: ItemProps) =>
 
   return (
     <div
-      className={`relative flex cursor-pointer items-center rounded bg-primary py-1 px-2 transition-colors ${dynamicClassName}`}
+      className={`${dynamicClassName} relative flex cursor-pointer items-center rounded bg-primary py-1 px-2 transition-colors`}
       onBlur={_disableEditingMode}
+      onClick={_setIsBeingEdited}
     >
       {isBeingEdited && <EditItem id={id} value={item.text} />}
 
       {!isBeingEdited && (
         <span
           onClick={_setIsBeingEdited}
-          className={`${isBeingEditedClassName} m-0 w-auto bg-transparent tracking-wide text-white`}
+          className="m-0 w-auto bg-transparent tracking-wide text-white"
         >
           {item.text}
         </span>

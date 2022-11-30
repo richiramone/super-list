@@ -1,4 +1,7 @@
-import { useEffect, useRef, memo, useState } from 'react';
+import { useAtom } from 'jotai';
+import { useRef, memo } from 'react';
+import { needsRefreshAtom } from '../../Atoms';
+import { updateItem } from '../../Server/Db/client';
 
 type EditItemProps = {
   id: string;
@@ -7,34 +10,34 @@ type EditItemProps = {
 
 const EditItem: React.FC<{ id: string; value: string }> = ({ id, value }: EditItemProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [isBeingEdited, setIsBeingEdited] = useState(false);
+  const [needRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
 
-  const tryUpdateItem = async (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key !== 'Enter' || event.currentTarget.value === '') {
+  const submitForm = async (event: React.FormEvent) => {
+    event.preventDefault();
+    const itemText = (event.currentTarget.children[0] as HTMLInputElement).value;
+
+    if (itemText === '') {
       return;
     }
 
-    setIsBeingEdited(false);
-    // await updateItem(id, event.currentTarget.value);
+    await updateItem(id, itemText).then(() => {
+      setNeedsRefresh(needRefresh + 1);
+    });
   };
 
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    inputRef.current!.value = value;
-  }, [value]);
-
-  const inputClassName = isBeingEdited ? 'block w-full' : '';
-
   return (
-    <input
-      className={`${inputClassName} m-0 hidden w-auto border-hidden bg-transparent font-normal leading-5 tracking-wide text-white outline-none`}
-      type="text"
-      autoFocus
-      defaultValue={value}
-      ref={inputRef}
-      onKeyPress={tryUpdateItem}
-      onClick={() => setIsBeingEdited(true)}
-    />
+    <form
+      className="flex h-auto w-auto max-w-sm cursor-pointer rounded bg-primary py-0.5 pr-1"
+      onSubmit={submitForm}
+    >
+      <input
+        className="m-0 block w-full border-hidden bg-transparent font-normal leading-5 tracking-wide text-white outline-none"
+        type="text"
+        autoFocus
+        defaultValue={value}
+        ref={inputRef}
+      />
+    </form>
   );
 };
 
