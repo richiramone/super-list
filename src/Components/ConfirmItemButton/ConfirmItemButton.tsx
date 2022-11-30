@@ -1,25 +1,28 @@
 import { useAtom } from 'jotai';
 import { memo } from 'react';
-import { isOnlineAtom } from '../../Atoms';
+import { isOnlineAtom, needsRefreshAtom } from '../../Atoms';
+import { updateItem } from '../../Server/Db/client';
 
 type ConfirmItemButtonProps = {
   id: string;
+  value: string;
 };
 
-const ConfirmItemButton = ({ id }: ConfirmItemButtonProps) => {
+const ConfirmItemButton: React.FC<{ id: string; value: string }> = ({
+  id,
+  value,
+}: ConfirmItemButtonProps) => {
   const [isOnline] = useAtom(isOnlineAtom);
-  const disableClass = isOnline ? '' : 'opacity-50';
+  const [needRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
 
   const _confirmItem = async () => {
-    // await confirmItem(id);
+    await updateItem(id, value.replace('?', '')).then(() => {
+      setNeedsRefresh(needRefresh + 1);
+    });
   };
 
   return (
-    <button
-      className={`${disableClass} ml-4 flex h-auto w-auto p-0`}
-      onClick={_confirmItem}
-      disabled={!isOnline}
-    >
+    <button className="ml-4 flex h-auto w-auto p-0" onClick={_confirmItem} disabled={!isOnline}>
       <svg className="w-6" viewBox="0 0 24 24">
         <use xlinkHref="#confirm-icon"></use>
       </svg>
@@ -28,4 +31,3 @@ const ConfirmItemButton = ({ id }: ConfirmItemButtonProps) => {
 };
 
 export default memo(ConfirmItemButton);
-``;

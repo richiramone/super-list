@@ -49,7 +49,7 @@ const Item: React.FC<{ item: IItem; id: string }> = ({ item, id }: ItemProps) =>
         </span>
       )}
 
-      {!!item.hasQuestionMark && <ConfirmItemButton id={id} />}
+      {!!item.hasQuestionMark && <ConfirmItemButton id={id} value={item.text} />}
 
       {<DeleteItemButton id={id} />}
     </div>

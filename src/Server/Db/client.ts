@@ -29,7 +29,12 @@ export const insertItem = async (item: IItem) => {
 
   if (item.hasDuplicate) {
     await dbConnection().execute(
-      `UPDATE Items SET hasDuplicate = true WHERE text LIKE '%${item.text}%'`,
+      `UPDATE
+        Items
+      SET
+        hasDuplicate = true
+      WHERE
+        text LIKE '%${item.text}%'`,
     );
   }
 
@@ -38,11 +43,13 @@ export const insertItem = async (item: IItem) => {
 
 export const updateItem = async (id: string, text: string) => {
   return await dbConnection().execute(`
-    UPDATE Items
+    UPDATE
+      Items
     SET
       text = '${sanitize(text)}',
       hasQuestionMark = ${text.includes('?')}
-    WHERE id = ${id}`);
+    WHERE
+      id = ${id}`);
 };
 
 export const deleteItem = async (id: string) => {
