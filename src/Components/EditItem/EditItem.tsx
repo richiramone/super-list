@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import { useRef, memo } from 'react';
+import { memo } from 'react';
 import { needsRefreshAtom } from '../../Atoms';
 import { updateItem } from '../../Server/Db/client';
 
@@ -9,7 +9,6 @@ type EditItemProps = {
 };
 
 const EditItem: React.FC<{ id: string; value: string }> = ({ id, value }: EditItemProps) => {
-  const inputRef = useRef<HTMLInputElement>(null);
   const [needRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
 
   const submitForm = async (event: React.FormEvent) => {
@@ -23,6 +22,10 @@ const EditItem: React.FC<{ id: string; value: string }> = ({ id, value }: EditIt
     await updateItem(id, itemText).then(() => {
       setNeedsRefresh(needRefresh + 1);
     });
+
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
   };
 
   return (
@@ -35,7 +38,6 @@ const EditItem: React.FC<{ id: string; value: string }> = ({ id, value }: EditIt
         type="text"
         autoFocus
         defaultValue={value}
-        ref={inputRef}
       />
     </form>
   );

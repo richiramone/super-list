@@ -38,8 +38,8 @@ export const insertItem = async (item: IItem) => {
 
 export const updateItem = async (id: string, text: string) => {
   return await dbConnection().execute(`
-    UPDATE Items SET
-      text = '${sanitize(text)}',
+    UPDATE Items
+    SET text = '${sanitize(text)}'
     WHERE id = ${id}`);
 };
 
