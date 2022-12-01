@@ -15,16 +15,18 @@ const App: React.FC = () => {
 
   return (
     <Suspense>
-      <Preloader />
-      <Header />
+      <section>
+        <Preloader />
+        <Header />
 
-      <main>
-        <aside>
-          <AddItemForm />
-        </aside>
+        <main>
+          <aside>
+            <AddItemForm />
+          </aside>
 
-        <ItemsList />
-      </main>
+          <ItemsList />
+        </main>
+      </section>
     </Suspense>
   );
 };
