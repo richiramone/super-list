@@ -1,10 +1,10 @@
-import EditItem from '../EditItem';
-import DeleteItemButton from '../DeleteItemButton';
+import EditItem from '../editItem';
+import DeleteItemButton from '../deleteItemButton';
 import { useAtom } from 'jotai';
 import { memo, useState } from 'react';
-import { isOnlineAtom } from '../../Atoms';
-import { IItem } from '../../Interfaces';
-import ConfirmItemButton from '../ConfirmItemButton';
+import { isOnlineAtom } from '../../atoms';
+import { IItem } from '../../interfaces';
+import ConfirmItemButton from '../confirmItemButton';
 
 type ItemProps = {
   id: string;

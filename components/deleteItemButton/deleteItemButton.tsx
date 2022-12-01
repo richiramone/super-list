@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai';
 import { memo } from 'react';
-import { isOnlineAtom, needsRefreshAtom } from '../../Atoms';
-import { deleteItem } from '../../Server/Db/client';
+import { isOnlineAtom, needsRefreshAtom } from '../../atoms';
+import { deleteItem } from '../../server/db-client';
 
 type DeleteItemButtonProps = {
   id: string;

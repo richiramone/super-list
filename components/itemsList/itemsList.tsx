@@ -1,10 +1,10 @@
-import Item from '../Item';
+import Item from '../item';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect } from 'react';
 import { atom, useAtom } from 'jotai';
-import { isLoadingAtom, needsRefreshAtom } from '../../Atoms';
-import { getItems } from '../../Server/Db/client';
-import { IItem } from '../../Interfaces';
+import { isLoadingAtom, needsRefreshAtom } from '../../atoms';
+import { getItems } from '../../server/db-client';
+import { IItem } from '../../interfaces';
 
 export const itemsAtom = atom<IItem[]>([]);
 

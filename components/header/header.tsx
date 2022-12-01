@@ -1,6 +1,6 @@
 import { memo } from 'react';
-import EmptyListButton from '../EmptyListButton';
-import RefreshListButton from '../RefreshListButton';
+import EmptyListButton from '../emptyListButton';
+import RefreshListButton from '../refreshListButton';
 
 const Header: React.FC = () => {
   return (

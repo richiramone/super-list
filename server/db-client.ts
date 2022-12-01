@@ -1,6 +1,6 @@
 import { connect } from '@planetscale/database';
-import { IItem } from '../../Interfaces';
-import { sanitize } from '../../Utilities';
+import { IItem } from '../interfaces';
+import { sanitize } from '../utilities';
 
 const dbConnection = () => {
   const config = {
@@ -14,7 +14,7 @@ const dbConnection = () => {
 export const getItems = async () => {
   return await dbConnection()
     .execute('SELECT * FROM Items ORDER BY id DESC')
-    .then((items) => {
+    .then(items => {
       return items.rows;
     });
 };

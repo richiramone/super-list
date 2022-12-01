@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai';
 import { memo } from 'react';
-import { isOnlineAtom, needsRefreshAtom } from '../../Atoms';
-import { updateItem } from '../../Server/Db/client';
+import { isOnlineAtom, needsRefreshAtom } from '../../atoms';
+import { updateItem } from '../../server/db-client';
 
 type ConfirmItemButtonProps = {
   id: string;

@@ -1,8 +1,8 @@
 import { useAtom } from 'jotai';
 import { memo, useState } from 'react';
-import { isOnlineAtom, needsRefreshAtom } from '../../Atoms';
-import { emptyList } from '../../Server/Db/client';
-import ConfirmationDialog from '../ConfirmationDialog';
+import { isOnlineAtom, needsRefreshAtom } from '../../atoms';
+import { emptyList } from '../../server/db-client';
+import ConfirmationDialog from '../confirmationDialog';
 
 const EmptyListButton: React.FC = () => {
   const [isOnline] = useAtom(isOnlineAtom);

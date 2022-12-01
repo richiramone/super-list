@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai';
 import { memo } from 'react';
-import { isLoadingAtom } from '../../Atoms';
+import { isLoadingAtom } from '../../atoms';
 
 const Preloader: React.FC = () => {
   const [isLoading] = useAtom(isLoadingAtom);

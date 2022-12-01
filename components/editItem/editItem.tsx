@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai';
 import { memo } from 'react';
-import { needsRefreshAtom } from '../../Atoms';
-import { updateItem } from '../../Server/Db/client';
+import { needsRefreshAtom } from '../../atoms';
+import { updateItem } from '../../server/db-client';
 
 type EditItemProps = {
   id: string;

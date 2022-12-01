@@ -1,10 +1,10 @@
 import { useAtom } from 'jotai';
 import React, { useRef, useEffect, memo } from 'react';
-import { authorAtom, isOnlineAtom, needsRefreshAtom } from '../../Atoms';
-import { IItem } from '../../Interfaces';
-import { insertItem } from '../../Server/Db/client';
-import { hasDuplicatedValue } from '../../Utilities';
-import { itemsAtom } from '../ItemsList/ItemsList';
+import { authorAtom, isOnlineAtom, needsRefreshAtom } from '../../atoms';
+import { IItem } from '../../interfaces';
+import { insertItem } from '../../server/db-client';
+import { hasDuplicatedValue } from '../../utilities';
+import { itemsAtom } from '../itemsList/itemsList';
 
 const AddItemForm: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
