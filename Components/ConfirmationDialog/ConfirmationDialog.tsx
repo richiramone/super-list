@@ -44,6 +44,7 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
   useEffect(() => {
     window.addEventListener('keydown', escapehandler);
     okInputRef.current?.focus();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

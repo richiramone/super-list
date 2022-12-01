@@ -1,7 +1,26 @@
 import Head from 'next/head';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useAtom } from 'jotai';
+import { lazy, Suspense } from 'react';
+import { authorAtom, isOnlineAtom } from '../Atoms';
+import { getAuthor } from '../Utilities';
 
 export default function Home() {
+  const [, setConnectionStatus] = useAtom(isOnlineAtom);
+  const [, setAuthorAtom] = useAtom(authorAtom);
+
+  const Preloader = lazy(() => import('../Components/Preloader'));
+  const Header = lazy(() => import('../Components/Header'));
+  const AddItemForm = lazy(() => import('../Components/AddItemForm'));
+  const ItemsList = lazy(() => import('../Components/ItemsList'));
+
+  useEffect(() => {
+    setAuthorAtom(getAuthor());
+    window.addEventListener('online', () => setConnectionStatus(true));
+    window.addEventListener('offline', () => setConnectionStatus(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <Head>
@@ -60,6 +79,20 @@ export default function Home() {
           </symbol>
         </defs>
       </svg>
+
+      <Suspense>
+        <section>
+          <Preloader />
+          <Header />
+          <main>
+            <aside>
+              <AddItemForm />
+            </aside>
+
+            <ItemsList />
+          </main>
+        </section>
+      </Suspense>
     </>
   );
 }

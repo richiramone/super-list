@@ -37,7 +37,6 @@ const AddItemForm: React.FC = () => {
       setNeedsRefresh(needRefresh + 1);
     });
 
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     inputRef.current!.value = '';
   };
 

@@ -10,14 +10,27 @@
     "deploy": "curl https://api.vercel.com/v1/integrations/deploy/prj_lWolsU0VCHqmS5m64c85ntkKCkGd/GABjE8ur2e"
   },
   "dependencies": {
+    "@planetscale/database": "^1.4.1",
+    "@prisma/client": "^4.7.0",
     "@types/node": "18.11.10",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.5",
+    "framer-motion": "^7.6.17",
+    "jotai": "^1.11.0",
     "next": "13.0.5",
+    "prettier": "^2.8.0",
+    "prettier-plugin-tailwindcss": "^0.2.0",
+    "prisma": "^4.7.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-focus-lock": "^2.9.2",
     "typescript": "4.9.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.19",
+    "tailwindcss": "^3.2.4"
   }
 }
