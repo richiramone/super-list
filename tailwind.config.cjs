@@ -7,7 +7,7 @@ module.exports = {
         primary: '#009dff',
         'item-is-duplicated': '#223889',
         'item-is-anna': '#ff0099',
-        'item-has-question-mark': '#ff6a00',
+        'item-has-question-mark': '#ff6a00 !important',
         'cancel-button-border': '#008ce3',
         modal: 'rgba(0,0,0,.5)',
       },
