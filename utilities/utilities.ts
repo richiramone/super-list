@@ -1,4 +1,4 @@
-import { IItem } from '../Interfaces';
+import { IItem } from '../interfaces';
 
 export const getAuthor = () => {
   const params = new URLSearchParams(window.location.search);
@@ -24,7 +24,6 @@ export const hasDuplicatedValue = (items: IItem[], newValue: string) => {
   return alreadyExists;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
 export const noop = () => {};
 
 export const sanitize = (input: string) => {

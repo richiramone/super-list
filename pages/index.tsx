@@ -2,17 +2,17 @@ import Head from 'next/head';
 import React, { useEffect } from 'react';
 import { useAtom } from 'jotai';
 import { lazy, Suspense } from 'react';
-import { authorAtom, isOnlineAtom } from '../Atoms';
-import { getAuthor } from '../Utilities';
+import { authorAtom, isOnlineAtom } from '../atoms';
+import { getAuthor } from '../utilities';
 
 export default function Home() {
   const [, setConnectionStatus] = useAtom(isOnlineAtom);
   const [, setAuthorAtom] = useAtom(authorAtom);
 
-  const Preloader = lazy(() => import('../Components/Preloader'));
-  const Header = lazy(() => import('../Components/Header'));
-  const AddItemForm = lazy(() => import('../Components/AddItemForm'));
-  const ItemsList = lazy(() => import('../Components/ItemsList'));
+  const Preloader = lazy(() => import('../components/preloader'));
+  const Header = lazy(() => import('../components/header'));
+  const AddItemForm = lazy(() => import('../components/addItemForm'));
+  const ItemsList = lazy(() => import('../components/itemsList'));
 
   useEffect(() => {
     setAuthorAtom(getAuthor());
