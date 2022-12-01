@@ -57,5 +57,5 @@ export const deleteItem = async (id: string) => {
 };
 
 export const emptyList = async () => {
-  return await dbConnection().execute('TRUNCATE TABLE Items');
+  return await dbConnection().execute('DELETE FROM Items WHERE id > 0');
 };
