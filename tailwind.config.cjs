@@ -3,9 +3,6 @@ module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
-      spacing: {
-        'header-heigth': '124px',
-      },
       colors: {
         primary: '#009dff',
         'item-is-duplicated': '#223889',
