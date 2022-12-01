@@ -12,7 +12,7 @@ export default function Home() {
   const Preloader = lazy(() => import('../components/preloader'));
   const Header = lazy(() => import('../components/header'));
   const AddItemForm = lazy(() => import('../components/addItemForm'));
-  const itemsList = lazy(() => import('../components/itemsList'));
+  const ItemsList = lazy(() => import('../components/itemsList'));
 
   useEffect(() => {
     setAuthorAtom(getAuthor());
@@ -89,7 +89,7 @@ export default function Home() {
               <AddItemForm />
             </aside>
 
-            <itemsList />
+            <ItemsList />
           </main>
         </section>
       </Suspense>
