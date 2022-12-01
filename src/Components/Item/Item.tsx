@@ -36,7 +36,6 @@ const Item: React.FC<{ item: IItem; id: string }> = ({ item, id }: ItemProps) =>
     <div
       className={`${dynamicClassName} relative flex cursor-pointer items-center rounded bg-primary py-1 px-2 transition-colors`}
       onBlur={_disableEditingMode}
-      onClick={_setIsBeingEdited}
     >
       {isBeingEdited && <EditItem id={id} value={item.text} />}
 

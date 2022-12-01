@@ -30,7 +30,7 @@ const EditItem: React.FC<{ id: string; value: string }> = ({ id, value }: EditIt
 
   return (
     <form
-      className="flex h-auto w-auto max-w-sm cursor-pointer rounded bg-primary py-0.5 pr-1"
+      className="flex h-auto w-auto max-w-sm cursor-pointer rounded py-0.5 pr-1"
       onSubmit={submitForm}
     >
       <input
