@@ -12,7 +12,11 @@ const dbConnection = () => {
 };
 
 export const getItems = async () => {
-  return await dbConnection().execute('SELECT * FROM Items');
+  return await dbConnection()
+    .execute('SELECT * FROM Items')
+    .then((items) => {
+      return items.rows.reverse();
+    });
 };
 
 export const insertItem = async (item: IItem) => {

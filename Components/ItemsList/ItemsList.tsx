@@ -16,7 +16,7 @@ const ItemsList: React.FC = () => {
   const loadItems = async () => {
     await getItems().then(dbResult => {
       setIsLoading(false);
-      setItems(dbResult.rows as IItem[]);
+      setItems(dbResult as IItem[]);
     });
   };
 
