@@ -7,6 +7,7 @@ svg {
 }
 
 header {
+  background-color: red !important;
   height: calc(60px + env(safe-area-inset-top, 60px));
   border-top: 0 solid #009dff;
   border-top-width: env(safe-area-inset-top, 0);
