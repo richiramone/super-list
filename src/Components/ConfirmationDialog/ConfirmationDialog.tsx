@@ -47,14 +47,17 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 z-50 flex h-full w-full items-center justify-center bg-modal">
+    <div
+      className="fixed top-0 left-0 z-50 flex h-full w-full items-center justify-center bg-modal"
+      onClick={cancelAction}
+    >
       <FocusLock>
-        <div className="w-90 absolute top-1/2 left-[calc(50%_-_160px)] rounded bg-white text-center text-black shadow-xl">
-          <h3 className="m-0 pt-8 pr-4 pb-0 pl-4 text-xl font-normal leading-6">{question}</h3>
+        <div className="w-90 absolute top-[calc(50%_-_69px)] left-[calc(50%_-_167px)] rounded bg-white text-center text-black shadow-xl">
+          <h3 className="m-0 pt-6 pr-4 pb-0 pl-4 text-xl font-normal leading-6">{question}</h3>
 
-          <div className="my-8 mx-0 flex justify-evenly">
+          <div className="mx-0 mt-8 mb-4 flex justify-evenly">
             <button
-              className="h-auto w-36 rounded border border-solid border-cancel-button-border p-2 text-center text-base text-primary hover:shadow-lg hover:shadow-primary focus:shadow-md focus:shadow-primary"
+              className="h-auto w-36 rounded border border-solid border-cancel-button-border p-2 text-center text-base text-primary hover:shadow hover:shadow-gray-500 focus:shadow focus:shadow-gray-500"
               onClick={cancelAction}
               type="button"
             >
@@ -63,7 +66,7 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
 
             <button
               ref={okInputRef}
-              className="h-auto w-36 rounded border border-solid border-primary bg-primary p-2 text-center text-base text-white hover:shadow-lg hover:shadow-primary focus:shadow-md focus:shadow-primary"
+              className="h-auto w-36 rounded border border-solid border-primary bg-primary p-2 text-center text-base text-white hover:shadow hover:shadow-gray-500 focus:shadow focus:shadow-gray-500"
               onClick={confrimAction}
               type="button"
             >
