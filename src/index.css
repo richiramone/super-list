@@ -6,6 +6,11 @@ svg {
   fill: #fff;
 }
 
+header {
+  border-top: 0 solid #009dff;
+  border-top-width: env(safe-area-inset-top, 0);
+}
+
 main {
   margin-top: calc(5rem + env(safe-area-inset-top, 5rem));
   padding: 0 0.75rem;
