@@ -13,9 +13,9 @@ const dbConnection = () => {
 
 export const getItems = async () => {
   return await dbConnection()
-    .execute('SELECT * FROM Items')
+    .execute('SELECT * FROM Items ORDER BY id DESC')
     .then((items) => {
-      return items.rows.reverse();
+      return items.rows;
     });
 };
 
