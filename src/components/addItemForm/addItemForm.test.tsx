@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { it } from 'vitest';
+import { expect, it } from 'vitest';
 import AddItemForm from './addItemForm';
 
 it('should work', ctx => {
