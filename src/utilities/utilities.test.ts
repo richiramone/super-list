@@ -61,7 +61,7 @@ describe('hasDuplicatedValue', () => {
 
 describe('noop', () => {
   it('should be an empty function', () => {
-    expect(noop()).toBeTypeOf('undefined');
+    expect(noop()).toBeUndefined();
   });
 });
 

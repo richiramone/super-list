@@ -8,7 +8,6 @@ import { itemsAtom } from '../itemsList/itemsList';
 
 const AddItemForm: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const renderCount = useRef(1);
   const hasRecentlyAddedItems = useRef(false);
   const [author] = useAtom(authorAtom);
   const [isOnline] = useAtom(isOnlineAtom);
@@ -19,7 +18,7 @@ const AddItemForm: React.FC = () => {
     event.preventDefault();
     const itemText = (event.currentTarget.children[0] as HTMLInputElement).value;
 
-    hasRecentlyAddedItems.current = true;
+    hasRecentlyAddedItems.current = false;
 
     if (itemText === '') {
       return;
@@ -34,18 +33,16 @@ const AddItemForm: React.FC = () => {
     };
 
     await insertItem(item).then(() => {
+      hasRecentlyAddedItems.current = true;
       setNeedsRefresh(needRefresh + 1);
     });
 
-    inputRef.current!.value = '';
+    if (inputRef.current) {
+      inputRef.current.value = '';
+    }
   };
 
   useEffect(() => {
-    if (renderCount.current < 3) {
-      renderCount.current += 1;
-      return;
-    }
-
     if (hasRecentlyAddedItems.current) {
       inputRef.current?.focus();
       hasRecentlyAddedItems.current = false;
@@ -54,10 +51,12 @@ const AddItemForm: React.FC = () => {
 
   return (
     <form
+      data-testid="addItemForm"
       className="flex h-auto w-auto max-w-sm cursor-pointer rounded bg-primary py-1.5 px-2"
       onSubmit={submitForm}
     >
       <input
+        data-testid="addItemInput"
         className="m-0 block w-full border-0 bg-transparent font-normal leading-5 tracking-wide text-white outline-none placeholder:italic placeholder:text-stone-200 disabled:opacity-50"
         data-add-item-input
         ref={inputRef}
