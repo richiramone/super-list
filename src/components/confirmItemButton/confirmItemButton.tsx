@@ -15,14 +15,19 @@ const ConfirmItemButton: React.FC<{ id: string; value: string }> = ({
   const [isOnline] = useAtom(isOnlineAtom);
   const [needRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
 
-  const _confirmItem = async () => {
+  const confirmItem = async () => {
     await updateItem(id, value.replace('?', '')).then(() => {
       setNeedsRefresh(needRefresh + 1);
     });
   };
 
   return (
-    <button className="ml-4 flex h-auto w-auto p-0" onClick={_confirmItem} disabled={!isOnline}>
+    <button
+      data-testid="confirmButton"
+      className="ml-4 flex h-auto w-auto p-0"
+      onClick={confirmItem}
+      disabled={!isOnline}
+    >
       <svg className="w-6" viewBox="0 0 24 24">
         <use xlinkHref="#confirm-icon"></use>
       </svg>
