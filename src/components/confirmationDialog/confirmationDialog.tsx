@@ -26,12 +26,12 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
   };
 
   const cancelAction = () => {
-    removeEscapeListener;
+    removeEscapeListener();
     cancelCallback();
   };
 
   const confrimAction = async () => {
-    removeEscapeListener;
+    removeEscapeListener();
 
     if (confirmCallback.constructor.name === 'AsyncFunction') {
       await confirmCallback();
@@ -44,6 +44,9 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
   useEffect(() => {
     window.addEventListener('keydown', escapehandler);
     okInputRef.current?.focus();
+
+    return () => removeEscapeListener();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -54,7 +57,12 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
     >
       <FocusLock>
         <div className="w-90 absolute top-[calc(50%_-_69px)] left-[calc(50%_-_167px)] rounded bg-white text-center text-black shadow-xl">
-          <h3 className="m-0 pt-6 pr-4 pb-0 pl-4 text-xl font-normal leading-6">{question}</h3>
+          <h3
+            data-testid="question"
+            className="m-0 pt-6 pr-4 pb-0 pl-4 text-xl font-normal leading-6"
+          >
+            {question}
+          </h3>
 
           <div className="mx-0 mt-8 mb-4 flex justify-evenly">
             <button
@@ -66,6 +74,7 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
             </button>
 
             <button
+              data-testid="confirmButton"
               ref={okInputRef}
               className="h-auto w-36 rounded border border-solid border-primary bg-primary p-2 text-center text-base text-white hover:shadow hover:shadow-gray-500 focus:shadow focus:shadow-gray-500"
               onClick={confrimAction}

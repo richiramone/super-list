@@ -1,5 +1,5 @@
 import React from 'react';
-import { beforeEach, expect, it, afterEach, describe, vi } from 'vitest';
+import { expect, it, afterEach, describe, vi } from 'vitest';
 import AddItemForm from './addItemForm';
 import { waitFor, render, screen, fireEvent, cleanup, act } from '@testing-library/react';
 import { insertItem } from '../../server/db-client';
@@ -44,14 +44,14 @@ describe('addItemForm', () => {
   });
 
   describe('submit', () => {
-    it('empty item avoids submit', async () => {
+    it('empty item avoids submit', () => {
       render(<AddItemForm />);
       fireEvent.submit(screen.getByTestId('addItemForm'));
 
       expect(insertItem).not.toBeCalled();
     });
 
-    it('on proper submit insert item in db', async () => {
+    it('on proper submit insert item in db', () => {
       render(<AddItemForm />);
       const input = screen.getByTestId('addItemInput');
 
@@ -62,4 +62,3 @@ describe('addItemForm', () => {
     });
   });
 });
-``;
