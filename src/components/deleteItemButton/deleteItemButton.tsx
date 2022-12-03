@@ -22,6 +22,7 @@ const DeleteItemButton: React.FC<{
 
   return (
     <button
+      data-testid="deleteItemButton"
       className={`${disableClass} ml-4 h-auto w-auto p-0`}
       onClick={_deleteItem}
       disabled={!isOnline}
