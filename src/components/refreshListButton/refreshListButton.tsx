@@ -16,6 +16,7 @@ const RefreshListButton: React.FC = () => {
         setNeedsRefreshAtom(needRefreshAtom + 1);
       }}
       disabled={!isOnline}
+      data-testid="refreshListButton"
     >
       <svg className="w-7" viewBox="0 0 32 32">
         <use xlinkHref="#shape-reload"></use>

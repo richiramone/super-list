@@ -10,10 +10,6 @@ vi.mock('../../server/db-client', () => {
   };
 });
 
-// state hidden confirmdialog
-// online disabled
-// submit
-
 describe('emptyListButton', () => {
   afterEach(async () => {
     cleanup();
