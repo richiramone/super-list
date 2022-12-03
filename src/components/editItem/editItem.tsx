@@ -30,10 +30,12 @@ const EditItem: React.FC<{ id: string; value: string }> = ({ id, value }: EditIt
 
   return (
     <form
+      data-testid="editItemForm"
       className="flex h-auto w-auto max-w-sm cursor-pointer rounded py-0.5 pr-1"
       onSubmit={submitForm}
     >
       <input
+        data-testid="editItemInput"
         className="m-0 block w-full border-hidden bg-transparent font-normal leading-5 tracking-wide text-white outline-none"
         type="text"
         autoFocus
