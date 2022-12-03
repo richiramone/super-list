@@ -34,6 +34,7 @@ const Item: React.FC<{ item: IItem; id: string }> = ({ item, id }: ItemProps) =>
 
   return (
     <div
+      data-testid="item"
       className={`${dynamicClassName} relative flex cursor-pointer items-center rounded bg-primary py-1 px-2 transition-colors`}
       onBlur={_disableEditingMode}
     >
@@ -41,6 +42,7 @@ const Item: React.FC<{ item: IItem; id: string }> = ({ item, id }: ItemProps) =>
 
       {!isBeingEdited && (
         <span
+          data-testid="itemText"
           onClick={_setIsBeingEdited}
           className="m-0 w-auto bg-transparent tracking-wide text-white"
         >
