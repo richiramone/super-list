@@ -2,7 +2,11 @@ import { memo } from 'react';
 import EmptyListButton from '../emptyListButton';
 import RefreshListButton from '../refreshListButton';
 
-const Header: React.FC = () => {
+export type HeaderProps = {
+  hideButtons?: boolean;
+};
+
+const Header: React.FC<HeaderProps> = ({ hideButtons }: HeaderProps) => {
   return (
     <header
       data-testid="header"
@@ -10,10 +14,12 @@ const Header: React.FC = () => {
     >
       <h1 className="m-0 inline text-3xl font-bold leading-none">SuperList</h1>
 
-      <menu className="m-0 py-0">
-        <RefreshListButton />
-        <EmptyListButton />
-      </menu>
+      {!hideButtons && (
+        <menu className="m-0 py-0">
+          <RefreshListButton />
+          <EmptyListButton />
+        </menu>
+      )}
     </header>
   );
 };

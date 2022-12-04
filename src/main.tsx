@@ -8,12 +8,8 @@ import './index.css';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App author="lucas" />,
+    element: <App />,
     errorElement: <ErrorPage />,
-  },
-  {
-    path: 'anna',
-    element: <App author="anna" />,
   },
 ]);
 
