@@ -7,9 +7,7 @@ import UserSelector from './components/userSelector';
 const App: React.FC = () => {
   const [, setConnectionStatus] = useAtom(isOnlineAtom);
   const [author] = useAtom(authorAtom);
-  const savedAuthor = localStorage.getItem('author');
-
-  const [authorState, setAuthorState] = useState(savedAuthor);
+  const [authorState, setAuthorState] = useState(localStorage.getItem('author'));
 
   const Preloader = lazy(() => import('./components/preloader'));
   const Header = lazy(() => import('./components/header'));
