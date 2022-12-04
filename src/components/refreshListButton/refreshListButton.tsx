@@ -1,11 +1,11 @@
 import { useAtom } from 'jotai';
 import { memo } from 'react';
-import { isLoadingAtom, needsRefreshAtom } from '../../atoms';
+import { isLoadingAtom, isOnlineAtom, needsRefreshAtom } from '../../atoms';
 
 const RefreshListButton: React.FC = () => {
   const [needRefreshAtom, setNeedsRefreshAtom] = useAtom(needsRefreshAtom);
   const [, setIsLoading] = useAtom(isLoadingAtom);
-  const isOnline = true;
+  const [isOnline] = useAtom(isOnlineAtom);
 
   return (
     <button

@@ -1,7 +1,7 @@
 import React from 'react';
 import { expect, it, afterEach, describe } from 'vitest';
 import Item from './item';
-import { render, screen, fireEvent, cleanup, act } from '@testing-library/react';
+import { render, screen, fireEvent, cleanup } from '@testing-library/react';
 import { IItem } from '../../interfaces';
 
 const fakeItem: IItem = {

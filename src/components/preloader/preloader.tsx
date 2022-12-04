@@ -8,6 +8,7 @@ const Preloader: React.FC = () => {
 
   return (
     <div
+      data-testid="preloader"
       className={`${dynamicClasses} fixed top-0 left-0 z-50 h-full w-full items-center justify-center bg-modal`}
     >
       <div className="flex h-20 w-20 items-center justify-center rounded-xl bg-white text-center shadow-lg">
