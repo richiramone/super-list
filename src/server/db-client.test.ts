@@ -26,7 +26,7 @@ describe('getItems', () => {
   it('should return connect with proper settings', async () => {
     const items = await getItems();
 
-    const getItemsQuery = connect.results[0][1].execute.calls[0][0];
+    const getItemsQuery = (connect as any).results[0][1].execute.calls[0][0];
 
     expect(getItemsQuery).toBe('SELECT * FROM Items ORDER BY id DESC');
     expect(items).toStrictEqual([1, 2, 3]);
@@ -43,7 +43,7 @@ describe('insertItem', () => {
       id: 2,
     });
 
-    const insertItemQuery = connect.results[0][1].execute.calls[0][0];
+    const insertItemQuery = (connect as any).results[0][1].execute.calls[0][0];
 
     expect(insertItemQuery.trim()).toBe(
       `
@@ -59,7 +59,7 @@ describe('insertItem', () => {
     `.trim(),
     );
 
-    const updateDuplicatedQuery = connect.results[0][1].execute.calls[1][0];
+    const updateDuplicatedQuery = (connect as any).results[0][1].execute.calls[1][0];
 
     expect(updateDuplicatedQuery).toStrictEqual(`UPDATE
         Items
@@ -78,7 +78,7 @@ describe('insertItem', () => {
       id: 2,
     });
 
-    const insertItemQuery = connect.results[0][1].execute.calls[0][0];
+    const insertItemQuery = (connect as any).results[0][1].execute.calls[0][0];
 
     expect(insertItemQuery.trim()).toBe(
       `
@@ -94,7 +94,7 @@ describe('insertItem', () => {
     `.trim(),
     );
 
-    const queriesCallCount = connect.results[0][1].execute.callCount;
+    const queriesCallCount = (connect as any).results[0][1].execute.callCount;
     expect(queriesCallCount).toBe(1);
   });
 });
@@ -103,7 +103,7 @@ describe('updateItem', () => {
   it('should update item with hasQuestionMark FALSE', async () => {
     await updateItem('2', 'cheese');
 
-    const query = connect.results[0][1].execute.calls[0][0];
+    const query = (connect as any).results[0][1].execute.calls[0][0];
 
     expect(query.trim()).toBe(
       `UPDATE
@@ -120,7 +120,7 @@ describe('updateItem', () => {
   it('should update item with hasQuestionMark TRUE', async () => {
     await updateItem('2', 'cheese?');
 
-    const query = connect.results[0][1].execute.calls[0][0];
+    const query = (connect as any).results[0][1].execute.calls[0][0];
 
     expect(query.trim()).toBe(
       `UPDATE
@@ -137,7 +137,7 @@ describe('updateItem', () => {
   it('should update item with sanitize text', async () => {
     await updateItem('2', 'che & < ese?');
 
-    const query = connect.results[0][1].execute.calls[0][0];
+    const query = (connect as any).results[0][1].execute.calls[0][0];
 
     expect(query.trim()).toBe(
       `UPDATE
@@ -156,7 +156,7 @@ describe('deleteItem', () => {
   it('should delete proper item', async () => {
     await deleteItem('1');
 
-    const getItemsQuery = connect.results[0][1].execute.calls[0][0];
+    const getItemsQuery = (connect as any)``.results[0][1].execute.calls[0][0];
 
     expect(getItemsQuery).toBe('DELETE FROM Items WHERE id = 1');
   });
@@ -166,7 +166,7 @@ describe('emptyList', () => {
   it('should delete all items', async () => {
     await emptyList();
 
-    const getItemsQuery = connect.results[0][1].execute.calls[0][0];
+    const getItemsQuery = (connect as any).results[0][1].execute.calls[0][0];
 
     expect(getItemsQuery).toBe('DELETE FROM Items WHERE id > 0');
   });
