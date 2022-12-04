@@ -2,7 +2,7 @@ import { connect } from '@planetscale/database';
 import { IItem } from '../interfaces';
 import { sanitize } from '../utilities';
 
-const dbConnection = () => {
+export const dbConnection = () => {
   const config = {
     host: 'aws.connect.psdb.cloud',
     username: '20m3farrdw6wa2kjs6hw',
