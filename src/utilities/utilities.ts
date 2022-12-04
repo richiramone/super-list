@@ -1,12 +1,5 @@
 import { IItem } from '../interfaces';
 
-export const getAuthor = () => {
-  const params = new URLSearchParams(window.location.search);
-  const userFromQS = params.has('user') ? params.get('user') : 'lucas';
-
-  return userFromQS ? userFromQS : 'lucas';
-};
-
 export const hasDuplicatedValue = (items: IItem[], newValue: string) => {
   let alreadyExists = false;
 

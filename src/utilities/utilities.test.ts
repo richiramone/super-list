@@ -1,19 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { IItem } from '../interfaces';
-import { getAuthor, hasDuplicatedValue, noop, sanitize } from './utilities';
-
-describe('getAuthor', () => {
-  it('should return lucas when no query string is present on browser', () => {
-    expect(getAuthor()).toBe('lucas');
-  });
-
-  it('should return query string user value when present', () => {
-    const url = `${window.location.toString()}?user=anna`;
-    window.history.pushState(null, '', url);
-
-    expect(getAuthor()).toBe('anna');
-  });
-});
+import { hasDuplicatedValue, noop, sanitize } from './utilities';
 
 describe('hasDuplicatedValue', () => {
   it('should return FALSE whenever the items arent duplicated', () => {
