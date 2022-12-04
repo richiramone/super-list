@@ -7,7 +7,9 @@ import UserSelector from './components/userSelector';
 const App: React.FC = () => {
   const [, setConnectionStatus] = useAtom(isOnlineAtom);
   const [author] = useAtom(authorAtom);
-  const [authorState, setAuthorState] = useState(localStorage.getItem('author'));
+  const savedAuthor = localStorage.getItem('author');
+
+  const [authorState, setAuthorState] = useState(savedAuthor);
 
   const Preloader = lazy(() => import('./components/preloader'));
   const Header = lazy(() => import('./components/header'));
@@ -15,8 +17,11 @@ const App: React.FC = () => {
   const ItemsList = lazy(() => import('./components/itemsList'));
 
   useEffect(() => {
-    setAuthorState(author);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (!authorState) {
+      setAuthorState(author);
+    }
+
+    // eslint-disable-next-line ``react-hooks/exhaustive-deps
   }, [author]);
 
   useEffect(() => {

@@ -156,7 +156,7 @@ describe('deleteItem', () => {
   it('should delete proper item', async () => {
     await deleteItem('1');
 
-    const getItemsQuery = (connect as any)``.results[0][1].execute.calls[0][0];
+    const getItemsQuery = (connect as any).results[0][1].execute.calls[0][0];
 
     expect(getItemsQuery).toBe('DELETE FROM Items WHERE id = 1');
   });
