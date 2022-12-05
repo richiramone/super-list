@@ -4,17 +4,13 @@ import { isLoadingAtom } from '../../atoms';
 import Preloader from './preloader';
 
 export default {
-  title: 'Preloader',
+  title: 'Components/Preloader',
   component: Preloader,
 };
 
-const PreloaderWithHooks = () => {
+export const ActivePreloader = () => {
   const [, setIsLoading] = useAtom(isLoadingAtom);
   setIsLoading(true);
 
   return <Preloader />;
-};
-
-export const Primary = {
-  render: () => <PreloaderWithHooks />,
 };
