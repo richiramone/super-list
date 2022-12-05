@@ -1500,6 +1500,28 @@
   "resolved" "https://registry.npmjs.org/@sindresorhus/is/-/is-5.3.0.tgz"
   "version" "5.3.0"
 
+"@storybook/addon-a11y@^6.5.14":
+  "integrity" "sha512-nQf+pTcIXZr4dnrn4eDQoIeR62P6aHFFLoNBTcKFsESmHO3KYMC709j6uU1N+GNFMj9SEZYMav3iQC1Ue9BUnw=="
+  "resolved" "https://registry.npmjs.org/@storybook/addon-a11y/-/addon-a11y-6.5.14.tgz"
+  "version" "6.5.14"
+  dependencies:
+    "@storybook/addons" "6.5.14"
+    "@storybook/api" "6.5.14"
+    "@storybook/channels" "6.5.14"
+    "@storybook/client-logger" "6.5.14"
+    "@storybook/components" "6.5.14"
+    "@storybook/core-events" "6.5.14"
+    "@storybook/csf" "0.0.2--canary.4566f4d.1"
+    "@storybook/theming" "6.5.14"
+    "axe-core" "^4.2.0"
+    "core-js" "^3.8.2"
+    "global" "^4.4.0"
+    "lodash" "^4.17.21"
+    "react-sizeme" "^3.0.1"
+    "regenerator-runtime" "^0.13.7"
+    "ts-dedent" "^2.0.0"
+    "util-deprecate" "^1.0.2"
+
 "@storybook/addon-actions@^7.0.0-alpha.58", "@storybook/addon-actions@7.0.0-alpha.58":
   "integrity" "sha512-jzbbRzigl23bddD37t7pKkcEXi1ACNgXq/JY3Joj/X8OAmZyWXGoyuRAkmdRgpFxWj9jZSh1Q+/ok1ygaPbq6w=="
   "resolved" "https://registry.npmjs.org/@storybook/addon-actions/-/addon-actions-7.0.0-alpha.58.tgz"
@@ -1920,6 +1942,20 @@
     "prettier" "^2.8.0"
     "recast" "^0.19.0"
     "util" "^0.12.4"
+
+"@storybook/components@6.5.14":
+  "integrity" "sha512-wqB9CF3sjxtgffnDW1G/W5SsKumsFQ0ftn/3PdrsvKULu5LM5bjNEqC2cTCWrk9vQhj+EVQxzdVM/BlPl/lSwg=="
+  "resolved" "https://registry.npmjs.org/@storybook/components/-/components-6.5.14.tgz"
+  "version" "6.5.14"
+  dependencies:
+    "@storybook/client-logger" "6.5.14"
+    "@storybook/csf" "0.0.2--canary.4566f4d.1"
+    "@storybook/theming" "6.5.14"
+    "core-js" "^3.8.2"
+    "memoizerific" "^1.11.3"
+    "qs" "^6.10.0"
+    "regenerator-runtime" "^0.13.7"
+    "util-deprecate" "^1.0.2"
 
 "@storybook/components@7.0.0-alpha.58":
   "integrity" "sha512-7YMByqpZvUCe6BIhYZ+fUnO3+5YvY9D5yiyKKL0ToGZjLncGpQqfBsANa6i+603aA6+UcvN54MNHDoVjF3tFEw=="
@@ -3284,7 +3320,7 @@
   "resolved" "https://registry.npmjs.org/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz"
   "version" "1.0.5"
 
-"axe-core@^4.4.3":
+"axe-core@^4.2.0", "axe-core@^4.4.3":
   "integrity" "sha512-u2MVsXfew5HBvjsczCv+xlwdNnB1oQR9HlAcsejZttNjKKSkeDNVwB1vMThIUIFI9GoT57Vtk8iQLwqOfAkboA=="
   "resolved" "https://registry.npmjs.org/axe-core/-/axe-core-4.5.2.tgz"
   "version" "4.5.2"
@@ -3361,6 +3397,11 @@
     "isobject" "^3.0.1"
     "mixin-deep" "^1.2.0"
     "pascalcase" "^0.1.1"
+
+"batch-processor@1.0.0":
+  "integrity" "sha512-xoLQD8gmmR32MeuBHgH0Tzd5PuSZx71ZsbhVxOCRbgktZEPe4SQy7s9Z50uPp0F/f7iw2XmkHN2xkgbMfckMDA=="
+  "resolved" "https://registry.npmjs.org/batch-processor/-/batch-processor-1.0.0.tgz"
+  "version" "1.0.0"
 
 "better-opn@^2.1.1":
   "integrity" "sha512-kIPXZS5qwyKiX/HcRvDYfmBQUa8XP17I0mYZZ0y4UhpYOSvtsLHDYqmomS+Mj20aDvD3knEiQ0ecQy2nhio3yA=="
@@ -4362,6 +4403,13 @@
   "integrity" "sha512-M8WEXFuKXMYMVr45fo8mq0wUrrJHheiKZf6BArTKk9ZBYCKJEOU5H8cdWgDT+qCVZf7Na4lVUaZsA+h6uA9+PA=="
   "resolved" "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.4.284.tgz"
   "version" "1.4.284"
+
+"element-resize-detector@^1.2.2":
+  "integrity" "sha512-Fl5Ftk6WwXE0wqCgNoseKWndjzZlDCwuPTcoVZfCP9R3EHQF8qUtr3YUPNETegRBOKqQKPW3n4kiIWngGi8tKg=="
+  "resolved" "https://registry.npmjs.org/element-resize-detector/-/element-resize-detector-1.2.4.tgz"
+  "version" "1.2.4"
+  dependencies:
+    "batch-processor" "1.0.0"
 
 "emoji-regex@^8.0.0":
   "integrity" "sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A=="
@@ -5815,6 +5863,13 @@
   "resolved" "https://registry.npmjs.org/interpret/-/interpret-1.4.0.tgz"
   "version" "1.4.0"
 
+"invariant@^2.2.4":
+  "integrity" "sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA=="
+  "resolved" "https://registry.npmjs.org/invariant/-/invariant-2.2.4.tgz"
+  "version" "2.2.4"
+  dependencies:
+    "loose-envify" "^1.0.0"
+
 "ip@^2.0.0":
   "integrity" "sha512-WKa+XuLG1A1R0UWhl2+1XQSi+fZWMsYKffMZTTYsiZaUD8k2yDAj5atimTUD2TZkyCkNEeYE5NhFZmupOGtjYQ=="
   "resolved" "https://registry.npmjs.org/ip/-/ip-2.0.0.tgz"
@@ -6687,7 +6742,7 @@
   "resolved" "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
   "version" "4.17.21"
 
-"loose-envify@^1.1.0", "loose-envify@^1.4.0":
+"loose-envify@^1.0.0", "loose-envify@^1.1.0", "loose-envify@^1.4.0":
   "integrity" "sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q=="
   "resolved" "https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz"
   "version" "1.4.0"
@@ -7977,6 +8032,16 @@
     "object-assign" "^4.1.1"
     "react-is" "^16.12.0 || ^17.0.0 || ^18.0.0"
 
+"react-sizeme@^3.0.1":
+  "integrity" "sha512-xOIAOqqSSmKlKFJLO3inBQBdymzDuXx4iuwkNcJmC96jeiOg5ojByvL+g3MW9LPEsojLbC6pf68zOfobK8IPlw=="
+  "resolved" "https://registry.npmjs.org/react-sizeme/-/react-sizeme-3.0.2.tgz"
+  "version" "3.0.2"
+  dependencies:
+    "element-resize-detector" "^1.2.2"
+    "invariant" "^2.2.4"
+    "shallowequal" "^1.1.0"
+    "throttle-debounce" "^3.0.1"
+
 "react-test-renderer@^18.2.0":
   "integrity" "sha512-JWD+aQ0lh2gvh4NM3bBM42Kx+XybOxCpgYK7F8ugAlpaTSnWsX+39Z4XkOykGZAHrjwwTZT3x3KxswVWxHPUqA=="
   "resolved" "https://registry.npmjs.org/react-test-renderer/-/react-test-renderer-18.2.0.tgz"
@@ -8519,6 +8584,11 @@
   dependencies:
     "kind-of" "^6.0.2"
 
+"shallowequal@^1.1.0":
+  "integrity" "sha512-y0m1JoUZSlPAjXVtPPW70aZWfIL/dSP7AFkRnniLCrK/8MDKog3TySTBmckD+RObVxH0v4Tox67+F14PdED2oQ=="
+  "resolved" "https://registry.npmjs.org/shallowequal/-/shallowequal-1.1.0.tgz"
+  "version" "1.1.0"
+
 "shebang-command@^2.0.0":
   "integrity" "sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA=="
   "resolved" "https://registry.npmjs.org/shebang-command/-/shebang-command-2.0.0.tgz"
@@ -9017,6 +9087,11 @@
   "integrity" "sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw=="
   "resolved" "https://registry.npmjs.org/text-table/-/text-table-0.2.0.tgz"
   "version" "0.2.0"
+
+"throttle-debounce@^3.0.1":
+  "integrity" "sha512-dTEWWNu6JmeVXY0ZYoPuH5cRIwc0MeGbJwah9KUNYSJwommQpCzTySTpEe8Gs1J23aeWEuAobe4Ag7EHVt/LOg=="
+  "resolved" "https://registry.npmjs.org/throttle-debounce/-/throttle-debounce-3.0.1.tgz"
+  "version" "3.0.1"
 
 "tiny-glob@^0.2.9":
   "integrity" "sha512-g/55ssRPUjShh+xkfx9UPDXqhckHEsHr4Vd9zX55oSdGZc/MD0m3sferOkwWtp98bv+kcVfEHtRJgBVJzelrzg=="
