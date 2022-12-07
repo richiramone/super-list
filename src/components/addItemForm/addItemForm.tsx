@@ -12,7 +12,7 @@ const AddItemForm: React.FC = () => {
   const [author] = useAtom(authorAtom);
   const [isOnline] = useAtom(isOnlineAtom);
   const [items] = useAtom(itemsAtom);
-  const [needRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
+  const [needsRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
 
   const submitForm = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -34,7 +34,7 @@ const AddItemForm: React.FC = () => {
 
     await insertItem(item).then(() => {
       hasRecentlyAddedItems.current = true;
-      setNeedsRefresh(needRefresh + 1);
+      setNeedsRefresh(needsRefresh + 1);
     });
 
     if (inputRef.current) {

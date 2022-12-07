@@ -11,12 +11,12 @@ const DeleteItemButton: React.FC<{
   id: string;
 }> = ({ id }: DeleteItemButtonProps) => {
   const [isOnline] = useAtom(isOnlineAtom);
-  const [needRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
+  const [needsRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
   const disableClass = isOnline ? '' : 'opacity-50';
 
   const _deleteItem = async () => {
     await deleteItem(id).then(() => {
-      setNeedsRefresh(needRefresh + 1);
+      setNeedsRefresh(needsRefresh + 1);
     });
   };
 

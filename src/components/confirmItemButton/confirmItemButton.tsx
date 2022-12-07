@@ -13,11 +13,11 @@ const ConfirmItemButton: React.FC<{ id: string; value: string }> = ({
   value,
 }: ConfirmItemButtonProps) => {
   const [isOnline] = useAtom(isOnlineAtom);
-  const [needRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
+  const [needsRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
 
   const confirmItem = async () => {
     await updateItem(id, value.replace('?', '')).then(() => {
-      setNeedsRefresh(needRefresh + 1);
+      setNeedsRefresh(needsRefresh + 1);
     });
   };
 

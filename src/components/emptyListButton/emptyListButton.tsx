@@ -6,12 +6,12 @@ import ConfirmationDialog from '../confirmationDialog';
 
 const EmptyListButton: React.FC = () => {
   const [isOnline] = useAtom(isOnlineAtom);
-  const [needRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
+  const [needsRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
   const [isDialogHidden, setIsDialogHidden] = useState(true);
 
   const _emptyList = async () => {
     await emptyList().then(() => {
-      setNeedsRefresh(needRefresh + 1);
+      setNeedsRefresh(needsRefresh + 1);
       hideDialog();
     });
   };

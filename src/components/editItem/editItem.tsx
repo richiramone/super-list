@@ -9,7 +9,7 @@ type EditItemProps = {
 };
 
 const EditItem: React.FC<{ id: string; value: string }> = ({ id, value }: EditItemProps) => {
-  const [needRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
+  const [needsRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
 
   const submitForm = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -20,7 +20,7 @@ const EditItem: React.FC<{ id: string; value: string }> = ({ id, value }: EditIt
     }
 
     await updateItem(id, itemText).then(() => {
-      setNeedsRefresh(needRefresh + 1);
+      setNeedsRefresh(needsRefresh + 1);
     });
 
     if (document.activeElement instanceof HTMLElement) {
