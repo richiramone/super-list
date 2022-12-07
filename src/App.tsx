@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useAtom } from 'jotai';
 import { lazy, Suspense } from 'react';
-import { authorAtom, isOnlineAtom, needsRefreshAtom } from './atoms';
+import { authorAtom as _authorAtom, isOnlineAtom, needsRefreshAtom } from './atoms';
 import UserSelector from './components/userSelector';
 
 const App: React.FC = () => {
   const [, setConnectionStatus] = useAtom(isOnlineAtom);
-  const [author] = useAtom(authorAtom);
-  const [authorState, setAuthorState] = useState(localStorage.getItem('author'));
+  const [authorAtom] = useAtom(_authorAtom);
   const [needsRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
 
   const Preloader = lazy(() => import('./components/preloader'));
@@ -22,14 +21,6 @@ const App: React.FC = () => {
   });
 
   useEffect(() => {
-    if (!authorState) {
-      setAuthorState(author);
-    }
-
-    // eslint-disable-next-line ``react-hooks/exhaustive-deps
-  }, [author]);
-
-  useEffect(() => {
     window.addEventListener('online', () => setConnectionStatus(true));
     window.addEventListener('offline', () => setConnectionStatus(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -37,13 +28,13 @@ const App: React.FC = () => {
 
   return (
     <Suspense>
-      {!authorState && (
+      {!authorAtom && (
         <>
           <Header hideButtons={true} />
           <UserSelector />
         </>
       )}
-      {authorState && (
+      {authorAtom && (
         <>
           <Preloader />
           <Header />
