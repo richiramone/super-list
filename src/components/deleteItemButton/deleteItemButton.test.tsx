@@ -11,6 +11,7 @@ vi.mock('../../server/db-client', () => {
     deleteItem: vi.fn().mockResolvedValue(Promise.resolve),
   };
 });
+
 describe('deleteItemButton', () => {
   afterEach(() => {
     cleanup();
@@ -34,15 +35,20 @@ describe('deleteItemButton', () => {
 
   describe('on confirm', () => {
     it('updates db item', async () => {
+      const { result } = renderHook(() => useAtom(isOnlineAtom));
+      const [, setIsOnlineAtom] = result.current;
+
+      act(() => {
+        setIsOnlineAtom(true);
+      });
+
       render(<DeleteItemButton id="1" />);
 
       const button = screen.getByTestId('deleteItemButton');
       fireEvent.click(button);
 
-      () => {
-        expect(deleteItem).toHaveBeenCalledTimes(1);
-        expect(deleteItem).toHaveBeenCalledWith('1');
-      };
+      expect(deleteItem).toHaveBeenCalledTimes(1);
+      expect(deleteItem).toHaveBeenCalledWith('1');
     });
   });
 });

@@ -40,18 +40,33 @@ describe('emptyListButton', () => {
     cleanup();
   });
 
-  describe('click', () => {
-    it('empties the list and hides the dialog', () => {
+  describe('clicks', () => {
+    it('should hide on cancel click', () => {
       render(<EmptyListButton />);
-      const button = screen.getByTestId('emptyListButton');
+      const emptyListButton = screen.getByTestId('emptyListButton');
 
-      fireEvent.click(button);
+      fireEvent.click(emptyListButton);
 
-      () => {
-        expect(emptyList).toHaveBeenCalledOnce();
-        const confirmationDialog = screen.queryByTestId('question');
-        expect(confirmationDialog).toBeNull();
-      };
+      const cancelButton = screen.getByText('No');
+
+      fireEvent.click(cancelButton);
+
+      const confirmationDialog = screen.queryByTestId('question');
+
+      expect(confirmationDialog).toBeNull();
+    });
+
+    it('should empty the list', () => {
+      render(<EmptyListButton />);
+      const emptyListButton = screen.getByTestId('emptyListButton');
+
+      fireEvent.click(emptyListButton);
+
+      const confirmButton = screen.getByText('Si');
+
+      fireEvent.click(confirmButton);
+
+      expect(emptyList).toHaveBeenCalledOnce();
     });
   });
 });
