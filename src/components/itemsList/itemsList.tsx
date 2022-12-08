@@ -22,7 +22,7 @@ const ItemsList: React.FC = () => {
 
   useEffect(() => {
     loadItems();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-`line react-hooks/exhaustive-deps
   }, [needsRefresh]);
 
   return (

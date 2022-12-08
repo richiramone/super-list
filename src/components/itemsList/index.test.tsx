@@ -4,32 +4,8 @@ import ItemsList, { itemsAtom } from './itemsList';
 import { render, screen, cleanup, act, renderHook } from '@testing-library/react';
 import { useAtom } from 'jotai';
 import { needsRefreshAtom } from '../../atoms';
-import { IItem } from '../../interfaces';
 import { getItems } from '../../server/db-client';
-
-const mockedItems: IItem[] = [
-  {
-    author: 'lucas',
-    text: 'cheese',
-    hasQuestionMark: true,
-    hasDuplicate: false,
-    id: 1,
-  },
-  {
-    author: 'enzo',
-    text: 'ham',
-    hasQuestionMark: false,
-    hasDuplicate: true,
-    id: 2,
-  },
-  {
-    author: 'slash',
-    text: 'ham',
-    hasQuestionMark: false,
-    hasDuplicate: true,
-    id: 3,
-  },
-];
+import { mockedItems } from '../../mocks/mockedItems';
 
 vi.mock('../../server/db-client', () => {
   return {
