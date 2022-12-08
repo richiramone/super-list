@@ -4,6 +4,7 @@ import ConfirmItemButton from './confirmItemButton';
 export default {
   title: 'Components/ConfirmItemButton',
   component: ConfirmItemButton,
+  argTypes: { onClick: { action: 'clicked' } },
 };
 
 export const Default = () => {

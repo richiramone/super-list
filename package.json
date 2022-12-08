@@ -8,9 +8,8 @@
     "preview": "vite preview",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "deploy": "curl https://api.vercel.com/v1/integrations/deploy/prj_lWolsU0VCHqmS5m64c85ntkKCkGd/GABjE8ur2e",
     "sb": "storybook dev -p 6006 -s public",
-    "build-sb": "storybook build"
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@planetscale/database": "^1.4.1",
