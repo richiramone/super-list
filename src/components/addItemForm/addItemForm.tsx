@@ -8,7 +8,6 @@ import { itemsAtom } from '../itemsList/itemsList';
 
 const AddItemForm: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const hasRecentlyAddedItems = useRef(false);
   const [author] = useAtom(authorAtom);
   const [isOnline] = useAtom(isOnlineAtom);
   const [items] = useAtom(itemsAtom);
@@ -17,8 +16,6 @@ const AddItemForm: React.FC = () => {
   const submitForm = async (event: React.FormEvent) => {
     event.preventDefault();
     const itemText = (event.currentTarget.children[0] as HTMLInputElement).value;
-
-    hasRecentlyAddedItems.current = false;
 
     if (itemText === '') {
       return;
@@ -33,7 +30,6 @@ const AddItemForm: React.FC = () => {
     };
 
     await insertItem(item).then(() => {
-      hasRecentlyAddedItems.current = true;
       setNeedsRefresh(needsRefresh + 1);
     });
 
@@ -43,11 +39,9 @@ const AddItemForm: React.FC = () => {
   };
 
   useEffect(() => {
-    if (hasRecentlyAddedItems.current) {
-      inputRef.current?.focus();
-      hasRecentlyAddedItems.current = false;
-    }
-  });
+    if (needsRefresh === 0) return;
+    inputRef.current?.focus();
+  }, [needsRefresh]);
 
   return (
     <form

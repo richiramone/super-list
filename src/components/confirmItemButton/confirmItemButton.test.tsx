@@ -1,19 +1,10 @@
 import React from 'react';
 import { expect, it, afterEach, describe, vi } from 'vitest';
-import {
-  render,
-  cleanup,
-  renderHook,
-  act,
-  fireEvent,
-  screen,
-  waitFor,
-} from '@testing-library/react';
+import { render, cleanup, renderHook, act, fireEvent, screen } from '@testing-library/react';
 import ConfirmItemButton from './confirmItemButton';
 import { useAtom } from 'jotai';
 import { isOnlineAtom } from '../../atoms';
 import { updateItem } from '../../server/db-client';
-import { setTimeout } from 'timers/promises';
 
 vi.mock('../../server/db-client', () => {
   return {

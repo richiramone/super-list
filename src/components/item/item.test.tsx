@@ -1,7 +1,7 @@
 import React from 'react';
 import { expect, it, afterEach, describe } from 'vitest';
 import Item from './item';
-import { render, screen, fireEvent, cleanup } from '@testing-library/react';
+import { render, screen, fireEvent, cleanup, waitFor } from '@testing-library/react';
 import { IItem } from '../../interfaces';
 
 const fakeItem: IItem = {
@@ -85,10 +85,10 @@ describe('item', () => {
 
       fireEvent.blur(item);
 
-      setTimeout(() => {
+      waitFor(() => {
         expect(screen.getByTestId('itemText')).not.toBeNull();
         expect(screen.queryByTestId('editItemInput')).toBeNull();
-      }, 100);
+      });
     });
   });
 });
