@@ -1,9 +1,10 @@
 import React from 'react';
-import RefreshListButton from './refreshListButton';
+import EmptyListButton from './emptyListButton';
 
 export default {
-  title: 'Components/RefreshListButton',
-  component: RefreshListButton,
+  title: 'Components/EmptyListButton',
+  component: EmptyListButton,
+  argTypes: { onClick: { action: 'clicked' } },
 };
 
 export const Default = () => {
@@ -16,7 +17,7 @@ export const Default = () => {
         borderRadius: '12px',
       }}
     >
-      <RefreshListButton />
+      <EmptyListButton />
     </div>
   );
 };

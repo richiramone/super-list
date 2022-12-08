@@ -1,9 +1,9 @@
 import React from 'react';
-import RefreshListButton from './refreshListButton';
+import ConfirmItemButton from './confirmItemButton';
 
 export default {
-  title: 'Components/RefreshListButton',
-  component: RefreshListButton,
+  title: 'Components/ConfirmItemButton',
+  component: ConfirmItemButton,
 };
 
 export const Default = () => {
@@ -12,11 +12,12 @@ export const Default = () => {
       className="bg-primary"
       style={{
         padding: '10px 4px',
+        width: '64px',
         display: 'inline-block',
         borderRadius: '12px',
       }}
     >
-      <RefreshListButton />
+      <ConfirmItemButton id="2" value={''} />
     </div>
   );
 };

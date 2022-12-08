@@ -51,20 +51,14 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
   }, []);
 
   return (
-    <div
-      className="fixed top-0 left-0 z-50 flex h-full w-full items-center justify-center bg-modal"
-      onClick={cancelAction}
-    >
+    <div className="fixed top-0 left-0 z-50 flex h-full w-full items-center justify-center bg-modal">
       <FocusLock>
-        <div className="w-90 absolute top-[calc(50%_-_69px)] left-[calc(50%_-_167px)] rounded bg-white text-center text-black shadow-xl">
-          <h3
-            data-testid="question"
-            className="m-0 pt-6 pr-4 pb-0 pl-4 text-xl font-normal leading-6"
-          >
+        <div className="w-90 absolute -translate-y-2/4 -translate-x-2/4 rounded bg-white p-6 text-center text-black shadow-xl">
+          <h3 data-testid="question" className="mb-6 text-xl font-bold leading-6 text-primary">
             {question}
           </h3>
 
-          <div className="mx-0 mt-8 mb-4 flex justify-evenly">
+          <div className="flex justify-evenly gap-4">
             <button
               className="h-auto w-36 rounded border border-solid border-cancel-button-border p-2 text-center text-base text-primary hover:shadow hover:shadow-gray-500 focus:shadow focus:shadow-gray-500"
               onClick={cancelAction}
