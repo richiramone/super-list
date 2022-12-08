@@ -1,27 +1,16 @@
 import React from 'react';
-import EmptyListButton from './emptyListButton';
+import AddItemForm from './addItemForm';
 import { withJotai } from 'storybook-addon-jotai';
 import { rest } from 'msw';
 
 export default {
-  title: 'Components/EmptyListButton',
-  component: EmptyListButton,
+  title: 'Components/AddItemForm',
+  component: AddItemForm,
   decorators: [withJotai],
 };
 
 const Template = () => {
-  return (
-    <div
-      className="bg-primary"
-      style={{
-        padding: '10px 4px',
-        display: 'inline-block',
-        borderRadius: '12px',
-      }}
-    >
-      <EmptyListButton />
-    </div>
-  );
+  return <AddItemForm />;
 };
 export const Default = Template.bind({});
 Default.parameters = {

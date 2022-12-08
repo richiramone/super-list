@@ -1,5 +1,5 @@
 import React from 'react';
-import ItemsList, { itemsAtom } from './itemsList';
+import ItemsList from './itemsList';
 import { withJotai } from 'storybook-addon-jotai';
 import mockedItems from '../../mocks/mockedExecute.json';
 import { rest } from 'msw';
