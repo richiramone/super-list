@@ -32,7 +32,7 @@ describe('itemsList', () => {
     const itemsWithQuestionMark = document.querySelectorAll('.bg-item-has-question-mark');
     const notLucasUsers = document.querySelectorAll('.bg-item-is-anna');
 
-    expect(items).toHaveLength(3);
+    expect(items).toHaveLength(5);
     expect(duplicatedItems).toHaveLength(2);
     expect(itemsWithQuestionMark).toHaveLength(1);
     expect(notLucasUsers).toHaveLength(2);

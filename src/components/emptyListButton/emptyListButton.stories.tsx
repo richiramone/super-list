@@ -1,15 +1,25 @@
 import React from 'react';
 import EmptyListButton from './emptyListButton';
-import { withJotai } from 'storybook-addon-jotai';
 import { rest } from 'msw';
 
 export default {
   title: 'Components/EmptyListButton',
   component: EmptyListButton,
-  decorators: [withJotai],
+  parameters: {
+    msw: {
+      handlers: [
+        rest.post(
+          'https://aws.connect.psdb.cloud/psdb.v1alpha1.Database/Execute',
+          (_req, res, ctx) => {
+            return res(ctx.status(200), ctx.json({}));
+          },
+        ),
+      ],
+    },
+  },
 };
 
-const Template = () => {
+export const Default = () => {
   return (
     <div
       className="bg-primary"
@@ -22,17 +32,4 @@ const Template = () => {
       <EmptyListButton />
     </div>
   );
-};
-export const Default = Template.bind({});
-Default.parameters = {
-  msw: {
-    handlers: [
-      rest.post(
-        'https://aws.connect.psdb.cloud/psdb.v1alpha1.Database/Execute',
-        (_req, res, ctx) => {
-          return res(ctx.status(200), ctx.json({}));
-        },
-      ),
-    ],
-  },
 };
