@@ -1,6 +1,8 @@
+import { text } from 'stream/consumers';
 import { describe, expect, it } from 'vitest';
 import { IItem } from '../interfaces';
-import { hasDuplicatedValue, noop, sanitize } from './utilities';
+import { mockedItems } from '../mocks/mockedItems';
+import { areItemsDifferent, hasDuplicatedValue, noop, sanitize } from './utilities';
 
 describe('hasDuplicatedValue', () => {
   it('should return FALSE whenever the items arent duplicated', () => {
@@ -60,5 +62,33 @@ describe('sanitize', () => {
     string = 'foo&bar <bool> "quotes"';
     const expectedString = 'foo&amp;bar &lt;bool> &quot;quotes&quot;';
     expect(sanitize(string)).toBe(expectedString);
+  });
+});
+
+describe('areItemsDifferent', () => {
+  it('should return FALSE with equals objects', () => {
+    expect(areItemsDifferent(mockedItems, mockedItems)).toBeFalsy();
+  });
+
+  it('should return FALSE with equals objects', () => {
+    expect(areItemsDifferent([], [])).toBeFalsy();
+  });
+
+  it('should return TRUE with different objects', () => {
+    expect(areItemsDifferent(mockedItems, [])).toBeTruthy();
+  });
+
+  it('should return TRUE with different objects', () => {
+    const mockedItems2 = [
+      ...mockedItems,
+      {
+        id: 11,
+        text: 'new item',
+        author: 'lucas',
+        hasDuplicatedValue: false,
+        hasQuestionMark: true,
+      },
+    ];
+    expect(areItemsDifferent(mockedItems, mockedItems2)).toBeTruthy();
   });
 });
