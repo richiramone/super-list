@@ -2,8 +2,13 @@
   "name": "super-list",
   "version": "3.0.0",
   "private": true,
+  "main": "index.js",
+  "repository": "https://github.com/richiramone/super-list.git",
+  "author": "Lucas Ramos <richiramone@users.noreply.github.com>",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
+    "prod": "vite --mode production",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest",
@@ -30,7 +35,8 @@
     "react-focus-lock": "^2.9.2",
     "react-router-dom": "^6.4.4",
     "typescript": "4.9.3",
-    "vite": "^3.2.3"
+    "vite": "^3.2.3",
+    "vite-plugin-ssr": "^0.4.54"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
