@@ -22,3 +22,7 @@ export const noop = () => {};
 export const sanitize = (input: string) => {
   return input.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 };
+
+export const areItemsDifferent = (items1: IItem[], items2: IItem[]) => {
+  return JSON.stringify(items1) !== JSON.stringify(items2);
+};
