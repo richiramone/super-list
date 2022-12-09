@@ -14,11 +14,6 @@ describe('dbConnection', () => {
   it('should return connect with proper settings', () => {
     dbConnection();
     expect(connect).toHaveBeenCalledOnce();
-    expect(connect).toHaveBeenCalledWith({
-      host: 'aws.connect.psdb.cloud',
-      username: '20m3farrdw6wa2kjs6hw',
-      password: 'pscale_pw_lO99FwAgdgnkHGABzpkwLzYN8Hk6WvH9maxNe7H8pl3',
-    });
   });
 });
 
