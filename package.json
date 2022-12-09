@@ -2,13 +2,11 @@
   "name": "super-list",
   "version": "3.0.0",
   "private": true,
-  "main": "index.js",
   "repository": "https://github.com/richiramone/super-list.git",
   "author": "Lucas Ramos <richiramone@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "prod": "vite --mode production",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest",
