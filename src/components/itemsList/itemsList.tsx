@@ -5,6 +5,7 @@ import { atom, useAtom } from 'jotai';
 import { isLoadingAtom, needsRefreshAtom } from '../../atoms';
 import { getItems } from '../../server/db-client';
 import { IItem } from '../../interfaces';
+import { areItemsDifferent } from '../../utilities';
 
 export const itemsAtom = atom<IItem[]>([]);
 
@@ -16,7 +17,12 @@ const ItemsList: React.FC = () => {
   const loadItems = async () => {
     await getItems().then(dbResult => {
       setIsLoading(false);
-      setItems(dbResult as IItem[]);
+
+      const freshItems = dbResult as IItem[];
+
+      if (areItemsDifferent(items, freshItems)) {
+        setItems(freshItems);
+      }
     });
   };
 
