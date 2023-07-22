@@ -11,7 +11,7 @@ yarn install
 ## Processes
 
 ```bash
-# uses a dev db
+# uses a dev db.
 yarn dev
 
 # vite build
