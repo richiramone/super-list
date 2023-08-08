@@ -1,5 +1,5 @@
 import React from 'react';
-import RefreshListButton from './refreshListButton';
+import RefreshListButton from './listRefresh';
 
 export default {
   title: 'Components/RefreshListButton',

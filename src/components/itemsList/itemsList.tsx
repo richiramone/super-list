@@ -37,7 +37,7 @@ const ItemsList: React.FC = () => {
         <AnimatePresence>
           {items.map((item: IItem) => (
             <motion.li
-              className="mt-0 ml-0 mr-2 mb-2 h-auto w-auto max-w-sm"
+              className="mt-0 ml-0 mr-4 mb-4 h-auto w-auto max-w-sm"
               key={item.id.toString()}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

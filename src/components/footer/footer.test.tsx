@@ -1,6 +1,6 @@
 import React from 'react';
 import { expect, it, afterEach, describe } from 'vitest';
-import Header from './header';
+import Header from './footer';
 import { render, screen, cleanup, act, renderHook } from '@testing-library/react';
 import { useAtom } from 'jotai';
 import { isOnlineAtom } from '../../atoms';

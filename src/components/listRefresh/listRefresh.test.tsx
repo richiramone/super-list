@@ -1,6 +1,6 @@
 import React from 'react';
 import { expect, it, afterEach, describe } from 'vitest';
-import RefreshListButton from './refreshListButton';
+import RefreshListButton from './listRefresh';
 import { render, fireEvent, cleanup, act, renderHook } from '@testing-library/react';
 import { useAtom } from 'jotai';
 import { isOnlineAtom, needsRefreshAtom } from '../../atoms';

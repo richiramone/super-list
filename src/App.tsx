@@ -11,7 +11,8 @@ const App: React.FC = () => {
   const [needsRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
 
   const Preloader = lazy(() => import('./components/preloader'));
-  const Header = lazy(() => import('./components/header'));
+  const ListRefresh = lazy(() => import('./components/listRefresh'));
+  const Footer = lazy(() => import('./components/footer'));
   const AddItemForm = lazy(() => import('./components/addItemForm'));
   const ItemsList = lazy(() => import('./components/itemsList'));
 
@@ -31,14 +32,13 @@ const App: React.FC = () => {
     <Suspense>
       {!authorAtom && (
         <>
-          <Header hideButtons={true} />
           <UserSelector />
         </>
       )}
       {authorAtom && (
         <>
           <Preloader />
-          <Header />
+          <ListRefresh />
           <main>
             <BasicItemsList />
             <aside>
@@ -46,6 +46,7 @@ const App: React.FC = () => {
             </aside>
             <ItemsList />
           </main>
+          <Footer />
         </>
       )}
     </Suspense>
