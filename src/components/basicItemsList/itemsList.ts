@@ -1,19 +1,21 @@
-import { CoopCategories } from '../../interfaces';
+export enum category {
+  PESCI = 'Pesci',
+  FRUTTA_VERDURA = 'Frutta e verdura',
+  SALUMI = 'Salumi',
+  PASTA_RIPIENA = 'Pasta ripiena',
+  LATTICINI = 'Latticini',
+  CARNI = 'Carni',
+  DOLCI = 'Dolci',
+  PASTA = 'Pasta',
+  SOTTACETI = 'Sottaceti',
+  PULIZIA = 'Pulizia',
+  FARMACIA = 'Farmacia',
+  ALTRI = 'Altri',
+}
 
-export const BasicItems = {
-  [CoopCategories.Carni]: [
-    'Carne',
-    'Cosce di pollo',
-    'Petto di pollo',
-    'Salsiccia',
-    'Scalopine',
-    'Svizzera',
-    'Wurster',
-  ],
-  [CoopCategories.Conserve]: ['Aceto', 'Olio cani', 'Olive', 'Sale', 'Sale grosso', 'Tonno'],
-  [CoopCategories.Dolci]: ['Farina di mandorle', 'Frutta da ciucciare', 'Uova', 'Zucchero'],
-  [CoopCategories.Farmacia]: ['Carta igienica', 'Dentifricio', 'Deodorante', 'Scotex'],
-  [CoopCategories.FruttaVerdura]: [
+export const basicItems = {
+  [category.PESCI]: ['Cozze', 'Gamberetti', 'Insalata di mare', 'Salmone', 'Svizzera merluzzo'],
+  [category.FRUTTA_VERDURA]: [
     'Aglio',
     'Banana',
     'Carote',
@@ -27,37 +29,42 @@ export const BasicItems = {
     'Pistacchio',
     'Rucula',
   ],
-  [CoopCategories.LatticiniSalumi]: [
+  [category.SALUMI]: ['Cotto cubetti', 'Crudo', 'Pancetta', 'Salame'],
+  [category.PASTA_RIPIENA]: ['Tortelli', 'Tortellini'],
+  [category.LATTICINI]: [
     'Brie',
     'Burro',
     'Capriccio',
-    'Cotto cubetti',
-    'Crudo',
     'Gorgonzola',
+    'Latte',
     'Mascarpone',
     'Mozzarella',
-    'Pancetta',
     'Parmigiano',
     'Peco sardo',
     'Provolone',
     'Roquefort',
-    'Salame',
     'Yogurt agnese',
     'Yogurt anna',
   ],
-  [CoopCategories.PastaRiso]: ['Fusilli', 'Riso', 'Riso cani', 'Stelline', 'Tagliatelle'],
-  [CoopCategories.Pesci]: [
-    'Cozze',
-    'Gamberetti',
-    'Insalata di mare',
-    'Salmone',
-    'Svizzera merluzzo',
+  [category.CARNI]: [
+    'Carne',
+    'Cosce di pollo',
+    'Petto di pollo',
+    'Salsiccia',
+    'Scalopine',
+    'Svizzera',
+    'Wurster',
   ],
-  [CoopCategories.Pulizia]: [
+  [category.DOLCI]: ['Farina di mandorle', 'Frutta da ciucciare', 'Uova', 'Zucchero'],
+  [category.PASTA]: ['Fusilli', 'Riso', 'Riso cani', 'Stelline', 'Tagliatelle'],
+  [category.SOTTACETI]: ['Aceto', 'Olio cani', 'Olive', 'Sale', 'Sale grosso', 'Tonno'],
+  [category.PULIZIA]: [
     'Abrillantante',
     'Carta igienica',
     'Sale lavastoviglie',
     'Sapone lavastoviglie',
     'Sapone lavatrice',
   ],
+  [category.FARMACIA]: ['Carta igienica', 'Dentifricio', 'Deodorante', 'Scotex'],
+  [category.ALTRI]: [],
 };

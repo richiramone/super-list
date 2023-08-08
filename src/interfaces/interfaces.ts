@@ -6,16 +6,3 @@ export interface IItem {
   id: number;
   text: string;
 }
-
-export enum CoopCategories {
-  Altri,
-  Carni,
-  Conserve,
-  Dolci,
-  Farmacia,
-  FruttaVerdura,
-  LatticiniSalumi,
-  PastaRiso,
-  Pesci,
-  Pulizia,
-}

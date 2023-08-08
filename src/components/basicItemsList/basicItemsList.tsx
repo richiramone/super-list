@@ -1,64 +1,30 @@
-import { useAtom } from 'jotai';
-import React, { useRef, useEffect, memo } from 'react';
-import { authorAtom, isOnlineAtom, needsRefreshAtom } from '../../atoms';
-import { IItem } from '../../interfaces';
-import { insertItem } from '../../server/db-client';
-import { hasDuplicatedValue } from '../../utilities';
-import { itemsAtom } from '../itemsList/itemsList';
+import React, { memo } from 'react';
+import { basicItems, category } from './itemsList';
 
 const BasicItemsList: React.FC = () => {
-  const inputRef = useRef<HTMLInputElement>(null);
-  const [author] = useAtom(authorAtom);
-  const [isOnline] = useAtom(isOnlineAtom);
-  const [items] = useAtom(itemsAtom);
-  const [needsRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
-
-  const submitForm = async (event: React.FormEvent) => {
-    event.preventDefault();
-    const itemText = (event.currentTarget.children[0] as HTMLInputElement).value;
-
-    if (itemText === '') {
-      return;
-    }
-
-    const item: IItem = {
-      id: 0,
-      author: author,
-      text: itemText,
-      hasDuplicate: hasDuplicatedValue(items, itemText),
-      hasQuestionMark: itemText.includes('?'),
-    };
-
-    await insertItem(item).then(() => {
-      setNeedsRefresh(needsRefresh + 1);
-    });
-
-    if (inputRef.current) {
-      inputRef.current.value = '';
-    }
-  };
-
-  useEffect(() => {
-    if (needsRefresh === 0) return;
-    inputRef.current?.focus();
-  }, [needsRefresh]);
-
   return (
-    <form
-      data-testid="addItemForm"
-      className="flex h-auto w-auto max-w-sm cursor-pointer rounded bg-primary py-1.5 px-2"
-      onSubmit={submitForm}
-    >
-      <input
-        data-testid="addItemInput"
-        className="m-0 block w-full border-0 bg-transparent font-normal leading-5 tracking-wide text-white outline-none placeholder:italic placeholder:text-stone-200 disabled:opacity-50"
-        data-add-item-input
-        ref={inputRef}
-        type="text"
-        placeholder="altro..."
-        disabled={!isOnline}
-      />
-    </form>
+    <dialog>
+      <ol>
+        {Object.values(category).map((category, index) => (
+          <li key={index}>
+            <h3>{category}</h3>
+
+            <ol>
+              {basicItems[category].map((item, _index) => (
+                <li key={_index}>
+                  <input type="checkbox" value={item} data-category={category} />
+                  <button type="button">{item}</button>
+                </li>
+              ))}
+            </ol>
+          </li>
+        ))}
+      </ol>
+
+      <footer>
+        <button type="button">Update list</button>
+      </footer>
+    </dialog>
   );
 };
 
