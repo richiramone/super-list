@@ -17,4 +17,5 @@ model Items {
   text            String @db.VarChar(50)
   hasQuestionMark Boolean
   hasDuplicate    Boolean
+  coopCategory    String @db.VarChar(50)
 }
