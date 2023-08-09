@@ -3,7 +3,6 @@ import { useAtom } from 'jotai';
 import { lazy, Suspense } from 'react';
 import { authorAtom as _authorAtom, isOnlineAtom, needsRefreshAtom } from './atoms';
 import UserSelector from './components/userSelector';
-import BasicItemsList from './components/basicItemsList/basicItemsList';
 
 const App: React.FC = () => {
   const [, setConnectionStatus] = useAtom(isOnlineAtom);
@@ -40,7 +39,6 @@ const App: React.FC = () => {
           <Preloader />
           <ListRefresh />
           <main>
-            <BasicItemsList />
             <aside>
               <AddItemForm />
             </aside>

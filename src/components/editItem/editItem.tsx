@@ -36,7 +36,7 @@ const EditItem: React.FC<{ id: string; value: string }> = ({ id, value }: EditIt
     >
       <input
         data-testid="editItemInput"
-        className="m-0 block w-full border-hidden bg-transparent font-normal leading-5 tracking-wide text-white outline-none"
+        className="m-0 block w-full border-hidden bg-transparent font-normal leading-5 text-white outline-none"
         type="text"
         autoFocus
         defaultValue={value}

@@ -51,7 +51,7 @@ const AddItemForm: React.FC = () => {
     >
       <input
         data-testid="addItemInput"
-        className="m-0 block w-full border-0 bg-transparent text-xl font-normal leading-5 tracking-wide text-white outline-none placeholder:italic placeholder:text-white disabled:opacity-50"
+        className="m-0 block w-full border-0 bg-transparent text-xl font-normal leading-5 text-white outline-none placeholder:italic placeholder:text-white disabled:opacity-50"
         data-add-item-input
         ref={inputRef}
         type="text"
