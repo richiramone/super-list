@@ -1,8 +1,7 @@
-import { text } from 'stream/consumers';
 import { describe, expect, it } from 'vitest';
 import { IItem } from '../interfaces';
 import { mockedItems } from '../mocks/mockedItems';
-import { areItemsDifferent, hasDuplicatedValue, noop, sanitize } from './utilities';
+import { areItemsDifferent, hasDuplicatedValue, sanitize } from './utilities';
 
 describe('hasDuplicatedValue', () => {
   it('should return FALSE whenever the items arent duplicated', () => {
@@ -45,12 +44,6 @@ describe('hasDuplicatedValue', () => {
     ];
     const repeatedItems = hasDuplicatedValue(items, 'cheese');
     expect(repeatedItems).toBe(true);
-  });
-});
-
-describe('noop', () => {
-  it('should be an empty function', () => {
-    expect(noop()).toBeUndefined();
   });
 });
 

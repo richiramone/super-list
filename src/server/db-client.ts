@@ -20,29 +20,28 @@ export const getItems = async () => {
 };
 
 export const insertItem = async (item: IItem) => {
-  // TODO get the category
   await dbConnection().execute(`
     INSERT INTO Items
-      (author, text, hasQuestionMark, hasDuplicate, category)
+      (author, text, hasQuestionMark, category)
     VALUES
       (
         '${item.author}',
         '${sanitize(item.text)}',
         ${item.text.includes('?')},
-        ${item.hasDuplicate},
         '${item.category}'
       )`);
 
-  if (item.hasDuplicate) {
-    await dbConnection().execute(
-      `UPDATE
+  await dbConnection().execute(
+    `UPDATE
         Items
+      INNER JOIN
+        (SELECT MAX(id) id FROM  Items)
+          itemsmax ON Items.id != itemsmax.id
       SET
         hasDuplicate = true
       WHERE
         text LIKE '%${item.text}%'`,
-    );
-  }
+  );
 
   return Promise.resolve();
 };
@@ -56,8 +55,7 @@ export const insertMultipleItems = async (items: IItem[]) => {
     (
       '${item.author}',
       '${sanitize(item.text)}',
-      '${item.category}',
-      ${item.hasDuplicate}
+      '${item.category}'
     )`);
 
     likes.push(`text LIKE '%${item.text}%'`);
@@ -65,7 +63,7 @@ export const insertMultipleItems = async (items: IItem[]) => {
 
   await dbConnection().execute(`
     INSERT INTO Items
-      (author, text, category, hasDuplicate)
+      (author, text, category)
     VALUES
       ${values.toString()}`);
 
@@ -92,8 +90,19 @@ export const updateItem = async (id: string, text: string) => {
       id = ${id}`);
 };
 
-export const deleteItem = async (id: string) => {
-  return await dbConnection().execute(`DELETE FROM Items WHERE id = ${id}`);
+export const deleteItem = async (id: string, text: string) => {
+  await dbConnection().execute(`DELETE FROM Items WHERE id = ${id}`);
+
+  await dbConnection().execute(
+    `UPDATE
+        Items
+      SET
+        hasDuplicate = false
+      WHERE
+       text LIKE '%${text}%'`,
+  );
+
+  return Promise.resolve();
 };
 
 export const emptyList = async () => {

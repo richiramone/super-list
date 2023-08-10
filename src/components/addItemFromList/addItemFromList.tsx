@@ -32,7 +32,7 @@ const AddItemFromList: React.FC = () => {
     );
 
     checkboxes?.map(checkbox => {
-      if (hasDuplicatedValue(items, checkbox.value, true)) {
+      if (hasDuplicatedValue(items, checkbox.value)) {
         checkbox.checked = true;
       }
     });
@@ -54,7 +54,7 @@ const AddItemFromList: React.FC = () => {
   const updateData = (event: React.ChangeEvent<HTMLInputElement>) => {
     const itemText = event.target.value;
 
-    if (hasDuplicatedValue(items, itemText, true)) {
+    if (hasDuplicatedValue(items, itemText)) {
       return;
     }
 
@@ -64,8 +64,6 @@ const AddItemFromList: React.FC = () => {
         id: 0,
         author: author,
         text: itemText,
-        hasDuplicate: hasDuplicatedValue(items, itemText),
-        hasQuestionMark: false,
         category: event.target.dataset.category,
       },
     ]);

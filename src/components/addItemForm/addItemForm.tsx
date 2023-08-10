@@ -3,7 +3,6 @@ import React, { useRef, useEffect, memo } from 'react';
 import { authorAtom, isOnlineAtom, needsRefreshAtom } from '../../atoms';
 import { IItem } from '../../interfaces';
 import { insertItem } from '../../server/db-client';
-import { hasDuplicatedValue } from '../../utilities';
 import { itemsAtom } from '../itemsList/itemsList';
 
 const AddItemForm: React.FC = () => {
@@ -25,7 +24,6 @@ const AddItemForm: React.FC = () => {
       id: 0,
       author: author,
       text: itemText,
-      hasDuplicate: hasDuplicatedValue(items, itemText),
       hasQuestionMark: itemText.includes('?'),
       category: 'test',
     };
