@@ -27,6 +27,7 @@ const AddItemForm: React.FC = () => {
       text: itemText,
       hasDuplicate: hasDuplicatedValue(items, itemText),
       hasQuestionMark: itemText.includes('?'),
+      category: 'test',
     };
 
     await insertItem(item).then(() => {

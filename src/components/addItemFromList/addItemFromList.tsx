@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai';
 import { memo, useEffect, useRef, useState } from 'react';
-import { authorAtom, isOnlineAtom, needsRefreshAtom } from '../../atoms';
+import { authorAtom, isLoadingAtom, isOnlineAtom, needsRefreshAtom } from '../../atoms';
 import { basicItems, category } from './itemsList';
 import { Button, Checkbox } from '@material-tailwind/react';
 import { IItem } from '../../interfaces';
@@ -9,10 +9,7 @@ import { hasDuplicatedValue, hasExactDuplicatedValue } from '../../utilities';
 import { insertMultipleItems } from '../../server/db-client';
 
 // TODO
-// Add all items
-// reset checkboxes
 // Set check based on list
-// check and avoid repetead
 
 interface IFormTarget {
   reset: Function;
@@ -21,6 +18,7 @@ interface IFormTarget {
 const AddItemFromList: React.FC = () => {
   const [author] = useAtom(authorAtom);
   const [items] = useAtom(itemsAtom);
+  const [_, setIsLoadingAtom] = useAtom(isLoadingAtom);
   const [needsRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLDialogElement>(null);
@@ -28,8 +26,20 @@ const AddItemFromList: React.FC = () => {
   const [isDialogHidden, setIsDialogHidden] = useState(true);
   const [formData, setFormData] = useState<IItem[]>([]);
 
+  const updateCheckboxesFromListValues = () => {
+    const checkboxes = Array.prototype.slice.call(
+      formRef.current?.querySelectorAll('[type=checkbox]'),
+    );
+
+    checkboxes?.map(checkbox => {
+      if (hasDuplicatedValue(items, checkbox.value, true)) {
+        checkbox.checked = true;
+      }
+    });
+  };
+
   const openDialog = () => {
-    // update checkbox in base alla lista
+    updateCheckboxesFromListValues();
     inputRef.current?.showModal();
     setIsDialogHidden(false);
   };
@@ -62,6 +72,7 @@ const AddItemFromList: React.FC = () => {
   };
 
   const submitForm = async (event: React.FormEvent) => {
+    const formDataClone = structuredClone(formData);
     event.preventDefault();
     const formTarget: IFormTarget = event.target as typeof event.target & {
       reset: Function;
@@ -72,9 +83,12 @@ const AddItemFromList: React.FC = () => {
       return;
     }
 
-    debugger;
-    await insertMultipleItems(formData).then(() => {
+    setIsLoadingAtom(true);
+    closeDialog();
+
+    await insertMultipleItems(formDataClone).then(() => {
       setNeedsRefresh(needsRefresh + 1);
+      setIsLoadingAtom(false);
     });
   };
 

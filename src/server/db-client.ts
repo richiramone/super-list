@@ -30,7 +30,7 @@ export const insertItem = async (item: IItem) => {
         '${sanitize(item.text)}',
         ${item.text.includes('?')},
         ${item.hasDuplicate},
-        ${item.category}
+        '${item.category}'
       )`);
 
   if (item.hasDuplicate) {
