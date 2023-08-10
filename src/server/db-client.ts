@@ -20,15 +20,17 @@ export const getItems = async () => {
 };
 
 export const insertItem = async (item: IItem) => {
+  // TODO get the category
   await dbConnection().execute(`
     INSERT INTO Items
-      (author, text, hasQuestionMark, hasDuplicate)
+      (author, text, hasQuestionMark, hasDuplicate, category)
     VALUES
       (
         '${item.author}',
         '${sanitize(item.text)}',
         ${item.text.includes('?')},
-        ${item.hasDuplicate}
+        ${item.hasDuplicate},
+        ${item.category}
       )`);
 
   if (item.hasDuplicate) {
@@ -41,6 +43,27 @@ export const insertItem = async (item: IItem) => {
         text LIKE '%${item.text}%'`,
     );
   }
+
+  return Promise.resolve();
+};
+
+export const insertMultipleItems = async (items: IItem[]) => {
+  const values: string[] = [];
+
+  items.map(item => {
+    values.push(`
+    (
+      '${item.author}',
+      '${sanitize(item.text)}',
+      '${item.category}'
+    )`);
+  });
+
+  await dbConnection().execute(`
+    INSERT INTO Items
+      (author, text, category)
+    VALUES
+      ${values.toString()}`);
 
   return Promise.resolve();
 };

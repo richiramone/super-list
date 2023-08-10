@@ -12,6 +12,25 @@ export const hasDuplicatedValue = (items: IItem[], newValue: string) => {
     } else {
       return true;
     }
+
+    return itemValue.includes(newValueLowered) || newValueLowered.includes(itemValue);
+  });
+
+  return alreadyExists;
+};
+
+export const hasExactDuplicatedValue = (items: IItem[], newValue: string) => {
+  let alreadyExists = false;
+
+  items.every(item => {
+    const itemValue = item.text.toLowerCase();
+    const newValueLowered = newValue.toLowerCase();
+
+    if (itemValue === newValueLowered) {
+      alreadyExists = true;
+    } else {
+      return true;
+    }
   });
 
   return alreadyExists;
