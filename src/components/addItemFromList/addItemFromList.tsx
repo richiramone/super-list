@@ -18,7 +18,7 @@ const AddItemFromList: React.FC = () => {
   const [_, setIsLoadingAtom] = useAtom(isLoadingAtom);
   const [needsRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
   const formRef = useRef<HTMLFormElement>(null);
-  const inputRef = useRef<HTMLDialogElement>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
   const [isOnline] = useAtom(isOnlineAtom);
   const [isDialogHidden, setIsDialogHidden] = useState(true);
   const [formData, setFormData] = useState<IItem[]>([]);
@@ -35,14 +35,20 @@ const AddItemFromList: React.FC = () => {
     });
   };
 
+  const handleBgClick = (event: any) => {
+    if (event.target === event.currentTarget) {
+      event.currentTarget?.close();
+    }
+  };
+
   const openDialog = () => {
     updateCheckboxesFromListValues();
-    inputRef.current?.showModal();
+    dialogRef.current?.showModal();
     setIsDialogHidden(false);
   };
 
   const closeDialog = (_?: any, form?: IFormTarget) => {
-    inputRef.current?.close();
+    dialogRef.current?.close();
     setIsDialogHidden(true);
     setFormData([]);
     form?.reset();
@@ -98,24 +104,34 @@ const AddItemFromList: React.FC = () => {
 
   return (
     <>
-      <dialog ref={inputRef} className="fixed h-screen w-screen border-t-4 border-cyan-500 p-0">
-        <button className="fixed right-8 top-8" type="button" onClick={closeDialog}>
-          <svg
-            className="mr-2 h-6 w-6 text-gray-400"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 14 14"
+      <dialog
+        ref={dialogRef}
+        onClick={handleBgClick}
+        className="fixed h-screen w-screen max-w-6xl rounded-lg border-t-4 border-cyan-500 p-0 backdrop:bg-black backdrop:bg-opacity-60"
+      >
+        <header className="relative">
+          <button
+            className="fixed right-4 top-10 xl:right-auto xl:ml-[1100px]"
+            type="button"
+            onClick={closeDialog}
           >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-            />
-          </svg>
-        </button>
+            <svg
+              className="mr-2 h-6 w-6 text-gray-600"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 14 14"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+              />
+            </svg>
+          </button>
+        </header>
 
         <form onSubmit={submitForm} ref={formRef}>
           <ol className="m-2">
@@ -155,7 +171,7 @@ const AddItemFromList: React.FC = () => {
             })}
           </ol>
 
-          <footer className="mb-6 flex justify-center px-6">
+          <footer className="mx-auto mb-6 flex max-w-sm justify-center px-6">
             <Button
               size="lg"
               variant="gradient"
