@@ -28,23 +28,6 @@ export const hasDuplicatedValue = (
   return alreadyExists;
 };
 
-export const hasExactDuplicatedValue = (items: IItem[], newValue: string) => {
-  let alreadyExists = false;
-
-  items.every(item => {
-    const itemValue = item.text.toLowerCase();
-    const newValueLowered = newValue.toLowerCase();
-
-    if (itemValue === newValueLowered) {
-      alreadyExists = true;
-    } else {
-      return true;
-    }
-  });
-
-  return alreadyExists;
-};
-
 export const noop = () => {};
 
 export const sanitize = (input: string) => {
@@ -54,3 +37,12 @@ export const sanitize = (input: string) => {
 export const areItemsDifferent = (items1: IItem[], items2: IItem[]) => {
   return JSON.stringify(items1) !== JSON.stringify(items2);
 };
+
+// TODO
+// export const updateHasDuplicatedProperty = (items: IItem[]) => {
+//   items.map(item => {
+//     if (item.hasDuplicate && !hasDuplicatedValue(items, item.text)) {
+//       item.hasDuplicate = false;
+//     }
+//   });
+// };

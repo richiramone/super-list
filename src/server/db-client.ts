@@ -49,21 +49,34 @@ export const insertItem = async (item: IItem) => {
 
 export const insertMultipleItems = async (items: IItem[]) => {
   const values: string[] = [];
+  const likes: string[] = [];
 
   items.map(item => {
     values.push(`
     (
       '${item.author}',
       '${sanitize(item.text)}',
-      '${item.category}'
+      '${item.category}',
+      ${item.hasDuplicate}
     )`);
+
+    likes.push(`text LIKE '%${item.text}%'`);
   });
 
   await dbConnection().execute(`
     INSERT INTO Items
-      (author, text, category)
+      (author, text, category, hasDuplicate)
     VALUES
       ${values.toString()}`);
+
+  await dbConnection().execute(
+    `UPDATE
+        Items
+      SET
+        hasDuplicate = true
+      WHERE
+       ${likes.join(' OR ')}`,
+  );
 
   return Promise.resolve();
 };

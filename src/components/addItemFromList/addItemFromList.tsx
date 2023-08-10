@@ -5,7 +5,7 @@ import { basicItems, category } from './itemsList';
 import { Button, Checkbox } from '@material-tailwind/react';
 import { IItem } from '../../interfaces';
 import { itemsAtom } from '../itemsList/itemsList';
-import { hasDuplicatedValue, hasExactDuplicatedValue } from '../../utilities';
+import { hasDuplicatedValue } from '../../utilities';
 import { insertMultipleItems } from '../../server/db-client';
 
 // TODO
@@ -54,7 +54,7 @@ const AddItemFromList: React.FC = () => {
   const updateData = (event: React.ChangeEvent<HTMLInputElement>) => {
     const itemText = event.target.value;
 
-    if (hasExactDuplicatedValue(items, itemText)) {
+    if (hasDuplicatedValue(items, itemText, true)) {
       return;
     }
 
@@ -65,7 +65,7 @@ const AddItemFromList: React.FC = () => {
         author: author,
         text: itemText,
         hasDuplicate: hasDuplicatedValue(items, itemText),
-        hasQuestionMark: itemText.includes('?'),
+        hasQuestionMark: false,
         category: event.target.dataset.category,
       },
     ]);

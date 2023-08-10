@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai';
 import { memo } from 'react';
-import { isOnlineAtom } from '../../atoms';
+import { isOnlineAtom, needsRefreshAtom } from '../../atoms';
 import { deleteItem } from '../../server/db-client';
 import { itemsAtom } from '../itemsList/itemsList';
 
@@ -13,16 +13,21 @@ const DeleteItemButton: React.FC<{
 }> = ({ id }: DeleteItemButtonProps) => {
   const [isOnline] = useAtom(isOnlineAtom);
   const [items, setItems] = useAtom(itemsAtom);
+  const [needsRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
   const disableClass = isOnline ? '' : 'opacity-50';
 
-  const setUpdatedItemsAfterDelete = (id: string) => {
-    const updatedItems = items.filter(item => item.id.toString() !== id);
-    setItems(updatedItems);
+  const wasDeletedItemDuplicated = (id: string) => {
+    return typeof items.find(item => item.id.toString() !== id) !== 'undefined';
   };
 
   const _deleteItem = async () => {
-    setUpdatedItemsAfterDelete(id);
-    await deleteItem(id);
+    await deleteItem(id).then(() => {
+      if (wasDeletedItemDuplicated(id)) {
+        // rectifyDuplications(items);
+      }
+
+      setNeedsRefresh(needsRefresh + 1);
+    });
   };
 
   return (
