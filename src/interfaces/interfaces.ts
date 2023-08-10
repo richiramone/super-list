@@ -2,7 +2,7 @@ export interface IItem {
   author: string;
   hasDuplicate?: boolean;
   hasQuestionMark?: boolean;
-  category?: string; //TODO
+  category?: string;
   id: number;
   text: string;
 }

@@ -8,9 +8,6 @@ import { itemsAtom } from '../itemsList/itemsList';
 import { hasDuplicatedValue } from '../../utilities';
 import { insertMultipleItems } from '../../server/db-client';
 
-// TODO
-// Set check based on list
-
 interface IFormTarget {
   reset: Function;
 }
