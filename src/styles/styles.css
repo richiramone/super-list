@@ -2,11 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  overscroll-behavior-y: contain;
+}
+
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Roboto', sans-serif;
 }
+
 svg {
   fill: #fff;
 }

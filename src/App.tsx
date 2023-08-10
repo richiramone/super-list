@@ -37,8 +37,9 @@ const App: React.FC = () => {
       {authorAtom && (
         <>
           <Preloader />
-          <ListRefresh />
+
           <main>
+            <ListRefresh />
             <aside>
               <AddItemForm />
             </aside>
