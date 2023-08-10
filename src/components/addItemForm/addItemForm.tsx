@@ -25,7 +25,7 @@ const AddItemForm: React.FC = () => {
       author: author,
       text: itemText,
       hasQuestionMark: itemText.includes('?'),
-      category: 'test',
+      category: 'not_x_now',
     };
 
     await insertItem(item).then(() => {
