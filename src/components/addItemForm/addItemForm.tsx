@@ -3,13 +3,11 @@ import React, { useRef, useEffect, memo } from 'react';
 import { authorAtom, isOnlineAtom, needsRefreshAtom } from '../../atoms';
 import { IItem } from '../../interfaces';
 import { insertItem } from '../../server/db-client';
-import { itemsAtom } from '../itemsList/itemsList';
 
 const AddItemForm: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [author] = useAtom(authorAtom);
   const [isOnline] = useAtom(isOnlineAtom);
-  const [items] = useAtom(itemsAtom);
   const [needsRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
 
   const submitForm = async (event: React.FormEvent) => {

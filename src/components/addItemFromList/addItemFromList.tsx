@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import { memo, useEffect, useRef, useState } from 'react';
+import { memo, useRef, useState } from 'react';
 import { authorAtom, isLoadingAtom, isOnlineAtom, needsRefreshAtom } from '../../atoms';
 import { basicItems, category } from './itemsList';
 import { Button, Checkbox } from '@material-tailwind/react';
@@ -20,7 +20,6 @@ const AddItemFromList: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [isOnline] = useAtom(isOnlineAtom);
-  const [isDialogHidden, setIsDialogHidden] = useState(true);
   const [formData, setFormData] = useState<IItem[]>([]);
 
   const updateCheckboxesFromListValues = () => {
@@ -44,12 +43,10 @@ const AddItemFromList: React.FC = () => {
   const openDialog = () => {
     updateCheckboxesFromListValues();
     dialogRef.current?.showModal();
-    setIsDialogHidden(false);
   };
 
   const closeDialog = (_?: any, form?: IFormTarget) => {
     dialogRef.current?.close();
-    setIsDialogHidden(true);
     setFormData([]);
     form?.reset();
   };
@@ -92,15 +89,6 @@ const AddItemFromList: React.FC = () => {
       setIsLoadingAtom(false);
     });
   };
-
-  useEffect(() => {
-    if (isDialogHidden) {
-      closeDialog();
-      return;
-    }
-
-    openDialog();
-  }, [isDialogHidden]);
 
   return (
     <>
