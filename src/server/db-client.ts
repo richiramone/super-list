@@ -8,6 +8,7 @@ export const dbConnection = () => {
     username: import.meta.env.VITE_USERNAME,
     password: import.meta.env.VITE_PASSWORD,
   };
+
   return connect(config);
 };
 
@@ -20,29 +21,38 @@ export const getItems = async () => {
 };
 
 export const insertItem = async (item: IItem) => {
-  await dbConnection().execute(`
+  return await dbConnection().execute(`
     INSERT INTO Items
-      (author, text, hasQuestionMark, hasDuplicate)
+      (author, text, hasQuestionMark, category)
     VALUES
       (
         '${item.author}',
         '${sanitize(item.text)}',
         ${item.text.includes('?')},
-        ${item.hasDuplicate}
+        '${item.category}'
       )`);
+};
 
-  if (item.hasDuplicate) {
-    await dbConnection().execute(
-      `UPDATE
-        Items
-      SET
-        hasDuplicate = true
-      WHERE
-        text LIKE '%${item.text}%'`,
-    );
-  }
+export const insertMultipleItems = async (items: IItem[]) => {
+  const values: string[] = [];
+  const likes: string[] = [];
 
-  return Promise.resolve();
+  items.map(item => {
+    values.push(`
+    (
+      '${item.author}',
+      '${sanitize(item.text)}',
+      '${item.category}'
+    )`);
+
+    likes.push(`text LIKE '%${item.text}%'`);
+  });
+
+  return await dbConnection().execute(`
+    INSERT INTO Items
+      (author, text, category)
+    VALUES
+      ${values.toString()}`);
 };
 
 export const updateItem = async (id: string, text: string) => {

@@ -1,5 +1,8 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+
+const withMT = require('@material-tailwind/react/utils/withMT');
+
+module.exports = withMT({
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
@@ -10,6 +13,7 @@ module.exports = {
         'item-has-question-mark': '#ff6a00 !important',
         'cancel-button-border': '#008ce3',
         modal: 'rgba(0,0,0,.5)',
+        checkbox: '#2196f3',
       },
     },
   },
@@ -29,4 +33,4 @@ module.exports = {
       'sans-serif',
     ],
   },
-};
+});

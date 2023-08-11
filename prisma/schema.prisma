@@ -12,9 +12,9 @@ datasource db {
 }
 
 model Items {
-  id              Int    @default(autoincrement()) @id
-  author          String @db.VarChar(75)
-  text            String @db.VarChar(50)
-  hasQuestionMark Boolean
-  hasDuplicate    Boolean
+  id              Int     @default(autoincrement()) @id
+  author          String  @db.VarChar(75)
+  text            String  @db.VarChar(50)
+  hasQuestionMark Boolean @default(false)
+  category        String  @db.VarChar(50) @default("")
 }

@@ -5,7 +5,7 @@ import { atom, useAtom } from 'jotai';
 import { isLoadingAtom, needsRefreshAtom } from '../../atoms';
 import { getItems } from '../../server/db-client';
 import { IItem } from '../../interfaces';
-import { areItemsDifferent } from '../../utilities';
+import { getDuplicatedAmounts } from '../../utilities';
 
 export const itemsAtom = atom<IItem[]>([]);
 
@@ -16,13 +16,14 @@ const ItemsList: React.FC = () => {
 
   const loadItems = async () => {
     await getItems().then(dbResult => {
-      setIsLoading(false);
-
       const freshItems = dbResult as IItem[];
 
-      if (areItemsDifferent(items, freshItems)) {
-        setItems(freshItems);
-      }
+      freshItems.map(item => {
+        item.hasDuplicate = getDuplicatedAmounts(freshItems, item.text) > 1;
+      });
+
+      setItems(freshItems);
+      setIsLoading(false);
     });
   };
 
@@ -32,12 +33,12 @@ const ItemsList: React.FC = () => {
   }, [needsRefresh]);
 
   return (
-    <div className="mt-4 mr-0 mb-20">
+    <div className="mb-20 mr-0 mt-4">
       <ul className="m0 p0 flex list-none flex-wrap items-center justify-start">
         <AnimatePresence>
           {items.map((item: IItem) => (
             <motion.li
-              className="mt-0 ml-0 mr-2 mb-2 h-auto w-auto max-w-sm"
+              className="mb-4 ml-0 mr-4 mt-0 h-auto w-auto max-w-sm"
               key={item.id.toString()}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

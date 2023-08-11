@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  overscroll-behavior-y: contain;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Roboto', sans-serif;
+}
+
+svg {
+  fill: #fff;
+}
+
+main {
+  margin-top: calc(1.5rem + env(safe-area-inset-top, 1.5rem));
+  padding: 0 1rem;
+}
