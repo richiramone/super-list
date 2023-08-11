@@ -16,6 +16,7 @@ const ItemsList: React.FC = () => {
   const loadItems = async () => {
     await getItems().then(dbResult => {
       const freshItems = dbResult as IItem[];
+      debugger;
       setItems(freshItems);
       setIsLoading(false);
     });
@@ -27,12 +28,12 @@ const ItemsList: React.FC = () => {
   }, [needsRefresh]);
 
   return (
-    <div className="mt-4 mr-0 mb-20">
+    <div className="mb-20 mr-0 mt-4">
       <ul className="m0 p0 flex list-none flex-wrap items-center justify-start">
         <AnimatePresence>
           {items.map((item: IItem) => (
             <motion.li
-              className="mt-0 ml-0 mr-4 mb-4 h-auto w-auto max-w-sm"
+              className="mb-4 ml-0 mr-4 mt-0 h-auto w-auto max-w-sm"
               key={item.id.toString()}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
