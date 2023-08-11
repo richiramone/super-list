@@ -10,11 +10,12 @@ const ListRefresh: React.FC = () => {
   const [pullChange, setPullChange] = useState<number>(0);
 
   const initLoading = () => {
+    setNeedsRefreshAtom(needsRefresh + 1);
     setSpinClass('animate-spin');
     setLoadingDiv('!mt-0');
 
     setTimeout(() => {
-      setNeedsRefreshAtom(needsRefresh + 1);
+      setLoadingDiv('');
     }, 1000);
   };
 
@@ -53,7 +54,7 @@ const ListRefresh: React.FC = () => {
   });
 
   return (
-    <div className={`${loadingDiv} pb-6`} style={{ marginTop: pullChange / 3.118 - 56 || '' }}>
+    <div className={`${loadingDiv} pb-6`} style={{ marginTop: pullChange / 3.118 - 60 || '' }}>
       <div className="flex justify-center">
         <svg
           className={`h-8 w-8 text-gray-300 ${spinClass}`}
