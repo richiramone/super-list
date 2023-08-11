@@ -149,7 +149,7 @@ describe('updateItem', () => {
 
 describe('deleteItem', () => {
   it('should delete proper item', async () => {
-    await deleteItem('1');
+    await deleteItem('1', 'test');
 
     const getItemsQuery = (connect as any).results[0][1].execute.calls[0][0];
 

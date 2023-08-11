@@ -1,15 +1,15 @@
 import React from 'react';
-import Header from '../header';
+import Footer from '../footer';
 
 export default {
-  title: 'Components/Header',
-  component: Header,
+  title: 'Components/Footer',
+  component: Footer,
 };
 
 export const Default = () => {
   return (
     <div style={{ left: 0, position: 'fixed' }}>
-      <Header />
+      <Footer />
     </div>
   );
 };
