@@ -56,17 +56,6 @@
         "columnLength": 1,
         "charset": 63,
         "flags": 36865
-      },
-      {
-        "name": "hasDuplicate",
-        "type": "INT8",
-        "table": "Items",
-        "orgTable": "Items",
-        "database": "super-list",
-        "orgName": "hasDuplicate",
-        "columnLength": 1,
-        "charset": 63,
-        "flags": 36865
       }
     ],
     "rows": [

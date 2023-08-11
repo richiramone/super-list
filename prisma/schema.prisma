@@ -16,6 +16,5 @@ model Items {
   author          String  @db.VarChar(75)
   text            String  @db.VarChar(50)
   hasQuestionMark Boolean @default(false)
-  hasDuplicate    Boolean @default(false)
   category        String  @db.VarChar(50) @default("")
 }

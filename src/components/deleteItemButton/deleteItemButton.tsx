@@ -5,16 +5,15 @@ import { deleteItem } from '../../server/db-client';
 
 type DeleteItemButtonProps = {
   id: string;
-  text: string;
 };
 
-const DeleteItemButton: React.FC<DeleteItemButtonProps> = ({ id, text }: DeleteItemButtonProps) => {
+const DeleteItemButton: React.FC<DeleteItemButtonProps> = ({ id }: DeleteItemButtonProps) => {
   const [isOnline] = useAtom(isOnlineAtom);
   const [needsRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
   const disableClass = isOnline ? '' : 'opacity-50';
 
   const _deleteItem = async () => {
-    await deleteItem(id, text).then(() => {
+    await deleteItem(id).then(() => {
       setNeedsRefresh(needsRefresh + 1);
     });
   };

@@ -8,6 +8,7 @@ export const dbConnection = () => {
     username: import.meta.env.VITE_USERNAME,
     password: import.meta.env.VITE_PASSWORD,
   };
+
   return connect(config);
 };
 
@@ -20,7 +21,7 @@ export const getItems = async () => {
 };
 
 export const insertItem = async (item: IItem) => {
-  await dbConnection().execute(`
+  return await dbConnection().execute(`
     INSERT INTO Items
       (author, text, hasQuestionMark, category)
     VALUES
@@ -30,20 +31,6 @@ export const insertItem = async (item: IItem) => {
         ${item.text.includes('?')},
         '${item.category}'
       )`);
-
-  await dbConnection().execute(
-    `UPDATE
-        Items
-      INNER JOIN
-        (SELECT MAX(id) id FROM  Items)
-          itemsmax ON Items.id != itemsmax.id
-      SET
-        hasDuplicate = true
-      WHERE
-        text LIKE '%${item.text}%'`,
-  );
-
-  return Promise.resolve();
 };
 
 export const insertMultipleItems = async (items: IItem[]) => {
@@ -61,22 +48,11 @@ export const insertMultipleItems = async (items: IItem[]) => {
     likes.push(`text LIKE '%${item.text}%'`);
   });
 
-  await dbConnection().execute(`
+  return await dbConnection().execute(`
     INSERT INTO Items
       (author, text, category)
     VALUES
       ${values.toString()}`);
-
-  await dbConnection().execute(
-    `UPDATE
-        Items
-      SET
-        hasDuplicate = true
-      WHERE
-       ${likes.join(' OR ')}`,
-  );
-
-  return Promise.resolve();
 };
 
 export const updateItem = async (id: string, text: string) => {
@@ -91,18 +67,7 @@ export const updateItem = async (id: string, text: string) => {
 };
 
 export const deleteItem = async (id: string, text: string) => {
-  await dbConnection().execute(`DELETE FROM Items WHERE id = ${id}`);
-
-  await dbConnection().execute(
-    `UPDATE
-        Items
-      SET
-        hasDuplicate = false
-      WHERE
-       text LIKE '%${text}%'`,
-  );
-
-  return Promise.resolve();
+  return await dbConnection().execute(`DELETE FROM Items WHERE id = ${id}`);
 };
 
 export const emptyList = async () => {
