@@ -95,7 +95,7 @@ const AddItemFromList: React.FC = () => {
       <dialog
         ref={dialogRef}
         onClick={handleBgClick}
-        className="fixed m-auto h-screen min-h-screen w-screen max-w-6xl bg-white px-0 pb-8 pt-4 backdrop:bg-transparent xl:backdrop:bg-black xl:backdrop:bg-opacity-60"
+        className="fixed m-auto h-screen min-h-screen w-screen max-w-6xl bg-white px-0 py-4 backdrop:bg-transparent xl:backdrop:bg-black xl:backdrop:bg-opacity-60"
       >
         <header className="relative">
           <button
@@ -122,7 +122,7 @@ const AddItemFromList: React.FC = () => {
         </header>
 
         <form onSubmit={submitForm} ref={formRef}>
-          <ol className="m-4">
+          <ol className="m-8">
             {Object.values(category).map((category, categoryIndex) => {
               if (category.toLocaleLowerCase() === 'altri') {
                 return;
