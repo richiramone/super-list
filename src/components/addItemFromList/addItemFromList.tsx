@@ -95,11 +95,11 @@ const AddItemFromList: React.FC = () => {
       <dialog
         ref={dialogRef}
         onClick={handleBgClick}
-        className="fixed h-screen w-screen max-w-6xl rounded-lg border-t-4 border-cyan-500 p-0 backdrop:bg-black backdrop:bg-opacity-60"
+        className="fixed m-0 h-screen min-h-screen w-screen max-w-6xl bg-white p-0 backdrop:bg-transparent backdrop:bg-opacity-60"
       >
         <header className="relative">
           <button
-            className="fixed right-4 top-10 xl:right-auto xl:ml-[1100px]"
+            className="fixed right-4 top-6 xl:right-auto xl:ml-[1100px]"
             type="button"
             onClick={closeDialog}
           >
@@ -122,7 +122,7 @@ const AddItemFromList: React.FC = () => {
         </header>
 
         <form onSubmit={submitForm} ref={formRef}>
-          <ol className="m-2">
+          <ol className="m-4">
             {Object.values(category).map((category, categoryIndex) => {
               if (category.toLocaleLowerCase() === 'altri') {
                 return;
@@ -130,7 +130,7 @@ const AddItemFromList: React.FC = () => {
 
               return (
                 <li key={categoryIndex}>
-                  <h3 className="mb-2 py-1 px-1 text-center text-xl font-bold uppercase text-indigo-600">
+                  <h3 className="mb-2 px-1 py-1 text-center text-xl font-bold uppercase text-indigo-600">
                     {category}
                   </h3>
 
@@ -193,7 +193,7 @@ const AddItemFromList: React.FC = () => {
       </dialog>
 
       <button
-        className="my-0 mx-5 h-7 w-7 border-none bg-transparent	p-0 outline-none disabled:opacity-50"
+        className="mx-5 my-0 h-7 w-7 border-none bg-transparent	p-0 outline-none disabled:opacity-50"
         type="button"
         onClick={openDialog}
         disabled={!isOnline}
