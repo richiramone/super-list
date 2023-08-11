@@ -17,7 +17,6 @@ svg {
 }
 
 main {
-  border-top-width: env(safe-area-inset-top, 0);
   margin-top: calc(1.5rem + env(safe-area-inset-top, 1.5rem));
   padding: 0 1rem;
 }
