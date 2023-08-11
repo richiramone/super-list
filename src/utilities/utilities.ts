@@ -15,6 +15,21 @@ export const hasDuplicatedValue = (items: IItem[], newValue: string) => {
   return alreadyExists;
 };
 
+export const getDuplicatedAmounts = (items: IItem[], newValue: string) => {
+  let repetitions = 0;
+
+  items.map(item => {
+    const itemValue = item.text.toLowerCase();
+    const newValueLowered = newValue.toLowerCase();
+
+    if (itemValue.includes(newValueLowered) || newValueLowered.includes(itemValue)) {
+      repetitions = repetitions + 1;
+    }
+  });
+
+  return repetitions;
+};
+
 export const sanitize = (input: string) => {
   return input.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 };

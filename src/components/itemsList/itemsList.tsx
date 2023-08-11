@@ -5,6 +5,7 @@ import { atom, useAtom } from 'jotai';
 import { isLoadingAtom, needsRefreshAtom } from '../../atoms';
 import { getItems } from '../../server/db-client';
 import { IItem } from '../../interfaces';
+import { getDuplicatedAmounts, hasDuplicatedValue } from '../../utilities';
 
 export const itemsAtom = atom<IItem[]>([]);
 
@@ -16,7 +17,11 @@ const ItemsList: React.FC = () => {
   const loadItems = async () => {
     await getItems().then(dbResult => {
       const freshItems = dbResult as IItem[];
-      debugger;
+
+      freshItems.map((item, index) => {
+        item.hasDuplicate = getDuplicatedAmounts(freshItems, item.text) > 1;
+      });
+
       setItems(freshItems);
       setIsLoading(false);
     });
