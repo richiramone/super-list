@@ -7,7 +7,8 @@ module.exports = withMT({
   theme: {
     extend: {
       colors: {
-        primary: '#009dff',
+        primary: '#00bcd4',
+        old_primary: '#009dff',
         'item-is-duplicated': '#223889',
         'item-is-anna': '#ff0099',
         'item-has-question-mark': '#ff6a00 !important',
