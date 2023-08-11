@@ -66,7 +66,7 @@ export const updateItem = async (id: string, text: string) => {
       id = ${id}`);
 };
 
-export const deleteItem = async (id: string, text: string) => {
+export const deleteItem = async (id: string) => {
   return await dbConnection().execute(`DELETE FROM Items WHERE id = ${id}`);
 };
 

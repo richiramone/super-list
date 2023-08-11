@@ -26,7 +26,7 @@ describe('deleteItemButton', () => {
         setIsOnlineAtom(false);
       });
 
-      render(<DeleteItemButton id="1" text="" />);
+      render(<DeleteItemButton id="1" />);
       const button = document.querySelector('button');
 
       expect(button?.disabled).toBeTruthy();
@@ -42,7 +42,7 @@ describe('deleteItemButton', () => {
         setIsOnlineAtom(true);
       });
 
-      render(<DeleteItemButton id="1" text="" />);
+      render(<DeleteItemButton id="1" />);
 
       const button = screen.getByTestId('deleteItemButton');
       fireEvent.click(button);
