@@ -95,11 +95,11 @@ const AddItemFromList: React.FC = () => {
       <dialog
         ref={dialogRef}
         onClick={handleBgClick}
-        className="fixed m-0 h-screen min-h-screen w-screen max-w-6xl bg-white p-0 backdrop:bg-transparent backdrop:bg-opacity-60"
+        className="fixed m-0 h-screen min-h-screen w-screen max-w-6xl bg-white px-0 pb-8 pt-4 backdrop:bg-transparent backdrop:bg-opacity-60"
       >
         <header className="relative">
           <button
-            className="fixed right-4 top-6 xl:right-auto xl:ml-[1100px]"
+            className="fixed right-4 top-10 xl:right-auto xl:ml-[1100px]"
             type="button"
             onClick={closeDialog}
           >
