@@ -54,7 +54,7 @@ const ListRefresh: React.FC = () => {
   });
 
   return (
-    <div className={`${loadingDiv} pb-6`} style={{ marginTop: pullChange / 3.118 - 60 || '' }}>
+    <div className={`${loadingDiv} pb-6`} style={{ marginTop: pullChange / 3.118 - 70 || '' }}>
       <div className="flex justify-center">
         <svg
           className={`h-8 w-8 text-gray-300 ${spinClass}`}
