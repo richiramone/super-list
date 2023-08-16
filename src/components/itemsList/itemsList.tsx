@@ -36,16 +36,16 @@ const ItemsList: React.FC = () => {
     <div className="mb-20 mr-0 mt-4">
       <ul className="m0 p0 flex list-none flex-wrap items-center justify-start">
         <AnimatePresence>
-          {items.map((item: IItem) => (
+          {items.map((item: IItem, index) => (
             <motion.li
               className="mb-4 ml-0 mr-4 mt-0 h-auto w-auto max-w-sm"
-              key={item.id.toString()}
+              key={index}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ delay: 0.1, duration: 0.3 }}
             >
-              <Item item={item} id={item.id.toString()} />
+              <Item item={item} id={item.id!.toString()} />
             </motion.li>
           ))}
         </AnimatePresence>

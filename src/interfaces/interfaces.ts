@@ -1,8 +1,8 @@
 export interface IItem {
   author: string;
   hasDuplicate?: boolean;
-  hasQuestionMark?: boolean;
+  hasQuestionMark: boolean;
   category?: string;
-  id: number;
+  id?: number;
   text: string;
 }

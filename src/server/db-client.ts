@@ -28,46 +28,39 @@ export const insertItem = async (item: IItem) => {
       (
         '${item.author}',
         '${sanitize(item.text)}',
-        ${item.text.includes('?')},
+        ${item.hasQuestionMark},
         '${item.category}'
       )`);
 };
 
-export const insertMultipleItems = async (items: IItem[]) => {
-  const values: string[] = [];
-  const likes: string[] = [];
-
-  items.map(item => {
-    values.push(`
-    (
-      '${item.author}',
-      '${sanitize(item.text)}',
-      '${item.category}'
-    )`);
-
-    likes.push(`text LIKE '%${item.text}%'`);
-  });
-
-  return await dbConnection().execute(`
-    INSERT INTO Items
-      (author, text, category)
-    VALUES
-      ${values.toString()}`);
-};
-
-export const updateItem = async (id: string, text: string) => {
+export const updateItem = async (id: string, text: string, hasQuestionMark: boolean) => {
   return await dbConnection().execute(`
     UPDATE
       Items
     SET
       text = '${sanitize(text)}',
-      hasQuestionMark = ${text.includes('?')}
+      hasQuestionMark = ${hasQuestionMark}
     WHERE
       id = ${id}`);
 };
 
+export const updateItemHasQuestionMark = async (text: string, hasQuestionMark: boolean) => {
+  return await dbConnection().execute(`
+    UPDATE
+      Items
+    SET
+      text = '${sanitize(text)}',
+      hasQuestionMark = ${hasQuestionMark}
+    WHERE
+      text = '${sanitize(text)}'`);
+};
+
 export const deleteItem = async (id: string) => {
   return await dbConnection().execute(`DELETE FROM Items WHERE id = ${id}`);
+};
+
+export const deleteItemByText = async (text: string) => {
+  return await dbConnection().execute(`DELETE FROM Items WHERE text = '${text}'`);
 };
 
 export const emptyList = async () => {

@@ -16,7 +16,7 @@ const ConfirmItemButton: React.FC<{ id: string; value: string }> = ({
   const [needsRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
 
   const confirmItem = async () => {
-    await updateItem(id, value.replace('?', '')).then(() => {
+    await updateItem(id, value, false).then(() => {
       setNeedsRefresh(needsRefresh + 1);
     });
   };

@@ -12,18 +12,21 @@ const AddItemForm: React.FC = () => {
 
   const submitForm = async (event: React.FormEvent) => {
     event.preventDefault();
-    const itemText = (event.currentTarget.children[0] as HTMLInputElement).value;
+    let itemText = (event.currentTarget.children[0] as HTMLInputElement).value;
 
     if (itemText === '') {
       return;
     }
 
+    const hasQuestionMark = itemText.includes('?');
+    itemText = hasQuestionMark ? itemText.slice(0, -1) : itemText;
+
     const item: IItem = {
       id: 0,
       author: author,
       text: itemText,
-      hasQuestionMark: itemText.includes('?'),
       category: 'not_x_now',
+      hasQuestionMark: hasQuestionMark,
     };
 
     await insertItem(item).then(() => {
@@ -43,7 +46,7 @@ const AddItemForm: React.FC = () => {
   return (
     <form
       data-testid="addItemForm"
-      className="flex h-auto w-auto max-w-sm cursor-pointer rounded bg-gray-500 py-3 px-3"
+      className="flex h-auto w-auto max-w-sm cursor-pointer rounded bg-gray-500 px-3 py-3"
       onSubmit={submitForm}
     >
       <input

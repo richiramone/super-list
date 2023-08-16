@@ -1,13 +1,15 @@
 import { IItem } from '../interfaces';
 
-export const hasDuplicatedValue = (items: IItem[], newValue: string) => {
+export const hasDuplicatedValue = (items: IItem[], newValue: string, hasQuestionMark?: boolean) => {
   let alreadyExists = false;
 
   items.every(item => {
     const itemValue = item.text.toLowerCase();
     const newValueLowered = newValue.toLowerCase();
 
-    if (itemValue === newValueLowered) {
+    if (typeof hasQuestionMark === 'undefined' && itemValue === newValueLowered) {
+      alreadyExists = true;
+    } else if (itemValue === newValueLowered && item.hasQuestionMark == hasQuestionMark) {
       alreadyExists = true;
     }
   });

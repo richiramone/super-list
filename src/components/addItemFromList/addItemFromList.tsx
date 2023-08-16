@@ -1,26 +1,23 @@
 import { useAtom } from 'jotai';
-import { memo, useRef, useState } from 'react';
-import { authorAtom, isLoadingAtom, isOnlineAtom, needsRefreshAtom } from '../../atoms';
+import { memo, useEffect, useRef } from 'react';
+import { authorAtom, isOnlineAtom, needsRefreshAtom } from '../../atoms';
 import { basicItems, category } from './itemsList';
 import { Button, Checkbox } from '@material-tailwind/react';
-import { IItem } from '../../interfaces';
 import { itemsAtom } from '../itemsList/itemsList';
 import { hasDuplicatedValue } from '../../utilities';
-import { insertMultipleItems } from '../../server/db-client';
-
-interface IFormTarget {
-  reset: Function;
-}
+import { deleteItemByText, insertItem, updateItemHasQuestionMark } from '../../server/db-client';
 
 const AddItemFromList: React.FC = () => {
   const [author] = useAtom(authorAtom);
   const [items] = useAtom(itemsAtom);
-  const [_, setIsLoadingAtom] = useAtom(isLoadingAtom);
   const [needsRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
   const formRef = useRef<HTMLFormElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [isOnline] = useAtom(isOnlineAtom);
-  const [formData, setFormData] = useState<IItem[]>([]);
+
+  useEffect(() => {
+    formRef.current?.reset;
+  }, [needsRefresh]);
 
   const updateCheckboxesFromListValues = () => {
     const checkboxes = Array.prototype.slice.call(
@@ -28,7 +25,9 @@ const AddItemFromList: React.FC = () => {
     );
 
     checkboxes?.map(checkbox => {
-      if (hasDuplicatedValue(items, checkbox.value)) {
+      const hasQuestionMark = checkbox.dataset.hasQuestionMark === 'true';
+
+      if (hasDuplicatedValue(items, checkbox.value, hasQuestionMark)) {
         checkbox.checked = true;
       }
     });
@@ -45,49 +44,56 @@ const AddItemFromList: React.FC = () => {
     dialogRef.current?.showModal();
   };
 
-  const closeDialog = (_?: any, form?: IFormTarget) => {
+  const closeDialog = () => {
     dialogRef.current?.close();
-    setFormData([]);
-    form?.reset();
+    formRef.current?.reset();
+  };
+
+  const addItem = async (item: EventTarget & HTMLInputElement, hasQuestionMark: boolean) => {
+    await insertItem({
+      author: author,
+      text: item.value,
+      category: item.dataset.category,
+      hasQuestionMark: hasQuestionMark,
+    });
+  };
+
+  const removeItem = async (itemText: string) => {
+    await deleteItemByText(itemText);
+  };
+
+  const updateItem = async (item: EventTarget & HTMLInputElement, hasQuestionMark: boolean) => {
+    await updateItemHasQuestionMark(item.value, hasQuestionMark);
+  };
+
+  const uncheckSibling = (target: EventTarget & HTMLInputElement) => {
+    const hasQuestionMark = target.dataset.hasQuestionMark === 'true';
+    const siblingQuery = `[name="${target.name}"][data-has-question-mark="${!hasQuestionMark}"]`;
+    const checkbox = formRef.current?.querySelector(siblingQuery) as HTMLInputElement;
+
+    checkbox.checked = false;
   };
 
   const updateData = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const itemText = event.target.value;
+    const hasQuestionMark = event.target.dataset.hasQuestionMark === 'true';
 
-    if (hasDuplicatedValue(items, itemText)) {
-      return;
+    uncheckSibling(event.target);
+
+    if (!event.target.checked) {
+      removeItem(event.target.value);
+    } else if (hasDuplicatedValue(items, event.target.value)) {
+      updateItem(event.target, hasQuestionMark);
+    } else {
+      addItem(event.target, hasQuestionMark);
     }
 
-    setFormData([
-      ...formData,
-      {
-        id: 0,
-        author: author,
-        text: itemText,
-        category: event.target.dataset.category,
-      },
-    ]);
+    setNeedsRefresh(needsRefresh + 1);
   };
 
-  const submitForm = async (event: React.FormEvent) => {
-    const formDataClone = structuredClone(formData);
+  const submitForm = (event: React.FormEvent) => {
     event.preventDefault();
-    const formTarget: IFormTarget = event.target as typeof event.target & {
-      reset: Function;
-    };
 
-    if (formData.length === 0) {
-      closeDialog(null, formTarget);
-      return;
-    }
-
-    setIsLoadingAtom(true);
     closeDialog();
-
-    await insertMultipleItems(formDataClone).then(() => {
-      setNeedsRefresh(needsRefresh + 1);
-      setIsLoadingAtom(false);
-    });
   };
 
   return (
@@ -140,14 +146,30 @@ const AddItemFromList: React.FC = () => {
                         key={`li-item-${category}-${itemIndex}`}
                         className="relative inline-block rounded-full border-2 border-cyan-500 bg-cyan-500"
                       >
-                        <label className="flex h-10 cursor-pointer select-none items-center pl-4 text-lg text-white">
+                        <label className="flex h-10 cursor-pointer select-none items-center pl-4 pr-2 text-lg text-white">
                           {item}
+                          <Checkbox
+                            data-category={category}
+                            value={`${item}`}
+                            color="amber"
+                            name={`${category}-${itemIndex}`}
+                            data-has-question-mark="true"
+                            onChange={updateData}
+                            containerProps={{
+                              className: 'px-1',
+                            }}
+                            className="h-6 w-6 rounded-full border-none bg-gray-200 transition-all hover:scale-105 hover:before:opacity-0"
+                          />
                           <Checkbox
                             data-category={category}
                             value={item}
                             color="indigo"
                             name={`${category}-${itemIndex}`}
+                            data-has-question-mark="false"
                             onChange={updateData}
+                            containerProps={{
+                              className: 'px-1',
+                            }}
                             className="h-6 w-6 rounded-full border-none bg-gray-200 transition-all hover:scale-105 hover:before:opacity-0"
                           />
                         </label>

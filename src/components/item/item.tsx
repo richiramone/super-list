@@ -47,6 +47,7 @@ const Item: React.FC<{ item: IItem; id: string }> = ({ item, id }: ItemProps) =>
           className="m-0 w-auto bg-transparent text-xl text-white"
         >
           {item.text}
+          {item.hasQuestionMark ? '?' : ''}
         </span>
       )}
 

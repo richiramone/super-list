@@ -13,13 +13,16 @@ const EditItem: React.FC<{ id: string; value: string }> = ({ id, value }: EditIt
 
   const submitForm = async (event: React.FormEvent) => {
     event.preventDefault();
-    const itemText = (event.currentTarget.children[0] as HTMLInputElement).value;
+    let itemText = (event.currentTarget.children[0] as HTMLInputElement).value;
 
     if (itemText === '') {
       return;
     }
 
-    await updateItem(id, itemText).then(() => {
+    const hasQuestionMark = itemText.includes('?');
+    itemText = hasQuestionMark ? itemText.slice(0, -1) : itemText;
+
+    await updateItem(id, itemText, hasQuestionMark).then(() => {
       setNeedsRefresh(needsRefresh + 1);
     });
 
