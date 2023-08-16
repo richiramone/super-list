@@ -146,7 +146,7 @@ const AddItemFromList: React.FC = () => {
                         key={`li-item-${category}-${itemIndex}`}
                         className="relative inline-block rounded-full border-2 border-cyan-500 bg-cyan-500"
                       >
-                        <label className="flex h-10 cursor-pointer select-none items-center pl-4 pr-2 text-lg text-white">
+                        <label className="flex h-10 cursor-pointer select-none items-center pl-2 pr-1 text-lg text-white">
                           {item}
                           <Checkbox
                             data-category={category}
@@ -156,9 +156,9 @@ const AddItemFromList: React.FC = () => {
                             data-has-question-mark="true"
                             onChange={updateData}
                             containerProps={{
-                              className: 'px-1',
+                              className: 'pr-1 pl-2',
                             }}
-                            className="h-6 w-6 rounded-full border-none bg-gray-200 transition-all hover:scale-105 hover:before:opacity-0"
+                            className="m-0 h-6 w-6 rounded-full border-none bg-gray-200 p-0 transition-all hover:scale-105 hover:before:opacity-0"
                           />
                           <Checkbox
                             data-category={category}
@@ -168,9 +168,9 @@ const AddItemFromList: React.FC = () => {
                             data-has-question-mark="false"
                             onChange={updateData}
                             containerProps={{
-                              className: 'px-1',
+                              className: 'px-0',
                             }}
-                            className="h-6 w-6 rounded-full border-none bg-gray-200 transition-all hover:scale-105 hover:before:opacity-0"
+                            className="m-0 h-6 w-6 rounded-full border-none bg-gray-200 p-0 transition-all hover:scale-105 hover:before:opacity-0"
                           />
                         </label>
                       </li>
