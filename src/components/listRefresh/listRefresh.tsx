@@ -38,7 +38,6 @@ const ListRefresh: React.FC = () => {
   const endPull = () => {
     setStartPoint(0);
     setPullChange(0);
-    setOpacityValue(0);
 
     if (pullChange > 220) {
       initLoading();
