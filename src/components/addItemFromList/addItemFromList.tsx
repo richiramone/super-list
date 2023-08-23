@@ -155,7 +155,7 @@ const AddItemFromList: React.FC = () => {
                             data-has-question-mark="true"
                             onChange={updateData}
                             containerProps={{
-                              className: 'pr-1 pl-2',
+                              className: 'px-2',
                             }}
                             className="m-0 h-6 w-6 rounded-full border-none bg-gray-200 p-0 transition-all hover:scale-105 hover:before:opacity-0"
                           />
