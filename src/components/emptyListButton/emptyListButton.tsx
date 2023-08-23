@@ -2,7 +2,7 @@ import { useAtom } from 'jotai';
 import { memo, useState } from 'react';
 import { isOnlineAtom, needsRefreshAtom } from '../../atoms';
 import { emptyList } from '../../server/db-client';
-import { Button, Dialog, DialogBody, DialogFooter, DialogHeader } from '@material-tailwind/react';
+import { Button, Dialog, DialogBody, DialogFooter } from '@material-tailwind/react';
 
 const EmptyListButton: React.FC = () => {
   const [isOnline] = useAtom(isOnlineAtom);
@@ -47,8 +47,7 @@ const EmptyListButton: React.FC = () => {
       <Button
         onClick={handleOpen}
         variant="text"
-        data-testid="emptyListButton"
-        className="my-0 mx-5 h-8 w-8 border-none bg-transparent	p-0 outline-none disabled:opacity-50"
+        className="mx-5 my-0 h-8 w-8 border-none bg-transparent	p-0 outline-none disabled:opacity-50"
         type="button"
         disabled={!isOnline}
       >
