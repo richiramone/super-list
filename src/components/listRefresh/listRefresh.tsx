@@ -41,6 +41,7 @@ const ListRefresh: React.FC = () => {
 
     if (pullChange > 220) {
       initLoading();
+    } else {
       setOpacityValue(0);
     }
   };
