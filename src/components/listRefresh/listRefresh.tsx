@@ -3,21 +3,21 @@ import { memo, useEffect, useState } from 'react';
 import { needsRefreshAtom } from '../../atoms';
 
 const ListRefresh: React.FC = () => {
-  const [needsRefresh, setNeedsRefreshAtom] = useAtom(needsRefreshAtom);
+  const [_, setNeedsRefreshAtom] = useAtom(needsRefreshAtom);
   const [startPoint, setStartPoint] = useState(0);
   const [spinClass, setSpinClass] = useState('');
   const [loadingDiv, setLoadingDiv] = useState('');
   const [pullChange, setPullChange] = useState<number>(0);
-  const [opacityValue, setOpacityValue] = useState<number>(0);
+  const [opacityValue, setOpacityValue] = useState('0');
 
   const initLoading = () => {
-    setNeedsRefreshAtom(needsRefresh + 1);
+    setNeedsRefreshAtom(0);
     setSpinClass('animate-spin');
     setLoadingDiv('!mt-0');
 
     setTimeout(() => {
       setLoadingDiv('');
-      setOpacityValue(0);
+      setOpacityValue('100');
     }, 1000);
   };
 
@@ -59,7 +59,10 @@ const ListRefresh: React.FC = () => {
   });
 
   return (
-    <div className={`${loadingDiv} pb-6`} style={{ marginTop: pullChange / 3.118 - 70 || '' }}>
+    <div
+      className={`opacity-${opacityValue} ${loadingDiv} pb-6`}
+      style={{ marginTop: pullChange / 3.118 - 70 || '' }}
+    >
       <div className="flex justify-center">
         <svg
           className={`h-8 w-8 text-gray-300 ${spinClass}`}
