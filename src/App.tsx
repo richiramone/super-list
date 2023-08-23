@@ -6,7 +6,7 @@ import Preloader from './components/preloader/preloader';
 import ListRefresh from './components/listRefresh/listRefresh';
 import AddItemForm from './components/addItemForm/addItemForm';
 import ItemsList from './components/itemsList/itemsList';
-import Footer from './components/footer/footer';
+import Menu from './components/menu/menu';
 
 const App: React.FC = () => {
   const [, setConnectionStatus] = useAtom(isOnlineAtom);
@@ -46,7 +46,7 @@ const App: React.FC = () => {
             <ItemsList />
           </main>
 
-          <Footer />
+          <Menu />
         </>
       )}
     </>
