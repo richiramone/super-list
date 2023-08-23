@@ -60,7 +60,7 @@ const ListRefresh: React.FC = () => {
 
   return (
     <div
-      className={`opacity-${opacityValue} ${loadingDiv} pb-6`}
+      className={`opacity-${opacityValue.toString()} ${loadingDiv} pb-6`}
       style={{ marginTop: pullChange / 3.118 - 70 || '' }}
     >
       <div className="flex justify-center">
