@@ -20,15 +20,14 @@ const AddItemFromList: React.FC = () => {
   }, [needsRefresh]);
 
   const updateCheckboxesFromListValues = () => {
-    const checkboxes = Array.prototype.slice.call(
-      formRef.current?.querySelectorAll('[type=checkbox]'),
-    );
+    items.map(item => {
+      const questionMarkQs = item.hasQuestionMark ? 'true' : 'false';
+      const alreadyPresentCheckbox = formRef.current?.querySelector(
+        `[type=checkbox][value="${item.text}"][data-has-question-mark="${questionMarkQs}"]`,
+      ) as HTMLInputElement;
 
-    checkboxes?.map(checkbox => {
-      const hasQuestionMark = checkbox.dataset.hasQuestionMark === 'true';
-
-      if (hasDuplicatedValue(items, checkbox.value, hasQuestionMark)) {
-        checkbox.checked = true;
+      if (alreadyPresentCheckbox) {
+        alreadyPresentCheckbox.checked = true;
       }
     });
   };
