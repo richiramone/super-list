@@ -8,7 +8,7 @@ const ListRefresh: React.FC = () => {
   const [spinClass, setSpinClass] = useState('');
   const [loadingDiv, setLoadingDiv] = useState('');
   const [pullChange, setPullChange] = useState<number>(0);
-  const [opacityValue, setOpacityValue] = useState('0');
+  const [opacityValue, setOpacityValue] = useState<number>(0);
 
   const initLoading = () => {
     setNeedsRefreshAtom(0);
@@ -17,14 +17,14 @@ const ListRefresh: React.FC = () => {
 
     setTimeout(() => {
       setLoadingDiv('');
-      setOpacityValue('100');
+      setOpacityValue(0);
     }, 1000);
   };
 
   const pullStart = (e: TouchEvent) => {
     const { screenY } = e.targetTouches[0];
     setStartPoint(screenY);
-    setOpacityValue(1);
+    setOpacityValue(100);
   };
 
   const pull = (e: TouchEvent) => {
