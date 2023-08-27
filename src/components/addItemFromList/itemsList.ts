@@ -45,6 +45,7 @@ export const basicItems = {
     'Peco sardo',
     'Provolone',
     'Roquefort',
+    'Tomino',
     'Yogurt agnese',
     'Yogurt anna',
   ],
