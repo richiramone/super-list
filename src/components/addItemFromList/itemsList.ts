@@ -31,7 +31,7 @@ export const basicItems = {
     'Pistacchio',
     'Rucula',
   ],
-  [category.SALUMI]: ['Cotto cubetti', 'Crudo', 'Pancetta', 'Salame'],
+  [category.SALUMI]: ['Cotto cubetti', 'Crudo', 'Pancetta', 'Pancetta strisce', 'Salame'],
   [category.PASTA_RIPIENA]: ['Tortelli', 'Tortellini'],
   [category.LATTICINI]: [
     'Brie',
