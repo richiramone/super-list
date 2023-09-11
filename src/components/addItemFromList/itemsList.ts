@@ -28,6 +28,7 @@ export const basicItems = {
     'Melone',
     'Mirtilli',
     'Patate',
+    'Peperoni',
     'Pistacchio',
     'Rucula',
   ],
