@@ -1,10 +1,10 @@
 export enum category {
-  PESCI = 'Pesci',
+  PESCE = 'Pesce',
   FRUTTA_VERDURA = 'Frutta e verdura',
   SALUMI = 'Salumi',
   PASTA_RIPIENA = 'Pasta ripiena',
   LATTICINI = 'Latticini',
-  CARNI = 'Carni',
+  CARNE = 'Carne',
   DOLCI = 'Dolci',
   PASTA = 'Pasta',
   SOTTACETI = 'Sottaceti',
@@ -14,7 +14,7 @@ export enum category {
 }
 
 export const basicItems = {
-  [category.PESCI]: ['Cozze', 'Gamberetti', 'Insalata di mare', 'Salmone', 'Svizzera merluzzo'],
+  [category.PESCE]: ['Cozze', 'Gamberetti', 'Insalata di mare', 'Salmone', 'Svizzera merluzzo'],
   [category.FRUTTA_VERDURA]: [
     'Aglio',
     'Banana',
@@ -50,8 +50,9 @@ export const basicItems = {
     'Yogurt agnese',
     'Yogurt anna',
   ],
-  [category.CARNI]: [
+  [category.CARNE]: [
     'Carne',
+    'Carne brodo',
     'Cosce di pollo',
     'Petto di pollo',
     'Salsiccia',
@@ -59,7 +60,7 @@ export const basicItems = {
     'Svizzera',
     'Wurster',
   ],
-  [category.DOLCI]: ['Farina di mandorle', 'Frutta da ciucciare', 'Uova', 'Zucchero'],
+  [category.DOLCI]: ['Frutta da ciucciare', 'Uova', 'Zucchero'],
   [category.PASTA]: ['Fusilli', 'Riso', 'Riso cani', 'Stelline', 'Tagliatelle'],
   [category.SOTTACETI]: ['Aceto', 'Olio cani', 'Olive', 'Sale', 'Sale grosso', 'Tonno'],
   [category.PULIZIA]: [
