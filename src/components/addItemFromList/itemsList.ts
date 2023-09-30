@@ -18,6 +18,7 @@ export const basicItems = {
   [category.FRUTTA_VERDURA]: [
     'Aglio',
     'Banana',
+    'Broccoli',
     'Carote',
     'Cipolle',
     'Fragole',
@@ -42,6 +43,7 @@ export const basicItems = {
     'Latte',
     'Mascarpone',
     'Mozzarella',
+    'Panna accida',
     'Parmigiano',
     'Peco sardo',
     'Provolone',
@@ -64,7 +66,7 @@ export const basicItems = {
   [category.PASTA]: ['Fusilli', 'Riso', 'Riso cani', 'Stelline', 'Tagliatelle'],
   [category.SOTTACETI]: ['Aceto', 'Olio cani', 'Olive', 'Sale', 'Sale grosso', 'Tonno'],
   [category.PULIZIA]: [
-    'Abrillantante',
+    'Brillantante',
     'Carta igienica',
     'Sale lavastoviglie',
     'Sapone lavastoviglie',
