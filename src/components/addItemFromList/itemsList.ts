@@ -32,6 +32,7 @@ export const basicItems = {
     'Peperoni',
     'Pistacchio',
     'Rucula',
+    'Zucchine',
   ],
   [category.SALUMI]: ['Cotto cubetti', 'Crudo', 'Pancetta', 'Pancetta strisce', 'Salame'],
   [category.PASTA_RIPIENA]: ['Tortelli', 'Tortellini'],
@@ -67,7 +68,6 @@ export const basicItems = {
   [category.SOTTACETI]: ['Aceto', 'Olio cani', 'Olive', 'Sale', 'Sale grosso', 'Tonno'],
   [category.PULIZIA]: [
     'Brillantante',
-    'Carta igienica',
     'Sale lavastoviglie',
     'Sapone lavastoviglie',
     'Sapone lavatrice',
