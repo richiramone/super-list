@@ -67,6 +67,7 @@ export const basicItems = {
   [category.PASTA]: ['Fusilli', 'Riso', 'Riso cani', 'Stelline', 'Tagliatelle'],
   [category.SOTTACETI]: ['Aceto', 'Olio cani', 'Olive', 'Sale', 'Sale grosso', 'Tonno'],
   [category.PULIZIA]: [
+    'Amorbidente',
     'Brillantante',
     'Sale lavastoviglie',
     'Sapone lavastoviglie',
