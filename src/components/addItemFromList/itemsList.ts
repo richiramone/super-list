@@ -24,6 +24,7 @@ export const basicItems = {
     'Fragole',
     'Lamponi',
     'Limoni',
+    'Mandarini',
     'Melanazana',
     'Mele',
     'Melone',
