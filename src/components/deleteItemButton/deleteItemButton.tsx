@@ -2,7 +2,6 @@ import { useAtom } from 'jotai';
 import { memo } from 'react';
 import { isOnlineAtom, needsRefreshAtom } from '../../atoms';
 import { deleteItem } from '../../server/db-client';
-import { Button } from '@material-tailwind/react';
 
 type DeleteItemButtonProps = {
   id: string;

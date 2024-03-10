@@ -148,6 +148,7 @@ const AddItemFromList: React.FC = () => {
                         <label className="flex h-10 cursor-pointer select-none items-center pl-2 pr-1 text-lg text-white">
                           {item}
                           <Checkbox
+                            crossOrigin={false}
                             data-category={category}
                             value={`${item}`}
                             color="amber"
@@ -160,6 +161,7 @@ const AddItemFromList: React.FC = () => {
                             className="m-0 h-6 w-6 rounded-full border-none bg-gray-200 p-0 transition-all hover:scale-105 hover:before:opacity-0"
                           />
                           <Checkbox
+                            crossOrigin={false}
                             data-category={category}
                             value={item}
                             color="indigo"
@@ -182,6 +184,7 @@ const AddItemFromList: React.FC = () => {
 
           <footer className="mx-auto mb-6 flex max-w-sm justify-center px-6">
             <Button
+              placeholder={''}
               size="lg"
               variant="gradient"
               color="indigo"

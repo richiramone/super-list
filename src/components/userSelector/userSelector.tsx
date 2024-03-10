@@ -16,6 +16,7 @@ const UserSelector: React.FC = () => {
       <ul>
         <li className="mb-6">
           <Button
+            placeholder={''}
             data-testid="lucasButton"
             onClick={() => setAuthor('lucas')}
             className="mb-4 w-80 rounded-full bg-cyan-500 py-3 px-6 text-xl font-bold text-white drop-shadow-lg hover:bg-cyan-300"
@@ -25,6 +26,7 @@ const UserSelector: React.FC = () => {
         </li>
         <li>
           <Button
+            placeholder={''}
             data-testid="annaButton"
             onClick={() => setAuthor('anna')}
             className="w-80 rounded-full  bg-pink-500 py-3 px-6 text-xl font-bold text-white drop-shadow-lg hover:bg-pink-400"

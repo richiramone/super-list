@@ -19,13 +19,14 @@ const EmptyListButton: React.FC = () => {
 
   return (
     <>
-      <Dialog size="xs" handler={handleOpen} open={open}>
-        <DialogBody className="text-xl font-bold text-gray-800">
+      <Dialog size="xs" handler={handleOpen} open={open} placeholder={''}>
+        <DialogBody placeholder={''} className="text-xl font-bold text-gray-800">
           Sei sicuro di voler svuotare la lista?
         </DialogBody>
 
-        <DialogFooter>
+        <DialogFooter placeholder={''}>
           <Button
+            placeholder={''}
             className="text-md mr-4 w-24 rounded-full"
             variant="outlined"
             color="blue-gray"
@@ -34,6 +35,7 @@ const EmptyListButton: React.FC = () => {
             <span>No</span>
           </Button>
           <Button
+            placeholder={''}
             className="text-md w-24 rounded-full"
             variant="gradient"
             color="cyan"
@@ -45,6 +47,7 @@ const EmptyListButton: React.FC = () => {
       </Dialog>
 
       <Button
+        placeholder={''}
         onClick={handleOpen}
         variant="text"
         className="mx-5 my-0 h-8 w-8 border-none bg-transparent	p-0 outline-none disabled:opacity-50"
