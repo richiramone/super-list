@@ -1,68 +1,71 @@
-import { connect } from '@planetscale/database';
-import { IItem } from '../interfaces';
+import { IItem } from '../interfaces'
+import { createClient } from '@supabase/supabase-js';
 import { sanitize } from '../utilities';
 
-export const dbConnection = () => {
-  const config = {
-    host: import.meta.env.VITE_HOST,
-    username: import.meta.env.VITE_USERNAME,
-    password: import.meta.env.VITE_PASSWORD,
-  };
+const DB_URL = import.meta.env.VITE_DATABASE_URL!;
+const DB_KEY = import.meta.env.VITE_DATABASE_KEY!;
 
-  return connect(config);
-};
+export const db = createClient(DB_URL, DB_KEY);
 
 export const getItems = async () => {
-  return await dbConnection()
-    .execute('SELECT * FROM Items ORDER BY id DESC')
-    .then(items => {
-      return items.rows;
-    });
+  const { data } = await db
+    .from('items')
+    .select('*')
+    .order('id', { ascending: false });
+
+  return data;
 };
 
 export const insertItem = async (item: IItem) => {
-  return await dbConnection().execute(`
-    INSERT INTO Items
-      (author, text, hasQuestionMark, category)
-    VALUES
-      (
-        '${item.author}',
-        '${sanitize(item.text)}',
-        ${item.hasQuestionMark},
-        '${item.category}'
-      )`);
+  return await db
+    .from('items')
+    .insert({
+      text: sanitize(item.text),
+      author: item.author,
+      hasQuestionMark: item.hasQuestionMark,
+      category: item.category,
+    });
 };
 
 export const updateItem = async (id: string, text: string, hasQuestionMark: boolean) => {
-  return await dbConnection().execute(`
-    UPDATE
-      Items
-    SET
-      text = '${sanitize(text)}',
-      hasQuestionMark = ${hasQuestionMark}
-    WHERE
-      id = ${id}`);
+  return await db
+    .from('items')
+    .update({
+      text: sanitize(text),
+      hasQuestionMark: hasQuestionMark,
+    })
+    .eq('id', id);
 };
 
 export const updateItemHasQuestionMark = async (text: string, hasQuestionMark: boolean) => {
-  return await dbConnection().execute(`
-    UPDATE
-      Items
-    SET
-      text = '${sanitize(text)}',
-      hasQuestionMark = ${hasQuestionMark}
-    WHERE
-      text = '${sanitize(text)}'`);
+  const sanitizedText = sanitize(text);
+
+  return await db
+    .from('items')
+    .update({
+      text: sanitizedText,
+      hasQuestionMark: hasQuestionMark,
+    })
+    .eq('text', sanitizedText);
 };
 
 export const deleteItem = async (id: string) => {
-  return await dbConnection().execute(`DELETE FROM Items WHERE id = ${id}`);
+  return await db
+    .from('items')
+    .delete()
+    .eq('id', id);
 };
 
 export const deleteItemByText = async (text: string) => {
-  return await dbConnection().execute(`DELETE FROM Items WHERE text = '${text}'`);
+  return await db
+    .from('items')
+    .delete()
+    .eq('text', text);
 };
 
 export const emptyList = async () => {
-  return await dbConnection().execute('DELETE FROM Items WHERE id > 0');
+  return await db
+    .from('items')
+    .delete()
+    .gt('id', 0);
 };
