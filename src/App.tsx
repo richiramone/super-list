@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useAtom } from 'jotai';
 import { authorAtom as _authorAtom, isOnlineAtom, needsRefreshAtom } from './atoms';
 import UserSelector from './components/userSelector';
@@ -8,7 +8,7 @@ import AddItemForm from './components/addItemForm/addItemForm';
 import ItemsList from './components/itemsList/itemsList';
 import Menu from './components/menu/menu';
 
-const App: React.FC = () => {
+function App () {
   const [, setConnectionStatus] = useAtom(isOnlineAtom);
   const [authorAtom] = useAtom(_authorAtom);
   const [needsRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
