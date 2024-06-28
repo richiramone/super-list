@@ -16,7 +16,7 @@ svg {
   fill: #fff;
 }
 
-mains {
+main {
   margin-top: calc(1.5rem + env(safe-area-inset-top, 1.5rem));
   padding: 0 1rem;
 }
