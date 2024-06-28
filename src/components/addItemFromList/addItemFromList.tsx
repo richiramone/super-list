@@ -104,7 +104,7 @@ const AddItemFromList: React.FC = () => {
       >
         <header className="relative">
           <button
-            className="fixed right-4 top-10 xl:right-auto xl:ml-[1100px]"
+            className="fixed right-4 top-14 xl:right-auto xl:ml-[1100px] focus:outline-none"
             type="button"
             onClick={closeDialog}
           >
@@ -191,26 +191,9 @@ const AddItemFromList: React.FC = () => {
               fullWidth
               ripple={true}
               type="submit"
-              className="group relative flex items-center justify-center gap-3 overflow-hidden pr-[72px] text-lg font-bold"
+              className="relative flex items-center justify-center text-lg font-bold"
             >
-              Aggiungi
-              <span className="absolute right-0 grid h-full w-12 place-items-center bg-indigo-600 transition-colors group-hover:bg-light-blue-700">
-                <svg
-                  className="h-5 w-5 text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 18 18"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 1v16M1 9h16"
-                  />
-                </svg>
-              </span>
+              Chiudi
             </Button>
           </footer>
         </form>

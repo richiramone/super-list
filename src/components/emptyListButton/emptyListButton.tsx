@@ -27,7 +27,7 @@ const EmptyListButton: React.FC = () => {
         <DialogFooter placeholder={''}>
           <Button
             placeholder={''}
-            className="text-md mr-4 w-24 rounded-full"
+            className="text-md mr-4 w-24 rounded-xl"
             variant="outlined"
             color="blue-gray"
             onClick={handleOpen}
@@ -36,7 +36,7 @@ const EmptyListButton: React.FC = () => {
           </Button>
           <Button
             placeholder={''}
-            className="text-md w-24 rounded-full"
+            className="text-md w-24 rounded-xl"
             variant="gradient"
             color="cyan"
             onClick={_emptyList}

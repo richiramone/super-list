@@ -2,6 +2,7 @@ import { useAtom } from 'jotai';
 import { memo } from 'react';
 import { isOnlineAtom, needsRefreshAtom } from '../../atoms';
 import { deleteItem } from '../../server/db-client';
+import { itemsAtom } from '../itemsList/itemsList';
 
 type DeleteItemButtonProps = {
   id: string;
@@ -10,9 +11,13 @@ type DeleteItemButtonProps = {
 const DeleteItemButton: React.FC<DeleteItemButtonProps> = ({ id }: DeleteItemButtonProps) => {
   const [isOnline] = useAtom(isOnlineAtom);
   const [needsRefresh, setNeedsRefresh] = useAtom(needsRefreshAtom);
+  const [items, setItems] = useAtom(itemsAtom);
   const disableClass = isOnline ? '' : 'opacity-50';
 
   const _deleteItem = async () => {
+    const updatedItems = items.filter(item => item.id != id);
+    setItems(updatedItems);
+
     await deleteItem(id).then(() => {
       setNeedsRefresh(needsRefresh + 1);
     });
