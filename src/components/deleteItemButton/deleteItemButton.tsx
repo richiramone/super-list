@@ -15,7 +15,7 @@ const DeleteItemButton: React.FC<DeleteItemButtonProps> = ({ id }: DeleteItemBut
   const disableClass = isOnline ? '' : 'opacity-50';
 
   const _deleteItem = async () => {
-    const updatedItems = items.filter(item => item.id != id);
+    const updatedItems = items.filter(item => item.id?.toString() !== id);
     setItems(updatedItems);
 
     await deleteItem(id).then(() => {
