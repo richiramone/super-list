@@ -11,7 +11,7 @@ const Menu: React.FC = () => {
   return (
     <menu
       data-testid="menu"
-      className={`${isOfflineClass} fixed bottom-6 right-2 z-10 flex w-screen justify-end md:bottom-10`}
+      className={`${isOfflineClass} fixed bottom-4 right-2 z-10 flex w-screen justify-end md:bottom-10`}
     >
       <AddItemFromList />
       <EmptyListButton />
