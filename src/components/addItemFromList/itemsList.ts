@@ -34,7 +34,7 @@ export const basicItems = {
     'Zucchine',
   ],
   [category.SALUMI]: ['Cotto cubetti', 'Crudo', 'Pancetta', 'Salame'],
-  [category.PASTA_RIPIENA]: ['Tortelli', 'Tortellini'],
+  [category.PASTA_RIPIENA]: ['Tortelli ricotta spinacci', 'Tortelli zucca', 'Tortellini'],
   [category.LATTICINI]: [
     'Bastardo',
     'Burro',
@@ -75,5 +75,5 @@ export const basicItems = {
     'Sapone lavatrice',
   ],
   [category.FARMACIA]: ['Carta igienica', 'Dentifricio', 'Deodorante', 'Scotex'],
-  [category.ALTRI]: ['Pesto', 'Salsa orecchiette'],
+  [category.ALTRI]: ['Birra', 'Cereali', 'Pesto', 'Pizza', 'Salsa orecchiette'],
 };
