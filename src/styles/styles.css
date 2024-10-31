@@ -15,7 +15,7 @@ body {
 
 @media (prefers-color-scheme: dark) {
   body {
-    background: #444;
+    background: #292929;
   }
 
   [data-testid='addItemForm'] {
@@ -23,7 +23,7 @@ body {
   }
 
   dialog {
-    @apply !bg-[#444];
+    @apply !bg-[#292929];
 
     h3 {
       @apply !text-white;
