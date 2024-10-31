@@ -65,7 +65,7 @@ const ListRefresh: React.FC = () => {
     >
       <div className="flex justify-center">
         <svg
-          className={`h-8 w-8 text-gray-300 ${spinClass}`}
+          className={`h-8 w-8 text-gray-300 [&_path]:fill-none ${spinClass}`}
           style={{ transform: `rotate(${pullChange}deg)` }}
           viewBox="0 0 64 64"
           fill="none"

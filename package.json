@@ -1,6 +1,6 @@
 {
   "name": "super-list",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "private": true,
   "scripts": {
     "dev": "VITE_CJS_IGNORE_WARNING=true vite",
@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@fontsource/roboto": "^5.0.8",
-    "@material-tailwind/react": "^2.1.0",
+    "@material-tailwind/react": "^2.1.10",
     "@supabase/supabase-js": "^2.39.7",
     "@types/node": "20.11.25",
     "@types/react": "18.2.64",
