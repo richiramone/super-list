@@ -1,6 +1,6 @@
 {
   "name": "super-list",
-  "version": "4.1.2",
+  "version": "4.2.0",
   "private": true,
   "scripts": {
     "dev": "VITE_CJS_IGNORE_WARNING=true vite",
