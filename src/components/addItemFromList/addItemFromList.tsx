@@ -127,7 +127,7 @@ const AddItemFromList: React.FC = () => {
         </header>
 
         <form onSubmit={submitForm} ref={formRef}>
-          <ol className="m-12 xl:mt-0">
+          <ol className="m-12 mt-16 xl:mt-0">
             {Object.values(category).map((category, categoryIndex) => {
               if (category.toLocaleLowerCase() === 'altri') {
                 return;

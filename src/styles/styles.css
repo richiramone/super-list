@@ -10,6 +10,29 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Roboto', sans-serif;
+  @apply bg-white;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #444;
+  }
+
+  [data-testid='addItemForm'] {
+    @apply bg-black;
+  }
+
+  dialog {
+    @apply !bg-[#444];
+
+    h3 {
+      @apply !text-white;
+    }
+
+    [type='submit'] {
+      background: #ff8000 !important;
+    }
+  }
 }
 
 svg {
